@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10FA2A01758FEF1998C7312 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */; };
-		246234ED1BF9A0D000BDE6D7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246234EC1BF9A0D000BDE6D7 /* MainViewController.swift */; };
 		246234F01BF9A0D000BDE6D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246234EE1BF9A0D000BDE6D7 /* Main.storyboard */; };
 		246234F21BF9A0D000BDE6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 246234F11BF9A0D000BDE6D7 /* Assets.xcassets */; };
 		246234F51BF9A0D000BDE6D7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246234F31BF9A0D000BDE6D7 /* LaunchScreen.storyboard */; };
 		246235001BF9A0D000BDE6D7 /* RecognitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246234FF1BF9A0D000BDE6D7 /* RecognitionTests.swift */; };
 		2462350B1BF9A0D000BDE6D7 /* RecognitionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */; };
+		2462351A1BF9B1A200BDE6D7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246235191BF9B1A200BDE6D7 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,6 @@
 /* Begin PBXFileReference section */
 		246234E71BF9A0D000BDE6D7 /* Recognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Recognition/AppDelegate.swift; sourceTree = "<group>"; };
-		246234EC1BF9A0D000BDE6D7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		246234EF1BF9A0D000BDE6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		246234F11BF9A0D000BDE6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Recognition/Assets.xcassets; sourceTree = "<group>"; };
 		246234F41BF9A0D000BDE6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -48,6 +47,7 @@
 		246235061BF9A0D000BDE6D7 /* RecognitionUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecognitionUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionUITests.swift; sourceTree = "<group>"; };
 		2462350C1BF9A0D000BDE6D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		246235191BF9B1A200BDE6D7 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C86FAD26D21E8C5BB5CC2FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E10FA2A01758FEF1998C7312 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,8 +105,8 @@
 		246234E91BF9A0D000BDE6D7 /* Recognition */ = {
 			isa = PBXGroup;
 			children = (
-				246234EC1BF9A0D000BDE6D7 /* MainViewController.swift */,
 				246234EE1BF9A0D000BDE6D7 /* Main.storyboard */,
+				246235191BF9B1A200BDE6D7 /* MainViewController.swift */,
 			);
 			path = Recognition;
 			sourceTree = "<group>";
@@ -339,8 +339,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				246234ED1BF9A0D000BDE6D7 /* MainViewController.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
+				2462351A1BF9B1A200BDE6D7 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
