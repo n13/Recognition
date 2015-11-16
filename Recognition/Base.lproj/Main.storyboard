@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
-        <!--Table View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="Cu6-Bj-wZD">
             <objects>
-                <tableViewController id="Ygi-VJ-Xnh" sceneMemberID="viewController">
+                <tableViewController id="Ygi-VJ-Xnh" customClass="MainViewController" customModule="Recognition" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="a68-Gc-XIP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
