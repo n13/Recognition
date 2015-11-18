@@ -755,12 +755,6 @@ NSUInteger DeviceSystemMajorVersion() {
         _showTextLabelsForValue = show;
         [self updateLabels];
         [self setNeedsLayout];
-//        if (show) {
-//            [self addTarget:self action:@selector(updateSliderLabelPositions) forControlEvents:UIControlEventValueChanged];
-//            [self updateSliderLabelPositions];
-//        } else {
-//            [self removeTarget:self action:@selector(updateSliderLabelPositions) forControlEvents:UIControlEventValueChanged];
-//        }
     }
 }
 
