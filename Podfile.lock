@@ -12,7 +12,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   NMRangeSlider:
-    :commit: e8dfe731064536e9a821022d3479cdf883316b2c
+    :commit: 04236d94673be84a3fb2324d67e40e12c26b631c
     :git: https://github.com/n13/NMRangeSlider.git
 
 SPEC CHECKSUMS:

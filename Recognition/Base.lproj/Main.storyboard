@@ -24,7 +24,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZa-2r-zZR" customClass="NMRangeSlider">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZa-2r-zZR" customClass="NMRangeSlider">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -33,6 +33,12 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="BZa-2r-zZR" secondAttribute="bottom" constant="0.5" id="KBT-S7-1ET"/>
+                                            <constraint firstAttribute="trailing" secondItem="BZa-2r-zZR" secondAttribute="trailing" id="hue-vm-5fY"/>
+                                            <constraint firstItem="BZa-2r-zZR" firstAttribute="leading" secondItem="jlX-dm-Fnc" secondAttribute="leading" id="tcF-Km-Y0O"/>
+                                            <constraint firstItem="BZa-2r-zZR" firstAttribute="top" secondItem="jlX-dm-Fnc" secondAttribute="top" id="xu4-VE-BgG"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -45,7 +51,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-Zb-jD8" customClass="NMRangeSlider">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-Zb-jD8" customClass="NMRangeSlider">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -54,6 +60,12 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstItem="l9Z-Zb-jD8" firstAttribute="leading" secondItem="hwA-9x-B3R" secondAttribute="leading" id="FJR-op-Orp"/>
+                                            <constraint firstAttribute="trailing" secondItem="l9Z-Zb-jD8" secondAttribute="trailing" id="O0U-YD-QNz"/>
+                                            <constraint firstItem="l9Z-Zb-jD8" firstAttribute="top" secondItem="hwA-9x-B3R" secondAttribute="top" id="loD-KU-BVA"/>
+                                            <constraint firstAttribute="bottom" secondItem="l9Z-Zb-jD8" secondAttribute="bottom" constant="0.5" id="qYr-eE-GHv"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -66,7 +78,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R41-9x-kYg" customClass="NMRangeSlider">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R41-9x-kYg" customClass="NMRangeSlider">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -75,6 +87,12 @@
                                             <animations/>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstItem="R41-9x-kYg" firstAttribute="top" secondItem="oEM-vP-kUy" secondAttribute="top" id="DkJ-iV-n7W"/>
+                                            <constraint firstItem="R41-9x-kYg" firstAttribute="leading" secondItem="oEM-vP-kUy" secondAttribute="leading" id="IYX-hC-ZAb"/>
+                                            <constraint firstAttribute="bottom" secondItem="R41-9x-kYg" secondAttribute="bottom" constant="0.5" id="YqJ-dc-fic"/>
+                                            <constraint firstAttribute="trailing" secondItem="R41-9x-kYg" secondAttribute="trailing" id="oKy-3k-Tof"/>
+                                        </constraints>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -84,6 +102,11 @@
                             <outlet property="delegate" destination="Ygi-VJ-Xnh" id="yJZ-eR-dci"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="intervalSlider" destination="l9Z-Zb-jD8" id="63C-CH-9P0"/>
+                        <outlet property="numberOfRemindersSlider" destination="R41-9x-kYg" id="Qm2-9y-i8M"/>
+                        <outlet property="wakeTimeSlider" destination="BZa-2r-zZR" id="0ac-HQ-sc9"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pVz-27-97a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

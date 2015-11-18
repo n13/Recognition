@@ -58,6 +58,9 @@
 @property (assign, nonatomic) float lowerHandleHiddenWidth;
 @property (assign, nonatomic) float upperHandleHiddenWidth;
 
+
+@property (assign, nonatomic) BOOL showTextLabelsForValue;
+
 // Images, these should be set before the control is displayed.
 // If they are not set, then the default images are used.
 // eg viewDidLoad
@@ -95,7 +98,5 @@
 // n13: - Added these to the class itself, it's too messy to take care of this in a view controller
 @property (strong, nonatomic) IBOutlet UILabel *lowerLabel;
 @property (strong, nonatomic) IBOutlet UILabel *upperLabel;
-- (void) setShowTextLabelsForValue:(BOOL) show;
-
 
 @end

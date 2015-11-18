@@ -87,6 +87,7 @@ NSUInteger DeviceSystemMajorVersion() {
     _upperMinimumValue = NAN;
     _upperHandleHidden = NO;
     _lowerHandleHidden = NO;
+    _showTextLabelsForValue = NO;
     
     _lowerHandleHiddenWidth = 2.0f;
     _upperHandleHiddenWidth = 2.0f;
@@ -140,6 +141,8 @@ NSUInteger DeviceSystemMajorVersion() {
     
     _lowerValue = value;
     
+    [self updateSliderLabelPositions];
+
     [self setNeedsLayout];
 }
 
@@ -162,6 +165,8 @@ NSUInteger DeviceSystemMajorVersion() {
     value = MAX(value, _lowerValue+_minimumRange);
     
     _upperValue = value;
+    
+    [self updateSliderLabelPositions];
 
     [self setNeedsLayout];
 }
@@ -221,13 +226,23 @@ NSUInteger DeviceSystemMajorVersion() {
 - (void) setLowerHandleHidden:(BOOL)lowerHandleHidden
 {
     _lowerHandleHidden = lowerHandleHidden;
+    [self updateLabels];
     [self setNeedsLayout];
 }
 
 - (void) setUpperHandleHidden:(BOOL)upperHandleHidden
 {
     _upperHandleHidden = upperHandleHidden;
+    [self updateLabels];
     [self setNeedsLayout];
+}
+
+- (void)updateLabels {
+    BOOL showUpper = self.showTextLabelsForValue && !self.upperHandleHidden;
+    BOOL showLower = self.showTextLabelsForValue && !self.lowerHandleHidden;
+    self.upperLabel.hidden = !showUpper;
+    self.lowerLabel.hidden = !showLower;
+    [self updateSliderLabelPositions];
 }
 
 //ON-Demand images. If the images are not set, then the default values are loaded.
@@ -556,6 +571,10 @@ NSUInteger DeviceSystemMajorVersion() {
     [self addSubview:self.track];
     [self addSubview:self.lowerHandle];
     [self addSubview:self.upperHandle];
+    
+    [self addSubview:self.lowerLabel];
+    [self addSubview:self.upperLabel];
+    
 }
 
 
@@ -587,6 +606,8 @@ NSUInteger DeviceSystemMajorVersion() {
     self.upperHandle.image = self.upperHandleImageNormal;
     self.upperHandle.highlightedImage = self.upperHandleImageHighlighted;
     self.upperHandle.hidden= self.upperHandleHidden;
+    
+    [self updateSliderLabelPositions];
     
 }
 
@@ -724,36 +745,37 @@ NSUInteger DeviceSystemMajorVersion() {
     // this is hokey - these views should be added directly as subviews.//TODO
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
     label.textAlignment = NSTextAlignmentCenter;
-    [self.superview addSubview:label];
+    [self addSubview:label];
+    label.hidden = YES;
     return label;
 }
 
 - (void) setShowTextLabelsForValue:(BOOL) show {
-    if (show) {
-        [self addTarget:self action:@selector(_updateSliderLabels) forControlEvents:UIControlEventValueChanged];
-        [self _updateSliderLabels];
-    } else {
-        [self removeTarget:self action:@selector(_updateSliderLabels) forControlEvents:UIControlEventValueChanged];
-        [_upperLabel removeFromSuperview];
-        [_lowerLabel removeFromSuperview];
+    if (_showTextLabelsForValue != show) {
+        _showTextLabelsForValue = show;
+        [self updateLabels];
+        [self setNeedsLayout];
+//        if (show) {
+//            [self addTarget:self action:@selector(updateSliderLabelPositions) forControlEvents:UIControlEventValueChanged];
+//            [self updateSliderLabelPositions];
+//        } else {
+//            [self removeTarget:self action:@selector(updateSliderLabelPositions) forControlEvents:UIControlEventValueChanged];
+//        }
     }
 }
 
-- (void) _updateSliderLabels
+- (void) updateSliderLabelPositions
 {
-    // You get get the center point of the slider handles and use this to arrange other subviews
-    
-    CGPoint lowerCenter;
-    lowerCenter.x = (self.lowerHandle.center.x + self.frame.origin.x);
-    lowerCenter.y = (self.center.y - 30.0f);
-    self.lowerLabel.center = lowerCenter;
-    self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.lowerValue];
-    
-    CGPoint upperCenter;
-    upperCenter.x = (self.upperHandle.center.x + self.frame.origin.x);
-    upperCenter.y = (self.center.y - 30.0f);
-    self.upperLabel.center = upperCenter;
-    self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.upperValue];
+    if (!self.lowerLabel.hidden) {
+        CGFloat labelY = self.bounds.size.height/2.0 - 30.0f;
+        self.lowerLabel.center = CGPointMake(self.lowerHandle.center.x, labelY);;
+        self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.lowerValue];
+    }
+    if (!self.upperLabel.hidden) {
+        CGFloat labelY = self.bounds.size.height/2.0 - 30.0f;
+        self.upperLabel.center = CGPointMake(self.upperHandle.center.x, labelY);
+        self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.upperValue];
+    }
 }
 
 
