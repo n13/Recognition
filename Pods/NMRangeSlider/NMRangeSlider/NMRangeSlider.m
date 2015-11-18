@@ -742,7 +742,6 @@ NSUInteger DeviceSystemMajorVersion() {
 }
 
 -(UILabel *)_addSliderLabel {
-    // this is hokey - these views should be added directly as subviews.//TODO
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];
