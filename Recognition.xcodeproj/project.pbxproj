@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10FA2A01758FEF1998C7312 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */; };
+		245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245C45031BFDA53000410591 /* NotificationCenter.framework */; };
+		245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45051BFDD9E200410591 /* RandomNumbers.swift */; };
+		245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45071BFDE29100410591 /* NSDate+Ex.swift */; };
 		246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */; };
 		246234F01BF9A0D000BDE6D7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 246234EE1BF9A0D000BDE6D7 /* Main.storyboard */; };
 		246234F21BF9A0D000BDE6D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 246234F11BF9A0D000BDE6D7 /* Assets.xcassets */; };
@@ -35,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILocalNotification+Ex.swift"; sourceTree = "<group>"; };
+		245C45031BFDA53000410591 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		245C45051BFDD9E200410591 /* RandomNumbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbers.swift; sourceTree = "<group>"; };
+		245C45071BFDE29100410591 /* NSDate+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Ex.swift"; sourceTree = "<group>"; };
 		246234E71BF9A0D000BDE6D7 /* Recognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Recognition/AppDelegate.swift; sourceTree = "<group>"; };
 		246234EF1BF9A0D000BDE6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -58,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */,
 				0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -107,6 +116,9 @@
 			children = (
 				246234EE1BF9A0D000BDE6D7 /* Main.storyboard */,
 				246235191BF9B1A200BDE6D7 /* MainViewController.swift */,
+				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
+				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
+				245C45071BFDE29100410591 /* NSDate+Ex.swift */,
 			);
 			path = Recognition;
 			sourceTree = "<group>";
@@ -143,6 +155,7 @@
 		7AE40CF196B12F53F9860559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				245C45031BFDA53000410591 /* NotificationCenter.framework */,
 				E10FA2A01758FEF1998C7312 /* Pods.framework */,
 			);
 			name = Frameworks;
@@ -339,8 +352,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2462351A1BF9B1A200BDE6D7 /* MainViewController.swift in Sources */,
+				245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */,
+				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

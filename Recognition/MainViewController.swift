@@ -9,6 +9,8 @@
 import UIKit
 import NMRangeSlider
 import SnapKit
+import DateTools
+
 
 class MainViewController: UITableViewController {
     @IBOutlet weak var wakeTimeSlider: NMRangeSlider!
@@ -22,13 +24,13 @@ class MainViewController: UITableViewController {
         wakeTimeSlider.maximumValue = 24
         wakeTimeSlider.lowerValue = 8
         wakeTimeSlider.upperValue = 21
-        wakeTimeSlider.minimumRange = 1
+        //wakeTimeSlider.minimumRange = 1
         
         intervalSlider.minimumValue = 2
         intervalSlider.maximumValue = 120
         intervalSlider.lowerValue = 10
         intervalSlider.upperValue = 60
-        intervalSlider.minimumRange = 1
+        //intervalSlider.minimumRange = 1
 
         numberOfRemindersSlider.minimumValue = 2
         numberOfRemindersSlider.maximumValue = 30
@@ -44,4 +46,37 @@ class MainViewController: UITableViewController {
         }
     }
     
+    @IBAction func goButtonPressed(sender: UIButton) {
+        
+        let today = NSDate()
+        
+        let startTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(wakeTimeSlider.lowerValue), minute: 0, second: 0)
+        
+        print("start: \(startTime.toLocalString())")
+
+        let endTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(wakeTimeSlider.upperValue), minute: 0, second: 0)
+
+        
+        print("end: \(endTime.toLocalString()) ")
+
+        let totalMinutes: Float = Float(startTime.minutesEarlierThan(endTime))
+        let numberOfReminders: Int = Int(numberOfRemindersSlider.upperValue)
+        let lowerMinutes = Int(min(totalMinutes/Float(numberOfReminders), intervalSlider.minimumValue))
+        let upperMinutes = Int(intervalSlider.upperValue)
+
+        
+        // create random distribution by projecting a time onto the actual time
+        
+        var reminderTimes = [NSDate]()
+        var fireTime = startTime
+        for _ in 1..<numberOfReminders {
+            fireTime = fireTime.dateByAddingMinutes(Int.random(lowerMinutes, upper: upperMinutes))
+            reminderTimes.append(fireTime)
+            
+            print("time: \(fireTime.toLocalString())")
+        }
+        
+        
+        
+    }
 }

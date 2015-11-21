@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>DateTools.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NMRangeSlider.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +27,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CADAF67935B0BB75C3E30A32E9603D3</key>
+		<key>2C9F79BD33530798BE61A99C6D653D95</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +37,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B28BB9BCA77A959D1F7EE2981ECC47A8</key>
+		<key>87372F17E4107E33C3A7C137C44275BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A160DFE2241CFD9748F428942233B43E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

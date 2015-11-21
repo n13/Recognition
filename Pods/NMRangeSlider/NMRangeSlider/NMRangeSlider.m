@@ -469,13 +469,19 @@ NSUInteger DeviceSystemMajorVersion() {
     float xLowerValue = ((self.bounds.size.width - lowerHandleWidth) * (_lowerValue - _minimumValue) / (_maximumValue - _minimumValue))+(lowerHandleWidth/2.0f);
     float xUpperValue = ((self.bounds.size.width - upperHandleWidth) * (_upperValue - _minimumValue) / (_maximumValue - _minimumValue))+(upperHandleWidth/2.0f);
     
-    retValue.origin = CGPointMake(xLowerValue, (self.bounds.size.height/2.0f) - (retValue.size.height/2.0f));
+    float trackY = (self.trackCenterY) - (retValue.size.height/2.0f);
+    
+    retValue.origin = CGPointMake(xLowerValue, trackY);
     retValue.size.width = xUpperValue-xLowerValue;
 
     UIEdgeInsets alignmentInsets = [self trackAlignmentInsets];
     retValue = UIEdgeInsetsInsetRect(retValue,alignmentInsets);
     
     return retValue;
+}
+
+- (CGFloat) trackCenterY {
+    return self.bounds.size.height/2.0f + (self.showTextLabelsForValue ? 10 : 0);
 }
 
 - (UIImage*) trackImageForCurrentValues
@@ -507,7 +513,7 @@ NSUInteger DeviceSystemMajorVersion() {
         trackBackgroundRect.size.width=self.bounds.size.width;
     }
     
-    trackBackgroundRect.origin = CGPointMake(0, (self.bounds.size.height/2.0f) - (trackBackgroundRect.size.height/2.0f));
+    trackBackgroundRect.origin = CGPointMake(0, (self.trackCenterY) - (trackBackgroundRect.size.height/2.0f));
     
     // Adjust the track rect based on the image alignment rects
     
@@ -531,7 +537,7 @@ NSUInteger DeviceSystemMajorVersion() {
     }
     
     float xValue = ((self.bounds.size.width-thumbRect.size.width)*((value - _minimumValue) / (_maximumValue - _minimumValue)));
-    thumbRect.origin = CGPointMake(xValue, (self.bounds.size.height/2.0f) - (thumbRect.size.height/2.0f));
+    thumbRect.origin = CGPointMake(xValue, (self.trackCenterY) - (thumbRect.size.height/2.0f));
     
     return CGRectIntegral(thumbRect);
 
@@ -741,8 +747,20 @@ NSUInteger DeviceSystemMajorVersion() {
     return _upperLabel;
 }
 
+static CGFloat kSliderLabelHeight = 22;
+static CGFloat kSliderLabelCenterOffset = 32;
+
+-(void) setLabelFont:(UIFont *)font textColor:(UIColor *)color {
+    for (UILabel* label in @[self.upperLabel, self.lowerLabel]) {
+        label.font = font;
+        if (color) {
+            label.textColor = color;
+        }
+    }
+}
+
 -(UILabel *)_addSliderLabel {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, kSliderLabelHeight)];
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];
     label.hidden = YES;
@@ -760,17 +778,17 @@ NSUInteger DeviceSystemMajorVersion() {
 - (void) updateSliderLabelPositions
 {
     if (!self.lowerLabel.hidden) {
-        CGFloat labelY = self.bounds.size.height/2.0 - 30.0f;
-        self.lowerLabel.center = CGPointMake(self.lowerHandle.center.x, labelY);;
+        self.lowerLabel.center = CGPointMake(self.lowerHandle.center.x, [self textLabelYCenter]);
         self.lowerLabel.text = [NSString stringWithFormat:@"%d", (int)self.lowerValue];
     }
     if (!self.upperLabel.hidden) {
-        CGFloat labelY = self.bounds.size.height/2.0 - 30.0f;
-        self.upperLabel.center = CGPointMake(self.upperHandle.center.x, labelY);
+        self.upperLabel.center = CGPointMake(self.upperHandle.center.x, [self textLabelYCenter]);
         self.upperLabel.text = [NSString stringWithFormat:@"%d", (int)self.upperValue];
     }
 }
 
-
+- (CGFloat) textLabelYCenter {
+    return self.trackCenterY - kSliderLabelCenterOffset;
+}
 
 @end

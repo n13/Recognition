@@ -1,8 +1,10 @@
 PODS:
+  - DateTools (1.7.0)
   - NMRangeSlider (1.2.2)
   - SnapKit (0.15.0)
 
 DEPENDENCIES:
+  - DateTools
   - NMRangeSlider (from `https://github.com/n13/NMRangeSlider.git`)
   - SnapKit (~> 0.15.0)
 
@@ -16,6 +18,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/n13/NMRangeSlider.git
 
 SPEC CHECKSUMS:
+  DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
   NMRangeSlider: 02bb205d0c7f9bea09b5cf00fbcbc2bc2e3e10ff
   SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
 
