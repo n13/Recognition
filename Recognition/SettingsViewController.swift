@@ -52,6 +52,11 @@ class SettingsViewController: UITableViewController {
             
         }
     }
+    @IBAction func doneButtonPressed(sender: AnyObject) {
+        print("done!")
+        dismissViewControllerAnimated(true, completion: nil)
+        
+    }
     
     @IBAction func goButtonPressed(sender: UIButton) {
         
@@ -79,7 +84,6 @@ class SettingsViewController: UITableViewController {
         for _ in 1..<numberOfReminders {
             fireTime = fireTime.dateByAddingMinutes(Int.random(lowerMinutes, upper: upperMinutes))
             reminderTimes.append(fireTime)
-            
             print("time: \(fireTime.toLocalString())")
         }
         

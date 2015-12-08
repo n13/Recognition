@@ -13,12 +13,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var settings = Settings()
+    
+    static func delegate() -> AppDelegate {
+        return UIApplication.sharedApplication().delegate! as! AppDelegate
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        setupNotificationCategoriesAndActions()
+        
+        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+            print("launching with notification: \(notification)")
+            handleNotification(notification)
+        }
+
         return true
     }
 
+    func setupNotificationCategoriesAndActions() {
+        
+        let types = UIUserNotificationType([.Badge, .Sound, .Alert])
+        let recognitionCategory = UIMutableUserNotificationCategory()
+        
+        // Identifier to include in your push payload and local notification
+        recognitionCategory.identifier = "RECOGNITION_CATEGORY";
+        
+        let acceptAction = UIMutableUserNotificationAction()
+        acceptAction.identifier = "ACCEPT";
+        acceptAction.title = "Done";
+        acceptAction.activationMode = .Background
+        acceptAction.destructive = false
+        acceptAction.authenticationRequired = false
+
+        let declineAction = UIMutableUserNotificationAction()
+        declineAction.identifier = "DECLINE";
+        declineAction.title = "Not now";
+        declineAction.activationMode = .Background
+        declineAction.destructive = true
+        declineAction.authenticationRequired = false
+        
+        // Add the actions to the category and set the action context
+        recognitionCategory.setActions([acceptAction, declineAction], forContext: .Default)
+        // Set the actions to present in a minimal context
+        recognitionCategory.setActions([acceptAction, declineAction], forContext: .Minimal)
+        
+        let categories = Set([recognitionCategory])
+        
+        let notificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
+        
+        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        
+
+        
+    }
+    
+    // MARK: Handle Notifications
+    
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+        print("got notification: \(notification)")
+        handleNotification(notification)
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+        print("handle 1 \(notification)")
+    }
+    
+    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+        print("handle 2 \(notification) \(responseInfo)")
+    }
+    
+    func handleNotification(notification: UILocalNotification) {
+        print("handling notification")
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

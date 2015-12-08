@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10FA2A01758FEF1998C7312 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
 		245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */; };
 		245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245C45031BFDA53000410591 /* NotificationCenter.framework */; };
 		245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45051BFDD9E200410591 /* RandomNumbers.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILocalNotification+Ex.swift"; sourceTree = "<group>"; };
 		245C45031BFDA53000410591 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		245C45051BFDD9E200410591 /* RandomNumbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbers.swift; sourceTree = "<group>"; };
@@ -117,11 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				246234EE1BF9A0D000BDE6D7 /* Main.storyboard */,
-				246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */,
-				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
-				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
-				245C45071BFDE29100410591 /* NSDate+Ex.swift */,
-				24E0EB4B1C0FE6760051314B /* MainViewController.swift */,
+				24E0EB4D1C0FED370051314B /* Controllers */,
+				24E0EB4E1C0FED450051314B /* Extensions */,
 			);
 			path = Recognition;
 			sourceTree = "<group>";
@@ -153,6 +152,26 @@
 				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		24E0EB4D1C0FED370051314B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				24E0EB4B1C0FE6760051314B /* MainViewController.swift */,
+				246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */,
+				244207FB1C15620200EEF7D9 /* Settings.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		24E0EB4E1C0FED450051314B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
+				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
+				245C45071BFDE29100410591 /* NSDate+Ex.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		7AE40CF196B12F53F9860559 /* Frameworks */ = {
@@ -359,6 +378,7 @@
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */,
 				24E0EB4C1C0FE6760051314B /* MainViewController.swift in Sources */,
+				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
 				245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */,
 				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
 			);
