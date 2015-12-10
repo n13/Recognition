@@ -57,37 +57,4 @@ class SettingsViewController: UITableViewController {
         dismissViewControllerAnimated(true, completion: nil)
         
     }
-    
-    @IBAction func goButtonPressed(sender: UIButton) {
-        
-        let today = NSDate()
-        
-        let startTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(wakeTimeSlider.lowerValue), minute: 0, second: 0)
-        
-        print("start: \(startTime.toLocalString())")
-
-        let endTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(wakeTimeSlider.upperValue), minute: 0, second: 0)
-
-        
-        print("end: \(endTime.toLocalString()) ")
-
-        let totalMinutes: Float = Float(startTime.minutesEarlierThan(endTime))
-        let numberOfReminders: Int = Int(numberOfRemindersSlider.upperValue)
-        let lowerMinutes = Int(min(totalMinutes/Float(numberOfReminders), intervalSlider.minimumValue))
-        let upperMinutes = Int(intervalSlider.upperValue)
-
-        
-        // create random distribution by projecting a time onto the actual time
-        
-        var reminderTimes = [NSDate]()
-        var fireTime = startTime
-        for _ in 1..<numberOfReminders {
-            fireTime = fireTime.dateByAddingMinutes(Int.random(lowerMinutes, upper: upperMinutes))
-            reminderTimes.append(fireTime)
-            print("time: \(fireTime.toLocalString())")
-        }
-        
-        
-        
-    }
 }

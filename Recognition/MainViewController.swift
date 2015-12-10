@@ -16,10 +16,24 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var changeSettingsButton: UIButton!
     @IBOutlet weak var startStopButton: UIButton!
 
-    var isRunning = false
+    var isRunning: Bool {
+        get {
+            return AppDelegate.delegate().settings.running
+        }
+        set(value) {
+            AppDelegate.delegate().settings.running = value
+        }
+    }
+    
     var expiredReminders = [NSDate]()
     var futureReminders = [NSDate]()
     
+    // MARK: View
+    override func viewDidLoad() {
+        updateStartButton()
+    }
+    
+    // MARK: Actions
     @IBAction func startStopButtonPressed(sender: AnyObject) {
         if (isRunning) {
             isRunning = false
@@ -36,7 +50,14 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func scheduleNextReminder() {
         if futureReminders.count > 0 {
-            let date = futureReminders.removeFirst()
+            var date = futureReminders.removeFirst()
+            
+            print("now time: \(NSDate())")
+            print("next reminder fires at: \(date)")
+            
+            // TODO: Remove. This is for debugging. Fire in 3 seconds
+            date = NSDate().dateByAddingSeconds(3)
+            
             UILocalNotification.scheduleAlert("Take 2-5 seconds to recognize that you exist. Let go of all thoughts.", fireDate: date)
         }
     }
@@ -78,10 +99,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
 
-    override func viewDidLoad() {
-        
-    }
-    
+    // MARK: Table View
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredDates.count
     }
@@ -92,32 +110,41 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
-    // Model
+    
+    // MARK: Model
     func createReminderTimesForToday() -> [NSDate] {
         
-        let today = NSDate()
+        let nowTime = NSDate()
         
         let settings = AppDelegate.delegate().settings
         
-        let startTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(settings.startTime), minute: 0, second: 0)
+        var startTime = NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(settings.startTime), minute: 0, second: 0)
         
         print("start: \(startTime.toLocalString())")
         
-        let endTime = NSDate(year: today.year(), month: today.month(), day: today.day(), hour: Int(settings.stopTime), minute: 0, second: 0)
+        let endTime = NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(settings.stopTime), minute: 0, second: 0)
         
         print("end: \(endTime.toLocalString()) ")
         
-        let totalMinutes: Float = Float(startTime.minutesEarlierThan(endTime))
-        let numberOfReminders: Int = Int(settings.remindersPerDay)
+        let totalMinutes: Float = Float(endTime.minutesLaterThan(startTime))
+        var numberOfReminders: Int = Int(settings.remindersPerDay)
         let lowerMinutes = Int(min(totalMinutes/Float(numberOfReminders), settings.intervalMin))
         let upperMinutes = Int(settings.intervalMax)
+        
+        // app starts in the middle of the day, only do some of the reminders
+        if nowTime.isLaterThan(startTime) {
+            let minutesExpired = Float(nowTime.minutesLaterThan(startTime))
+            let numberOfRemindersRemaining = Float(numberOfReminders) * (1 - (minutesExpired / totalMinutes))
+            numberOfReminders = Int(ceil(numberOfRemindersRemaining))
+            startTime = nowTime
+        }
         
         // create random distribution by projecting a time onto the actual time
         var reminderTimes = [NSDate]()
         var fireTime = startTime
-        for _ in 1..<numberOfReminders {
+        for _ in 0..<numberOfReminders {
             fireTime = fireTime.dateByAddingMinutes(Int.random(lowerMinutes, upper: upperMinutes))
-            if fireTime.isLaterThan(NSDate()) {
+            if fireTime.isEarlierThan(NSDate()) {
                 reminderTimes.append(fireTime)
                 print("added reminder time: \(fireTime.toLocalString())")
             } else {
