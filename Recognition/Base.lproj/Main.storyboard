@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9E8-Hh-iqu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9E8-Hh-iqu">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +13,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NY1-aK-S8Q">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="r1M-tq-4Sr" kind="relationship" relationship="rootViewController" id="8lh-3W-deF"/>
@@ -30,27 +29,23 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="a68-Gc-XIP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <sections>
                             <tableViewSection headerTitle="Waking Time" id="tXr-Pf-BTj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="jlX-dm-Fnc">
-                                        <rect key="frame" x="0.0" y="113.5" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="jlX-dm-Fnc">
+                                        <rect key="frame" x="0.0" y="113.5" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jlX-dm-Fnc" id="kD1-D9-nc2">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BZa-2r-zZR" customClass="NMRangeSlider">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BZa-2r-zZR" customClass="NMRangeSlider">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="BZa-2r-zZR" secondAttribute="bottom" constant="0.5" id="KBT-S7-1ET"/>
                                             <constraint firstAttribute="trailing" secondItem="BZa-2r-zZR" secondAttribute="trailing" id="hue-vm-5fY"/>
@@ -60,57 +55,51 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Interval Between Reminders" id="wtx-oP-bb3">
-                                <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="hwA-9x-B3R">
-                                        <rect key="frame" x="0.0" y="243.5" width="600" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hwA-9x-B3R" id="Bet-F9-rcc">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-Zb-jD8" customClass="NMRangeSlider">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
-                                                    <animations/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </view>
-                                            </subviews>
-                                            <animations/>
-                                        </tableViewCellContentView>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstItem="l9Z-Zb-jD8" firstAttribute="leading" secondItem="hwA-9x-B3R" secondAttribute="leading" id="FJR-op-Orp"/>
-                                            <constraint firstAttribute="trailing" secondItem="l9Z-Zb-jD8" secondAttribute="trailing" id="O0U-YD-QNz"/>
-                                            <constraint firstItem="l9Z-Zb-jD8" firstAttribute="top" secondItem="hwA-9x-B3R" secondAttribute="top" id="loD-KU-BVA"/>
-                                            <constraint firstAttribute="bottom" secondItem="l9Z-Zb-jD8" secondAttribute="bottom" constant="0.5" id="qYr-eE-GHv"/>
-                                        </constraints>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Number Of Reminders" id="7rp-Xk-ZTB">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="80" id="oEM-vP-kUy">
-                                        <rect key="frame" x="0.0" y="373.5" width="600" height="80"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="oEM-vP-kUy">
+                                        <rect key="frame" x="0.0" y="273.5" width="600" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oEM-vP-kUy" id="RCJ-lk-97C">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R41-9x-kYg" customClass="NMRangeSlider">
+                                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R41-9x-kYg" customClass="NMRangeSlider">
                                                     <rect key="frame" x="0.0" y="0.0" width="600" height="79.5"/>
-                                                    <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </view>
                                             </subviews>
-                                            <animations/>
                                         </tableViewCellContentView>
-                                        <animations/>
                                         <constraints>
                                             <constraint firstItem="R41-9x-kYg" firstAttribute="top" secondItem="oEM-vP-kUy" secondAttribute="top" id="DkJ-iV-n7W"/>
                                             <constraint firstItem="R41-9x-kYg" firstAttribute="leading" secondItem="oEM-vP-kUy" secondAttribute="leading" id="IYX-hC-ZAb"/>
                                             <constraint firstAttribute="bottom" secondItem="R41-9x-kYg" secondAttribute="bottom" constant="0.5" id="YqJ-dc-fic"/>
                                             <constraint firstAttribute="trailing" secondItem="R41-9x-kYg" secondAttribute="trailing" id="oKy-3k-Tof"/>
                                         </constraints>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Reminder Text" id="4b4-Zs-StD">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="110" id="WNF-Ux-p0L">
+                                        <rect key="frame" x="0.0" y="433.5" width="600" height="110"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WNF-Ux-p0L" id="TX6-VV-ad5">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="109.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oMh-go-Hmq">
+                                                    <rect key="frame" x="8" y="40" width="584" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="oMh-go-Hmq" firstAttribute="centerY" secondItem="TX6-VV-ad5" secondAttribute="centerY" id="EI1-fK-nRg"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="oMh-go-Hmq" secondAttribute="leading" id="Qh1-cY-PnU"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oMh-go-Hmq" secondAttribute="trailing" id="kGO-ok-eSh"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -129,8 +118,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="intervalSlider" destination="l9Z-Zb-jD8" id="63C-CH-9P0"/>
                         <outlet property="numberOfRemindersSlider" destination="R41-9x-kYg" id="Qm2-9y-i8M"/>
+                        <outlet property="reminderTextField" destination="oMh-go-Hmq" id="1HN-Lo-fqS"/>
                         <outlet property="wakeTimeSlider" destination="BZa-2r-zZR" id="0ac-HQ-sc9"/>
                     </connections>
                 </tableViewController>
@@ -145,7 +134,6 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z9R-Aa-eU3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <animations/>
                     </navigationBar>
                     <connections>
                         <segue destination="Ygi-VJ-Xnh" kind="relationship" relationship="rootViewController" id="oZ8-bg-xOR"/>
@@ -155,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="-1397" y="432"/>
         </scene>
-        <!--Recognition Reminders-->
+        <!--2-5 Second Meditation-->
         <scene sceneID="l8p-sh-alH">
             <objects>
                 <viewController id="r1M-tq-4Sr" customClass="MainViewController" customModule="Recognition" customModuleProvider="target" sceneMemberID="viewController">
@@ -169,14 +157,12 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remind me 12 times a day, for a 2-5 second recognition session" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5iy-0F-RME">
                                 <rect key="frame" x="20" y="84" width="560" height="20.5"/>
-                                <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-YP-oCy">
                                 <rect key="frame" x="20" y="112" width="114" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Change Settings"/>
                                 <connections>
                                     <action selector="changeSettingsPushed:" destination="r1M-tq-4Sr" eventType="touchUpInside" id="Xtg-e7-awW"/>
@@ -185,7 +171,6 @@
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-ac-Lt7">
                                 <rect key="frame" x="20" y="150.5" width="560" height="449.5"/>
-                                <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="BfC-zK-H7C"/>
@@ -193,7 +178,6 @@
                                 <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="XbL-FU-9HY">
                                     <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <animations/>
                                     <segments>
                                         <segment title="Today"/>
                                         <segment title="This Week"/>
@@ -215,14 +199,12 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-xj-Qde">
                                 <rect key="frame" x="546" y="112" width="34" height="30"/>
-                                <animations/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startStopButtonPressed:" destination="r1M-tq-4Sr" eventType="touchUpInside" id="bBP-S7-LDH"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="W9u-xj-Qde" firstAttribute="baseline" secondItem="VRG-YP-oCy" secondAttribute="baseline" id="0eZ-Rn-hj8"/>
@@ -248,7 +230,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Recognition Reminders" id="7vb-jh-yJX"/>
+                    <navigationItem key="navigationItem" title="2-5 Second Meditation" id="7vb-jh-yJX"/>
                     <connections>
                         <outlet property="changeSettingsButton" destination="VRG-YP-oCy" id="JKM-cp-pfX"/>
                         <outlet property="mainLabel" destination="5iy-0F-RME" id="S6T-4B-38C"/>

@@ -127,6 +127,8 @@ NSUInteger DeviceSystemMajorVersion() {
     {
         value = roundf(value / _stepValueInternal) * _stepValueInternal;
     }
+    
+    // This is also a bad dependency
 
     value = MIN(value, _maximumValue);
     value = MAX(value, _minimumValue);
@@ -135,10 +137,12 @@ NSUInteger DeviceSystemMajorVersion() {
         value = MIN(value, _lowerMaximumValue);
     }
 
-    value = MIN(value, _upperValue - _minimumRange);
+    // this is really dumb - have to set upper value before we set lower value? This is a bad dependency.
+    // Removed.
+    //value = MIN(value, _upperValue - _minimumRange);
 
     _lowerValue = value;
-
+    
     [self updateSliderLabelPositions];
 
     [self setNeedsLayout];

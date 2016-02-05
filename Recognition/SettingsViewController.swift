@@ -14,16 +14,20 @@ import DateTools
 
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var wakeTimeSlider: NMRangeSlider!
-    @IBOutlet weak var intervalSlider: NMRangeSlider!
     @IBOutlet weak var numberOfRemindersSlider: NMRangeSlider!
+    @IBOutlet weak var reminderTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let settings = AppDelegate.delegate().settings
+                
         wakeTimeSlider.minimumValue = 0
         wakeTimeSlider.maximumValue = 24
-        wakeTimeSlider.lowerValue = 8
-        wakeTimeSlider.upperValue = 21
+        wakeTimeSlider.lowerValue = settings.startTime
+        wakeTimeSlider.upperValue = settings.stopTime
+        wakeTimeSlider.stepValue = 0.5
+        wakeTimeSlider.stepValueContinuously = false
         
         wakeTimeSlider.labelTextTransform = { value in
             let hour = Int(value)
@@ -31,30 +35,29 @@ class SettingsViewController: UITableViewController {
             return String(format: "%02d", hour) + ":" + minute
         }
         
-        //wakeTimeSlider.minimumRange = 1
-        
-        intervalSlider.minimumValue = 2
-        intervalSlider.maximumValue = 120
-        intervalSlider.lowerValue = 10
-        intervalSlider.upperValue = 60
-        //intervalSlider.minimumRange = 1
-
         numberOfRemindersSlider.minimumValue = 2
-        numberOfRemindersSlider.maximumValue = 30
-        numberOfRemindersSlider.upperValue = 12
+        numberOfRemindersSlider.maximumValue = 50
+        numberOfRemindersSlider.upperValue = Float(settings.remindersPerDay)
         numberOfRemindersSlider.lowerHandleHidden = true
+        numberOfRemindersSlider.stepValue = 1.0
+        numberOfRemindersSlider.stepValueContinuously = false
+
         
-        for slider in [wakeTimeSlider, intervalSlider, numberOfRemindersSlider] {
+        for slider in [wakeTimeSlider, numberOfRemindersSlider] {
            slider.showTextLabelsForValue = true
-            //            slider.snp_makeConstraints { make in
-//                make.edges.equalTo(UIEdgeInsets(top: 10,left: 10,bottom: 10, right: 10))
-//            }
-            
         }
+        
+        reminderTextField.text = settings.reminderText
     }
+    
     @IBAction func doneButtonPressed(sender: AnyObject) {
         print("done!")
+        let settings = AppDelegate.delegate().settings
+        settings.startTime = wakeTimeSlider.lowerValue
+        settings.stopTime = wakeTimeSlider.upperValue
+        settings.remindersPerDay = Int(numberOfRemindersSlider.upperValue)
+        settings.reminderText = reminderTextField.text!
+        settings.save()
         dismissViewControllerAnimated(true, completion: nil)
-        
     }
 }

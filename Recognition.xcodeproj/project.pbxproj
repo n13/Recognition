@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10FA2A01758FEF1998C7312 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
+		245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245433851C43AE0E00D5509F /* ReminderEngine.swift */; };
 		245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */; };
 		245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245C45031BFDA53000410591 /* NotificationCenter.framework */; };
 		245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45051BFDD9E200410591 /* RandomNumbers.swift */; };
@@ -42,12 +43,13 @@
 
 /* Begin PBXFileReference section */
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		245433851C43AE0E00D5509F /* ReminderEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderEngine.swift; sourceTree = "<group>"; };
 		245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILocalNotification+Ex.swift"; sourceTree = "<group>"; };
 		245C45031BFDA53000410591 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		245C45051BFDD9E200410591 /* RandomNumbers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomNumbers.swift; sourceTree = "<group>"; };
 		245C45071BFDE29100410591 /* NSDate+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Ex.swift"; sourceTree = "<group>"; };
 		246234E71BF9A0D000BDE6D7 /* Recognition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recognition.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Recognition/AppDelegate.swift; sourceTree = "<group>"; };
+		246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		246234EF1BF9A0D000BDE6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		246234F11BF9A0D000BDE6D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Recognition/Assets.xcassets; sourceTree = "<group>"; };
 		246234F41BF9A0D000BDE6D7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		245433841C43ADFD00D5509F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				245433851C43AE0E00D5509F /* ReminderEngine.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		246234DE1BF9A0D000BDE6D7 = {
 			isa = PBXGroup;
 			children = (
@@ -118,8 +128,10 @@
 		246234E91BF9A0D000BDE6D7 /* Recognition */ = {
 			isa = PBXGroup;
 			children = (
+				246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */,
 				246234EE1BF9A0D000BDE6D7 /* Main.storyboard */,
 				24E0EB4D1C0FED370051314B /* Controllers */,
+				245433841C43ADFD00D5509F /* Model */,
 				24E0EB4E1C0FED450051314B /* Extensions */,
 			);
 			path = Recognition;
@@ -146,7 +158,6 @@
 		246235181BF9A18C00BDE6D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				246234EA1BF9A0D000BDE6D7 /* AppDelegate.swift */,
 				246234F61BF9A0D000BDE6D7 /* Info.plist */,
 				246234F31BF9A0D000BDE6D7 /* LaunchScreen.storyboard */,
 				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
@@ -377,6 +388,7 @@
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */,
+				245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */,
 				24E0EB4C1C0FE6760051314B /* MainViewController.swift in Sources */,
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
 				245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */,

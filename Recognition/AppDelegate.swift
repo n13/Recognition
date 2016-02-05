@@ -21,6 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        // defaults
+        settings.setupDefaults()
+        
+        // set up all our notifications and stuff
         setupNotificationCategoriesAndActions()
         
         if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
