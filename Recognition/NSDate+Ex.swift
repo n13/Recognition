@@ -12,4 +12,13 @@ extension NSDate {
     func toLocalString() -> String {
         return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
     }
+    
+    func isBeforeHourToday(otherDate: NSDate) -> Bool {
+        if self.hour() == otherDate.hour() {
+            return self.minute() < otherDate.minute()
+        } else {
+            return self.hour() < otherDate.hour()
+        }
+    }
+    
 }

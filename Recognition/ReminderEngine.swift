@@ -13,6 +13,14 @@ class ReminderEngine {
     // singleton
     static let reminderEngine = ReminderEngine()
     
+    
+    func initEngine() {
+        if (isRunning && futureReminders.count == 0) {
+            // we are running update ensures we have correct dates set
+            updateReminders()
+        }
+    }
+    
     // instance variables
     var futureReminders = [NSDate]()
     var observer: NSObjectProtocol!

@@ -16,6 +16,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var changeSettingsButton: UIButton!
     @IBOutlet weak var startStopButton: UIButton!
     
+    @IBOutlet weak var stoppedLabel: UILabel!
+    
+    var timeFormat: NSDateFormatter {
+       let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle;
+        formatter.dateStyle = .NoStyle;
+        return formatter
+    }
+
+    
     let reminderEngine = ReminderEngine.reminderEngine
 
     // MARK: View
@@ -23,11 +33,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         updateStartButton()
         updateMainLabelText()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateMainLabelText", name: Settings.Notifications.SettingsChanged, object: nil)
+        
+        // init reminder engine
+        ReminderEngine.reminderEngine.initEngine()
+        
+        stoppedLabel.hidden = true
+
     }
     
     func updateMainLabelText()  {
         let s = "Remind me \(AppDelegate.delegate().settings.remindersPerDay) times a day, for a 2-5 second recognition session"
         self.mainLabel.text = s
+        tableView.reloadData()
     }
     
     // MARK: Actions
@@ -49,43 +66,56 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             startStopButton.setTitle("Start", forState: .Normal)
             startStopButton.setTitleColor(nil, forState: .Normal)
         }
+        tableView.reloadData()
     }
         
-    var filteredDates = [NSDate]() {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    
-
     @IBAction func changeSettingsPushed(sender: UIButton) {
     }
     
-    @IBAction func selectorChanged(sender: UISegmentedControl) {
-        filterDates()
-    }
+//    var filteredDates = [NSDate]() {
+//        didSet {
+//            tableView.reloadData()
+//        }
+//    }
+//    
+//
+//    @IBAction func selectorChanged(sender: UISegmentedControl) {
+//        filterDates()
+//    }
+//    
+//    func filterDates() {
+//        if (tableSelector.selectedSegmentIndex == 2) {
+//            filteredDates = reminderEngine.futureReminders
+//        } else {
+//            let daysAgo = tableSelector.selectedSegmentIndex == 0 ? 0 : 6
+//            filteredDates = reminderEngine.futureReminders.filter { $0.daysAgo() <= daysAgo }
+//        }
+//    }
     
-    func filterDates() {
-        if (tableSelector.selectedSegmentIndex == 2) {
-            filteredDates = reminderEngine.futureReminders
-        } else {
-            let daysAgo = tableSelector.selectedSegmentIndex == 0 ? 0 : 6
-            filteredDates = reminderEngine.futureReminders.filter { $0.daysAgo() <= daysAgo }
-        }
-    }
+    // MARK: TableView
     
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Reminder times"
+        return reminderEngine.isRunning ? "Reminder times" : "Stopped. Push Start to start."
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     // MARK: Table View
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredDates.count
+        return reminderEngine.futureReminders.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "\(filteredDates[indexPath.row])"
+        let cell: TimeCell = tableView.dequeueReusableCellWithIdentifier("tc") as! TimeCell
+        let date = reminderEngine.futureReminders[indexPath.row]
+        let nowTime = NSDate()
+        cell.timeLabel.text = "\(timeFormat.stringFromDate(date))"
+        if date.isBeforeHourToday(nowTime) {
+            cell.timeLabel.textColor = UIColor.lightGrayColor()
+        } else {
+            cell.timeLabel.textColor = UIColor.darkGrayColor()
+        }
         return cell
     }
     

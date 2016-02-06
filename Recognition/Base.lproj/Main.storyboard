@@ -162,7 +162,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRG-YP-oCy">
-                                <rect key="frame" x="20" y="112" width="114" height="30"/>
+                                <rect key="frame" x="20" y="112" width="150" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Change Settings"/>
                                 <connections>
                                     <action selector="changeSettingsPushed:" destination="r1M-tq-4Sr" eventType="touchUpInside" id="Xtg-e7-awW"/>
@@ -170,23 +171,55 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-ac-Lt7">
-                                <rect key="frame" x="20" y="157" width="560" height="443"/>
+                                <rect key="frame" x="20" y="163" width="560" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="BfC-zK-H7C"/>
                                 </constraints>
-                                <segmentedControl key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="XbL-FU-9HY">
-                                    <rect key="frame" x="0.0" y="0.0" width="560" height="30"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="Ve8-s4-xuS">
+                                    <rect key="frame" x="0.0" y="61" width="560" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <segments>
-                                        <segment title="Today"/>
-                                        <segment title="This Week"/>
-                                        <segment title="All"/>
-                                    </segments>
-                                    <connections>
-                                        <action selector="selectorChanged:" destination="r1M-tq-4Sr" eventType="valueChanged" id="Quq-PM-Tn3"/>
-                                    </connections>
-                                </segmentedControl>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stopped! No Reminders." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex7-w7-TPH">
+                                            <rect key="frame" x="173" y="10.5" width="214" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="ex7-w7-TPH" firstAttribute="centerX" secondItem="Ve8-s4-xuS" secondAttribute="centerX" id="HL1-DM-w6d"/>
+                                        <constraint firstItem="ex7-w7-TPH" firstAttribute="centerY" secondItem="Ve8-s4-xuS" secondAttribute="centerY" id="aMX-IH-awl"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="tc" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="tc" rowHeight="33" id="bfG-VP-yjM" customClass="TimeCell" customModule="Recognition" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="560" height="33"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bfG-VP-yjM" id="ovy-vF-Kkp">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="32.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder 10:55" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E1Q-XO-zKk">
+                                                    <rect key="frame" x="8" y="0.0" width="544" height="32.5"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="E1Q-XO-zKk" firstAttribute="top" secondItem="ovy-vF-Kkp" secondAttribute="top" id="DvA-CS-oiA"/>
+                                                <constraint firstAttribute="leadingMargin" secondItem="E1Q-XO-zKk" secondAttribute="leading" id="HU2-06-SBK"/>
+                                                <constraint firstAttribute="bottom" secondItem="E1Q-XO-zKk" secondAttribute="bottom" id="gAI-TT-qZk"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="E1Q-XO-zKk" secondAttribute="trailing" id="zQN-Rp-Qnb"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="timeLabel" destination="E1Q-XO-zKk" id="U6H-XZ-PBd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="BfC-zK-H7C"/>
@@ -198,7 +231,8 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W9u-xj-Qde">
-                                <rect key="frame" x="546" y="112" width="34" height="30"/>
+                                <rect key="frame" x="537" y="112" width="43" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startStopButtonPressed:" destination="r1M-tq-4Sr" eventType="touchUpInside" id="bBP-S7-LDH"/>
@@ -235,7 +269,7 @@
                         <outlet property="changeSettingsButton" destination="VRG-YP-oCy" id="JKM-cp-pfX"/>
                         <outlet property="mainLabel" destination="5iy-0F-RME" id="S6T-4B-38C"/>
                         <outlet property="startStopButton" destination="W9u-xj-Qde" id="e9N-35-6vz"/>
-                        <outlet property="tableSelector" destination="XbL-FU-9HY" id="seZ-QR-Kx0"/>
+                        <outlet property="stoppedLabel" destination="ex7-w7-TPH" id="qSY-qb-i2O"/>
                         <outlet property="tableView" destination="ha6-ac-Lt7" id="wBC-7G-BdZ"/>
                     </connections>
                 </viewController>
