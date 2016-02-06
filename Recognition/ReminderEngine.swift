@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 
 class ReminderEngine {
+    // singleton
     static let reminderEngine = ReminderEngine()
     
-    var expiredReminders = [NSDate]()
+    // instance variables
     var futureReminders = [NSDate]()
-    var reminders = [NSDate]()
     var observer: NSObjectProtocol!
 
     var isRunning: Bool {
@@ -55,20 +55,6 @@ class ReminderEngine {
 
     }
     
-//    func scheduleNextReminder() {
-//        if futureReminders.count > 0 {
-//            var date = futureReminders.removeFirst()
-//            
-//            print("now time: \(NSDate())")
-//            print("next reminder fires at: \(date)")
-//            
-//            // TODO: Remove. This is for debugging. Fire in 3 seconds
-//            date = NSDate().dateByAddingSeconds(3)
-//            
-//            scheduleNotification(date)
-//        }
-//    }
-
     private func scheduleNotification(date: NSDate) {
         let notification = UILocalNotification()
         notification.fireDate = date

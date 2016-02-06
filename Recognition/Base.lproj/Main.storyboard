@@ -170,7 +170,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ha6-ac-Lt7">
-                                <rect key="frame" x="20" y="150.5" width="560" height="449.5"/>
+                                <rect key="frame" x="20" y="157" width="560" height="443"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="430" id="BfC-zK-H7C"/>
@@ -217,7 +217,7 @@
                             <constraint firstItem="ha6-ac-Lt7" firstAttribute="leading" secondItem="VRG-YP-oCy" secondAttribute="leading" id="fTs-tK-UVb"/>
                             <constraint firstItem="DaH-hy-3nh" firstAttribute="top" secondItem="ha6-ac-Lt7" secondAttribute="bottom" id="hwQ-BS-CLv"/>
                             <constraint firstAttribute="leadingMargin" secondItem="5iy-0F-RME" secondAttribute="leading" id="iS4-Is-xw3"/>
-                            <constraint firstItem="ha6-ac-Lt7" firstAttribute="top" secondItem="VRG-YP-oCy" secondAttribute="bottom" constant="8" symbolic="YES" id="sJf-gH-43V"/>
+                            <constraint firstItem="ha6-ac-Lt7" firstAttribute="top" secondItem="VRG-YP-oCy" secondAttribute="bottom" constant="15" id="sJf-gH-43V"/>
                             <constraint firstAttribute="leadingMargin" secondItem="VRG-YP-oCy" secondAttribute="leading" id="sVC-pJ-KTu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ha6-ac-Lt7" secondAttribute="trailing" id="yde-g5-ThQ"/>
                             <constraint firstItem="ha6-ac-Lt7" firstAttribute="trailing" secondItem="5iy-0F-RME" secondAttribute="trailing" id="zw1-01-WRb"/>

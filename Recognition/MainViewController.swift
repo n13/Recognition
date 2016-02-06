@@ -67,11 +67,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func filterDates() {
         if (tableSelector.selectedSegmentIndex == 2) {
-            filteredDates = reminderEngine.reminders
+            filteredDates = reminderEngine.futureReminders
         } else {
             let daysAgo = tableSelector.selectedSegmentIndex == 0 ? 0 : 6
-            filteredDates = reminderEngine.reminders.filter { $0.daysAgo() <= daysAgo }
+            filteredDates = reminderEngine.futureReminders.filter { $0.daysAgo() <= daysAgo }
         }
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Reminder times"
     }
     
     // MARK: Table View
