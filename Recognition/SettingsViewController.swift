@@ -15,13 +15,12 @@ import DateTools
 class SettingsViewController: UITableViewController {
     @IBOutlet weak var wakeTimeSlider: NMRangeSlider!
     @IBOutlet weak var numberOfRemindersSlider: NMRangeSlider!
-    @IBOutlet weak var reminderTextField: UITextField!
-    
+    @IBOutlet weak var reminderTextView: UITextView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let settings = AppDelegate.delegate().settings
-                
+        
         wakeTimeSlider.minimumValue = 0
         wakeTimeSlider.maximumValue = 24
         wakeTimeSlider.lowerValue = settings.startTime
@@ -47,16 +46,16 @@ class SettingsViewController: UITableViewController {
            slider.showTextLabelsForValue = true
         }
         
-        reminderTextField.text = settings.reminderText
+        reminderTextView.text = settings.reminderText
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
-        print("done!")
+//        print("done!")
         let settings = AppDelegate.delegate().settings
         settings.startTime = wakeTimeSlider.lowerValue
         settings.stopTime = wakeTimeSlider.upperValue
         settings.remindersPerDay = Int(numberOfRemindersSlider.upperValue)
-        settings.reminderText = reminderTextField.text!
+        settings.reminderText = reminderTextView.text!
         settings.save()
         dismissViewControllerAnimated(true, completion: nil)
     }

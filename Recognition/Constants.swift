@@ -11,4 +11,11 @@ import Foundation
 struct Constants {
     static let SmartTag = "SmartTag"
 
+    static var timeFormat: NSDateFormatter {
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle;
+        formatter.dateStyle = .NoStyle;
+        return formatter
+    }
+
 }

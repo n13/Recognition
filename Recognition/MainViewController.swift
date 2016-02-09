@@ -18,14 +18,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var stoppedLabel: UILabel!
     
-    var timeFormat: NSDateFormatter {
-       let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle;
-        formatter.dateStyle = .NoStyle;
-        return formatter
-    }
-
-    
     let reminderEngine = ReminderEngine.reminderEngine
 
     // MARK: View
@@ -110,7 +102,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell: TimeCell = tableView.dequeueReusableCellWithIdentifier("tc") as! TimeCell
         let date = reminderEngine.futureReminders[indexPath.row]
         let nowTime = NSDate()
-        cell.timeLabel.text = "\(timeFormat.stringFromDate(date))"
+        cell.timeLabel.text = "\(Constants.timeFormat.stringFromDate(date))"
         if date.isBeforeHourToday(nowTime) {
             cell.timeLabel.textColor = UIColor.lightGrayColor()
         } else {

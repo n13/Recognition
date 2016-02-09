@@ -21,4 +21,11 @@ extension NSDate {
         }
     }
     
+    func hourAsDate(hour0_24: Float) -> NSDate {
+        let nowTime = NSDate()
+        let hour = Int(hour0_24)
+        let minute: Int = Int(60.0 * (hour0_24 - Float(hour)))
+        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: hour, minute: minute, second: 0)
+    }
+    
 }

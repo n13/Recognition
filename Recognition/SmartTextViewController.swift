@@ -18,13 +18,6 @@ class SmartTextViewController: UIViewController {
     @IBOutlet weak var startStopButton: UIButton!
     @IBOutlet weak var statusLabel: UILabel!
     
-    var timeFormat: NSDateFormatter {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle;
-        formatter.dateStyle = .NoStyle;
-        return formatter
-    }
-
     override func viewDidLoad() {
         
         title = "Recognition Reminders"
@@ -75,6 +68,8 @@ class SmartTextViewController: UIViewController {
     
     func createText() {
         
+        attributedText = NSMutableAttributedString()
+        
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
         
         appendText("Schedule ")
@@ -83,9 +78,12 @@ class SmartTextViewController: UIViewController {
         appendText("\n")
         
         appendText("from\t\t")
-        appendClickableText(timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate()), tag: Tag.StartTime)
+        let startText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate())
+        appendClickableText(startText, tag: Tag.StartTime)
         appendText("\nto\t\t\t\t")
-        appendClickableText(timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate()), tag: Tag.EndTime)
+        
+        let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
+        appendClickableText(endText, tag: Tag.EndTime)
 
         appendText("\n\ntelling me to\n")
         appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText)
@@ -94,17 +92,6 @@ class SmartTextViewController: UIViewController {
     }
     
     let textSize : CGFloat = 30
-    
-    func appendClickableText(text: String, tag: String) {
-        let color = UIColor.purpleColor()
-        let attributes: [String:AnyObject] = [
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
-            NSForegroundColorAttributeName : color,
-            NSUnderlineStyleAttributeName : NSUnderlineStyle.PatternDot.rawValue | NSUnderlineStyle.StyleThick.rawValue,
-            Constants.SmartTag : tag
-        ]
-        attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
-    }
     
     func appendText(text: String) {
         let color = UIColor.blackColor()
@@ -118,6 +105,17 @@ class SmartTextViewController: UIViewController {
         attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
     }
  
+    func appendClickableText(text: String, tag: String) {
+        let color = UIColor.purpleColor()
+        let attributes: [String:AnyObject] = [
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
+            NSForegroundColorAttributeName : color,
+            NSUnderlineStyleAttributeName : NSUnderlineStyle.PatternDot.rawValue | NSUnderlineStyle.StyleThick.rawValue,
+            Constants.SmartTag : tag
+        ]
+        attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
+    }
+    
     func textTapped(recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
         let layoutManager = textView.layoutManager

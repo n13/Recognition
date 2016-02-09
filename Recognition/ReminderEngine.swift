@@ -19,6 +19,12 @@ class ReminderEngine {
             // we are running update ensures we have correct dates set
             updateReminders()
         }
+        observer = NSNotificationCenter.defaultCenter().addObserverForName(Settings.Notifications.SettingsChanged, object: nil, queue: nil) { notification in
+            if self.isRunning {
+                self.updateReminders()
+            }
+        }
+
     }
     
     // instance variables
@@ -36,31 +42,30 @@ class ReminderEngine {
 
     func stop() {
         isRunning = false
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
-        futureReminders = [NSDate]()
-        if (observer != nil) {
-            NSNotificationCenter.defaultCenter().removeObserver(observer)
-        }
+        updateReminders()
     }
     
     func start() {
         isRunning = true
         updateReminders()
-        observer = NSNotificationCenter.defaultCenter().addObserverForName(Settings.Notifications.SettingsChanged, object: nil, queue: nil) { notification in
-            self.updateReminders()
-        }
     }
     
     // cancels all existing reminders and creates new ones
     func updateReminders() {
+        // kill all existing notifications
         UIApplication.sharedApplication().cancelAllLocalNotifications()
-        futureReminders = createReminderTimesForToday()
-        print("Setting reminders for:")
-        for date in futureReminders {
-            print("reminder with daily repeat on: \(date.toLocalString())")
-            scheduleNotification(date)
+        
+        // if we're running, add new notifications
+        if (isRunning) {
+            futureReminders = createReminderTimesForToday()
+            print("Setting reminders for:")
+            for date in futureReminders {
+                print("reminder with daily repeat on: \(date.toLocalString())")
+                scheduleNotification(date)
+            }
+        } else {
+            futureReminders = [NSDate]()
         }
-
     }
     
     private func scheduleNotification(date: NSDate) {
@@ -79,12 +84,12 @@ class ReminderEngine {
     // MARK: Conversion methods
     func startTimeAsDate() -> NSDate {
         let nowTime = NSDate()
-        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(AppDelegate.delegate().settings.startTime), minute: 0, second: 0)
+        return nowTime.hourAsDate(AppDelegate.delegate().settings.startTime)
     }
     
     func endTimeAsDate() -> NSDate {
         let nowTime = NSDate()
-        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(AppDelegate.delegate().settings.stopTime), minute: 0, second: 0)
+        return nowTime.hourAsDate(AppDelegate.delegate().settings.stopTime)
     }
     
     // MARK: Model
