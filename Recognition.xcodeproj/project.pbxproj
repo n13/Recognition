@@ -10,6 +10,8 @@
 		0BA6723D0215974AB26FE883 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10FA2A01758FEF1998C7312 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE6FB1C65E4C6001182AB /* TimeCell.swift */; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
+		2442B83F1C69C69400346E1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B83E1C69C69400346E1B /* Constants.swift */; };
+		2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */; };
 		245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245433851C43AE0E00D5509F /* ReminderEngine.swift */; };
 		245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */; };
 		245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 245C45031BFDA53000410591 /* NotificationCenter.framework */; };
@@ -22,6 +24,8 @@
 		246235001BF9A0D000BDE6D7 /* RecognitionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246234FF1BF9A0D000BDE6D7 /* RecognitionTests.swift */; };
 		2462350B1BF9A0D000BDE6D7 /* RecognitionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */; };
 		2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */; };
+		246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359361C68623F0097CC76 /* SmartTextViewController.swift */; };
+		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
 		24E0EB4C1C0FE6760051314B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0EB4B1C0FE6760051314B /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +49,10 @@
 /* Begin PBXFileReference section */
 		243CE6FB1C65E4C6001182AB /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		2442B83E1C69C69400346E1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		2442B8401C69FAF500346E1B /* Recognition-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Recognition-Bridging-Header.h"; path = "Recognition/Recognition-Bridging-Header.h"; sourceTree = "<group>"; };
+		2442B8411C69FAF600346E1B /* UIViewController+CommonUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+CommonUtils.h"; sourceTree = "<group>"; };
+		2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+CommonUtils.m"; sourceTree = "<group>"; };
 		245433851C43AE0E00D5509F /* ReminderEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderEngine.swift; sourceTree = "<group>"; };
 		245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILocalNotification+Ex.swift"; sourceTree = "<group>"; };
 		245C45031BFDA53000410591 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
@@ -63,6 +71,8 @@
 		2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognitionUITests.swift; sourceTree = "<group>"; };
 		2462350C1BF9A0D000BDE6D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		246359361C68623F0097CC76 /* SmartTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartTextViewController.swift; sourceTree = "<group>"; };
+		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
 		24E0EB4B1C0FE6760051314B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C86FAD26D21E8C5BB5CC2FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				245433851C43AE0E00D5509F /* ReminderEngine.swift */,
+				2442B83E1C69C69400346E1B /* Constants.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -160,6 +171,7 @@
 		246235181BF9A18C00BDE6D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2442B8401C69FAF500346E1B /* Recognition-Bridging-Header.h */,
 				246234F61BF9A0D000BDE6D7 /* Info.plist */,
 				246234F31BF9A0D000BDE6D7 /* LaunchScreen.storyboard */,
 				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
@@ -171,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				24E0EB4B1C0FE6760051314B /* MainViewController.swift */,
+				246359361C68623F0097CC76 /* SmartTextViewController.swift */,
 				246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */,
 				244207FB1C15620200EEF7D9 /* Settings.swift */,
 			);
@@ -184,6 +197,9 @@
 				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
 				245C45071BFDE29100410591 /* NSDate+Ex.swift */,
 				243CE6FB1C65E4C6001182AB /* TimeCell.swift */,
+				246359381C6882D50097CC76 /* UITextView+SmartTags.swift */,
+				2442B8411C69FAF600346E1B /* UIViewController+CommonUtils.h */,
+				2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -271,7 +287,7 @@
 		246234DF1BF9A0D000BDE6D7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Nikolaus Heger";
 				TargetAttributes = {
@@ -393,10 +409,14 @@
 				2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */,
 				243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */,
 				245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */,
+				2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */,
 				24E0EB4C1C0FE6760051314B /* MainViewController.swift in Sources */,
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
+				246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */,
+				246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */,
 				245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */,
 				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
+				2442B83F1C69C69400346E1B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -540,10 +560,13 @@
 			baseConfigurationReference = 4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Recognition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.Recognition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Recognition/Recognition-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -552,10 +575,12 @@
 			baseConfigurationReference = 4C86FAD26D21E8C5BB5CC2FC /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Recognition/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.Recognition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Recognition/Recognition-Bridging-Header.h";
 			};
 			name = Release;
 		};

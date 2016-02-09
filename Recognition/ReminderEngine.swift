@@ -76,12 +76,23 @@ class ReminderEngine {
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     
+    // MARK: Conversion methods
+    func startTimeAsDate() -> NSDate {
+        let nowTime = NSDate()
+        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(AppDelegate.delegate().settings.startTime), minute: 0, second: 0)
+    }
+    
+    func endTimeAsDate() -> NSDate {
+        let nowTime = NSDate()
+        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(AppDelegate.delegate().settings.stopTime), minute: 0, second: 0)
+    }
+    
     // MARK: Model
     private func createReminderTimesForToday() -> [NSDate] {
         let nowTime = NSDate()
         let settings = AppDelegate.delegate().settings
-        let startTime = NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(settings.startTime), minute: 0, second: 0)
-        let endTime = NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: Int(settings.stopTime), minute: 0, second: 0)
+        let startTime = startTimeAsDate()
+        let endTime = endTimeAsDate()
         var totalMinutes: Float = Float(endTime.minutesLaterThan(startTime))
         if (totalMinutes < 1) {
             totalMinutes = 1
