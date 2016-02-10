@@ -15,31 +15,60 @@ class SmartTextViewController: UIViewController {
     var attributedText = NSMutableAttributedString()
     
     @IBOutlet weak var onOffSwitch: UISwitch!
-    @IBOutlet weak var startStopButton: UIButton!
-    @IBOutlet weak var statusLabel: UILabel!
     
     override func viewDidLoad() {
         
-        title = "Recognition Reminders"
+        // Title
+        title = "Recognition"
         
+        onOffSwitch.onTintColor = Constants.PurpleColor
+        
+        // Info button
+        let infoButton = UIButton(type: .InfoLight)
+        infoButton.addTarget(self, action: "InfoButtonPressed:", forControlEvents: .TouchUpInside)
+        let infoBarButtonItem = UIBarButtonItem(customView: infoButton)
+        navigationItem.rightBarButtonItem = infoBarButtonItem
+        
+        // switch in nav bar
+        onOffSwitch.hidden = true
+        let aSwitch = UISwitch()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: aSwitch)
+        onOffSwitch = aSwitch
+        onOffSwitch.addTarget(self, action: "switchPressed:", forControlEvents: .ValueChanged)
+        
+        // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
         
+        // Text
         createText()
         
+        // Make sure the engine is on
         ReminderEngine.reminderEngine.initEngine()
         
+        // UX config
         onOffSwitch.on = ReminderEngine.reminderEngine.isRunning
-        
         updateStartStopButton()
         
+        // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
 
     }
     
+    // MARK: Status bar
+    //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    //        return .LightContent
+    //    }
+
+    
+    // MARK: Actions
     func handleSettingsChanged(notification: NSNotification) {
         print("handle settings changed")
         createText()
+    }
+    
+    @IBAction func InfoButtonPressed(sender: AnyObject) {
+        showSettingsViewController()
     }
     
     @IBAction func switchPressed(sender: AnyObject) {
@@ -51,13 +80,22 @@ class SmartTextViewController: UIViewController {
         updateStartStopButton()
     }
     
+    // MARK: UX
     func updateStartStopButton() {
         let running = ReminderEngine.reminderEngine.isRunning
-        statusLabel.textColor = running ? UIColor.greenColor() : UIColor.lightGrayColor()
-        statusLabel.text = running ? "Running" : "Stopped"
+//        statusLabel.textColor = running ? UIColor.purpleColor() : UIColor.lightGrayColor()
+//        statusLabel.text = running ? "Running" : "Stopped"
         
     }
     
+    func showSettingsViewController() {
+        let vc = SettingsViewController.createMain()
+        let nc = UINavigationController(rootViewController: vc)
+        nc.modalTransitionStyle = .FlipHorizontal
+        presentViewController(nc, animated: true, completion: nil)
+    }
+    
+
     // MARK: Text Management - Should be in its own class
     struct Tag {
         static let NumberOfReminders = "#numberOfReminders"
@@ -66,21 +104,25 @@ class SmartTextViewController: UIViewController {
         static let ReminderText = "#text"
     }
     
+    
+    
     func createText() {
         
         attributedText = NSMutableAttributedString()
         
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
         
-        appendText("Schedule ")
+        appendText("2-5 second\nmeditation\n\n", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
+
+        appendText("schedule ")
         appendClickableText(numReminders, tag: Tag.NumberOfReminders)
         appendText(" reminders per day\n")
         appendText("\n")
         
-        appendText("from\t\t")
+        appendText("from\t")
         let startText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate())
         appendClickableText(startText, tag: Tag.StartTime)
-        appendText("\nto\t\t\t\t")
+        appendText("\nto\t")
         
         let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
         appendClickableText(endText, tag: Tag.EndTime)
@@ -89,28 +131,47 @@ class SmartTextViewController: UIViewController {
         appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText)
         
         textView.attributedText = attributedText
+        
     }
     
-    let textSize : CGFloat = 30
-    
-    func appendText(text: String) {
-        let color = UIColor.blackColor()
-        let attributes: [String:AnyObject] = [
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: textSize)!,
-            NSForegroundColorAttributeName : color,
-            //NSUnderlineColorAttributeName : color,
-            NSUnderlineStyleAttributeName : NSUnderlineStyle.PatternDash.rawValue,
+    var paragraphStyle: NSMutableParagraphStyle {
+        let style = NSMutableParagraphStyle()
+        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 110, options: [:])]
+        style.lineHeightMultiple = 0.9
+        return style
+    }
 
+    static var timeFormat: NSDateFormatter {
+        let formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle;
+        formatter.dateStyle = .NoStyle;
+        return formatter
+    }
+
+    
+    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
+    {
+        let textSize = Constants.TextBaseSize+sizeAdjustment
+        let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
+        let attributes: [String:AnyObject] = [
+            NSFontAttributeName : font,
+            NSForegroundColorAttributeName : color,
+            NSParagraphStyleAttributeName: paragraphStyle,
+            NSKernAttributeName: kerning,
         ]
         attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
     }
+    
+    
  
     func appendClickableText(text: String, tag: String) {
-        let color = UIColor.purpleColor()
+        let color = Constants.PurpleColor
+        let textSize = Constants.TextBaseSize
         let attributes: [String:AnyObject] = [
             NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
             NSForegroundColorAttributeName : color,
             NSUnderlineStyleAttributeName : NSUnderlineStyle.PatternDot.rawValue | NSUnderlineStyle.StyleThick.rawValue,
+            NSParagraphStyleAttributeName: paragraphStyle,
             Constants.SmartTag : tag
         ]
         attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
@@ -135,10 +196,7 @@ class SmartTextViewController: UIViewController {
             
             if (value != nil) {
                 // for now just show settings
-                let vc = SettingsViewController.createMain()
-                let nc = UINavigationController(rootViewController: vc)
-                nc.modalTransitionStyle = .FlipHorizontal
-                presentViewController(nc, animated: true, completion: nil)
+                showSettingsViewController()
             }
         }
         

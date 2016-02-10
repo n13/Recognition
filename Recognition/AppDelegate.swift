@@ -31,7 +31,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("launching with notification: \(notification)")
             handleNotification(notification)
         }
+        
+        // appearance
+        let textColor = UIColor.whiteColor()
+        let bgColor = UIColor.blackColor()
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSForegroundColorAttributeName : textColor,
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 26)!
+        ]
+        UINavigationBar.appearance().tintColor = textColor
+        UINavigationBar.appearance().barTintColor = bgColor
 
+        application.setStatusBarStyle(.LightContent, animated: false)
+        
+        
+//        UIButton.appearance().tintColor = Constants.PurpleColor
+//        UISwitch.appearance().onTintColor = Constants.PurpleColor
+        
         return true
     }
 
