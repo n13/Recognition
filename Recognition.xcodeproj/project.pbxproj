@@ -26,6 +26,7 @@
 		2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */; };
 		246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359361C68623F0097CC76 /* SmartTextViewController.swift */; };
 		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
+		24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */; };
 		24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B768281C6A40B1000C91BB /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		246359361C68623F0097CC76 /* SmartTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartTextViewController.swift; sourceTree = "<group>"; };
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
+		24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineLayoutManager.swift; sourceTree = "<group>"; };
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C86FAD26D21E8C5BB5CC2FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				245433851C43AE0E00D5509F /* ReminderEngine.swift */,
 				2442B83E1C69C69400346E1B /* Constants.swift */,
+				24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */,
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */,

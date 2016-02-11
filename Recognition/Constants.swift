@@ -10,6 +10,7 @@ import Foundation
 
 struct Constants {
     static let SmartTag = "SmartTag"
+    static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
 
     static var timeFormat: NSDateFormatter {
         let formatter = NSDateFormatter()

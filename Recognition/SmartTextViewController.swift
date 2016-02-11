@@ -10,10 +10,12 @@
 import UIKit
 
 class SmartTextViewController: UIViewController {
+    
     @IBOutlet weak var textView: UITextView!
     
     var attributedText = NSMutableAttributedString()
-    
+    var textStorage: NSTextStorage!
+
     @IBOutlet weak var onOffSwitch: UISwitch!
     
     override func viewDidLoad() {
@@ -53,7 +55,41 @@ class SmartTextViewController: UIViewController {
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
 
+        // text view
+        createTextView()
+        
     }
+    
+    // MARK: Text Rendering
+    func createTextView() {
+        // 1. Create the text storage that backs the editor
+        let attrString = createText()
+        textStorage = NSTextStorage()
+        textStorage.appendAttributedString(attrString)
+        
+        let newTextViewRect = view.bounds
+        
+        // 2. Create the layout manager
+        let layoutManager = UnderlineLayoutManager()
+        
+        // 3. Create a text container
+        let containerSize = CGSize(width: newTextViewRect.width, height: CGFloat.max)
+        let container = NSTextContainer(size: containerSize)
+        container.widthTracksTextView = true
+        layoutManager.addTextContainer(container)
+        textStorage.addLayoutManager(layoutManager)
+        
+        // 4. Create a UITextView
+        textView.removeFromSuperview()
+        textView = UITextView(frame: newTextViewRect, textContainer: container)
+        //textView.delegate = self // TODO: Not sure I need this
+        view.addSubview(textView)
+        
+        textView.snp_makeConstraints { make in
+            make.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10))
+        }
+    }
+
     
     // MARK: Status bar
     //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -106,7 +142,7 @@ class SmartTextViewController: UIViewController {
     
     
     
-    func createText() {
+    func createText() -> NSMutableAttributedString {
         
         attributedText = NSMutableAttributedString()
         
@@ -128,9 +164,9 @@ class SmartTextViewController: UIViewController {
         appendClickableText(endText, tag: Tag.EndTime)
 
         appendText("\n\ntelling me to\n")
-        appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText)
-        
-        textView.attributedText = attributedText
+        appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
+        appendText("\n")
+        return attributedText
         
     }
     
@@ -163,17 +199,23 @@ class SmartTextViewController: UIViewController {
     }
     
     
- 
-    func appendClickableText(text: String, tag: String) {
+    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false) {
         let color = Constants.PurpleColor
         let textSize = Constants.TextBaseSize
-        let attributes: [String:AnyObject] = [
+        var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
+        if (dottedLine) {
+            underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
+        }
+        var attributes: [String:AnyObject] = [
             NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
             NSForegroundColorAttributeName : color,
-            NSUnderlineStyleAttributeName : NSUnderlineStyle.PatternDot.rawValue | NSUnderlineStyle.StyleThick.rawValue,
+            NSUnderlineStyleAttributeName :  underlineStyle,
             NSParagraphStyleAttributeName: paragraphStyle,
-            Constants.SmartTag : tag
+            Constants.SmartTag : tag,
         ]
+        if (fullWidthUnderline) {
+            attributes[Constants.SuperUnderlineStyle] = true
+        }
         attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
     }
     
