@@ -19,7 +19,7 @@ struct Constants {
         return formatter
     }
     
-    static var TextBaseSize : CGFloat = 30 // adjusted for screen size
+    static var TextBaseSize : CGFloat = 36 // adjusted for screen size
 
     //144 19 254
     static let PurpleColor = UIColor(red: 144.0/255, green: 19.0/255, blue: 254.0/255, alpha: 1.0)

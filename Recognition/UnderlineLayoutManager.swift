@@ -60,7 +60,7 @@ class UnderlineLayoutManager : NSLayoutManager {
         if (superUnderline) {
             let inset: CGFloat = 5
             lineRect.origin.x += inset
-            lineRect.size.width -= 2*inset
+            lineRect.size.width -= inset
             lineRect.origin.y += 10
 
         } else {

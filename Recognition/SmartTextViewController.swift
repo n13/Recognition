@@ -11,7 +11,9 @@ import UIKit
 
 class SmartTextViewController: UIViewController {
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet var textView: UITextView!
+    @IBOutlet var headerLabel: UILabel!
     
     var attributedText = NSMutableAttributedString()
     var textStorage: NSTextStorage!
@@ -60,8 +62,7 @@ class SmartTextViewController: UIViewController {
         
     }
     
-    // MARK: Text Rendering
-    func createTextView() {
+    func createCustomTextView() -> UITextView {
         // 1. Create the text storage that backs the editor
         let attrString = createText()
         textStorage = NSTextStorage()
@@ -78,18 +79,57 @@ class SmartTextViewController: UIViewController {
         container.widthTracksTextView = true
         layoutManager.addTextContainer(container)
         textStorage.addLayoutManager(layoutManager)
-        
-        // 4. Create a UITextView
+
+        return UITextView(frame: newTextViewRect, textContainer: container)
+    }
+    
+    // MARK: Text Rendering
+    func createTextView() {
         textView.removeFromSuperview()
-        textView = UITextView(frame: newTextViewRect, textContainer: container)
-        //textView.delegate = self // TODO: Not sure I need this
+        
+        textView = createCustomTextView()
+        
+        // make a label
+        headerLabel = UILabel()
+        headerLabel.numberOfLines = 0
+        headerLabel.attributedText = attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
+        
+        // Using scroll view - NOT WORKING
+//        scrollView.addSubview(headerLabel)
+//        scrollView.addSubview(textView)
+        
+        // NOT USING SCROLL VIEW
         view.addSubview(textView)
+        scrollView.removeFromSuperview()
+        
+//        // layout
+//        headerLabel.snp_makeConstraints { make in
+//            make.topMargin.equalTo(10)
+//            make.leading.equalTo(25)
+//        }
+        
+        textView.contentInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
         
         textView.snp_makeConstraints { make in
-            make.edges.equalTo(view).inset(UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10))
+//            make.top.equalTo(headerLabel.snp_baseline).offset(55) // for scroll view
+            make.top.equalTo(10)
+            make.leading.equalTo(15)
+            make.trailing.equalTo(-15)
+            make.bottomMargin.equalTo(0)
         }
+        
+        //textView.backgroundColor = UIColor.greenColor()
+        textView.contentOffset = CGPoint(x: 0, y: 0)
+            
+        
+        
+
     }
 
+    override func viewDidLayoutSubviews() {
+        print("text frame: \(textView.frame)")
+        print("view: \(view.performSelector("recursiveDescription"))")
+    }
     
     // MARK: Status bar
     //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -146,13 +186,13 @@ class SmartTextViewController: UIViewController {
         
         attributedText = NSMutableAttributedString()
         
-        let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
+        let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay) reminders"
         
         appendText("2-5 second\nmeditation\n\n", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
 
-        appendText("schedule ")
+        appendText("schedule\n")
         appendClickableText(numReminders, tag: Tag.NumberOfReminders)
-        appendText(" reminders per day\n")
+        appendText("\nper day\n")
         appendText("\n")
         
         appendText("from\t")
@@ -166,6 +206,7 @@ class SmartTextViewController: UIViewController {
         appendText("\n\ntelling me to\n")
         appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
         appendText("\n")
+        
         return attributedText
         
     }
@@ -173,7 +214,11 @@ class SmartTextViewController: UIViewController {
     var paragraphStyle: NSMutableParagraphStyle {
         let style = NSMutableParagraphStyle()
         style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 110, options: [:])]
-        style.lineHeightMultiple = 0.9
+        style.lineHeightMultiple = 0.95
+
+        style.headIndent = 10
+        style.firstLineHeadIndent = 10
+
         return style
     }
 
@@ -185,17 +230,34 @@ class SmartTextViewController: UIViewController {
     }
 
     
-    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
-    {
+    func attributedString(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor()) -> NSAttributedString {
         let textSize = Constants.TextBaseSize+sizeAdjustment
         let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
+        
+        let style:NSMutableParagraphStyle = paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
+        
+        if (sizeAdjustment>0.0) {
+            style.headIndent = 0
+            style.firstLineHeadIndent = 0
+            style.lineHeightMultiple = 0.75
+
+        } else {
+            //paragraphStyle.headIndent = 0
+
+        }
+        
         let attributes: [String:AnyObject] = [
             NSFontAttributeName : font,
             NSForegroundColorAttributeName : color,
-            NSParagraphStyleAttributeName: paragraphStyle,
+            NSParagraphStyleAttributeName: style,
             NSKernAttributeName: kerning,
         ]
-        attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
+    {
+        attributedText.appendAttributedString(attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color))
     }
     
     

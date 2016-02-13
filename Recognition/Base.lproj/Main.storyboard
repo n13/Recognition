@@ -173,47 +173,65 @@
                             <userLayoutGuide location="60" affinity="minY"/>
                         </userGuides>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-XJ-S4k">
-                                <rect key="frame" x="20" y="8" width="560" height="528"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-kz-YTc">
-                                <rect key="frame" x="531" y="68" width="51" height="31"/>
-                                <connections>
-                                    <action selector="switchPressed:" destination="IKD-gW-pfB" eventType="valueChanged" id="RzG-MD-eev"/>
-                                </connections>
-                            </switch>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-QT-V5d">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-XJ-S4k">
+                                        <rect key="frame" x="0.0" y="20" width="600" height="528"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="528" id="PrX-nz-LU8"/>
+                                            <constraint firstAttribute="width" constant="560" id="hNa-A2-W52"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="PrX-nz-LU8"/>
+                                                <exclude reference="hNa-A2-W52"/>
+                                            </mask>
+                                        </variation>
+                                    </textView>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-kz-YTc">
+                                        <rect key="frame" x="531" y="80" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="switchPressed:" destination="IKD-gW-pfB" eventType="valueChanged" id="RzG-MD-eev"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="d0R-XJ-S4k" secondAttribute="trailing" id="BSd-uh-izf"/>
+                                    <constraint firstAttribute="trailing" secondItem="Dbd-kz-YTc" secondAttribute="trailing" constant="20" id="IUk-qK-2Z5"/>
+                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="width" secondItem="rMz-QT-V5d" secondAttribute="width" id="ONX-AQ-0oj"/>
+                                    <constraint firstItem="Dbd-kz-YTc" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="top" constant="80" id="UJH-FV-hPT"/>
+                                    <constraint firstAttribute="bottom" secondItem="d0R-XJ-S4k" secondAttribute="bottom" constant="20" id="an2-N2-8Jc"/>
+                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="leading" secondItem="rMz-QT-V5d" secondAttribute="leading" id="njh-wZ-Axe"/>
+                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="top" constant="20" id="vyN-xr-Bpr"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ONX-AQ-0oj"/>
+                                    </mask>
+                                </variation>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="trailing" secondItem="TXe-Hc-CIG" secondAttribute="trailingMargin" id="0Ps-ZX-M9B"/>
-                            <constraint firstAttribute="bottom" secondItem="d0R-XJ-S4k" secondAttribute="bottom" constant="20" symbolic="YES" id="4sG-Gl-fb2"/>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="leading" secondItem="TXe-Hc-CIG" secondAttribute="leadingMargin" id="5CP-I7-b97"/>
-                            <constraint firstItem="Dbd-kz-YTc" firstAttribute="top" secondItem="d0R-XJ-S4k" secondAttribute="bottom" constant="12" id="7q3-L9-lTy"/>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="top" secondItem="Dbd-kz-YTc" secondAttribute="top" constant="-51" id="8j2-0h-OxQ"/>
-                            <constraint firstItem="Dbd-kz-YTc" firstAttribute="top" secondItem="d0R-XJ-S4k" secondAttribute="top" constant="60" id="Atz-LE-VJW"/>
-                            <constraint firstItem="ph1-77-LZ8" firstAttribute="top" secondItem="d0R-XJ-S4k" secondAttribute="bottom" id="KWk-AA-Lpg"/>
-                            <constraint firstItem="ph1-77-LZ8" firstAttribute="top" secondItem="Dbd-kz-YTc" secondAttribute="bottom" constant="13" id="NcI-GQ-jJs"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Dbd-kz-YTc" secondAttribute="trailing" id="WXJ-t0-o6t"/>
-                            <constraint firstItem="Dbd-kz-YTc" firstAttribute="top" secondItem="d0R-XJ-S4k" secondAttribute="bottom" constant="12" id="dxb-Uq-8yZ"/>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="top" secondItem="z0x-fb-m4P" secondAttribute="bottom" constant="8" symbolic="YES" id="lnZ-He-7nk"/>
+                            <constraint firstItem="rMz-QT-V5d" firstAttribute="top" secondItem="z0x-fb-m4P" secondAttribute="bottom" id="3Om-FE-AkT"/>
+                            <constraint firstItem="rMz-QT-V5d" firstAttribute="height" secondItem="TXe-Hc-CIG" secondAttribute="height" id="4S7-ys-SMX"/>
+                            <constraint firstItem="ph1-77-LZ8" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="bottom" id="9CB-bX-TTB"/>
+                            <constraint firstItem="rMz-QT-V5d" firstAttribute="leading" secondItem="TXe-Hc-CIG" secondAttribute="leading" id="A8O-5S-Oua"/>
+                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="width" secondItem="TXe-Hc-CIG" secondAttribute="width" id="CvZ-Rt-8aT"/>
+                            <constraint firstItem="rMz-QT-V5d" firstAttribute="width" secondItem="TXe-Hc-CIG" secondAttribute="width" id="Wwi-Bd-h9X"/>
+                            <constraint firstAttribute="trailing" secondItem="rMz-QT-V5d" secondAttribute="trailing" id="gaW-qx-Gk0"/>
+                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="height" secondItem="TXe-Hc-CIG" secondAttribute="height" id="gie-Q8-rjn"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="4sG-Gl-fb2"/>
-                                <exclude reference="8j2-0h-OxQ"/>
-                                <exclude reference="7q3-L9-lTy"/>
-                                <exclude reference="dxb-Uq-8yZ"/>
-                                <exclude reference="NcI-GQ-jJs"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="PfP-DW-Y4G"/>
                     <connections>
                         <outlet property="onOffSwitch" destination="Dbd-kz-YTc" id="i7Q-wl-Haa"/>
+                        <outlet property="scrollView" destination="rMz-QT-V5d" id="S1W-5v-GdZ"/>
                         <outlet property="textView" destination="d0R-XJ-S4k" id="aP2-hG-PHf"/>
                     </connections>
                 </viewController>
