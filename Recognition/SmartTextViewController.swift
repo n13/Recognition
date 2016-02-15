@@ -15,7 +15,6 @@ class SmartTextViewController: UIViewController {
     var textView: UITextView!
     var headerLabel: UILabel!
     
-    var attributedText = NSMutableAttributedString()
     var textStorage: NSTextStorage!
 
     var onOffSwitch = UISwitch()
@@ -99,7 +98,7 @@ class SmartTextViewController: UIViewController {
         headerLabel = UILabel()
         headerLabel.translatesAutoresizingMaskIntoConstraints = false
         headerLabel.numberOfLines = 0
-        headerLabel.attributedText = attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
+        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
         
         scrollView.addSubview(headerLabel)
         headerLabel.snp_makeConstraints { make in
@@ -176,7 +175,7 @@ class SmartTextViewController: UIViewController {
     
     // MARK: UX
     func updateStartStopButton() {
-        let running = ReminderEngine.reminderEngine.isRunning
+//        let running = ReminderEngine.reminderEngine.isRunning
 //        statusLabel.textColor = running ? UIColor.purpleColor() : UIColor.lightGrayColor()
 //        statusLabel.text = running ? "Running" : "Stopped"
         
@@ -200,44 +199,34 @@ class SmartTextViewController: UIViewController {
     
     func createText() -> NSMutableAttributedString {
         
-        attributedText = NSMutableAttributedString()
+        let attributedText = NSMutableAttributedString()
         
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay) reminders"
         
         //appendText("2-5 second\nmeditation\n\n", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
 
-        appendText("schedule\n")
-        appendClickableText(numReminders, tag: Tag.NumberOfReminders)
-        appendText("\nper day\n")
-        appendText("\n")
         
-        appendText("from\t")
+        attributedText.appendText("schedule\n")
+        attributedText.appendClickableText(numReminders, tag: Tag.NumberOfReminders)
+        attributedText.appendText("\nper day\n")
+        attributedText.appendText("\n")
+        
+        attributedText.appendText("from\t")
         let startText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate())
-        appendClickableText(startText, tag: Tag.StartTime)
-        appendText("\nto\t")
+        attributedText.appendClickableText(startText, tag: Tag.StartTime)
+        attributedText.appendText("\nto\t")
         
         let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
-        appendClickableText(endText, tag: Tag.EndTime)
+        attributedText.appendClickableText(endText, tag: Tag.EndTime)
 
-        appendText("\n\ntelling me to\n")
-        appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
-        appendText("\n")
+        attributedText.appendText("\n\ntelling me to\n")
+        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
+        attributedText.appendText("\n")
         
         return attributedText
         
     }
     
-    var paragraphStyle: NSMutableParagraphStyle {
-        let style = NSMutableParagraphStyle()
-        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 110, options: [:])]
-        style.lineHeightMultiple = 0.95
-
-        style.headIndent = 10
-        style.firstLineHeadIndent = 10
-
-        return style
-    }
-
     static var timeFormat: NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle;
@@ -246,56 +235,6 @@ class SmartTextViewController: UIViewController {
     }
 
     
-    func attributedString(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor()) -> NSAttributedString {
-        let textSize = Constants.TextBaseSize+sizeAdjustment
-        let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
-        
-        let style:NSMutableParagraphStyle = paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
-        
-        if (sizeAdjustment>0.0) {
-            style.headIndent = 0
-            style.firstLineHeadIndent = 0
-            style.lineHeightMultiple = 0.75
-
-        } else {
-            //paragraphStyle.headIndent = 0
-
-        }
-        
-        let attributes: [String:AnyObject] = [
-            NSFontAttributeName : font,
-            NSForegroundColorAttributeName : color,
-            NSParagraphStyleAttributeName: style,
-            NSKernAttributeName: kerning,
-        ]
-        return NSAttributedString(string: text, attributes: attributes)
-    }
-    
-    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
-    {
-        attributedText.appendAttributedString(attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color))
-    }
-    
-    
-    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false) {
-        let color = Constants.PurpleColor
-        let textSize = Constants.TextBaseSize
-        var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
-        if (dottedLine) {
-            underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
-        }
-        var attributes: [String:AnyObject] = [
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
-            NSForegroundColorAttributeName : color,
-            NSUnderlineStyleAttributeName :  underlineStyle,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            Constants.SmartTag : tag,
-        ]
-        if (fullWidthUnderline) {
-            attributes[Constants.SuperUnderlineStyle] = true
-        }
-        attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
-    }
     
     func textTapped(recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
@@ -322,6 +261,66 @@ class SmartTextViewController: UIViewController {
         
         
     }
-    
-    
 }
+
+extension NSMutableAttributedString {
+    
+    static var paragraphStyle: NSMutableParagraphStyle {
+        let style = NSMutableParagraphStyle()
+        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 110, options: [:])]
+        style.lineHeightMultiple = 0.95
+        style.headIndent = 10
+        style.firstLineHeadIndent = 10
+        return style
+    }
+    
+    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
+    {
+        appendAttributedString(NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color))
+    }
+    
+    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false) {
+        let color = Constants.PurpleColor
+        let textSize = Constants.TextBaseSize
+        var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
+        if (dottedLine) {
+            underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
+        }
+        var attributes: [String:AnyObject] = [
+            NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
+            NSForegroundColorAttributeName : color,
+            NSUnderlineStyleAttributeName :  underlineStyle,
+            NSParagraphStyleAttributeName: NSMutableAttributedString.paragraphStyle,
+            Constants.SmartTag : tag,
+        ]
+        if (fullWidthUnderline) {
+            attributes[Constants.SuperUnderlineStyle] = true
+        }
+        appendAttributedString(NSAttributedString(string: text, attributes: attributes))
+    }
+    
+    // construct attributed string with our specific style
+    static func mm_attributedString(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor()) -> NSAttributedString {
+        let textSize = Constants.TextBaseSize+sizeAdjustment
+        let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
+        
+        let style:NSMutableParagraphStyle = NSMutableAttributedString.paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
+        
+        if (sizeAdjustment>0.0) {
+            style.headIndent = 0
+            style.firstLineHeadIndent = 0
+            style.lineHeightMultiple = 0.75
+        }
+        let attributes: [String:AnyObject] = [
+            NSFontAttributeName : font,
+            NSForegroundColorAttributeName : color,
+            NSParagraphStyleAttributeName: style,
+            NSKernAttributeName: kerning,
+        ]
+        return NSAttributedString(string: text, attributes: attributes)
+    }
+    
+
+}
+
+
