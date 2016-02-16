@@ -31,9 +31,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         wakeTimeSlider.stepValueContinuously = false
         
         wakeTimeSlider.labelTextTransform = { value in
-            let hour = Int(value)
-            let minute = (value - Float(hour)) >= 0.5 ? "30" : "00"
-            return String(format: "%02d", hour) + ":" + minute
+            let date = NSDate.hourAsDateToday(value)
+            return Constants.timeFormat.stringFromDate(date)
         }
         
         numberOfRemindersSlider.minimumValue = 2

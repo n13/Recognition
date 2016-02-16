@@ -167,7 +167,7 @@ class SmartTextViewController: UIViewController {
         
         // debug
 //        headerLabel.backgroundColor = UIColor.redColor()
-        textView.backgroundColor = UIColor.greenColor()
+//        textView.backgroundColor = UIColor.greenColor()
 //        scrollView.backgroundColor = UIColor.orangeColor()
 //        separatorView.backgroundColor = UIColor.magentaColor()
     }

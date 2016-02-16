@@ -28,4 +28,8 @@ extension NSDate {
         return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: hour, minute: minute, second: 0)
     }
     
+    static func hourAsDateToday(hour0_24: Float) -> NSDate {
+        return NSDate().hourAsDate(hour0_24)
+    }
+    
 }
