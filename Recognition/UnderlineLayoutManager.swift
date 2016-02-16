@@ -53,12 +53,14 @@ class UnderlineLayoutManager : NSLayoutManager {
         let gapLength: CGFloat = 3
         let lengths:[CGFloat] = [dashLength, gapLength]
         
+        
+        
         // container offset
         lineRect.origin.x += containerOrigin.x;
         lineRect.origin.y += containerOrigin.y;
 
         if (superUnderline) {
-            let inset: CGFloat = 15
+            let inset: CGFloat = 5
             lineRect.origin.x += inset
             lineRect.size.width -= inset*2
             lineRect.origin.y += 10
@@ -73,18 +75,30 @@ class UnderlineLayoutManager : NSLayoutManager {
             }
             // Offset line by container origin
             lineRect.origin.x += firstPosition
-            lineRect.size.width = lastPosition - firstPosition + 2
+            lineRect.size.width = lastPosition - firstPosition + dashLength
+            
+            print("line: \(lineRect.size.width)")
+            
+            let multiple = dashLength + gapLength
+            var lineW = lineRect.size.width / multiple
+            let roundedNum = ceil(lineW)
+            
+            print("ceil: \(roundedNum) full: \(roundedNum * multiple)")
+
+            
+            lineRect.size.width = roundedNum * multiple
+            
         }
 
 
         // construct the path
         var path = UIBezierPath()
-        let y = lineRect.origin.y + lineRect.size.height
+        let y = lineRect.origin.y + lineRect.size.height - 1
         path.moveToPoint(CGPoint(x: lineRect.origin.x, y: y))
         path.addLineToPoint(CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
 
         // Line width
-        path.lineWidth = 3.0
+        path.lineWidth = 4.0
         
         if (dotted) {
             path.setLineDash(lengths, count: 2, phase: 0.0)

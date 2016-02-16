@@ -31,6 +31,11 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         wakeTimeSlider.stepValueContinuously = false
         
         wakeTimeSlider.labelTextTransform = { value in
+            
+            var fraction = (value - (Float(Int(value))))
+            fraction *= 2
+            
+            
             let date = NSDate.hourAsDateToday(value)
             return Constants.timeFormat.stringFromDate(date)
         }
