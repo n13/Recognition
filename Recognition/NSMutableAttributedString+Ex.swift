@@ -17,17 +17,17 @@ extension NSMutableAttributedString {
         return style
     }
     
-    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
+    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor(), lineSpacing: CGFloat = -1)
     {
-        appendAttributedString(NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color))
+        appendAttributedString(NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color, lineSpacing: lineSpacing))
     }
     
-    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false, sizeAdjustment: CGFloat = 0.0) {
+    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false, sizeAdjustment: CGFloat = 0.0, lineSpacing: CGFloat = -1) {
         var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
         if (dottedLine) {
             underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
         }
-        let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: true, kerning: -1.0, color: Constants.PurpleColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline)
+        let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: true, kerning: -1.0, color: Constants.PurpleColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline, lineSpacing: lineSpacing)
         appendAttributedString(m)
     }
     
@@ -40,7 +40,8 @@ extension NSMutableAttributedString {
         color: UIColor = UIColor.blackColor(),
         underlineStyle: Int = NSUnderlineStyle.StyleNone.rawValue,
         smartTag: String? = nil,
-        underlineLastLineOnly: Bool = false
+        underlineLastLineOnly: Bool = false,
+        lineSpacing: CGFloat = -1
         ) -> NSAttributedString
     {
         let textSize = Constants.TextBaseSize+sizeAdjustment
@@ -51,8 +52,11 @@ extension NSMutableAttributedString {
         if (sizeAdjustment>0.0) {
             //style.headIndent = 0
             //style.firstLineHeadIndent = 0
-            style.lineHeightMultiple = 0.8
+            //style.lineHeightMultiple = 0.8
             //style.lineSpacing = 0.5
+        }
+        if (lineSpacing > 0) {
+            style.lineSpacing = lineSpacing
         }
         var attributes: [String:AnyObject] = [
             NSFontAttributeName : font,

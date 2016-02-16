@@ -25,7 +25,7 @@ class DashedLineView: UIView {
         backgroundColor = UIColor.clearColor()
         dashShape.strokeColor = UIColor.whiteColor().CGColor
         dashShape.fillColor = nil
-        dashShape.lineDashPattern = [4, 4]
+        //dashShape.lineDashPattern = [4, 4]
         self.layer.addSublayer(dashShape)
     }
     

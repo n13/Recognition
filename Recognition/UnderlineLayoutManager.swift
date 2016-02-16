@@ -58,9 +58,9 @@ class UnderlineLayoutManager : NSLayoutManager {
         lineRect.origin.y += containerOrigin.y;
 
         if (superUnderline) {
-            let inset: CGFloat = 5
+            let inset: CGFloat = 15
             lineRect.origin.x += inset
-            lineRect.size.width -= inset
+            lineRect.size.width -= inset*2
             lineRect.origin.y += 10
 
         } else {
