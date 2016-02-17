@@ -114,7 +114,6 @@ class ReminderEngine {
         var reminderTimes = [NSDate]()
         var fireTime = startTime
         for _ in 0..<numberOfReminders {
-            fireTime = fireTime.dateByAddingMinutes(minutesPerReminder)
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
                 print("added reminder time: \(fireTime.toLocalString())")
@@ -122,6 +121,7 @@ class ReminderEngine {
                 print("added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
                 reminderTimes.append(fireTime.dateByAddingDays(1))
             }
+            fireTime = fireTime.dateByAddingMinutes(minutesPerReminder)
         }
         return reminderTimes
     }

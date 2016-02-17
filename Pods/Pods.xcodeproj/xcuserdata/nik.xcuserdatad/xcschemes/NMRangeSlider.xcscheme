@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "30B237FF83BC233CABC815B0"
+               BlueprintIdentifier = "B02F87167465BA481B941164"
                BuildableName = "NMRangeSlider.framework"
                BlueprintName = "NMRangeSlider"
                ReferencedContainer = "container:Pods.xcodeproj">
