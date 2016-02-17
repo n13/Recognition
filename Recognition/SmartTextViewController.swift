@@ -110,7 +110,7 @@ class SmartTextViewController: UIViewController {
         
         //print("topLayoutGuide.length \(topLayoutGuide)")
         
-        scrollView.contentInset = UIEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        scrollView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         
         // top label
         let headerInset = textInset - 10
@@ -148,24 +148,24 @@ class SmartTextViewController: UIViewController {
         
         
         // separator
-        let separatorView = DashedLineView()
-        separatorView.dashShape.strokeColor = UIColor(red: 3.0/255, green: 3/255.0, blue: 3.0/255, alpha: 1).CGColor
-        separatorView.dashShape.lineWidth = 2
-        scrollView.addSubview(separatorView)
-        separatorView.snp_makeConstraints { make in
-            //make.top.equalTo(textView.snp_bottom).offset(15)
-            make.top.equalTo(headerLabel.snp_baseline).offset(22)
-            make.leading.equalTo(headerInset)
-            make.trailing.equalTo(-headerInset)
-            make.height.equalTo(separatorView.dashShape.lineWidth)
-        }
+//        let separatorView = DashedLineView()
+//        separatorView.dashShape.strokeColor = UIColor(red: 3.0/255, green: 3/255.0, blue: 3.0/255, alpha: 1).CGColor
+//        separatorView.dashShape.lineWidth = 2
+//        scrollView.addSubview(separatorView)
+//        separatorView.snp_makeConstraints { make in
+//            //make.top.equalTo(textView.snp_bottom).offset(15)
+//            make.top.equalTo(headerLabel.snp_baseline).offset(22)
+//            make.leading.equalTo(headerInset)
+//            make.trailing.equalTo(-headerInset)
+//            make.height.equalTo(separatorView.dashShape.lineWidth)
+//        }
 
         // main text view
         textView = createCustomTextView()
         scrollView.addSubview(textView)
         
         textView.snp_makeConstraints { make in
-            make.top.equalTo(separatorView.snp_bottom).offset(35)
+            make.top.equalTo(headerLabel.snp_baseline).offset(40)
             make.leading.equalTo(scrollView.snp_leading).offset(textInset)
             make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
             make.width.equalTo(view.snp_width).offset(-textInset*2)

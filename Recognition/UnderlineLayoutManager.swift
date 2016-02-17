@@ -77,14 +77,9 @@ class UnderlineLayoutManager : NSLayoutManager {
             lineRect.origin.x += firstPosition
             lineRect.size.width = lastPosition - firstPosition + dashLength
             
-            print("line: \(lineRect.size.width)")
-            
             let multiple = dashLength + gapLength
             var lineW = lineRect.size.width / multiple
             let roundedNum = ceil(lineW)
-            
-            print("ceil: \(roundedNum) full: \(roundedNum * multiple)")
-
             
             lineRect.size.width = roundedNum * multiple
             
@@ -93,12 +88,12 @@ class UnderlineLayoutManager : NSLayoutManager {
 
         // construct the path
         var path = UIBezierPath()
-        let y = lineRect.origin.y + lineRect.size.height - 1
+        let y = lineRect.origin.y + lineRect.size.height
         path.moveToPoint(CGPoint(x: lineRect.origin.x, y: y))
         path.addLineToPoint(CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
 
         // Line width
-        path.lineWidth = 4.0
+        path.lineWidth = 2.0
         
         if (dotted) {
             path.setLineDash(lengths, count: 2, phase: 0.0)

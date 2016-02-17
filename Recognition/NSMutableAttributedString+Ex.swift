@@ -38,7 +38,7 @@ extension NSMutableAttributedString {
         if (dottedLine) {
             underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
         }
-        let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: true, kerning: -1.0, color: Constants.PurpleColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline, lineHeightMultiple: lineHeightMultiple)
+        let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: false, kerning: -1.0, color: Constants.PurpleColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline, lineHeightMultiple: lineHeightMultiple)
         appendAttributedString(m)
     }
     
@@ -48,7 +48,7 @@ extension NSMutableAttributedString {
         sizeAdjustment: CGFloat = 0.0,
         isBold:Bool=false,
         kerning: CGFloat = -1.0,
-        color: UIColor = UIColor.blackColor(),
+        color: UIColor = Constants.GreyTextColor,
         underlineStyle: Int = NSUnderlineStyle.StyleNone.rawValue,
         smartTag: String? = nil,
         underlineLastLineOnly: Bool = false,
@@ -56,7 +56,7 @@ extension NSMutableAttributedString {
         ) -> NSAttributedString
     {
         let textSize = Constants.TextBaseSize+sizeAdjustment
-        let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
+        let font = UIFont(name: (isBold ? Constants.HeavyFont : Constants.LightFont), size: textSize)!
         
         let style:NSMutableParagraphStyle = NSMutableAttributedString.paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
         style.lineHeightMultiple = lineHeightMultiple
