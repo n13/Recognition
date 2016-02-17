@@ -15,8 +15,9 @@ class SmartTextViewController: UIViewController {
     var scrollView = UIScrollView()
     var textView: UITextView!
     var headerLabel: UILabel!
-    var onOffTextView: UITextView!
-    var onOffTextLabel: UILabel!
+//    var onOffTextView: UITextView!
+    var offLabel: UILabel!
+    var onLabel: UILabel!
     
     var textStorage: NSTextStorage!
     var onOffSwitch = UISwitch()
@@ -44,8 +45,9 @@ class SmartTextViewController: UIViewController {
         // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
-        onOffTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
-        onOffTextLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
+        //onOffTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
+        offLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
+        onLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         
         // Make sure the engine is on
         ReminderEngine.reminderEngine.initEngine()
@@ -125,26 +127,33 @@ class SmartTextViewController: UIViewController {
         }
         
         // On Off label
-        onOffTextLabel = UILabel()
-        onOffTextLabel.userInteractionEnabled = true
-        scrollView.addSubview(onOffTextLabel)
-        onOffTextLabel.snp_makeConstraints { make in
+        offLabel = UILabel()
+        offLabel.userInteractionEnabled = true
+        scrollView.addSubview(offLabel)
+        offLabel.snp_makeConstraints { make in
             make.baseline.equalTo(headerLabel.snp_baseline)
-            make.trailing.equalTo(-textInset)
+            make.right.equalTo(-headerInset)
         }
-        onOffTextLabel.hidden = true
+        
+        onLabel = UILabel()
+        onLabel.text = "Off"
+        onLabel.userInteractionEnabled = true
+        scrollView.addSubview(onLabel)
+        onLabel.snp_makeConstraints { make in
+            make.baseline.equalTo(headerLabel.snp_baseline)
+            make.right.equalTo(offLabel.snp_left).offset(-3)
+        }
         // mirror text view on top
         
-        onOffTextView = createCustomTextView()
-        scrollView.addSubview(onOffTextView)
-        onOffTextView.textContainer.lineFragmentPadding = 4 // makes for a nice underline
-        onOffTextView.snp_makeConstraints { make in
-            make.leading.equalTo(onOffTextLabel.snp_leading)
-            make.trailing.equalTo(onOffTextLabel.snp_trailing)
-            make.top.equalTo(onOffTextLabel.snp_top)
-            make.bottom.equalTo(onOffTextLabel.snp_bottom)
-        }
-        //onOffTextView.backgroundColor = UIColor.yellowColor()
+//        onOffTextView = createCustomTextView()
+//        scrollView.addSubview(onOffTextView)
+//        onOffTextView.textContainer.lineFragmentPadding = 4 // makes for a nice underline
+//        onOffTextView.snp_makeConstraints { make in
+//            make.leading.equalTo(onOffTextLabel.snp_leading)
+//            make.trailing.equalTo(onOffTextLabel.snp_trailing)
+//            make.top.equalTo(onOffTextLabel.snp_top)
+//            make.bottom.equalTo(onOffTextLabel.snp_bottom)
+//        }
         
         
         // separator
@@ -219,9 +228,19 @@ class SmartTextViewController: UIViewController {
     // MARK: UX
     func runStateUpdated(animated: Bool) {
         onOffSwitch.on = running()
-        onOffTextLabel.attributedText = createOnOffText()
-        onOffTextView.attributedText = createOnOffText()
-        onOffTextLabel.setNeedsLayout()
+        offLabel.attributedText = createOnOffText(false)
+        onLabel.attributedText = createOnOffText(true)
+        
+        if running() {
+            offLabel.alpha = 0.3
+            onLabel.alpha = 1.0
+        } else {
+            offLabel.alpha = 1.0
+            onLabel.alpha = 0.3
+        }
+        
+        //onOffTextView.attributedText = createOnOffText()
+        offLabel.setNeedsLayout()
         
         // abracadabra
         //textView.attributedText = self.createText()
@@ -230,7 +249,7 @@ class SmartTextViewController: UIViewController {
 
         self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
         if (animated) {
-            UIView.animateWithDuration(0.5) {
+            UIView.animateWithDuration(0.4) {
                 self.view.layoutIfNeeded()
             }
         } else {
@@ -273,19 +292,21 @@ class SmartTextViewController: UIViewController {
         let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
         attributedText.appendClickableText(endText, tag: Tag.EndTime, lineHeightMultiple: 1.3)
 
-        attributedText.appendText("\n\ntelling me to\n")
-        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
+        attributedText.appendText("\n\ntelling me to\n", lineHeightMultiple:1.15)
+        attributedText.appendText("\n", lineHeightMultiple:0.1)// tiny line
+        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true, lineHeightMultiple:0.9)
         attributedText.appendText("\n")
         
         return attributedText
         
     }
     
-    func createOnOffText() -> NSMutableAttributedString {
+    func createOnOffText(isOnLabel: Bool) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString()
         let sizeAdjustment: CGFloat = 0
-        //attributedText.appendText("reminders are ", sizeAdjustment: sizeAdjustment, color: UIColor.lightGrayColor())
-        attributedText.appendClickableText(running() ? "on" : "off", tag: Tag.ToggleOnOff, sizeAdjustment: sizeAdjustment)
+//        attributedText.appendText("reminders are ", sizeAdjustment: sizeAdjustment, color: UIColor.lightGrayColor())
+        //attributedText.appendClickableText(running() ? "on" : "off", tag: Tag.ToggleOnOff, sizeAdjustment: sizeAdjustment)
+        attributedText.appendText((isOnLabel) ? "on" : "off", sizeAdjustment: sizeAdjustment, color: Constants.PurpleColor)
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.Right

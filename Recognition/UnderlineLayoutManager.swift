@@ -60,10 +60,10 @@ class UnderlineLayoutManager : NSLayoutManager {
         lineRect.origin.y += containerOrigin.y;
 
         if (superUnderline) {
-            let inset: CGFloat = 5
+            let inset: CGFloat = 0
             lineRect.origin.x += inset
             lineRect.size.width -= inset*2
-            lineRect.origin.y += 10
+            lineRect.origin.y += 18
 
         } else {
             let firstPosition = locationForGlyphAtIndex(glyphRange.location).x;
@@ -75,7 +75,7 @@ class UnderlineLayoutManager : NSLayoutManager {
             }
             // Offset line by container origin
             lineRect.origin.x += firstPosition
-            lineRect.size.width = lastPosition - firstPosition + dashLength
+            lineRect.size.width = lastPosition - firstPosition
             
             let multiple = dashLength + gapLength
             var lineW = lineRect.size.width / multiple
@@ -88,7 +88,7 @@ class UnderlineLayoutManager : NSLayoutManager {
 
         // construct the path
         var path = UIBezierPath()
-        let y = lineRect.origin.y + lineRect.size.height
+        let y = lineRect.origin.y + lineRect.size.height - 1
         path.moveToPoint(CGPoint(x: lineRect.origin.x, y: y))
         path.addLineToPoint(CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
 

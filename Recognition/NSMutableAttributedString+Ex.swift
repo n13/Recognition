@@ -10,7 +10,7 @@ extension NSMutableAttributedString {
     
     static var paragraphStyle: NSMutableParagraphStyle {
         let style = NSMutableParagraphStyle()
-        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 92, options: [:])]
+        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 85, options: [:])]
         style.lineHeightMultiple = 0.95
         style.headIndent = 0
         style.firstLineHeadIndent = 0
@@ -21,7 +21,7 @@ extension NSMutableAttributedString {
         sizeAdjustment: CGFloat = 0.0,
         isBold:Bool=false,
         kerning: CGFloat = -1.0,
-        color: UIColor = UIColor.blackColor(),
+        color: UIColor = Constants.GreyTextColor,
         lineHeightMultiple: CGFloat  = 1.0)
     {
         appendAttributedString(NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color, lineHeightMultiple: lineHeightMultiple))
