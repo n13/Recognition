@@ -33,9 +33,12 @@ struct Constants {
     // 11	49	245	
     //static let PurpleColor = UIColor(red: 11/255, green: 49/255, blue: 245/255, alpha: 1.0)
     //static let PurpleColor = UIColor(red: 218/255, green: 165/255, blue: 32/255, alpha: 1.0)
-    static let PurpleColor = UIColor(red: 252/255, green: 85/255, blue: 31/255, alpha: 1.0)
-    
-// 252	85	31  intense rose gold
+    // 255	85	3 intense rose gold sRGB
+    //static let PurpleColor = UIColor(red: 255/255, green: 85/255, blue: 3/255, alpha: 1.0) //
+    // 252	85	31  intense rose gold generic RGB
+    //static let PurpleColor = UIColor(red: 252/255, green: 85/255, blue: 31/255, alpha: 1.0) //
+    static let PurpleColor = UIColor(red: 255/255, green: 85/255, blue: 31/255, alpha: 1.0) // nik...
+
     
     //251	62	9 intense rose gold
     
