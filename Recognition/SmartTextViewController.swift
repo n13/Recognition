@@ -13,11 +13,11 @@ import SnapKit
 class SmartTextViewController: UIViewController {
     
     var scrollView = UIScrollView()
-    var textView: UITextView!
     var headerLabel: UILabel!
-//    var onOffTextView: UITextView!
+    var textView: UITextView!
     var offLabel: UILabel!
     var onLabel: UILabel!
+    var offStateTextView: UITextView!
     
     var textStorage: NSTextStorage!
     var onOffSwitch = UISwitch()
@@ -45,7 +45,6 @@ class SmartTextViewController: UIViewController {
         // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
-        //onOffTextView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         offLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         onLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         
@@ -141,20 +140,8 @@ class SmartTextViewController: UIViewController {
         scrollView.addSubview(onLabel)
         onLabel.snp_makeConstraints { make in
             make.baseline.equalTo(headerLabel.snp_baseline)
-            make.right.equalTo(offLabel.snp_left).offset(-3)
+            make.right.equalTo(offLabel.snp_left).offset(-1)
         }
-        // mirror text view on top
-        
-//        onOffTextView = createCustomTextView()
-//        scrollView.addSubview(onOffTextView)
-//        onOffTextView.textContainer.lineFragmentPadding = 4 // makes for a nice underline
-//        onOffTextView.snp_makeConstraints { make in
-//            make.leading.equalTo(onOffTextLabel.snp_leading)
-//            make.trailing.equalTo(onOffTextLabel.snp_trailing)
-//            make.top.equalTo(onOffTextLabel.snp_top)
-//            make.bottom.equalTo(onOffTextLabel.snp_bottom)
-//        }
-        
         
         // separator
 //        let separatorView = DashedLineView()
@@ -183,6 +170,29 @@ class SmartTextViewController: UIViewController {
             // text heigh constraint so we can shrink this view
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
         }
+        //textView.backgroundColor = UIColor.clearColor()
+        
+        
+        
+        offStateTextView = createCustomTextView()
+        scrollView.insertSubview(offStateTextView, belowSubview:textView)
+        
+        offStateTextView.snp_makeConstraints { make in
+            make.top.equalTo(headerLabel.snp_baseline).offset(40)
+            make.leading.equalTo(scrollView.snp_leading).offset(textInset)
+            make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
+            make.width.equalTo(view.snp_width).offset(-textInset*2)
+            //make.bottom.equalTo(scrollView.snp_bottom)
+            
+            // text heigh constraint so we can shrink this view
+            //self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
+        }
+        offStateTextView.attributedText = NSMutableAttributedString.mm_attributedString(
+            "Reminders are off.",
+            sizeAdjustment: 33,
+            color: UIColor(white: 0.5, alpha: 0.3)
+        )
+
         
         
         // on off label - OLD
@@ -232,11 +242,11 @@ class SmartTextViewController: UIViewController {
         onLabel.attributedText = createOnOffText(true)
         
         if running() {
-            offLabel.alpha = 0.3
+            offLabel.alpha = 0.4
             onLabel.alpha = 1.0
         } else {
             offLabel.alpha = 1.0
-            onLabel.alpha = 0.3
+            onLabel.alpha = 0.4
         }
         
         //onOffTextView.attributedText = createOnOffText()
@@ -246,14 +256,30 @@ class SmartTextViewController: UIViewController {
         //textView.attributedText = self.createText()
         
         self.view.layoutIfNeeded()
-
-        self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
+        
         if (animated) {
-            UIView.animateWithDuration(0.4) {
-                self.view.layoutIfNeeded()
-            }
+            let foo = UIViewAnimationOptions.TransitionCrossDissolve.rawValue | UIViewAnimationOptions.ShowHideTransitionViews.rawValue
+            
+            UIView.transitionFromView(
+                running() ? offStateTextView : textView,
+                toView: running() ? textView : offStateTextView,
+                duration: 0.5,
+                options: UIViewAnimationOptions(rawValue: foo),
+                completion: nil)
         } else {
+            offStateTextView.hidden = running()
+            textView.hidden = !offStateTextView.hidden
         }
+        
+
+
+//        self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
+//        if (animated) {
+//            UIView.animateWithDuration(0.4) {
+//                self.view.layoutIfNeeded()
+//            }
+//        } else {
+//        }
     }
     
     func showSettingsViewController() {
