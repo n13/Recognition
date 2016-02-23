@@ -189,15 +189,9 @@ class SmartTextViewController: UIViewController {
         }
         offStateTextView.attributedText = NSMutableAttributedString.mm_attributedString(
             "Reminders are off.",
-            sizeAdjustment: 33,
+            sizeAdjustment: 20,
             color: UIColor(white: 0.5, alpha: 0.3)
         )
-
-        
-        
-        // on off label - OLD
-        
-        
         
         // debug
 //        headerLabel.backgroundColor = UIColor.redColor()
@@ -249,37 +243,36 @@ class SmartTextViewController: UIViewController {
             onLabel.alpha = 0.4
         }
         
-        //onOffTextView.attributedText = createOnOffText()
         offLabel.setNeedsLayout()
-        
-        // abracadabra
-        //textView.attributedText = self.createText()
         
         self.view.layoutIfNeeded()
         
-        if (animated) {
-            let foo = UIViewAnimationOptions.TransitionCrossDissolve.rawValue | UIViewAnimationOptions.ShowHideTransitionViews.rawValue
-            
-            UIView.transitionFromView(
-                running() ? offStateTextView : textView,
-                toView: running() ? textView : offStateTextView,
-                duration: 0.5,
-                options: UIViewAnimationOptions(rawValue: foo),
-                completion: nil)
-        } else {
-            offStateTextView.hidden = running()
-            textView.hidden = !offStateTextView.hidden
-        }
+        // hiding - it works, but not really cool
         
-
-
-//        self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
 //        if (animated) {
-//            UIView.animateWithDuration(0.4) {
-//                self.view.layoutIfNeeded()
-//            }
+//            let foo = UIViewAnimationOptions.TransitionCurlUp.rawValue | UIViewAnimationOptions.ShowHideTransitionViews.rawValue
+//
+//            UIView.transitionFromView(
+//                running() ? offStateTextView : textView,
+//                toView: running() ? textView : offStateTextView,
+//                duration: 0.5,
+//                options: UIViewAnimationOptions(rawValue: foo),
+//                completion: nil)
 //        } else {
+//            offStateTextView.hidden = running()
+//            textView.hidden = !offStateTextView.hidden
 //        }
+        
+//        offStateTextView.hidden = running()
+
+
+        self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
+        if (animated) {
+            UIView.animateWithDuration(0.4) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+        }
     }
     
     func showSettingsViewController() {
