@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bDS-Go-gFQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="IKD-gW-pfB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
@@ -133,6 +133,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="feedbackButton" destination="ZGX-ku-wDH" id="CtZ-uH-qXm"/>
                         <outlet property="numberOfRemindersSlider" destination="R41-9x-kYg" id="Qm2-9y-i8M"/>
                         <outlet property="reminderTextView" destination="wxk-Dj-QBG" id="9ys-xo-QQ1"/>
                         <outlet property="wakeTimeSlider" destination="BZa-2r-zZR" id="0ac-HQ-sc9"/>
@@ -172,68 +173,9 @@
                         <userGuides>
                             <userLayoutGuide location="60" affinity="minY"/>
                         </userGuides>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rMz-QT-V5d">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="d0R-XJ-S4k">
-                                        <rect key="frame" x="0.0" y="20" width="600" height="528"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="528" id="PrX-nz-LU8"/>
-                                            <constraint firstAttribute="width" constant="560" id="hNa-A2-W52"/>
-                                        </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="26"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="PrX-nz-LU8"/>
-                                                <exclude reference="hNa-A2-W52"/>
-                                            </mask>
-                                        </variation>
-                                    </textView>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Dbd-kz-YTc">
-                                        <rect key="frame" x="531" y="80" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="switchPressed:" destination="IKD-gW-pfB" eventType="valueChanged" id="RzG-MD-eev"/>
-                                        </connections>
-                                    </switch>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="d0R-XJ-S4k" secondAttribute="trailing" id="BSd-uh-izf"/>
-                                    <constraint firstAttribute="trailing" secondItem="Dbd-kz-YTc" secondAttribute="trailing" constant="20" id="IUk-qK-2Z5"/>
-                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="width" secondItem="rMz-QT-V5d" secondAttribute="width" id="ONX-AQ-0oj"/>
-                                    <constraint firstItem="Dbd-kz-YTc" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="top" constant="80" id="UJH-FV-hPT"/>
-                                    <constraint firstAttribute="bottom" secondItem="d0R-XJ-S4k" secondAttribute="bottom" constant="20" id="an2-N2-8Jc"/>
-                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="leading" secondItem="rMz-QT-V5d" secondAttribute="leading" id="njh-wZ-Axe"/>
-                                    <constraint firstItem="d0R-XJ-S4k" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="top" constant="20" id="vyN-xr-Bpr"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ONX-AQ-0oj"/>
-                                    </mask>
-                                </variation>
-                            </scrollView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rMz-QT-V5d" firstAttribute="top" secondItem="z0x-fb-m4P" secondAttribute="bottom" id="3Om-FE-AkT"/>
-                            <constraint firstItem="rMz-QT-V5d" firstAttribute="height" secondItem="TXe-Hc-CIG" secondAttribute="height" id="4S7-ys-SMX"/>
-                            <constraint firstItem="ph1-77-LZ8" firstAttribute="top" secondItem="rMz-QT-V5d" secondAttribute="bottom" id="9CB-bX-TTB"/>
-                            <constraint firstItem="rMz-QT-V5d" firstAttribute="leading" secondItem="TXe-Hc-CIG" secondAttribute="leading" id="A8O-5S-Oua"/>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="width" secondItem="TXe-Hc-CIG" secondAttribute="width" id="CvZ-Rt-8aT"/>
-                            <constraint firstItem="rMz-QT-V5d" firstAttribute="width" secondItem="TXe-Hc-CIG" secondAttribute="width" id="Wwi-Bd-h9X"/>
-                            <constraint firstAttribute="trailing" secondItem="rMz-QT-V5d" secondAttribute="trailing" id="gaW-qx-Gk0"/>
-                            <constraint firstItem="d0R-XJ-S4k" firstAttribute="height" secondItem="TXe-Hc-CIG" secondAttribute="height" id="gie-Q8-rjn"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PfP-DW-Y4G"/>
-                    <connections>
-                        <outlet property="onOffSwitch" destination="Dbd-kz-YTc" id="i7Q-wl-Haa"/>
-                        <outlet property="scrollView" destination="rMz-QT-V5d" id="S1W-5v-GdZ"/>
-                        <outlet property="textView" destination="d0R-XJ-S4k" id="aP2-hG-PHf"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="25d-1L-mJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

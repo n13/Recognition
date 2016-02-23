@@ -744,7 +744,7 @@ NSUInteger DeviceSystemMajorVersion() {
 }
 
 -(UILabel *)_addSliderLabel {
-    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 50, 20)];
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 90, 20)];
     label.textAlignment = NSTextAlignmentCenter;
     [self addSubview:label];
     label.hidden = YES;

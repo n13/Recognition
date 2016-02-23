@@ -26,6 +26,9 @@
 		2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */; };
 		246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359361C68623F0097CC76 /* SmartTextViewController.swift */; };
 		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
+		2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE241C716C5000058ED4 /* DashedLineView.swift */; };
+		2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */; };
+		2488D0E21C7C0D2A00A8278E /* UIImage+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2488D0E11C7C0D2A00A8278E /* UIImage+Additions.m */; };
 		24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */; };
 		24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B768281C6A40B1000C91BB /* MessageUI.framework */; };
 /* End PBXBuildFile section */
@@ -74,6 +77,10 @@
 		246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		246359361C68623F0097CC76 /* SmartTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartTextViewController.swift; sourceTree = "<group>"; };
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
+		2469DE241C716C5000058ED4 /* DashedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
+		2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ex.swift"; sourceTree = "<group>"; };
+		2488D0E01C7C0D2A00A8278E /* UIImage+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Additions.h"; sourceTree = "<group>"; };
+		2488D0E11C7C0D2A00A8278E /* UIImage+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Additions.m"; sourceTree = "<group>"; };
 		24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineLayoutManager.swift; sourceTree = "<group>"; };
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -149,6 +156,7 @@
 				246234EE1BF9A0D000BDE6D7 /* Main.storyboard */,
 				24E0EB4D1C0FED370051314B /* Controllers */,
 				245433841C43ADFD00D5509F /* Model */,
+				2469DE231C716C4000058ED4 /* Views */,
 				24E0EB4E1C0FED450051314B /* Extensions */,
 			);
 			path = Recognition;
@@ -183,6 +191,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		2469DE231C716C4000058ED4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				2469DE241C716C5000058ED4 /* DashedLineView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		24E0EB4D1C0FED370051314B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +219,9 @@
 				246359381C6882D50097CC76 /* UITextView+SmartTags.swift */,
 				2442B8411C69FAF600346E1B /* UIViewController+CommonUtils.h */,
 				2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */,
+				2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */,
+				2488D0E01C7C0D2A00A8278E /* UIImage+Additions.h */,
+				2488D0E11C7C0D2A00A8278E /* UIImage+Additions.m */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -414,12 +433,15 @@
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2462351A1BF9B1A200BDE6D7 /* SettingsViewController.swift in Sources */,
 				243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */,
+				2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */,
 				245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */,
 				2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */,
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
+				2488D0E21C7C0D2A00A8278E /* UIImage+Additions.m in Sources */,
 				246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */,
 				246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */,
 				245C45061BFDD9E200410591 /* RandomNumbers.swift in Sources */,
+				2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */,
 				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
 				2442B83F1C69C69400346E1B /* Constants.swift in Sources */,
 			);
@@ -568,7 +590,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Recognition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdwavespirituality.recognition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -585,7 +607,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Recognition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdwavespirituality.recognition;
 				PRODUCT_NAME = "$(TARGET_NAME)";

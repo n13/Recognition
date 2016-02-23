@@ -8,24 +8,27 @@
 
 
 import UIKit
+import SnapKit
 
 class SmartTextViewController: UIViewController {
     
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet var textView: UITextView!
-    @IBOutlet var headerLabel: UILabel!
+    var scrollView = UIScrollView()
+    var headerLabel: UILabel!
+    var textView: UITextView!
+    var offLabel: UILabel!
+    var onLabel: UILabel!
+    var offStateTextView: UITextView!
     
-    var attributedText = NSMutableAttributedString()
     var textStorage: NSTextStorage!
+    var onOffSwitch = UISwitch()
+    let textInset = 25
+    var textHeightConstraint : Constraint? = nil
 
-    @IBOutlet weak var onOffSwitch: UISwitch!
-    
+    // MARK: View
     override func viewDidLoad() {
         
         // Title
         title = "Recognition"
-        
-        onOffSwitch.onTintColor = Constants.PurpleColor
         
         // Info button
         let infoButton = UIButton(type: .InfoLight)
@@ -34,35 +37,31 @@ class SmartTextViewController: UIViewController {
         navigationItem.rightBarButtonItem = infoBarButtonItem
         
         // switch in nav bar
-        onOffSwitch.hidden = true
-        let aSwitch = UISwitch()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: aSwitch)
-        onOffSwitch = aSwitch
         onOffSwitch.addTarget(self, action: "switchPressed:", forControlEvents: .ValueChanged)
         
+        // UX
+        setupViews()
+      
         // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
-        
-        // Text
-        createText()
+        offLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
+        onLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         
         // Make sure the engine is on
         ReminderEngine.reminderEngine.initEngine()
         
         // UX config
-        onOffSwitch.on = ReminderEngine.reminderEngine.isRunning
-        updateStartStopButton()
+        runStateUpdated(false)
         
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
 
-        // text view
-        createTextView()
         
     }
     
     func createCustomTextView() -> UITextView {
+        
         // 1. Create the text storage that backs the editor
         let attrString = createText()
         textStorage = NSTextStorage()
@@ -80,67 +79,143 @@ class SmartTextViewController: UIViewController {
         layoutManager.addTextContainer(container)
         textStorage.addLayoutManager(layoutManager)
 
-        return UITextView(frame: newTextViewRect, textContainer: container)
+        let textView = UITextView(frame: newTextViewRect, textContainer: container)
+        
+        // make this work in a scroll view
+        textView.editable = false
+        textView.scrollEnabled = false
+        
+        // compensate for iOS text offset of 15, 15
+        //textView.contentInset = UIEdgeInsets(top: -15, left: -5, bottom: -8, right: -8)
+        textView.textContainerInset = UIEdgeInsetsMake(0,0,0,0)
+        textView.textContainer.lineFragmentPadding = 0
+
+        return textView
     }
     
     // MARK: Text Rendering
-    func createTextView() {
-        textView.removeFromSuperview()
+    
+    func setupViews() {
         
-        textView = createCustomTextView()
+        self.automaticallyAdjustsScrollViewInsets = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         
-        // make a label
-        headerLabel = UILabel()
-        headerLabel.numberOfLines = 0
-        headerLabel.attributedText = attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
-        
-        // Using scroll view - NOT WORKING
-//        scrollView.addSubview(headerLabel)
-//        scrollView.addSubview(textView)
-        
-        // NOT USING SCROLL VIEW
-        view.addSubview(textView)
-        scrollView.removeFromSuperview()
-        
-//        // layout
-//        headerLabel.snp_makeConstraints { make in
-//            make.topMargin.equalTo(10)
-//            make.leading.equalTo(25)
-//        }
-        
-        textView.contentInset = UIEdgeInsets(top: 0, left: -5, bottom: 0, right: 0)
-        
-        textView.snp_makeConstraints { make in
-//            make.top.equalTo(headerLabel.snp_baseline).offset(55) // for scroll view
-            make.top.equalTo(10)
-            make.leading.equalTo(15)
-            make.trailing.equalTo(-15)
-            make.bottomMargin.equalTo(0)
+        view.addSubview(scrollView)
+        scrollView.snp_makeConstraints{ make in
+            make.top.equalTo(0)
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
+            make.bottom.equalTo(0)
         }
         
-        //textView.backgroundColor = UIColor.greenColor()
-        textView.contentOffset = CGPoint(x: 0, y: 0)
+        //print("topLayoutGuide.length \(topLayoutGuide)")
+        
+        scrollView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
+        
+        // top label
+        let headerInset = textInset - 10
+        headerLabel = UILabel()
+        headerLabel.numberOfLines = 0
+        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor, lineHeightMultiple: 0.8)
+        scrollView.addSubview(headerLabel)
+        headerLabel.snp_makeConstraints { make in
+            make.top.equalTo(0) // topLayoutGuide.length seems 0...
+            make.leading.equalTo(headerInset)
+            make.trailing.equalTo(-headerInset)
+        }
+        
+        // On Off label
+        offLabel = UILabel()
+        offLabel.userInteractionEnabled = true
+        scrollView.addSubview(offLabel)
+        offLabel.snp_makeConstraints { make in
+            make.baseline.equalTo(headerLabel.snp_baseline)
+            make.right.equalTo(-headerInset)
+        }
+        
+        onLabel = UILabel()
+        onLabel.text = "Off"
+        onLabel.userInteractionEnabled = true
+        scrollView.addSubview(onLabel)
+        onLabel.snp_makeConstraints { make in
+            make.baseline.equalTo(headerLabel.snp_baseline)
+            make.right.equalTo(offLabel.snp_left).offset(-1)
+        }
+        
+        // separator
+//        let separatorView = DashedLineView()
+//        separatorView.dashShape.strokeColor = UIColor(red: 3.0/255, green: 3/255.0, blue: 3.0/255, alpha: 1).CGColor
+//        separatorView.dashShape.lineWidth = 2
+//        scrollView.addSubview(separatorView)
+//        separatorView.snp_makeConstraints { make in
+//            //make.top.equalTo(textView.snp_bottom).offset(15)
+//            make.top.equalTo(headerLabel.snp_baseline).offset(22)
+//            make.leading.equalTo(headerInset)
+//            make.trailing.equalTo(-headerInset)
+//            make.height.equalTo(separatorView.dashShape.lineWidth)
+//        }
+
+        // main text view
+        textView = createCustomTextView()
+        scrollView.addSubview(textView)
+        
+        textView.snp_makeConstraints { make in
+            make.top.equalTo(headerLabel.snp_baseline).offset(40)
+            make.leading.equalTo(scrollView.snp_leading).offset(textInset)
+            make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
+            make.width.equalTo(view.snp_width).offset(-textInset*2)
+            make.bottom.equalTo(scrollView.snp_bottom)
+
+            // text heigh constraint so we can shrink this view
+            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
+        }
+        //textView.backgroundColor = UIColor.clearColor()
+        
+        
+        
+        offStateTextView = createCustomTextView()
+        scrollView.insertSubview(offStateTextView, belowSubview:textView)
+        
+        offStateTextView.snp_makeConstraints { make in
+            make.top.equalTo(headerLabel.snp_baseline).offset(40)
+            make.leading.equalTo(scrollView.snp_leading).offset(textInset)
+            make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
+            make.width.equalTo(view.snp_width).offset(-textInset*2)
+            //make.bottom.equalTo(scrollView.snp_bottom)
             
-        
-        
+            // text heigh constraint so we can shrink this view
+            //self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
+        }
+        offStateTextView.attributedText = NSMutableAttributedString.mm_attributedString(
+            "Reminders are off.",
+            sizeAdjustment: 33,
+            color: UIColor(white: 0.5, alpha: 0.3)
+        )
 
+        
+        
+        // on off label - OLD
+        
+        
+        
+        // debug
+//        headerLabel.backgroundColor = UIColor.redColor()
+//        textView.backgroundColor = UIColor.greenColor()
+//        scrollView.backgroundColor = UIColor.orangeColor()
+//        separatorView.backgroundColor = UIColor.magentaColor()
     }
-
+    
+    
     override func viewDidLayoutSubviews() {
         print("text frame: \(textView.frame)")
         print("view: \(view.performSelector("recursiveDescription"))")
     }
     
-    // MARK: Status bar
-    //    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-    //        return .LightContent
-    //    }
-
-    
     // MARK: Actions
     func handleSettingsChanged(notification: NSNotification) {
         print("handle settings changed")
-        createText()
+        textView.attributedText = createText()
     }
     
     @IBAction func InfoButtonPressed(sender: AnyObject) {
@@ -153,15 +228,58 @@ class SmartTextViewController: UIViewController {
         } else {
             ReminderEngine.reminderEngine.stop()
         }
-        updateStartStopButton()
+        runStateUpdated(true)
+    }
+    
+    func running() -> Bool {
+        return ReminderEngine.reminderEngine.isRunning
     }
     
     // MARK: UX
-    func updateStartStopButton() {
-        let running = ReminderEngine.reminderEngine.isRunning
-//        statusLabel.textColor = running ? UIColor.purpleColor() : UIColor.lightGrayColor()
-//        statusLabel.text = running ? "Running" : "Stopped"
+    func runStateUpdated(animated: Bool) {
+        onOffSwitch.on = running()
+        offLabel.attributedText = createOnOffText(false)
+        onLabel.attributedText = createOnOffText(true)
         
+        if running() {
+            offLabel.alpha = 0.4
+            onLabel.alpha = 1.0
+        } else {
+            offLabel.alpha = 1.0
+            onLabel.alpha = 0.4
+        }
+        
+        //onOffTextView.attributedText = createOnOffText()
+        offLabel.setNeedsLayout()
+        
+        // abracadabra
+        //textView.attributedText = self.createText()
+        
+        self.view.layoutIfNeeded()
+        
+        if (animated) {
+            let foo = UIViewAnimationOptions.TransitionCrossDissolve.rawValue | UIViewAnimationOptions.ShowHideTransitionViews.rawValue
+            
+            UIView.transitionFromView(
+                running() ? offStateTextView : textView,
+                toView: running() ? textView : offStateTextView,
+                duration: 0.5,
+                options: UIViewAnimationOptions(rawValue: foo),
+                completion: nil)
+        } else {
+            offStateTextView.hidden = running()
+            textView.hidden = !offStateTextView.hidden
+        }
+        
+
+
+//        self.textHeightConstraint!.updateOffset(CGFloat(running() ? 1000 : 0))
+//        if (animated) {
+//            UIView.animateWithDuration(0.4) {
+//                self.view.layoutIfNeeded()
+//            }
+//        } else {
+//        }
     }
     
     func showSettingsViewController() {
@@ -178,107 +296,64 @@ class SmartTextViewController: UIViewController {
         static let StartTime = "#startTime"
         static let EndTime = "#endTime"
         static let ReminderText = "#text"
+        static let ToggleOnOff = "#OnOff"
     }
-    
-    
     
     func createText() -> NSMutableAttributedString {
         
-        attributedText = NSMutableAttributedString()
+        let attributedText = NSMutableAttributedString()
         
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay) reminders"
         
-        appendText("2-5 second\nmeditation\n\n", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor)
-
-        appendText("schedule\n")
-        appendClickableText(numReminders, tag: Tag.NumberOfReminders)
-        appendText("\nper day\n")
-        appendText("\n")
+        attributedText.appendText("schedule\n")
+        attributedText.appendClickableText(numReminders, tag: Tag.NumberOfReminders, lineHeightMultiple: 0.85)
+        attributedText.appendText("\nper day\n")
+        attributedText.appendText("\n")
         
-        appendText("from\t")
+        attributedText.appendText("from\t")
         let startText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate())
-        appendClickableText(startText, tag: Tag.StartTime)
-        appendText("\nto\t")
+        attributedText.appendClickableText(startText, tag: Tag.StartTime)
+        attributedText.appendText("\nto\t", lineHeightMultiple: 1.3)
         
         let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
-        appendClickableText(endText, tag: Tag.EndTime)
+        attributedText.appendClickableText(endText, tag: Tag.EndTime, lineHeightMultiple: 1.3)
 
-        appendText("\n\ntelling me to\n")
-        appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true)
-        appendText("\n")
+        attributedText.appendText("\n\ntelling me to\n", lineHeightMultiple:1.15)
+        attributedText.appendText("\n", lineHeightMultiple:0.1)// tiny line
+        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true, lineHeightMultiple:0.9)
+        attributedText.appendText("\n")
         
         return attributedText
         
     }
     
-    var paragraphStyle: NSMutableParagraphStyle {
-        let style = NSMutableParagraphStyle()
-        style.tabStops = [NSTextTab(textAlignment: NSTextAlignment.Left, location: 110, options: [:])]
-        style.lineHeightMultiple = 0.95
+    func createOnOffText(isOnLabel: Bool) -> NSMutableAttributedString {
+        let attributedText = NSMutableAttributedString()
+        let sizeAdjustment: CGFloat = 0
+//        attributedText.appendText("reminders are ", sizeAdjustment: sizeAdjustment, color: UIColor.lightGrayColor())
+        //attributedText.appendClickableText(running() ? "on" : "off", tag: Tag.ToggleOnOff, sizeAdjustment: sizeAdjustment)
+        attributedText.appendText((isOnLabel) ? "on" : "off", sizeAdjustment: sizeAdjustment, color: Constants.ActiveColor)
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.alignment = NSTextAlignment.Right
 
-        style.headIndent = 10
-        style.firstLineHeadIndent = 10
-
-        return style
+        attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+        
+        return attributedText
     }
-
-    static var timeFormat: NSDateFormatter {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle;
-        formatter.dateStyle = .NoStyle;
-        return formatter
-    }
+    
 
     
-    func attributedString(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor()) -> NSAttributedString {
-        let textSize = Constants.TextBaseSize+sizeAdjustment
-        let font = UIFont(name: (isBold ? "HelveticaNeue-Bold":"HelveticaNeue-Medium"), size: textSize)!
-        
-        let style:NSMutableParagraphStyle = paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
-        
-        if (sizeAdjustment>0.0) {
-            style.headIndent = 0
-            style.firstLineHeadIndent = 0
-            style.lineHeightMultiple = 0.75
-
+    // MARK: Handle taps
+    
+    func onOffTextTapped(recognizer: UITapGestureRecognizer) {
+        print("on off")
+        if (running()) {
+            ReminderEngine.reminderEngine.stop()
         } else {
-            //paragraphStyle.headIndent = 0
-
+            ReminderEngine.reminderEngine.start()
         }
-        
-        let attributes: [String:AnyObject] = [
-            NSFontAttributeName : font,
-            NSForegroundColorAttributeName : color,
-            NSParagraphStyleAttributeName: style,
-            NSKernAttributeName: kerning,
-        ]
-        return NSAttributedString(string: text, attributes: attributes)
-    }
-    
-    func appendText(text: String, sizeAdjustment: CGFloat = 0.0, isBold:Bool=false, kerning: CGFloat = -1.0, color: UIColor = UIColor.blackColor())
-    {
-        attributedText.appendAttributedString(attributedString(text, sizeAdjustment: sizeAdjustment, isBold: isBold, kerning: kerning, color: color))
-    }
-    
-    
-    func appendClickableText(text: String, tag: String, dottedLine: Bool = true, fullWidthUnderline: Bool = false) {
-        let color = Constants.PurpleColor
-        let textSize = Constants.TextBaseSize
-        var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
-        if (dottedLine) {
-            underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
-        }
-        var attributes: [String:AnyObject] = [
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Bold", size: textSize)!,
-            NSForegroundColorAttributeName : color,
-            NSUnderlineStyleAttributeName :  underlineStyle,
-            NSParagraphStyleAttributeName: paragraphStyle,
-            Constants.SmartTag : tag,
-        ]
-        if (fullWidthUnderline) {
-            attributes[Constants.SuperUnderlineStyle] = true
-        }
-        attributedText.appendAttributedString(NSAttributedString(string: text, attributes: attributes))
+        runStateUpdated(true)
     }
     
     func textTapped(recognizer: UITapGestureRecognizer) {
@@ -306,6 +381,6 @@ class SmartTextViewController: UIViewController {
         
         
     }
-    
-    
 }
+
+
