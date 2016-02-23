@@ -33,8 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         // appearance
-        let textColor = UIColor.whiteColor()
-        let bgColor = UIColor.blackColor()
+        let textColor = UIColor.blackColor()
+        let bgColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [
             NSForegroundColorAttributeName : textColor,
             NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 26)!
@@ -43,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = bgColor
 
         application.setStatusBarStyle(.LightContent, animated: false)
-        
+        UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
         
 //        UIButton.appearance().tintColor = Constants.ActiveColor
 //        UISwitch.appearance().onTintColor = Constants.ActiveColor
