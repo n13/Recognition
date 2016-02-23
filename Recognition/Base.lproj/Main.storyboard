@@ -133,6 +133,7 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="feedbackButton" destination="ZGX-ku-wDH" id="CtZ-uH-qXm"/>
                         <outlet property="numberOfRemindersSlider" destination="R41-9x-kYg" id="Qm2-9y-i8M"/>
                         <outlet property="reminderTextView" destination="wxk-Dj-QBG" id="9ys-xo-QQ1"/>
                         <outlet property="wakeTimeSlider" destination="BZa-2r-zZR" id="0ac-HQ-sc9"/>

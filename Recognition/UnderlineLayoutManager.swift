@@ -100,7 +100,7 @@ class UnderlineLayoutManager : NSLayoutManager {
         }
         
         // Color
-        Constants.PurpleColor.set()
+        Constants.ActiveColor.set()
         
         // draw path
         path.stroke()

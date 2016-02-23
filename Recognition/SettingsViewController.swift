@@ -18,10 +18,15 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
     @IBOutlet weak var wakeTimeSlider: NMRangeSlider!
     @IBOutlet weak var numberOfRemindersSlider: NMRangeSlider!
     @IBOutlet weak var reminderTextView: UITextView!
+    @IBOutlet weak var feedbackButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let settings = AppDelegate.delegate().settings
+        
+        let trackImage = UIImage.add_imageWithColor(Constants.ActiveColor, size: CGSize(width: 6, height: 2), cornerRadius: 1.0)
+
         
         wakeTimeSlider.minimumValue = 0
         wakeTimeSlider.maximumValue = 24
@@ -30,6 +35,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         wakeTimeSlider.stepValue = 0.5
         wakeTimeSlider.stepValueContinuously = false
         
+        wakeTimeSlider.trackImage = trackImage
+            
         wakeTimeSlider.labelTextTransform = { value in
             
             var fraction = (value - (Float(Int(value))))
@@ -46,6 +53,7 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         numberOfRemindersSlider.lowerHandleHidden = true
         numberOfRemindersSlider.stepValue = 1.0
         numberOfRemindersSlider.stepValueContinuously = false
+        numberOfRemindersSlider.trackImage = trackImage
 
         
         for slider in [wakeTimeSlider, numberOfRemindersSlider] {
@@ -53,6 +61,8 @@ class SettingsViewController: UITableViewController, MFMailComposeViewController
         }
         
         reminderTextView.text = settings.reminderText
+        
+        feedbackButton.tintColor = Constants.ActiveColor
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {

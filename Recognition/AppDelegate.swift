@@ -45,8 +45,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.setStatusBarStyle(.LightContent, animated: false)
         
         
-//        UIButton.appearance().tintColor = Constants.PurpleColor
-//        UISwitch.appearance().onTintColor = Constants.PurpleColor
+//        UIButton.appearance().tintColor = Constants.ActiveColor
+//        UISwitch.appearance().onTintColor = Constants.ActiveColor
         
         return true
     }
