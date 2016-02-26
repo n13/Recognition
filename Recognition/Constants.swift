@@ -12,6 +12,8 @@ struct Constants {
     static let SmartTag = "SmartTag"
     static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
 
+    static let TextInset = 25
+    
     static var timeFormat: NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle;
@@ -42,10 +44,12 @@ struct Constants {
     
     //251	62	9 intense rose gold
     
-    static let HeavyFont = "HelveticaNeue-Medium" // "HelveticaNeue-Bold"
+    static let HeavyFont = "HelveticaNeue-Medium" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
+    static let ExtraHeavyFont = "HelveticaNeue-Bold" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
     static let LightFont = "HelveticaNeue"
 
     //68 68 68
     static let GreyTextColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
+    static let BlackTextColor = UIColor.blackColor()
 
 }

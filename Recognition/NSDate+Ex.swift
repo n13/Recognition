@@ -32,4 +32,9 @@ extension NSDate {
         return NSDate().hourAsDate(hour0_24)
     }
     
+    func asHoursString() -> String {
+        return Constants.timeFormat.stringFromDate(self)
+    }
+    
+    
 }

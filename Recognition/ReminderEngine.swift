@@ -92,6 +92,26 @@ class ReminderEngine {
         return nowTime.hourAsDate(AppDelegate.delegate().settings.stopTime)
     }
     
+    // note that the returned date can only be used for hour and minute. 
+    // calendar date might be the next day.
+    func nextReminderToday() -> NSDate? {
+        let now = NSDate()
+        for date in futureReminders {
+            if !date.isBeforeHourToday(now) {
+                return date
+            }
+        }
+        return nil
+    }
+    func remindersRemainingToday() -> Int {
+        let now = NSDate()
+        for (index,date) in futureReminders.enumerate() {
+            if !date.isBeforeHourToday(now) {
+                return futureReminders.count - index
+            }
+        }
+        return 0
+    }
     // MARK: Model
     private func createReminderTimesForToday() -> [NSDate] {
         let nowTime = NSDate()

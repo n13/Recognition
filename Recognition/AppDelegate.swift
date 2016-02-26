@@ -35,18 +35,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // appearance
         let textColor = UIColor.blackColor()
         let bgColor = UIColor.whiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName : textColor,
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 26)!
-        ]
-        UINavigationBar.appearance().tintColor = textColor
-        UINavigationBar.appearance().barTintColor = bgColor
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSForegroundColorAttributeName : textColor,
+//            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20)!
+//        ]
+        //UINavigationBar.appearance().tintColor = textColor
+        //UINavigationBar.appearance().barTintColor = bgColor
+        
+        // Make sure the engine is on
+        ReminderEngine.reminderEngine.initEngine()
+        
 
         application.setStatusBarStyle(.LightContent, animated: false)
+        
         UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
         
-//        UIButton.appearance().tintColor = Constants.ActiveColor
-//        UISwitch.appearance().onTintColor = Constants.ActiveColor
+        
+
+        
+        UIButton.appearance().tintColor = Constants.ActiveColor
+        UISwitch.appearance().onTintColor = Constants.ActiveColor
         
         return true
     }
