@@ -21,6 +21,12 @@ extension NSDate {
         }
     }
     
+    func asHoursAndMinutesFloat() -> Float {
+        let hoursFloat: Float = Float(hour()) + Float(minute()) / 60.0
+        print("hour float: hour: \(hour()) minute: \(minute()) float: \(hoursFloat)")
+        return hoursFloat
+    }
+    
     func hourAsDate(hour0_24: Float) -> NSDate {
         let nowTime = NSDate()
         let hour = Int(hour0_24)

@@ -376,12 +376,44 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
                     break
                     
                 case Tag.EndTime:
-                    showTimeControl(Tag.StartTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
+                    showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
                     break
                     
                 default:
+                    
+                    let settings = AppDelegate.delegate().settings
+                    
                     // for now just show settings
-                    showSettingsViewController()
+                    let alertController: UIAlertController = UIAlertController(title: "Reminder Text", message: nil, preferredStyle: .Alert)
+                    
+                    //Create and add the Cancel action
+                    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
+                        //Do some stuff
+                    }
+                    alertController.addAction(cancelAction)
+                    
+                    //Create and an option action
+                    let nextAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
+                        
+                        if let text = alertController.textFields?[0].text {
+                            print("setting reminder text to \(text)")
+                            settings.reminderText = text
+                            settings.save()
+                        } else {
+                            print("something went wrong; nil text")
+                        }
+                        
+                    }
+                    alertController.addAction(nextAction)
+                    //Add a text field
+                    alertController.addTextFieldWithConfigurationHandler { textField -> Void in
+                        // you can use this text field
+                        // customize text field
+                        textField.text = settings.reminderText
+                    }
+                    
+                    //Present the AlertController
+                    self.presentViewController(alertController, animated: true, completion: nil)
                     
                 }
             }
@@ -396,12 +428,26 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
             selectedDate: time,
             doneBlock: { picker, selectedDate, origin in
                 print("\(selectedDate)")
+                let settings = AppDelegate.delegate().settings
+                let date = selectedDate as! NSDate
+                let f = date.asHoursAndMinutesFloat()
+                
+                if (tag == Tag.StartTime) {
+                    print("setting start time")
+                    settings.startTime = f
+                } else {
+                    settings.stopTime = f
+                }
+                settings.save()
             },
             cancelBlock: { picker in
             },
             origin: self.view)
         
         picker.minuteInterval = 30
+        
+        picker.add
+        
         picker.showActionSheetPicker()
     }
     

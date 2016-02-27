@@ -47,6 +47,7 @@ struct Constants {
     static let HeavyFont = "HelveticaNeue-Medium" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
     static let ExtraHeavyFont = "HelveticaNeue-Bold" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
     static let LightFont = "HelveticaNeue"
+    static let ExtraLightFont = "HelveticaNeue-Thin"
 
     //68 68 68
     static let GreyTextColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
