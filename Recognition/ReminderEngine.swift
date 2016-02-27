@@ -69,12 +69,13 @@ class ReminderEngine {
     }
     
     private func scheduleNotification(date: NSDate) {
+        let settings = AppDelegate.delegate().settings
         let notification = UILocalNotification()
         notification.fireDate = date
-        notification.alertBody = "Take 2-5 seconds to recognize that you exist. Let go of all thoughts."
+        notification.alertBody = settings.reminderText
         notification.timeZone = NSTimeZone.systemTimeZone()
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.category = "RECOGNITION_CATEGORY"
+        notification.category = Constants.NotificationCategory
         // this is the trick - we just set a daily repetition
         // othewise 64 reminders is the most we can schedule
         notification.repeatInterval = NSCalendarUnit.Day

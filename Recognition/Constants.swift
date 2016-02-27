@@ -11,7 +11,7 @@ import Foundation
 struct Constants {
     static let SmartTag = "SmartTag"
     static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
-
+    static let NotificationCategory = "RECOGNITION_CATEGORY"
     static let TextInset = 25
     
     static var timeFormat: NSDateFormatter {

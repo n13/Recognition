@@ -204,8 +204,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
     
     
     override func viewDidLayoutSubviews() {
-        print("text frame: \(textView.frame)")
-        print("view: \(view.performSelector("recursiveDescription"))")
+//        print("text frame: \(textView.frame)")
+//        print("view: \(view.performSelector("recursiveDescription"))")
     }
     
     // MARK: Actions
@@ -372,11 +372,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
             if let value = value {
                 switch value {
                 case Tag.StartTime:
-                    showTimeControl(Tag.StartTime, text: "Start Time", time: ReminderEngine.reminderEngine.startTimeAsDate())
+                    showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
                     break
                     
                 case Tag.EndTime:
-                    showTimeControl(Tag.StartTime, text: "End Time", time: ReminderEngine.reminderEngine.endTimeAsDate())
+                    showTimeControl(Tag.StartTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
                     break
                     
                 default:
@@ -390,30 +390,19 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
     }
     
     func showTimeControl(tag: String, text: String, time: NSDate) {
-        let alert = UIAlertController(title: title, message: text, preferredStyle: UIAlertControllerStyle.ActionSheet);
-        alert.modalInPopover = true;
-        let picker: UIDatePicker = UIDatePicker(frame: CGRectMake(0, 0, 250, 100));
-        //alert.preferredContentSize = CGSize(width: 300, height: 300)
-//        let picker = UIDatePicker()
-        picker.datePickerMode = .Time
-        picker.date = time
+        let picker = ActionSheetDatePicker(
+            title: text,
+            datePickerMode: UIDatePickerMode.Time,
+            selectedDate: time,
+            doneBlock: { picker, selectedDate, origin in
+                print("\(selectedDate)")
+            },
+            cancelBlock: { picker in
+            },
+            origin: self.view)
+        
         picker.minuteInterval = 30
-        picker.addTarget(self, action: "pickerChanged:", forControlEvents: .ValueChanged)
-        //set the pickers datasource and delegate
-        //picker.dataSource = self;
-        //Add the picker to the alert controller
-        alert.view.addSubview(picker)
-
-        let action = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
-        
-        alert.addAction(action)
-
-        
-        //alert.preferredContentSize = picker.frame.size
-        self.presentViewController(alert, animated: true) {
-            print("controller dismissed")
-        }
-
+        picker.showActionSheetPicker()
     }
     
     func pickerChanged(sender: UIDatePicker) {

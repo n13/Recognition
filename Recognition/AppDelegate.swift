@@ -65,18 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let recognitionCategory = UIMutableUserNotificationCategory()
         
         // Identifier to include in your push payload and local notification
-        recognitionCategory.identifier = "RECOGNITION_CATEGORY";
+        recognitionCategory.identifier = Constants.NotificationCategory
         
         let acceptAction = UIMutableUserNotificationAction()
-        acceptAction.identifier = "ACCEPT";
-        acceptAction.title = "Done";
+        acceptAction.identifier = "ACCEPT"
+        acceptAction.title = "Done"
         acceptAction.activationMode = .Background
         acceptAction.destructive = false
         acceptAction.authenticationRequired = false
 
         let declineAction = UIMutableUserNotificationAction()
-        declineAction.identifier = "DECLINE";
-        declineAction.title = "Not now";
+        declineAction.identifier = "DECLINE"
+        declineAction.title = "Not now"
         declineAction.activationMode = .Background
         declineAction.destructive = true
         declineAction.authenticationRequired = false

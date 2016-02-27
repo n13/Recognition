@@ -21,6 +21,9 @@ class HomeViewController: UIViewController {
     var headerLabel = UILabel()
     var statusLabel = UILabel()
     
+    let headerInset = Constants.TextInset
+    let blockheight = 50
+
     func setupViews() {
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -34,7 +37,6 @@ class HomeViewController: UIViewController {
         //scrollView.backgroundColor = UIColor.greenColor()
         
         // title label
-        let headerInset = Constants.TextInset
         headerLabel.numberOfLines = 0
         let headerText = NSMutableAttributedString.mm_attributedString("recognition", sizeAdjustment: 16, isBold: true, kerning: -1.4, color: Constants.BlackTextColor)
         headerText.applyAttribute(NSUnderlineColorAttributeName, value: Constants.ActiveColor)
@@ -59,14 +61,30 @@ class HomeViewController: UIViewController {
         }
         
         // status text
-        statusLabel.numberOfLines = 0
-        statusLabel.attributedText = createStatusText()
-        scrollView.addSubview(statusLabel)
-        statusLabel.snp_makeConstraints { make in
+//        statusLabel.numberOfLines = 0
+//        statusLabel.attributedText = createStatusText()
+//        scrollView.addSubview(statusLabel)
+//        statusLabel.snp_makeConstraints { make in
+//            make.top.equalTo(headerLabel.snp_baseline).offset(45)
+//            make.leading.equalTo(view.snp_leading).offset(headerInset)
+//            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
+//        }
+        
+        // 
+        
+        let remindersPerDayBlock = createBlockView("times per day")
+        remindersPerDayBlock.setNumberText("12") // debug
+        remindersPerDayBlock.snp_makeConstraints { make in
             make.top.equalTo(headerLabel.snp_baseline).offset(45)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
         }
+        
+        let remainingBlock = createBlockView("remaining")
+        remainingBlock.setNumberText("2") // debug
+        remainingBlock.snp_makeConstraints { make in
+            make.top.equalTo(remindersPerDayBlock.snp_bottom).offset(0)
+        }
+
+        remindersPerDayBlock.backgroundColor = UIColor.yellowColor()
         
         // Change Settings button
         let changeSettingsButton = UIButton()
@@ -114,6 +132,20 @@ class HomeViewController: UIViewController {
         
 
     }
+    
+    func createBlockView(labelText: String) -> BlockView {
+        let chunk = BlockView()
+        chunk.setLabelText(labelText)
+        scrollView.addSubview(chunk)
+        chunk.snp_makeConstraints { make in
+            make.leading.equalTo(view.snp_leading).offset(headerInset)
+            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
+            make.height.equalTo(blockheight)
+        }
+
+        return chunk
+    }
+    
     
     func changeSettingsPressed(sender: UIButton) {
         print("change settings")
