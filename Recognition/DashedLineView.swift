@@ -39,4 +39,16 @@ class DashedLineView: UIView {
         dashShape.path = path.CGPath
         dashShape.frame = self.bounds
     }
+    
+    func placeBelowView(viewToUnderline: UIView) {
+        dashShape.strokeColor = Constants.ActiveColor.CGColor
+        dashShape.lineWidth = 4
+        viewToUnderline.superview!.addSubview(self)
+        snp_makeConstraints { make in
+            make.top.equalTo(viewToUnderline.snp_baseline).offset(15)
+            make.left.equalTo(viewToUnderline.snp_left)
+            make.right.equalTo(viewToUnderline.snp_right)
+        }
+
+    }
 }

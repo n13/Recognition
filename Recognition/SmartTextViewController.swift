@@ -10,11 +10,14 @@
 import UIKit
 import SnapKit
 
-class SmartTextViewController: UIViewController, UIPickerViewDelegate {
+class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextViewDelegate {
     
     var scrollView = UIScrollView()
     var headerLabel: UILabel!
     var textView: UITextView!
+    var reminderTextView: UITextView!
+    var underline: DashedLineView!
+
     var offLabel: UILabel!
     var onLabel: UILabel!
     //var offStateTextView: UITextView!
@@ -43,25 +46,63 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
         // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
+        //reminderTextView.addGestureRecognizer(tappy)
         offLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         onLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         
+        // taps outside the text view need to release the focus
+        let releaser = UITapGestureRecognizer(target: self, action: "releaseFirstResponder")
+        view.addGestureRecognizer(releaser)
+
+        reminderTextView.delegate = self
+        
         // UX config
         runStateUpdated(false)
+        handleSettingsChanged(nil)
         
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
         
+        self.pa_addKeyboardListeners()
         
     }
     
+    override func pa_notificationKeyboardWillShow(notification: NSNotification) {
+        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: true)
+    }
+    
+    func textViewDidChange(textView: UITextView) {
+        scrollView.scrollRectToVisible(reminderTextView.frame, animated: true)
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        let newText = reminderTextView.attributedText.string.pa_trim()
+        print("new text: \(newText)")
+        let settings = AppDelegate.delegate().settings
+        settings.reminderText = newText
+        settings.save()
+        UIView.animateWithDuration(0.4) {
+            self.underline.alpha = 1
+        }
+        reminderTextView.setNeedsLayout()
+        underline.setNeedsLayout()
+
+    }
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        UIView.animateWithDuration(0.4) {
+            self.underline.alpha = 0
+        }
+    }
+    override func pa_notificationKeyboardWillHide(notification: NSNotification) {
+        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
+
+    }
+
     func createCustomTextView() -> UITextView {
         
         // 1. Create the text storage that backs the editor
-        let attrString = createText()
         textStorage = NSTextStorage()
-        textStorage.appendAttributedString(attrString)
-        
         let newTextViewRect = view.bounds
         
         // 2. Create the layout manager
@@ -164,40 +205,36 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
         
         // main text view
         textView = createCustomTextView()
+        reminderTextView = createCustomTextView()
         scrollView.addSubview(textView)
+        scrollView.addSubview(reminderTextView)
         
         textView.snp_makeConstraints { make in
             make.top.equalTo(headerLabel.snp_baseline).offset(textOffsetFromHeader)
             make.leading.equalTo(scrollView.snp_leading).offset(textInset)
             make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
             make.width.equalTo(view.snp_width).offset(-textInset*2)
-            make.bottom.equalTo(scrollView.snp_bottom)
+            //make.bottom.equalTo(scrollView.snp_bottom)
             
             // text heigh constraint so we can shrink this view
-            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
+            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
         }
-        //textView.backgroundColor = UIColor.clearColor()
+        reminderTextView.snp_makeConstraints { make in
+            make.top.equalTo(textView.snp_bottom).offset(5)
+            make.width.equalTo(textView.snp_width)
+            make.left.equalTo(textView.snp_left)
+            make.bottom.equalTo(scrollView.snp_bottom)
+        }
+        reminderTextView.editable = true
         
+        underline = DashedLineView()
+        underline.placeBelowView(reminderTextView)
+
         
-        
-//        offStateTextView = createCustomTextView()
-//        scrollView.insertSubview(offStateTextView, belowSubview:textView)
-//        
-//        offStateTextView.snp_makeConstraints { make in
-//            make.top.equalTo(headerLabel.snp_baseline).offset(40)
-//            make.leading.equalTo(scrollView.snp_leading).offset(textInset)
-//            make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
-//            make.width.equalTo(view.snp_width).offset(-textInset*2)
-//        }
-//        offStateTextView.attributedText = NSMutableAttributedString.mm_attributedString(
-//            "Reminders are off.",
-//            sizeAdjustment: 20,
-//            color: UIColor(white: 0.5, alpha: 0.3)
-//        )
-//        
         // debug
         //        headerLabel.backgroundColor = UIColor.redColor()
-//                textView.backgroundColor = UIColor.greenColor()
+        //        textView.backgroundColor = UIColor.greenColor()
+//                reminderTextView.backgroundColor = UIColor.redColor()
         //        scrollView.backgroundColor = UIColor.orangeColor()
         //        separatorView.backgroundColor = UIColor.magentaColor()
     }
@@ -209,9 +246,10 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
     }
     
     // MARK: Actions
-    func handleSettingsChanged(notification: NSNotification) {
+    func handleSettingsChanged(notification: NSNotification?) {
         print("handle settings changed")
         textView.attributedText = createText()
+        reminderTextView.attributedText = createReminderText()
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {
@@ -295,6 +333,15 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
         static let ToggleOnOff = "#OnOff"
     }
     
+    func createReminderText() -> NSMutableAttributedString {
+        let attributedText = NSMutableAttributedString()
+        
+        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: false, lineHeightMultiple:0.9)
+        attributedText.appendText("\n")
+        
+        return attributedText
+    }
+
     func createText() -> NSMutableAttributedString {
         
         let attributedText = NSMutableAttributedString()
@@ -314,10 +361,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
         let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
         attributedText.appendClickableText(endText, tag: Tag.EndTime, lineHeightMultiple: 1.3)
         
-        attributedText.appendText("\n\ntelling me to\n", lineHeightMultiple:1.15)
-        attributedText.appendText("\n", lineHeightMultiple:0.1)// tiny line
-        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderText, tag: Tag.ReminderText, dottedLine: false, fullWidthUnderline: true, lineHeightMultiple:0.9)
-        attributedText.appendText("\n")
+        attributedText.appendText("\n\ntelling me to", lineHeightMultiple:1.15)
         
         return attributedText
         
@@ -380,47 +424,22 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
                     break
                     
                 default:
+                    releaseFirstResponder()
+                    break
                     
-                    let settings = AppDelegate.delegate().settings
-                    
-                    // for now just show settings
-                    let alertController: UIAlertController = UIAlertController(title: "Reminder Text", message: nil, preferredStyle: .Alert)
-                    
-                    //Create and add the Cancel action
-                    let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-                        //Do some stuff
-                    }
-                    alertController.addAction(cancelAction)
-                    
-                    //Create and an option action
-                    let nextAction: UIAlertAction = UIAlertAction(title: "OK", style: .Default) { action -> Void in
-                        
-                        if let text = alertController.textFields?[0].text {
-                            print("setting reminder text to \(text)")
-                            settings.reminderText = text
-                            settings.save()
-                        } else {
-                            print("something went wrong; nil text")
-                        }
-                        
-                    }
-                    alertController.addAction(nextAction)
-                    //Add a text field
-                    alertController.addTextFieldWithConfigurationHandler { textField -> Void in
-                        // you can use this text field
-                        // customize text field
-                        textField.text = settings.reminderText
-                    }
-                    
-                    //Present the AlertController
-                    self.presentViewController(alertController, animated: true, completion: nil)
                     
                 }
             }
         }
-        
+        releaseFirstResponder()
     }
     
+    func releaseFirstResponder() {
+        if (self.reminderTextView.isFirstResponder()) {
+            self.reminderTextView.resignFirstResponder()
+        }
+    }
+
     func showTimeControl(tag: String, text: String, time: NSDate) {
         let picker = ActionSheetDatePicker(
             title: text,
@@ -445,8 +464,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate {
             origin: self.view)
         
         picker.minuteInterval = 30
-        
-        picker.add
         
         picker.showActionSheetPicker()
     }

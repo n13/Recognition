@@ -28,7 +28,7 @@ class HomeViewController: UIViewController {
     var remindersPerDayBlock: BlockView!
     var remainingBlock: BlockView!
     var nextReminderBlock: BlockView!
-
+    
     func setupViews() {
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -55,14 +55,7 @@ class HomeViewController: UIViewController {
 
         // need to draw underline as standard underlines are way too close to the text, which can't be adjusted
         let underline = DashedLineView()
-        underline.dashShape.strokeColor = Constants.ActiveColor.CGColor
-        underline.dashShape.lineWidth = 4
-        scrollView.addSubview(underline)
-        underline.snp_makeConstraints { make in
-            make.top.equalTo(titleLabel.snp_baseline).offset(15)
-            make.left.equalTo(titleLabel.snp_left)
-            make.right.equalTo(titleLabel.snp_right)
-        }
+        underline.placeBelowView(titleLabel)
         
         // top label
         let headerLabel = UILabel()

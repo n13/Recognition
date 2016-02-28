@@ -37,6 +37,8 @@ extension NSMutableAttributedString {
         var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
         if (dottedLine) {
             underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
+        } else {
+            underlineStyle = NSUnderlineStyle.StyleNone.rawValue
         }
         let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: false, kerning: -1.0, color: Constants.ActiveColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline, lineHeightMultiple: lineHeightMultiple)
         appendAttributedString(m)
