@@ -158,19 +158,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
         
         
-        // separator
-        //        let separatorView = DashedLineView()
-        //        separatorView.dashShape.strokeColor = UIColor(red: 3.0/255, green: 3/255.0, blue: 3.0/255, alpha: 1).CGColor
-        //        separatorView.dashShape.lineWidth = 2
-        //        scrollView.addSubview(separatorView)
-        //        separatorView.snp_makeConstraints { make in
-        //            //make.top.equalTo(textView.snp_bottom).offset(15)
-        //            make.top.equalTo(headerLabel.snp_baseline).offset(22)
-        //            make.leading.equalTo(headerInset)
-        //            make.trailing.equalTo(-headerInset)
-        //            make.height.equalTo(separatorView.dashShape.lineWidth)
-        //        }
-        
         // main text view
         textView = UITextView.createCustomTextView()
         reminderTextView = UITextView.createCustomTextView()
@@ -366,37 +353,20 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     func textTapped(recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
-        let layoutManager = textView.layoutManager
+        let value = textView.tagForLocation(recognizer.locationInView(textView))
         
-        // Location of the tap in text-container coordinates
-        var location = recognizer.locationInView(textView)
-        location.x -= textView.textContainerInset.left
-        location.y -= textView.textContainerInset.top
-        
-        // Find the character that's been tapped on
-        let characterIndex = layoutManager.characterIndexForPoint(location, inTextContainer: textView.textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        
-        if (characterIndex < textView.textStorage.length) {
-            var range = NSRange(location: 0, length: 1)
-            let value = textView.attributedText.attribute(Constants.SmartTag, atIndex:characterIndex, effectiveRange:&range) as! String?
-            print("value: \(value)")
-            
-            if let value = value {
-                switch value {
-                case Tag.StartTime:
-                    showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
-                    break
-                    
-                case Tag.EndTime:
-                    showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
-                    break
-                    
-                default:
-                    releaseFirstResponder()
-                    break
-                    
-                    
-                }
+        if let value = value {
+            switch value {
+            case Tag.StartTime:
+                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
+                break
+                
+            case Tag.EndTime:
+                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
+                break
+                
+            default:
+                break
             }
         }
         releaseFirstResponder()
