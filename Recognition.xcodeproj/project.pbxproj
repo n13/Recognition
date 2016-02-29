@@ -42,6 +42,7 @@
 		24A256BD1C80B93300AC9978 /* ActionSheetStringPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A256B21C80B93300AC9978 /* ActionSheetStringPicker.m */; };
 		24A256BE1C80B93300AC9978 /* DistancePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A256B41C80B93300AC9978 /* DistancePickerView.m */; };
 		24A256BF1C80B93300AC9978 /* SWActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 24A256B61C80B93300AC9978 /* SWActionSheet.m */; };
+		24AD64821C8403A50015BF70 /* UITextView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD64811C8403A50015BF70 /* UITextView+Ex.swift */; };
 		24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */; };
 		24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B768281C6A40B1000C91BB /* MessageUI.framework */; };
 /* End PBXBuildFile section */
@@ -118,6 +119,7 @@
 		24A256B41C80B93300AC9978 /* DistancePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistancePickerView.m; sourceTree = "<group>"; };
 		24A256B51C80B93300AC9978 /* SWActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWActionSheet.h; sourceTree = "<group>"; };
 		24A256B61C80B93300AC9978 /* SWActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWActionSheet.m; sourceTree = "<group>"; };
+		24AD64811C8403A50015BF70 /* UITextView+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+Ex.swift"; sourceTree = "<group>"; };
 		24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineLayoutManager.swift; sourceTree = "<group>"; };
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				2488D0E01C7C0D2A00A8278E /* UIImage+Additions.h */,
 				2488D0E11C7C0D2A00A8278E /* UIImage+Additions.m */,
 				240DDB031C82F9C300D486F2 /* String+Ex.swift */,
+				24AD64811C8403A50015BF70 /* UITextView+Ex.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				24A256BB1C80B93300AC9978 /* ActionSheetLocalePicker.m in Sources */,
 				245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */,
 				2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */,
+				24AD64821C8403A50015BF70 /* UITextView+Ex.swift in Sources */,
 				24A256B71C80B93300AC9978 /* AbstractActionSheetPicker.m in Sources */,
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
 				2488D0E21C7C0D2A00A8278E /* UIImage+Additions.m in Sources */,

@@ -22,7 +22,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var onLabel: UILabel!
     //var offStateTextView: UITextView!
     
-    var textStorage: NSTextStorage!
     var onOffSwitch = UISwitch()
     let textInset = Constants.TextInset
     var textHeightConstraint : Constraint? = nil
@@ -99,38 +98,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
 
     }
 
-    func createCustomTextView() -> UITextView {
-        
-        // 1. Create the text storage that backs the editor
-        textStorage = NSTextStorage()
-        let newTextViewRect = view.bounds
-        
-        // 2. Create the layout manager
-        let layoutManager = UnderlineLayoutManager()
-        
-        // 3. Create a text container
-        let containerSize = CGSize(width: newTextViewRect.width, height: CGFloat.max)
-        let container = NSTextContainer(size: containerSize)
-        container.widthTracksTextView = true
-        layoutManager.addTextContainer(container)
-        textStorage.addLayoutManager(layoutManager)
-        
-        let textView = UITextView(frame: newTextViewRect, textContainer: container)
-        
-        // make this work in a scroll view
-        textView.editable = false
-        textView.scrollEnabled = false
-        
-        // compensate for iOS text offset of 15, 15
-        //textView.contentInset = UIEdgeInsets(top: -15, left: -5, bottom: -8, right: -8)
-        textView.textContainerInset = UIEdgeInsetsMake(0,0,0,0)
-        textView.textContainer.lineFragmentPadding = 0
-        
-        return textView
-    }
-    
     // MARK: Text Rendering
-    
     func setupViews() {
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -204,8 +172,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         //        }
         
         // main text view
-        textView = createCustomTextView()
-        reminderTextView = createCustomTextView()
+        textView = UITextView.createCustomTextView()
+        reminderTextView = UITextView.createCustomTextView()
         scrollView.addSubview(textView)
         scrollView.addSubview(reminderTextView)
         

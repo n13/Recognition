@@ -68,8 +68,7 @@ class HomeViewController: UIViewController {
             make.trailing.equalTo(-headerInset)
         }
         
-        
-
+    
         
         // status text
 //        statusLabel.numberOfLines = 0
