@@ -17,7 +17,7 @@ extension UILocalNotification {
         notification.alertBody = message
         notification.timeZone = NSTimeZone.systemTimeZone()
         notification.soundName = UILocalNotificationDefaultSoundName
-        notification.category = "RECOGNITION_CATEGORY"
+        notification.category = Constants.NotificationCategory
         notification.repeatInterval = NSCalendarUnit.Day
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }

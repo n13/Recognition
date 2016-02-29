@@ -21,6 +21,12 @@ extension NSDate {
         }
     }
     
+    func asHoursAndMinutesFloat() -> Float {
+        let hoursFloat: Float = Float(hour()) + Float(minute()) / 60.0
+        print("hour float: hour: \(hour()) minute: \(minute()) float: \(hoursFloat)")
+        return hoursFloat
+    }
+    
     func hourAsDate(hour0_24: Float) -> NSDate {
         let nowTime = NSDate()
         let hour = Int(hour0_24)
@@ -31,5 +37,19 @@ extension NSDate {
     static func hourAsDateToday(hour0_24: Float) -> NSDate {
         return NSDate().hourAsDate(hour0_24)
     }
+    
+    func asHoursString() -> String {
+        var ns = Constants.timeFormat.stringFromDate(self).lowercaseString as NSString
+        if ns.hasSuffix(" am") {
+            ns = ns.substringToIndex(ns.length-3)
+            ns = "\(ns)" + "am"
+        }
+        if ns.hasSuffix(" pm") {
+            ns = ns.substringToIndex(ns.length-3)
+            ns = "\(ns)" + "pm"
+        }
+        return ns as String
+    }
+    
     
 }

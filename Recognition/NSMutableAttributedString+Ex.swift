@@ -37,6 +37,8 @@ extension NSMutableAttributedString {
         var underlineStyle = NSUnderlineStyle.StyleThick.rawValue
         if (dottedLine) {
             underlineStyle |= NSUnderlineStyle.PatternDot.rawValue
+        } else {
+            underlineStyle = NSUnderlineStyle.StyleNone.rawValue
         }
         let m = NSMutableAttributedString.mm_attributedString(text, sizeAdjustment: sizeAdjustment, isBold: false, kerning: -1.0, color: Constants.ActiveColor, underlineStyle: underlineStyle, smartTag: tag, underlineLastLineOnly: fullWidthUnderline, lineHeightMultiple: lineHeightMultiple)
         appendAttributedString(m)
@@ -53,14 +55,14 @@ extension NSMutableAttributedString {
         smartTag: String? = nil,
         underlineLastLineOnly: Bool = false,
         lineHeightMultiple: CGFloat  = 1.0
-        ) -> NSAttributedString
+        ) -> NSMutableAttributedString
     {
         let textSize = Constants.TextBaseSize+sizeAdjustment
         let font = UIFont(name: (isBold ? Constants.HeavyFont : Constants.LightFont), size: textSize)!
         
         let style:NSMutableParagraphStyle = NSMutableAttributedString.paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
         style.lineHeightMultiple = lineHeightMultiple
-
+        
 //        if (sizeAdjustment>0.0) {
 ////            style.headIndent = 0
 ////            style.firstLineHeadIndent = 0
@@ -82,7 +84,12 @@ extension NSMutableAttributedString {
             attributes[NSUnderlineStyleAttributeName] = underlineStyle
         }
 
-        return NSAttributedString(string: text, attributes: attributes)
+        return NSMutableAttributedString(string: text, attributes: attributes)
+    }
+    
+    // apply an attribute over the entire range
+    func applyAttribute(attributeName: String, value: AnyObject) {
+        self.addAttribute(attributeName, value: value, range: NSRange(location: 0, length: self.length))
     }
     
 }

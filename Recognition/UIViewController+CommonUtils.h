@@ -9,16 +9,20 @@
 
 @interface UIViewController (CommonUtils)
 
-+ (instancetype)create;
 + (instancetype)createMain;
 
 // return this type wrapped in a nav controller for title, buttons, etc
 + (UINavigationController *)createInNavigationController;
-
-+ (instancetype)createWithStoryboard:(UIStoryboard*)storyboard;
 + (instancetype)pa_initWithNib;
 
 - (void)showOKAlertWithTitle:(NSString *)aTitle andMessage:(NSString *)aMessage;
 - (void)showOKAlertWithTitle:(NSString *)aTitle andMessage:(NSString *)aMessage completion:(void(^)())completion;
+
+#pragma mark Keyboard
+- (void)pa_addKeyboardListeners;
+- (void)pa_removeKeyboardListeners;
+- (void)pa_notificationKeyboardWillShow:(NSNotification*)notification;
+- (void)pa_notificationKeyboardWillHide:(NSNotification*)notification;
+- (void)moveScrollViewForKeyboard:(UIScrollView*)scrollView notification:(NSNotification *)notification keyboardShowing:(BOOL)keyboardShowing;
 
 @end

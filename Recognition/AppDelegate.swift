@@ -35,18 +35,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // appearance
         let textColor = UIColor.blackColor()
         let bgColor = UIColor.whiteColor()
-        UINavigationBar.appearance().titleTextAttributes = [
-            NSForegroundColorAttributeName : textColor,
-            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 26)!
-        ]
-        UINavigationBar.appearance().tintColor = textColor
-        UINavigationBar.appearance().barTintColor = bgColor
+//        UINavigationBar.appearance().titleTextAttributes = [
+//            NSForegroundColorAttributeName : textColor,
+//            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20)!
+//        ]
+        //UINavigationBar.appearance().tintColor = textColor
+        //UINavigationBar.appearance().barTintColor = bgColor
+        
+        // Make sure the engine is on
+        ReminderEngine.reminderEngine.initEngine()
+        
 
         application.setStatusBarStyle(.LightContent, animated: false)
+        
         UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
         
-//        UIButton.appearance().tintColor = Constants.ActiveColor
-//        UISwitch.appearance().onTintColor = Constants.ActiveColor
+        
+
+        
+        UIButton.appearance().tintColor = Constants.ActiveColor
+        UISwitch.appearance().onTintColor = Constants.ActiveColor
         
         return true
     }
@@ -57,18 +65,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let recognitionCategory = UIMutableUserNotificationCategory()
         
         // Identifier to include in your push payload and local notification
-        recognitionCategory.identifier = "RECOGNITION_CATEGORY";
+        recognitionCategory.identifier = Constants.NotificationCategory
         
         let acceptAction = UIMutableUserNotificationAction()
-        acceptAction.identifier = "ACCEPT";
-        acceptAction.title = "Done";
+        acceptAction.identifier = "ACCEPT"
+        acceptAction.title = "Done"
         acceptAction.activationMode = .Background
         acceptAction.destructive = false
         acceptAction.authenticationRequired = false
 
         let declineAction = UIMutableUserNotificationAction()
-        declineAction.identifier = "DECLINE";
-        declineAction.title = "Not now";
+        declineAction.identifier = "DECLINE"
+        declineAction.title = "Not now"
         declineAction.activationMode = .Background
         declineAction.destructive = true
         declineAction.authenticationRequired = false

@@ -9,14 +9,6 @@
 
 @implementation UIViewController (CommonUtils)
 
-+ (instancetype)create {
-    return [[UIStoryboard storyboardWithName:NSStringFromClass([self class]) bundle:nil] instantiateInitialViewController];
-}
-
-+ (instancetype)createWithStoryboard:(UIStoryboard*)storyboard {
-    return [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
-}
-
 + (instancetype)createMain {
     return [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
 }
@@ -65,6 +57,35 @@
     [alertController addAction:okAction];
     [self.topMostController presentViewController:alertController animated:YES completion:nil];
 }
+
+#pragma mark Keyboard
+-(void)pa_addKeyboardListeners {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pa_notificationKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pa_notificationKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+}
+-(void)pa_removeKeyboardListeners {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
+}
+- (void)pa_notificationKeyboardWillShow:(NSNotification *)notification {
+}
+
+- (void)pa_notificationKeyboardWillHide:(NSNotification *)notification {
+}
+
+- (void)moveScrollViewForKeyboard:(UIScrollView*)scrollView notification:(NSNotification *)notification keyboardShowing:(BOOL)keyboardShowing {
+    if (keyboardShowing) {
+        NSDictionary *info = [notification userInfo];
+        CGSize kbSize = [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+        UIEdgeInsets contentInsets = UIEdgeInsetsMake(scrollView.contentInset.top,0, kbSize.height+100, 0);
+        scrollView.contentInset = contentInsets;
+        scrollView.scrollIndicatorInsets = contentInsets;
+    } else {
+        scrollView.contentInset = UIEdgeInsetsMake(scrollView.contentInset.top, 0, 0, 0);
+        scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(scrollView.contentInset.top, 0, 0, 0);
+    }
+}
+
 
 
 @end
