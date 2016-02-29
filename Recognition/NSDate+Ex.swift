@@ -39,7 +39,16 @@ extension NSDate {
     }
     
     func asHoursString() -> String {
-        return Constants.timeFormat.stringFromDate(self)
+        var ns = Constants.timeFormat.stringFromDate(self).lowercaseString as NSString
+        if ns.hasSuffix(" am") {
+            ns = ns.substringToIndex(ns.length-3)
+            ns = "\(ns)" + "am"
+        }
+        if ns.hasSuffix(" pm") {
+            ns = ns.substringToIndex(ns.length-3)
+            ns = "\(ns)" + "pm"
+        }
+        return ns as String
     }
     
     

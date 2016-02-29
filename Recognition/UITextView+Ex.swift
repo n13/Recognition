@@ -31,6 +31,7 @@ extension UITextView {
         // make this work in a scroll view
         textView.editable = false
         textView.scrollEnabled = false
+        textView.selectable = false
         
         // compensate for iOS text offset of 15, 15
         //textView.contentInset = UIEdgeInsets(top: -15, left: -5, bottom: -8, right: -8)

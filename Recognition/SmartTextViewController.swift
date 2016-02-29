@@ -18,11 +18,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var reminderTextView: UITextView!
     var underline: DashedLineView!
 
-    var offLabel: UILabel!
-    var onLabel: UILabel!
-    //var offStateTextView: UITextView!
-    
-    var onOffSwitch = UISwitch()
     let textInset = Constants.TextInset
     var textHeightConstraint : Constraint? = nil
     
@@ -35,9 +30,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // Done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonPressed:")
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:Constants.ActiveColor], forState: .Normal)
-
-        // switch in nav bar
-        onOffSwitch.addTarget(self, action: "switchPressed:", forControlEvents: .ValueChanged)
         
         // UX
         setupViews()
@@ -45,9 +37,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // Tap recognizer
         let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
         textView.addGestureRecognizer(tappy)
-        //reminderTextView.addGestureRecognizer(tappy)
-        offLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
-        onLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "onOffTextTapped:"))
         
         // taps outside the text view need to release the focus
         let releaser = UITapGestureRecognizer(target: self, action: "releaseFirstResponder")
@@ -56,7 +45,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         reminderTextView.delegate = self
         
         // UX config
-        runStateUpdated(false)
         handleSettingsChanged(nil)
         
         // Notifications
@@ -71,7 +59,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     func textViewDidChange(textView: UITextView) {
-        scrollView.scrollRectToVisible(reminderTextView.frame, animated: true)
+        //scrollView.scrollRectToVisible(reminderTextView.frame, animated: true)
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -129,34 +117,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             make.trailing.equalTo(-headerInset)
         }
         
-        // On Off label
-        offLabel = UILabel()
-        offLabel.userInteractionEnabled = true
-        scrollView.addSubview(offLabel)
-        offLabel.snp_makeConstraints { make in
-            make.baseline.equalTo(headerLabel.snp_baseline)
-            make.right.equalTo(-headerInset)
-        }
-        
-        onLabel = UILabel()
-        onLabel.text = "Off"
-        onLabel.userInteractionEnabled = true
-        scrollView.addSubview(onLabel)
-        onLabel.snp_makeConstraints { make in
-            make.baseline.equalTo(headerLabel.snp_baseline)
-            make.right.equalTo(offLabel.snp_left).offset(-1)
-        }
-        
         var textOffsetFromHeader = 40
         
         // For now just hide the header label and on off button - we don't need it here
         if ((self.navigationController) != nil) {
             headerLabel.hidden = true
-            onLabel.hidden = true
-            offLabel.hidden = true
             textOffsetFromHeader = -30
         }
-        
         
         // main text view
         textView = UITextView.createCustomTextView()
@@ -211,73 +178,30 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func switchPressed(sender: AnyObject) {
-        if (onOffSwitch.on) {
-            ReminderEngine.reminderEngine.start()
-        } else {
-            ReminderEngine.reminderEngine.stop()
-        }
-        runStateUpdated(true)
-    }
-    
-    func running() -> Bool {
-        return ReminderEngine.reminderEngine.isRunning
-    }
-    
-    // MARK: UX
-    func runStateUpdated(animated: Bool) {
-        onOffSwitch.on = running()
-        offLabel.attributedText = createOnOffText(false)
-        onLabel.attributedText = createOnOffText(true)
+    func textTapped(recognizer: UITapGestureRecognizer) {
+        let textView = recognizer.view as! UITextView
+        let value = textView.tagForLocation(recognizer.locationInView(textView))
         
-        if running() {
-            offLabel.alpha = 0.4
-            onLabel.alpha = 1.0
-        } else {
-            offLabel.alpha = 1.0
-            onLabel.alpha = 0.4
-        }
-        
-        offLabel.setNeedsLayout()
-        
-        self.view.layoutIfNeeded()
-        
-        // hiding - it works, but not really cool
-        
-        //        if (animated) {
-        //            let foo = UIViewAnimationOptions.TransitionCurlUp.rawValue | UIViewAnimationOptions.ShowHideTransitionViews.rawValue
-        //
-        //            UIView.transitionFromView(
-        //                running() ? offStateTextView : textView,
-        //                toView: running() ? textView : offStateTextView,
-        //                duration: 0.5,
-        //                options: UIViewAnimationOptions(rawValue: foo),
-        //                completion: nil)
-        //        } else {
-        //            offStateTextView.hidden = running()
-        //            textView.hidden = !offStateTextView.hidden
-        //        }
-        
-        //        offStateTextView.hidden = running()
-        
-        
-        print("ATTRTEXT \(textView.attributedText)")
-        self.textHeightConstraint!.updateOffset(CGFloat(self.running() ? 1000 : 0))
-        if (animated) {
-            UIView.animateWithDuration(0.4) {
-                self.view.layoutIfNeeded()
+        if let value = value {
+            switch value {
+            case Tag.StartTime:
+                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
+                break
+                
+            case Tag.EndTime:
+                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
+                break
+                
+            case Tag.NumberOfReminders:
+                showNumRemindersControl("Reminders Per Day", number: AppDelegate.delegate().settings.remindersPerDay)
+                break
+                
+            default:
+                break
             }
-        } else {
         }
+        releaseFirstResponder()
     }
-    
-    func showSettingsViewController() {
-        let vc = SettingsViewController.createMain()
-        let nc = UINavigationController(rootViewController: vc)
-        nc.modalTransitionStyle = .FlipHorizontal
-        presentViewController(nc, animated: true, completion: nil)
-    }
-    
     
     // MARK: Text Management - Should be in its own class
     struct Tag {
@@ -339,38 +263,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     
     
-    // MARK: Handle taps
-    
-    func onOffTextTapped(recognizer: UITapGestureRecognizer) {
-        print("on off")
-        if (running()) {
-            ReminderEngine.reminderEngine.stop()
-        } else {
-            ReminderEngine.reminderEngine.start()
-        }
-        runStateUpdated(true)
-    }
-    
-    func textTapped(recognizer: UITapGestureRecognizer) {
-        let textView = recognizer.view as! UITextView
-        let value = textView.tagForLocation(recognizer.locationInView(textView))
-        
-        if let value = value {
-            switch value {
-            case Tag.StartTime:
-                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
-                break
-                
-            case Tag.EndTime:
-                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
-                break
-                
-            default:
-                break
-            }
-        }
-        releaseFirstResponder()
-    }
     
     func releaseFirstResponder() {
         if (self.reminderTextView.isFirstResponder()) {
@@ -379,32 +271,82 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
 
     func showTimeControl(tag: String, text: String, time: NSDate) {
+        let isStartDate = tag == Tag.StartTime
         let picker = ActionSheetDatePicker(
             title: text,
             datePickerMode: UIDatePickerMode.Time,
             selectedDate: time,
             doneBlock: { picker, selectedDate, origin in
                 print("\(selectedDate)")
-                let settings = AppDelegate.delegate().settings
-                let date = selectedDate as! NSDate
-                let f = date.asHoursAndMinutesFloat()
-                
-                if (tag == Tag.StartTime) {
-                    print("setting start time")
-                    settings.startTime = f
-                } else {
-                    settings.stopTime = f
-                }
-                settings.save()
+                self.setDate(selectedDate as! NSDate, isStartDate: isStartDate)
             },
             cancelBlock: { picker in
             },
             origin: self.view)
         
         picker.minuteInterval = 30
-        
+
         picker.showActionSheetPicker()
+
+        print("picker.pickerView \(picker.pickerView)")
+        if let pickerView = picker.pickerView as? UIDatePicker {
+            print("adding observer")
+            pickerView.addTarget(self, action: (isStartDate ? "startDateChanged:" : "endDateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+        }
     }
+    
+    func startDateChanged(datePicker: UIDatePicker) {
+        setDate(datePicker.date, isStartDate: true)
+    }
+    func endDateChanged(datePicker: UIDatePicker) {
+        setDate(datePicker.date, isStartDate: false)
+    }
+    
+    func setDate(selectedDate: NSDate, isStartDate: Bool) {
+        let settings = AppDelegate.delegate().settings
+        let date = selectedDate
+        let f = date.asHoursAndMinutesFloat()
+        
+        if (isStartDate) {
+            settings.startTime = f
+        } else {
+            settings.stopTime = f
+        }
+        settings.save()
+    }
+
+    
+    func showNumRemindersControl(title: String, number: Int) {
+        
+        var rows = [String]()
+        for ix in 1...50 {
+            rows.append("\(ix)")
+        }
+        let actionSheetStringPicker = ActionSheetStringPicker.showPickerWithTitle("Reminders Per Day", rows: rows, initialSelection: number-1, doneBlock: {
+            picker, index, value in
+            let settings = AppDelegate.delegate().settings
+            settings.remindersPerDay = index + 1
+            settings.save()
+            picker.removeObserver(self, forKeyPath: "selectedIndex")
+            return
+            }, cancelBlock: { picker in
+                picker.removeObserver(self, forKeyPath: "selectedIndex")
+                return
+            }, origin: self.view)
+        
+        actionSheetStringPicker.addObserver(self, forKeyPath: "selectedIndex", options: .New, context: nil)
+    }
+    
+    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+        if (keyPath == "selectedIndex") {
+            if let picker = object as? ActionSheetStringPicker{
+                let settings = AppDelegate.delegate().settings
+                settings.remindersPerDay = picker.selectedIndex + 1
+                settings.save()
+            }
+        }
+    }
+
     
     func pickerChanged(sender: UIDatePicker) {
         print("picker changed to \(sender.date)")

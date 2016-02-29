@@ -45,6 +45,9 @@ typedef void(^ActionStringCancelBlock)(ActionSheetStringPicker *picker);
  *
  *  @return  return instance of picker
  */
+
+@property (nonatomic,assign) NSInteger selectedIndex;
+
 + (instancetype)showPickerWithTitle:(NSString *)title rows:(NSArray *)data initialSelection:(NSInteger)index target:(id)target successAction:(SEL)successAction cancelAction:(SEL)cancelActionOrNil origin:(id)origin;
 
     // Create an action sheet picker, but don't display until a subsequent call to "showActionPicker".  Receiver must release the picker when ready. */

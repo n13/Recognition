@@ -7,28 +7,44 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
 
+    var scrollView = UIScrollView()
+    var titleLabel = UILabel()
+    var textView: UITextView!
+    var textHeightConstraint : Constraint? = nil
+    let headerInset = Constants.TextInset
+    let blockheight = 70
+
     override func viewDidLoad() {
+        
+        textView = UITextView.createCustomTextView()
         
         // UX
         setupViews()
 
-        updateStatus()
+        // Notifications
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
+
+        updateStatus(false)
     }
     
-    var scrollView = UIScrollView()
-    var titleLabel = UILabel()
-    var statusLabel = UILabel()
-    
-    let headerInset = Constants.TextInset
-    let blockheight = 70
+    func updateStatus(animated: Bool) {
+        textView.attributedText = createMainText()
+        
+        let running = ReminderEngine.reminderEngine.isRunning
+        self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
+        if (animated) {
+            UIView.animateWithDuration(0.4) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+        }
 
-    var remindersPerDayBlock: BlockView!
-    var remainingBlock: BlockView!
-    var nextReminderBlock: BlockView!
-    
+    }
+
     func setupViews() {
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -50,122 +66,59 @@ class HomeViewController: UIViewController {
         titleLabel.snp_makeConstraints { make in
             make.top.equalTo(40) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
-            make.trailing.equalTo(-headerInset)
         }
 
         // need to draw underline as standard underlines are way too close to the text, which can't be adjusted
         let underline = DashedLineView()
         underline.placeBelowView(titleLabel)
         
-        // top label
-        let headerLabel = UILabel()
-        headerLabel.numberOfLines = 0
-        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor, lineHeightMultiple: 0.8)
-        scrollView.addSubview(headerLabel)
-        headerLabel.snp_makeConstraints { make in
-            make.top.equalTo(underline.snp_bottom).offset(20) // topLayoutGuide.length seems 0...
-            make.leading.equalTo(headerInset)
-            make.trailing.equalTo(-headerInset)
+
+        // Text view
+        scrollView.addSubview(textView)
+        textView.snp_makeConstraints { make in
+            make.top.equalTo(underline.snp_bottom).offset(56)
+            make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
+            make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
+            make.width.equalTo(view.snp_width).offset(-headerInset*2)
+            
+            // text heigh constraint so we can shrink this view
+            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
         }
-        
-    
-        
-        // status text
-//        statusLabel.numberOfLines = 0
-//        statusLabel.attributedText = createStatusText()
-//        scrollView.addSubview(statusLabel)
-//        statusLabel.snp_makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp_baseline).offset(45)
-//            make.leading.equalTo(view.snp_leading).offset(headerInset)
-//            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
-//        }
-        
-        // 
-        
-        remindersPerDayBlock = createBlockView("times per day")
-        remindersPerDayBlock.setNumberText("12") // debug
-        remindersPerDayBlock.snp_makeConstraints { make in
-            //make.top.equalTo(titleLabel.snp_baseline).offset(45)
-            make.top.equalTo(headerLabel.snp_baseline).offset(0)
-        }
-        
-        remainingBlock = createBlockView("remaining")
-        remainingBlock.setNumberText("2") // debug
-        remainingBlock.snp_makeConstraints { make in
-            make.top.equalTo(remindersPerDayBlock.snp_bottom).offset(0)
-        }
-        
-        nextReminderBlock = createBlockView("next")
-        nextReminderBlock.labelOnLeft = true
-        nextReminderBlock.setNumberText("12:20 AM") // debug
-        nextReminderBlock.snp_makeConstraints { make in
-            make.top.equalTo(remainingBlock.snp_bottom).offset(0)
-        }
-        
-        //remindersPerDayBlock.backgroundColor = UIColor.yellowColor()
-        
+        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
+
         // Change Settings button
-        let changeSettingsButton = UIButton()
-        changeSettingsButton.setTitle("Change Settings", forState: .Normal)
-        changeSettingsButton.setTitleColor(Constants.ActiveColor, forState: .Normal)
+        let changeSettingsButton = UILabel()
+        changeSettingsButton.userInteractionEnabled = true
+        changeSettingsButton.attributedText = createButtonText("Edit reminders.")
         scrollView.addSubview(changeSettingsButton)
         changeSettingsButton.snp_makeConstraints { make in
-            make.bottom.equalTo(view.snp_bottom).offset(-20)
+            make.top.equalTo(textView.snp_bottom).offset(48)
+            make.bottom.equalTo(scrollView.snp_bottom).offset(-20)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
-            make.height.equalTo(40)
         }
-        changeSettingsButton.layer.borderWidth = 2
-        changeSettingsButton.layer.borderColor = Constants.ActiveColor.CGColor
-        changeSettingsButton.addTarget(self, action: "changeSettingsPressed:", forControlEvents: .TouchUpInside)
-        
-        // On/Off button
-        let onOffLabel = UIView()
-        scrollView.addSubview(onOffLabel)
-        onOffLabel.snp_makeConstraints { make in
-            make.bottom.equalTo(changeSettingsButton.snp_top).offset(-15)
-            make.height.equalTo(changeSettingsButton.snp_height)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
-        }
-        onOffLabel.layer.borderWidth = 2
-        onOffLabel.layer.borderColor = Constants.ActiveColor.CGColor
-
-        let label = UILabel()
-        label.text = "Notifications"
-        label.textColor = Constants.ActiveColor
-        onOffLabel.addSubview(label)
-        label.snp_makeConstraints { make in
-            make.edges.equalTo(onOffLabel).inset(UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0))
-        }
-
-        let button = UISwitch()
-        onOffLabel.addSubview(button)
-        button.snp_makeConstraints { make in
-            make.trailing.equalTo(-15)
-            make.centerY.equalTo(0)
-        }
-        button.addTarget(self, action: "onOffPressed:", forControlEvents: .ValueChanged)
-        button.on = ReminderEngine.reminderEngine.isRunning
-        
+        changeSettingsButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "changeSettingsPressed:"))
+        DashedLineView().placeBelowView(changeSettingsButton)
 
     }
     
-    func createBlockView(labelText: String) -> BlockView {
-        let chunk = BlockView()
-        chunk.setLabelText(labelText)
-        scrollView.addSubview(chunk)
-        chunk.snp_makeConstraints { make in
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.trailing.equalTo(view.snp_trailing).offset(-headerInset)
-            make.height.equalTo(blockheight)
+    func handleTapOnText(recognizer: UITapGestureRecognizer) {
+        let tag = textView.tagForLocation(recognizer.locationInView(textView))
+        if let tag = tag {
+            print("tag: \(tag)")
+            if tag == "onoff" {
+                onOffPressed()
+            }
+        } else {
+            print("no tag")
         }
-
-        return chunk
     }
     
+    func handleSettingsChanged(notification: NSNotification?) {
+        print("handle settings changed")
+        updateStatus(false)
+    }
     
-    func changeSettingsPressed(sender: UIButton) {
+    func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
         let nav = UINavigationController(rootViewController: vc)
@@ -174,73 +127,96 @@ class HomeViewController: UIViewController {
 
     }
     
-    func onOffPressed(sender: UISwitch) {
+    func onOffPressed() {
         print("on off")
-        if sender.on != ReminderEngine.reminderEngine.isRunning {
-            if (ReminderEngine.reminderEngine.isRunning) {
-                ReminderEngine.reminderEngine.stop()
-            } else {
-                ReminderEngine.reminderEngine.start()
-            }
+        if (ReminderEngine.reminderEngine.isRunning) {
+            ReminderEngine.reminderEngine.stop()
+        } else {
+            ReminderEngine.reminderEngine.start()
         }
-        statusLabel.attributedText = createStatusText()
+        updateStatus(true)
     }
     
-    func updateStatus() {
-        let reminderEngine = ReminderEngine.reminderEngine
-        let numReminders = reminderEngine.futureReminders.count
-        let running = reminderEngine.isRunning
-        let startTime = reminderEngine.startTimeAsDate()
-        let endTime = reminderEngine.endTimeAsDate()
-        let nextReminderDate = reminderEngine.nextReminderToday()
-        let remindersRemainingToday = reminderEngine.remindersRemainingToday()
-        let remindersRemainingTodayString = remindersRemainingToday > 0 ? "\(remindersRemainingToday)" : "no"
+    func createMainText() -> NSMutableAttributedString {
+        let attributedText = NSMutableAttributedString()
+        let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
         
-        remindersPerDayBlock.setNumberText("\(numReminders)")
-        remainingBlock.setNumberText("\(remindersRemainingToday)")
-        if (nextReminderDate != nil) {
-            nextReminderBlock.setNumberText("\(nextReminderDate!.asHoursString().lowercaseString)")
-        } else {
-            nextReminderBlock.setNumberText("")
-        }
+        attributedText.appendAttributedString(createNormalText("Reminders are "))
+        attributedText.appendAttributedString(createOnOffText())
+        attributedText.appendAttributedString(createNormalText("\n"))
+
+        // 24 times a day,
+        attributedText.appendAttributedString(createBoldText("\(numReminders) times per day,"))
+        attributedText.appendAttributedString(createNormalText(" from "))
+        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.startTimeAsDate().asHoursString().lowercaseString)"))
+        attributedText.appendAttributedString(createNormalText(" to "))
+        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.endTimeAsDate().asHoursString().lowercaseString), "))
+        attributedText.appendAttributedString(createNormalText("telling me to:\n\n"))
+        attributedText.appendAttributedString(createBoldText("\(AppDelegate.delegate().settings.reminderText)"))
+
+        return attributedText
     }
-
-
-    func createStatusText() -> NSMutableAttributedString {
-        let reminderEngine = ReminderEngine.reminderEngine
-        let numReminders = reminderEngine.futureReminders.count
-        let running = reminderEngine.isRunning
-        let startTime = reminderEngine.startTimeAsDate()
-        let endTime = reminderEngine.endTimeAsDate()
-        let nextReminderDate = reminderEngine.nextReminderToday()
-        let remindersRemainingToday = reminderEngine.remindersRemainingToday()
-        let remindersRemainingTodayString = remindersRemainingToday > 0 ? "\(remindersRemainingToday)" : "no"
+    
+    func createNormalText(s: String) -> NSMutableAttributedString {
         
-        var text: NSMutableAttributedString
-        if reminderEngine.isRunning {
-            var nextReminderString: String? = nil
-            if let nextReminderDate = nextReminderDate {
-                nextReminderString = "The next reminder is at "+nextReminderDate.asHoursString()
-            } else if reminderEngine.futureReminders.count > 0 {
-                nextReminderString = "The next reminder is tomorrow at " + reminderEngine.futureReminders[0].asHoursString()
-            }
-            
-            text = NSMutableAttributedString.mm_attributedString("Reminders are enabled\n")
-            
-            //let betweenT = "between \(startTime.asHoursString()) and \(endTime.asHoursString())\n"
-            
-            text.appendText("We will send you \(numReminders) reminders per day.\n")
-            text.appendText("\(remindersRemainingTodayString) more reminders today.\n")
-            if (nextReminderString != nil) {
-                text.appendText("\(nextReminderString!)")
-            }
-        } else {
-            text = NSMutableAttributedString.mm_attributedString("Reminders are disabled\n")
-        }
+        // letter spacing -0.9
+        // line height 43
         
-        text.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.LightFont, size: 20)!)
+        let font = UIFont(name: "HelveticaNeue", size: 34)!
+        let text = NSMutableAttributedString(string: s)
+
+        text.applyAttribute(NSFontAttributeName, value: font)
+        text.applyAttribute(NSKernAttributeName, value: -0.9)
+
+        return text
+
+    }
+    
+    func createBoldText(s: String) -> NSMutableAttributedString {
+        let font = UIFont(name: "HelveticaNeue-Medium", size: 34)!
+        let text = NSMutableAttributedString(string: s)
+        
+        text.applyAttribute(NSFontAttributeName, value: font)
+        text.applyAttribute(NSKernAttributeName, value: -1.0)
         
         return text
     }
+    
+    func createButtonText(s: String) -> NSMutableAttributedString {
+        let font = UIFont(name: "HelveticaNeue", size: 36)!
+        let text = NSMutableAttributedString(string: s)
+        
+        text.applyAttribute(NSFontAttributeName, value: font)
+        text.applyAttribute(NSKernAttributeName, value: -0.5)
+        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrReddishOrangeColor())
+        
+        return text
+    }
+    
+    func createOnOffText() -> NSMutableAttributedString {
+        // line height 60
+        // letter spacing -0.5
+        
+        let running = ReminderEngine.reminderEngine.isRunning
+        
+        let offColor = UIColor.nkrPaleSalmonColor()
+        
+        let font = UIFont(name: "HelveticaNeue", size: 36)!
+        let onText = NSMutableAttributedString(string: "on")
+        onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
+        let offText = NSMutableAttributedString(string: "off")
+        offText.applyAttribute(NSFontAttributeName, value: font)
+        offText.applyAttribute(NSForegroundColorAttributeName, value: running ? offColor : Constants.ActiveColor)
+        
+        // combine the two
+        onText.appendAttributedString(offText)
+        
+        onText.applyAttribute(NSFontAttributeName, value: font)
+        onText.applyAttribute(Constants.SmartTag, value: "onoff")
+        onText.applyAttribute(NSKernAttributeName, value: -1)
+
+        return onText
+    }
+    
     
 }
