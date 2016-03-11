@@ -62,6 +62,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         //scrollView.scrollRectToVisible(reminderTextView.frame, animated: true)
     }
     
+    
+    
     func textViewDidEndEditing(textView: UITextView) {
         let newText = reminderTextView.attributedText.string.pa_trim()
         print("new text: \(newText)")
@@ -71,6 +73,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         UIView.animateWithDuration(0.4) {
             self.underline.alpha = 1
         }
+        //scrollView.backgroundColor = UIColor.whiteColor()
         reminderTextView.setNeedsLayout()
         underline.setNeedsLayout()
 
@@ -79,6 +82,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     func textViewDidBeginEditing(textView: UITextView) {
         UIView.animateWithDuration(0.4) {
             self.underline.alpha = 0
+            //self.scrollView.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         }
     }
     override func pa_notificationKeyboardWillHide(notification: NSNotification) {
@@ -95,34 +99,67 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints{ make in
-            make.top.equalTo(0)
-            make.leading.equalTo(0)
-            make.trailing.equalTo(0)
-            make.bottom.equalTo(0)
+            make.edges.equalTo(0)
         }
         
         //print("topLayoutGuide.length \(topLayoutGuide)")
         
-        scrollView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
+        //scrollView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
         
         // top label
-        let headerInset = textInset - 10
+        let headerInset = 15
         headerLabel = UILabel()
         headerLabel.numberOfLines = 0
-        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString("2-5 second\nmeditation", sizeAdjustment: 6, isBold: true, kerning: -0.6, color: Constants.GreyTextColor, lineHeightMultiple: 0.8)
+        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString(
+            "Edit\nreminders",
+            sizeAdjustment: 6,
+            isBold: true,
+            kerning: -0.6,
+            color: Constants.GreyTextColor,
+            lineHeightMultiple: 0.8)
         scrollView.addSubview(headerLabel)
         headerLabel.snp_makeConstraints { make in
-            make.top.equalTo(0) // topLayoutGuide.length seems 0...
+            make.top.equalTo(46) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
             make.trailing.equalTo(-headerInset)
         }
+        headerLabel.backgroundColor = UIColor.clearColor()
         
         var textOffsetFromHeader = 40
         
         // For now just hide the header label and on off button - we don't need it here
         if ((self.navigationController) != nil) {
-            headerLabel.hidden = true
+            //headerLabel.hidden = true
             textOffsetFromHeader = -30
+        }
+        
+        // done button
+        let doneLabel = UILabel()
+        doneLabel.userInteractionEnabled = true
+        doneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "doneButtonPressed:"))
+        
+        doneLabel.attributedText = NSMutableAttributedString.mm_attributedString(
+            "done",
+            sizeAdjustment: 0,
+            isBold: true,
+            kerning: -0.6,
+            color: Constants.ActiveColor,
+            lineHeightMultiple: 0.8)
+        scrollView.addSubview(doneLabel)
+        doneLabel.snp_makeConstraints { make in
+            make.baseline.equalTo(headerLabel.snp_baseline) // topLayoutGuide.length seems 0...
+            make.trailing.equalTo(-headerInset)
+        }
+
+        // line view
+        let line = DashedLineView()
+        scrollView.addSubview(line)
+        line.dashShape.strokeColor = UIColor.nkrPaleSalmonColor().colorWithAlphaComponent(0.9).CGColor
+        line.dashShape.lineWidth = 2
+        line.snp_makeConstraints { make in
+            make.top.equalTo(headerLabel.snp_baseline).offset(18) // topLayoutGuide.length seems 0...
+            make.leading.equalTo(0)
+            make.trailing.equalTo(0)
         }
         
         // main text view
@@ -142,7 +179,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
         }
         reminderTextView.snp_makeConstraints { make in
-            make.top.equalTo(textView.snp_bottom).offset(5)
+            make.top.equalTo(textView.snp_bottom).offset(7)
             make.width.equalTo(textView.snp_width)
             make.left.equalTo(textView.snp_left)
             make.bottom.equalTo(scrollView.snp_bottom)
@@ -229,18 +266,18 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         attributedText.appendText("schedule\n")
         attributedText.appendClickableText(numReminders, tag: Tag.NumberOfReminders, lineHeightMultiple: 0.85)
-        attributedText.appendText("\nper day\n")
+        attributedText.appendText(" per day,\n")
         attributedText.appendText("\n")
         
         attributedText.appendText("from\t")
-        let startText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.startTimeAsDate())
+        let startText = ReminderEngine.reminderEngine.startTimeAsDate().asHoursString()
         attributedText.appendClickableText(startText, tag: Tag.StartTime)
         attributedText.appendText("\nto\t", lineHeightMultiple: 1.3)
         
-        let endText = Constants.timeFormat.stringFromDate(ReminderEngine.reminderEngine.endTimeAsDate())
+        let endText = ReminderEngine.reminderEngine.endTimeAsDate().asHoursString()
         attributedText.appendClickableText(endText, tag: Tag.EndTime, lineHeightMultiple: 1.3)
         
-        attributedText.appendText("\n\ntelling me to", lineHeightMultiple:1.15)
+        attributedText.appendText("\ntelling me to", lineHeightMultiple:1.8)
         
         return attributedText
         
