@@ -87,6 +87,12 @@ extension NSMutableAttributedString {
         return NSMutableAttributedString(string: text, attributes: attributes)
     }
     
+    // create a spacer line
+    // note: line height seems to be limited by a certain min and max value so need to play around with this
+    static func spacerLine(lineHeightMultiple: CGFloat) -> NSMutableAttributedString {
+        return NSMutableAttributedString.mm_attributedString("\n", lineHeightMultiple: lineHeightMultiple)
+    }
+    
     // apply an attribute over the entire range
     func applyAttribute(attributeName: String, value: AnyObject) {
         self.addAttribute(attributeName, value: value, range: NSRange(location: 0, length: self.length))

@@ -14,6 +14,8 @@ struct Constants {
     static let NotificationCategory = "RECOGNITION_CATEGORY"
     static let TextInset = 25
     
+    static let EditSettingsText = "Edit settings."
+    
     static var timeFormat: NSDateFormatter {
         let formatter = NSDateFormatter()
         formatter.timeStyle = .ShortStyle;

@@ -111,7 +111,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         headerLabel = UILabel()
         headerLabel.numberOfLines = 0
         headerLabel.attributedText = NSMutableAttributedString.mm_attributedString(
-            "Edit\nreminders",
+            "Edit\nsettings",
             sizeAdjustment: 6,
             isBold: true,
             kerning: -0.6,

@@ -59,7 +59,6 @@ class HomeViewController: UIViewController {
         // title label
         titleLabel.numberOfLines = 0
         let headerText = NSMutableAttributedString.mm_attributedString("recognition", sizeAdjustment: 16, isBold: true, kerning: -1.4, color: Constants.BlackTextColor)
-        headerText.applyAttribute(NSUnderlineColorAttributeName, value: Constants.ActiveColor)
         headerText.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.ExtraHeavyFont, size: 50)!)
         titleLabel.attributedText = headerText
         scrollView.addSubview(titleLabel)
@@ -68,15 +67,27 @@ class HomeViewController: UIViewController {
             make.leading.equalTo(headerInset)
         }
 
+
         // need to draw underline as standard underlines are way too close to the text, which can't be adjusted
         let underline = DashedLineView()
         underline.placeBelowView(titleLabel)
-        
+
+        let underLabel = UILabel()
+        let utext = NSMutableAttributedString.mm_attributedString("meditation", sizeAdjustment: 16, isBold: true, kerning: 0.2, color: Constants.BlackTextColor)
+        utext.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.ExtraHeavyFont, size: 50)!)
+        underLabel.attributedText = utext
+        scrollView.addSubview(underLabel)
+        underLabel.snp_makeConstraints { make in
+            make.top.equalTo(underline.snp_bottom).offset(-4) // topLayoutGuide.length seems 0...
+            make.leading.equalTo(headerInset)
+        }
+
 
         // Text view
         scrollView.addSubview(textView)
         textView.snp_makeConstraints { make in
-            make.top.equalTo(underline.snp_bottom).offset(56)
+            make.top.equalTo(underLabel.snp_bottom).offset(36)
+//            make.top.equalTo(underline.snp_bottom).offset(36)
             make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
             make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
             make.width.equalTo(view.snp_width).offset(-headerInset*2)
@@ -89,10 +100,11 @@ class HomeViewController: UIViewController {
         // Change Settings button
         let changeSettingsButton = UILabel()
         changeSettingsButton.userInteractionEnabled = true
-        changeSettingsButton.attributedText = createButtonText("Edit reminders.")
+        changeSettingsButton.attributedText = createButtonText(Constants.EditSettingsText)
         scrollView.addSubview(changeSettingsButton)
         changeSettingsButton.snp_makeConstraints { make in
-            make.top.equalTo(textView.snp_bottom).offset(48)
+            make.top.equalTo(textView.snp_bottom).offset(15)
+            //make.bottom.equalTo(self.view.snp_bottom).offset(-50)
             make.bottom.equalTo(scrollView.snp_bottom).offset(-20)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
@@ -121,9 +133,10 @@ class HomeViewController: UIViewController {
     func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalTransitionStyle = .FlipHorizontal
-        presentViewController(nav, animated: true, completion: nil)
+        //let nav = UINavigationController(rootViewController: vc)
+        //nav.modalTransitionStyle = .FlipHorizontal
+        vc.modalTransitionStyle = .FlipHorizontal
+        presentViewController(vc, animated: true, completion: nil)
 
     }
     
@@ -144,46 +157,56 @@ class HomeViewController: UIViewController {
         attributedText.appendAttributedString(createNormalText("Reminders are "))
         attributedText.appendAttributedString(createOnOffText())
         attributedText.appendAttributedString(createNormalText("\n"))
+        attributedText.appendAttributedString(NSMutableAttributedString.spacerLine(0.3))
 
         // 24 times a day,
-        attributedText.appendAttributedString(createBoldText("\(numReminders) times per day,"))
-        attributedText.appendAttributedString(createNormalText(" from "))
+        attributedText.appendAttributedString(createBoldText("\(numReminders) reminders per day"))
+        
+    /**
+        attributedText.appendAttributedString(createNormalText("from "))
         attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.startTimeAsDate().asHoursString().lowercaseString)"))
         attributedText.appendAttributedString(createNormalText(" to "))
-        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.endTimeAsDate().asHoursString().lowercaseString), "))
-        attributedText.appendAttributedString(createNormalText("telling me to:\n\n"))
-        attributedText.appendAttributedString(createBoldText("\(AppDelegate.delegate().settings.reminderText)"))
+        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.endTimeAsDate().asHoursString().lowercaseString):\n"))
+        attributedText.appendAttributedString(createNormalText("telling me to:\n"))
+        attributedText.appendAttributedString(NSMutableAttributedString.spacerLine(0.2))
 
+        attributedText.appendAttributedString(createBoldText("\(AppDelegate.delegate().settings.reminderText)"))
+*/
         return attributedText
     }
+    
+    let BaseSize:CGFloat = 32
+    let OnOffButtonSize:CGFloat = 34
     
     func createNormalText(s: String) -> NSMutableAttributedString {
         
         // letter spacing -0.9
         // line height 43
         
-        let font = UIFont(name: "HelveticaNeue", size: 34)!
+        let font = UIFont(name: "HelveticaNeue", size: BaseSize)!
         let text = NSMutableAttributedString(string: s)
 
         text.applyAttribute(NSFontAttributeName, value: font)
         text.applyAttribute(NSKernAttributeName, value: -0.9)
+        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
 
         return text
 
     }
     
     func createBoldText(s: String) -> NSMutableAttributedString {
-        let font = UIFont(name: "HelveticaNeue-Medium", size: 34)!
+        let font = UIFont(name: "HelveticaNeue-Medium", size: BaseSize)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
         text.applyAttribute(NSKernAttributeName, value: -1.0)
-        
+        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
+
         return text
     }
     
     func createButtonText(s: String) -> NSMutableAttributedString {
-        let font = UIFont(name: "HelveticaNeue", size: 36)!
+        let font = UIFont(name: "HelveticaNeue", size: OnOffButtonSize)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -201,7 +224,7 @@ class HomeViewController: UIViewController {
         
         let offColor = UIColor.nkrPaleSalmonColor()
         
-        let font = UIFont(name: "HelveticaNeue", size: 36)!
+        let font = UIFont(name: "HelveticaNeue", size: OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
         onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
         let offText = NSMutableAttributedString(string: "off")
