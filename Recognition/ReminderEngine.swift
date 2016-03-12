@@ -60,7 +60,7 @@ class ReminderEngine {
             futureReminders = createReminderTimesForToday()
             print("Setting reminders for:")
             for date in futureReminders {
-                print("reminder with daily repeat on: \(date.toLocalString())")
+                //print("reminder with daily repeat on: \(date.toLocalString())")
                 scheduleNotification(date)
             }
         } else {
@@ -136,11 +136,15 @@ class ReminderEngine {
         var fireTime = startTime
         for _ in 0..<numberOfReminders {
             fireTime = fireTime.dateByAddingMinutes(minutesPerReminder)
+            if (fireTime.minute() == 30 || fireTime.minute() == 0) {
+                print("full or half hour, shifting time")
+                fireTime = fireTime.dateByAddingMinutes(-5)
+            }
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
-                print("added reminder time: \(fireTime.toLocalString())")
+                //print("added reminder time: \(fireTime.toLocalString())")
             } else {
-                print("added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
+                //print("added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
                 reminderTimes.append(fireTime.dateByAddingDays(1))
             }
         }
