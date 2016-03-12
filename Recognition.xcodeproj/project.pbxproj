@@ -278,13 +278,21 @@
 			path = Pickers;
 			sourceTree = "<group>";
 		};
+		24DC90A01C93E32C00E10B66 /* deprecated */ = {
+			isa = PBXGroup;
+			children = (
+				246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */,
+			);
+			name = deprecated;
+			sourceTree = "<group>";
+		};
 		24E0EB4D1C0FED370051314B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				24A2569B1C7EE23800AC9978 /* HomeViewController.swift */,
 				246359361C68623F0097CC76 /* SmartTextViewController.swift */,
 				24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */,
-				246235191BF9B1A200BDE6D7 /* SettingsViewController.swift */,
+				24DC90A01C93E32C00E10B66 /* deprecated */,
 				244207FB1C15620200EEF7D9 /* Settings.swift */,
 			);
 			name = Controllers;

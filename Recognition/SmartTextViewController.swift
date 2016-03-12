@@ -321,8 +321,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             },
             origin: self.view)
         
+        picker.hideCancel = true
         picker.minuteInterval = 30
-
         picker.showActionSheetPicker()
 
         print("picker.pickerView \(picker.pickerView)")
@@ -359,19 +359,25 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         for ix in 1...50 {
             rows.append("\(ix)")
         }
-        let actionSheetStringPicker = ActionSheetStringPicker.showPickerWithTitle("Reminders Per Day", rows: rows, initialSelection: number-1, doneBlock: {
-            picker, index, value in
-            let settings = AppDelegate.delegate().settings
-            settings.remindersPerDay = index + 1
-            settings.save()
-            picker.removeObserver(self, forKeyPath: "selectedIndex")
-            return
+        
+        //let actionSheetStringPicker
+        
+        let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: number-1,
+            doneBlock: {
+                picker, index, value in
+                let settings = AppDelegate.delegate().settings
+                settings.remindersPerDay = index + 1
+                settings.save()
+                picker.removeObserver(self, forKeyPath: "selectedIndex")
+                return
             }, cancelBlock: { picker in
                 picker.removeObserver(self, forKeyPath: "selectedIndex")
                 return
-            }, origin: self.view)
-        
+            },
+            origin: self.view)
+        actionSheetStringPicker.hideCancel = true
         actionSheetStringPicker.addObserver(self, forKeyPath: "selectedIndex", options: .New, context: nil)
+        actionSheetStringPicker.showActionSheetPicker()
     }
     
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
