@@ -21,9 +21,10 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         
         textView = UITextView.createCustomTextView()
-        
+        textView.scrollEnabled = false
         // UX
         setupViews()
+        textView.attributedText = createMainText()
 
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
@@ -32,10 +33,13 @@ class HomeViewController: UIViewController {
     }
     
     func updateStatus(animated: Bool) {
-        textView.attributedText = createMainText()
-        
         let running = ReminderEngine.reminderEngine.isRunning
         self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
+        
+        // Note: This animation can be jumpy if updating the text prior - I guess because updating the text
+        // and the new height get set on the new layout call and the text outside the bounds isn't even rendered
+        // So the text disappears, and then the view animates to its new size. 
+        
         if (animated) {
             UIView.animateWithDuration(0.4) {
                 self.view.layoutIfNeeded()
@@ -97,7 +101,7 @@ class HomeViewController: UIViewController {
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
         }
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
-
+        
         // Change Settings button
         let changeSettingsButton = UILabel()
         changeSettingsButton.userInteractionEnabled = true
@@ -140,6 +144,7 @@ class HomeViewController: UIViewController {
     
     func handleSettingsChanged(notification: NSNotification?) {
         print("handle settings changed")
+        textView.attributedText = createMainText()
         updateStatus(false)
     }
     
@@ -149,8 +154,9 @@ class HomeViewController: UIViewController {
         
         let text = "" +
             "Take two to five seconds to let go of all thoughts.\n\n" +
-            "If thoughts still arise, don't give them much attention.\n\n " +
-            "Then, as best as you can, try to feel your own existence.\nTry to feel the \"I am\".\n\n" +
+            "If thoughts still arise, don't give them much attention.\n\n" +
+            "Then, as best as you can, try to feel your own existence.\n" +
+            //"Try to feel the \"I am\".\n\n" +
             "Apply yourself sincerely to this practice - sincerity is the only requirement for success."
 
         vc.isSettingsScreen = false
