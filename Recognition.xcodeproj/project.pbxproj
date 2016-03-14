@@ -28,6 +28,8 @@
 		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
 		2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE241C716C5000058ED4 /* DashedLineView.swift */; };
 		2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */; };
+		247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247DABDD1C96B4890097A154 /* ButtonView.xib */; };
+		247DABE01C96B64C0097A154 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DABDF1C96B64C0097A154 /* ButtonView.swift */; };
 		24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569B1C7EE23800AC9978 /* HomeViewController.swift */; };
 		24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */; };
 		24A256A01C80851000AC9978 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569F1C80851000AC9978 /* BlockView.swift */; };
@@ -93,6 +95,8 @@
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
 		2469DE241C716C5000058ED4 /* DashedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
 		2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ex.swift"; sourceTree = "<group>"; };
+		247DABDD1C96B4890097A154 /* ButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonView.xib; sourceTree = "<group>"; };
+		247DABDF1C96B64C0097A154 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		24A2569B1C7EE23800AC9978 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		24A2569F1C80851000AC9978 /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -235,6 +239,8 @@
 			children = (
 				2469DE241C716C5000058ED4 /* DashedLineView.swift */,
 				24A2569F1C80851000AC9978 /* BlockView.swift */,
+				247DABDF1C96B64C0097A154 /* ButtonView.swift */,
+				247DABDD1C96B4890097A154 /* ButtonView.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -433,6 +439,7 @@
 			files = (
 				246234F51BF9A0D000BDE6D7 /* LaunchScreen.storyboard in Resources */,
 				246234F21BF9A0D000BDE6D7 /* Assets.xcassets in Resources */,
+				247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */,
 				246234F01BF9A0D000BDE6D7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +541,7 @@
 				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
 				24A256BA1C80B93300AC9978 /* ActionSheetDistancePicker.m in Sources */,
 				2442B83F1C69C69400346E1B /* Constants.swift in Sources */,
+				247DABE01C96B64C0097A154 /* ButtonView.swift in Sources */,
 				24A256B81C80B93300AC9978 /* ActionSheetCustomPicker.m in Sources */,
 				24A256BC1C80B93300AC9978 /* ActionSheetMultipleStringPicker.m in Sources */,
 			);
