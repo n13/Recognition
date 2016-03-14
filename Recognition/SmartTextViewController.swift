@@ -21,6 +21,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     let textInset = Constants.TextInset
     var textHeightConstraint : Constraint? = nil
     
+    // generalization options
+    var titleText: String = "Edit\nsettings"
+    var bodyText: String?
+    var isSettingsScreen = true
+    
     // MARK: View
     override func viewDidLoad() {
         
@@ -41,11 +46,14 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // taps outside the text view need to release the focus
         let releaser = UITapGestureRecognizer(target: self, action: "releaseFirstResponder")
         view.addGestureRecognizer(releaser)
-
-        reminderTextView.delegate = self
         
         // UX config
         handleSettingsChanged(nil)
+        if (!isSettingsScreen && bodyText != nil) {
+            let attributedText = NSMutableAttributedString()
+            attributedText.appendText(bodyText!, sizeAdjustment: -10)
+            self.textView.attributedText = attributedText
+        }
         
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
@@ -111,7 +119,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         headerLabel = UILabel()
         headerLabel.numberOfLines = 0
         headerLabel.attributedText = NSMutableAttributedString.mm_attributedString(
-            "Edit\nsettings",
+            titleText,
             sizeAdjustment: 6,
             isBold: true,
             kerning: -0.6,
@@ -164,9 +172,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         // main text view
         textView = UITextView.createCustomTextView()
-        reminderTextView = UITextView.createCustomTextView()
         scrollView.addSubview(textView)
-        scrollView.addSubview(reminderTextView)
         
         textView.snp_makeConstraints { make in
             make.top.equalTo(headerLabel.snp_baseline).offset(textOffsetFromHeader)
@@ -178,24 +184,23 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             // text heigh constraint so we can shrink this view
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
         }
-        reminderTextView.snp_makeConstraints { make in
-            make.top.equalTo(textView.snp_bottom).offset(7)
-            make.width.equalTo(textView.snp_width)
-            make.left.equalTo(textView.snp_left)
-            make.bottom.equalTo(scrollView.snp_bottom)
-        }
-        reminderTextView.editable = true
         
-        underline = DashedLineView()
-        underline.placeBelowView(reminderTextView)
+        // this should be in a subclass or whatever
+        if (isSettingsScreen) {
+            reminderTextView = UITextView.createCustomTextView()
+            scrollView.addSubview(reminderTextView)
+            reminderTextView.snp_makeConstraints { make in
+                make.top.equalTo(textView.snp_bottom).offset(7)
+                make.width.equalTo(textView.snp_width)
+                make.left.equalTo(textView.snp_left)
+                make.bottom.equalTo(scrollView.snp_bottom)
+            }
+            reminderTextView.editable = true
+            reminderTextView.delegate = self
 
-        
-        // debug
-        //        headerLabel.backgroundColor = UIColor.redColor()
-        //        textView.backgroundColor = UIColor.greenColor()
-//                reminderTextView.backgroundColor = UIColor.redColor()
-        //        scrollView.backgroundColor = UIColor.orangeColor()
-        //        separatorView.backgroundColor = UIColor.magentaColor()
+            underline = DashedLineView()
+            underline.placeBelowView(reminderTextView)
+        }
     }
     
     
@@ -207,8 +212,10 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     // MARK: Actions
     func handleSettingsChanged(notification: NSNotification?) {
         print("handle settings changed")
-        textView.attributedText = createText()
-        reminderTextView.attributedText = createReminderText()
+        if (isSettingsScreen) {
+            textView.attributedText = createText()
+            reminderTextView.attributedText = createReminderText()
+        }
     }
     
     @IBAction func doneButtonPressed(sender: AnyObject) {

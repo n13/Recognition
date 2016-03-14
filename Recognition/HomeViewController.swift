@@ -81,19 +81,20 @@ class HomeViewController: UIViewController {
             make.top.equalTo(underline.snp_bottom).offset(-4) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
         }
+        underLabel.hidden = true
 
 
         // Text view
         scrollView.addSubview(textView)
         textView.snp_makeConstraints { make in
-            make.top.equalTo(underLabel.snp_bottom).offset(36)
-//            make.top.equalTo(underline.snp_bottom).offset(36)
+//            make.top.equalTo(underLabel.snp_bottom).offset(36)
+            make.top.equalTo(underline.snp_bottom).offset(36)
             make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
             make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
             make.width.equalTo(view.snp_width).offset(-headerInset*2)
             
             // text heigh constraint so we can shrink this view
-            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
+            self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
         }
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
 
@@ -103,13 +104,25 @@ class HomeViewController: UIViewController {
         changeSettingsButton.attributedText = createButtonText(Constants.EditSettingsText)
         scrollView.addSubview(changeSettingsButton)
         changeSettingsButton.snp_makeConstraints { make in
-            make.top.equalTo(textView.snp_bottom).offset(15)
-            //make.bottom.equalTo(self.view.snp_bottom).offset(-50)
-            make.bottom.equalTo(scrollView.snp_bottom).offset(-20)
+            //make.top.equalTo(textView.snp_bottom).offset(15)
+            make.bottom.equalTo(self.view.snp_bottom).offset(-80)
+            //make.bottom.equalTo(scrollView.snp_bottom).offset(-20)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
         changeSettingsButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "changeSettingsPressed:"))
         DashedLineView().placeBelowView(changeSettingsButton)
+
+        
+        // Change Settings button
+        let howButton = UILabel()
+        howButton.userInteractionEnabled = true
+        howButton.attributedText = createButtonText("How To", size: 20)
+        scrollView.addSubview(howButton)
+        howButton.snp_makeConstraints { make in
+            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
+            make.leading.equalTo(view.snp_leading).offset(headerInset)
+        }
+        howButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "howButtonPressed:"))
 
     }
     
@@ -130,6 +143,22 @@ class HomeViewController: UIViewController {
         updateStatus(false)
     }
     
+    func howButtonPressed(sender: UIGestureRecognizer) {
+        print("change settings")
+        let vc = SmartTextViewController.createMain()
+        
+        let text = "" +
+            "Take two to five seconds to let go of all thoughts.\n\n" +
+            "If thoughts still arise, don't give them much attention.\n\n " +
+            "Then, as best as you can, try to feel your own existence.\nTry to feel the \"I am\".\n\n" +
+            "Apply yourself sincerely to this practice - sincerity is the only requirement for success."
+
+        vc.isSettingsScreen = false
+        vc.titleText = "How to"
+        vc.bodyText = text
+        presentViewController(vc, animated: true, completion: nil)
+
+    }
     func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
@@ -176,7 +205,7 @@ class HomeViewController: UIViewController {
     }
     
     let BaseSize:CGFloat = 32
-    let OnOffButtonSize:CGFloat = 34
+    static let OnOffButtonSize:CGFloat = 34
     
     func createNormalText(s: String) -> NSMutableAttributedString {
         
@@ -205,8 +234,8 @@ class HomeViewController: UIViewController {
         return text
     }
     
-    func createButtonText(s: String) -> NSMutableAttributedString {
-        let font = UIFont(name: "HelveticaNeue", size: OnOffButtonSize)!
+    func createButtonText(s: String, size: CGFloat = OnOffButtonSize) -> NSMutableAttributedString {
+        let font = UIFont(name: "HelveticaNeue", size: size)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -224,7 +253,7 @@ class HomeViewController: UIViewController {
         
         let offColor = UIColor.nkrPaleSalmonColor()
         
-        let font = UIFont(name: "HelveticaNeue", size: OnOffButtonSize)!
+        let font = UIFont(name: "HelveticaNeue", size: HomeViewController.OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
         onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
         let offText = NSMutableAttributedString(string: "off")
