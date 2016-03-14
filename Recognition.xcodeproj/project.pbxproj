@@ -157,7 +157,6 @@
 			children = (
 				245433851C43AE0E00D5509F /* ReminderEngine.swift */,
 				2442B83E1C69C69400346E1B /* Constants.swift */,
-				24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */,
 				24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */,
 			);
 			name = Model;
@@ -287,6 +286,7 @@
 		24E0EB4E1C0FED450051314B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */,
 				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
 				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
 				245C45071BFDE29100410591 /* NSDate+Ex.swift */,
