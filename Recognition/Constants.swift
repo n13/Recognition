@@ -22,16 +22,22 @@ struct Constants {
         formatter.dateStyle = .NoStyle;
         return formatter
     }
-    
+    static var DefaultReminderText = "Take 2-5 seconds to recognize that you exist. Let go of all thoughts."
     static var TextBaseSize : CGFloat = 34 // adjusted for screen size
     static let ActiveColor = UIColor.nkrReddishOrangeColor()
+        
+    static let MediumFont = "HelveticaNeue-Medium"
+    static let BoldFont = "HelveticaNeue-Bold"
+    static let RegularFont = "HelveticaNeue"
+    static let LightFont = "HelveticaNeue-Light"
+
+//    static let MediumFont = "SourceSansPro-Semibold"
+//    static let ExtraHeavyFont = "SourceSansPro-Bold"
+//    static let RegularFont = "SourceSansPro-Regular"
+//    static let LightFont = "SourceSansPro-Light"
+
     
-    //251	62	9 intense rose gold
-    
-    static let HeavyFont = "HelveticaNeue-Medium" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
-    static let ExtraHeavyFont = "HelveticaNeue-Bold" // "HelveticaNeue-Bold" CondensedBlack CondensedBold
-    static let LightFont = "HelveticaNeue"
-    static let ExtraLightFont = "HelveticaNeue-Thin"
+    //    static let ExtraLightFont = "HelveticaNeue-Thin"
 
     //68 68 68
     static let GreyTextColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)

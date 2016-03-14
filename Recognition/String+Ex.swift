@@ -19,5 +19,10 @@ extension String {
         let s: NSString = self
         return s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
+    
+    func isEmpty() -> Bool {
+        let s: NSString = self
+        return s.length == 0
+    }
 
 }

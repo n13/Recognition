@@ -33,18 +33,31 @@ class HomeViewController: UIViewController {
     }
     
     func updateStatus(animated: Bool) {
+//        self.textView.attributedText = self.createMainText()
+        
         let running = ReminderEngine.reminderEngine.isRunning
-        self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
         
         // Note: This animation can be jumpy if updating the text prior - I guess because updating the text
         // and the new height get set on the new layout call and the text outside the bounds isn't even rendered
-        // So the text disappears, and then the view animates to its new size. 
-        
+        // So the text disappears, and then the view animates to its new size.
+
+        // Solution - animation layered two times... the first one is basically just setting the text, and waiting for that to 
+        // finish. The second one moves the text.
         if (animated) {
-            UIView.animateWithDuration(0.4) {
-                self.view.layoutIfNeeded()
-            }
+            UIView.animateWithDuration(0.05, animations: {
+                    self.textView.attributedText = self.createMainText()
+                    self.view.layoutIfNeeded()
+                },
+                completion: { b in
+                    self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
+                    UIView.animateWithDuration(0.4) {
+                        self.view.layoutIfNeeded()
+                    }
+            })
+            
         } else {
+            self.textView.attributedText = self.createMainText()
+            self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
         }
 
     }
@@ -63,7 +76,7 @@ class HomeViewController: UIViewController {
         // title label
         titleLabel.numberOfLines = 0
         let headerText = NSMutableAttributedString.mm_attributedString("recognition", sizeAdjustment: 16, isBold: true, kerning: -1.4, color: Constants.BlackTextColor)
-        headerText.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.ExtraHeavyFont, size: 50)!)
+        headerText.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
         titleLabel.attributedText = headerText
         scrollView.addSubview(titleLabel)
         titleLabel.snp_makeConstraints { make in
@@ -78,7 +91,7 @@ class HomeViewController: UIViewController {
 
         let underLabel = UILabel()
         let utext = NSMutableAttributedString.mm_attributedString("meditation", sizeAdjustment: 16, isBold: true, kerning: 0.2, color: Constants.BlackTextColor)
-        utext.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.ExtraHeavyFont, size: 50)!)
+        utext.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
         underLabel.attributedText = utext
         scrollView.addSubview(underLabel)
         underLabel.snp_makeConstraints { make in
@@ -108,9 +121,8 @@ class HomeViewController: UIViewController {
         changeSettingsButton.attributedText = createButtonText(Constants.EditSettingsText)
         scrollView.addSubview(changeSettingsButton)
         changeSettingsButton.snp_makeConstraints { make in
-            //make.top.equalTo(textView.snp_bottom).offset(15)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            //make.bottom.equalTo(scrollView.snp_bottom).offset(-20)
+            //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
+            make.bottom.equalTo(self.view.snp_bottom).offset(-50)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
         changeSettingsButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "changeSettingsPressed:"))
@@ -127,7 +139,8 @@ class HomeViewController: UIViewController {
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
         howButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "howButtonPressed:"))
-
+        howButton.hidden = true
+        
     }
     
     func handleTapOnText(recognizer: UITapGestureRecognizer) {
@@ -218,7 +231,7 @@ class HomeViewController: UIViewController {
         // letter spacing -0.9
         // line height 43
         
-        let font = UIFont(name: "HelveticaNeue", size: BaseSize)!
+        let font = UIFont(name: Constants.RegularFont, size: BaseSize)!
         let text = NSMutableAttributedString(string: s)
 
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -230,7 +243,7 @@ class HomeViewController: UIViewController {
     }
     
     func createBoldText(s: String) -> NSMutableAttributedString {
-        let font = UIFont(name: "HelveticaNeue-Medium", size: BaseSize)!
+        let font = UIFont(name: Constants.MediumFont, size: BaseSize)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -241,7 +254,7 @@ class HomeViewController: UIViewController {
     }
     
     func createButtonText(s: String, size: CGFloat = OnOffButtonSize) -> NSMutableAttributedString {
-        let font = UIFont(name: "HelveticaNeue", size: size)!
+        let font = UIFont(name: Constants.RegularFont, size: size)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -259,7 +272,7 @@ class HomeViewController: UIViewController {
         
         let offColor = UIColor.nkrPaleSalmonColor()
         
-        let font = UIFont(name: "HelveticaNeue", size: HomeViewController.OnOffButtonSize)!
+        let font = UIFont(name: Constants.BoldFont, size: HomeViewController.OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
         onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
         let offText = NSMutableAttributedString(string: "off")

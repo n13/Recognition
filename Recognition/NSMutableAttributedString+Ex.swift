@@ -58,7 +58,7 @@ extension NSMutableAttributedString {
         ) -> NSMutableAttributedString
     {
         let textSize = Constants.TextBaseSize+sizeAdjustment
-        let font = UIFont(name: (isBold ? Constants.HeavyFont : Constants.LightFont), size: textSize)!
+        let font = UIFont(name: (isBold ? Constants.MediumFont : Constants.RegularFont), size: textSize)!
         
         let style:NSMutableParagraphStyle = NSMutableAttributedString.paragraphStyle.mutableCopy() as! NSMutableParagraphStyle
         style.lineHeightMultiple = lineHeightMultiple

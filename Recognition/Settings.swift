@@ -61,7 +61,7 @@ class Settings {
             Keys.startTime: Float(8.0),
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
-            Keys.reminderText: "Take 2-5 seconds to recognize that you exist. Let go of all thoughts."
+            Keys.reminderText: Constants.DefaultReminderText
             ])
     }
     

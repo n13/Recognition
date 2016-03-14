@@ -35,7 +35,8 @@ class BlockView: UIView {
         paragraphStyle.alignment = NSTextAlignment.Right
         
         let attributes: [String:AnyObject] = [
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 50)!,
+            NSFontAttributeName: UIFont(name:
+                Constants.LightFont, size: 50)!,
             NSKernAttributeName: -3.0,
             NSParagraphStyleAttributeName: paragraphStyle
         ]
@@ -50,8 +51,8 @@ class BlockView: UIView {
     }
     
     func setup() {
-        numberLabel.font = UIFont(name: Constants.LightFont, size: 50)
-        textLabel.font = UIFont(name: Constants.LightFont, size: 20)
+        numberLabel.font = UIFont(name: Constants.RegularFont, size: 50)
+        textLabel.font = UIFont(name: Constants.RegularFont, size: 20)
         addSubview(numberLabel)
         addSubview(textLabel)
         

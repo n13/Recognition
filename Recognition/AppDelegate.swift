@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-                
+        
+        
+        UIFont.listFonts()
+        
         // defaults
         settings.setupDefaults()
         
@@ -31,17 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("launching with notification: \(notification)")
             handleNotification(notification)
         }
-        
-        // appearance
-        let textColor = UIColor.blackColor()
-        let bgColor = UIColor.whiteColor()
-//        UINavigationBar.appearance().titleTextAttributes = [
-//            NSForegroundColorAttributeName : textColor,
-//            NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20)!
-//        ]
-        //UINavigationBar.appearance().tintColor = textColor
-        //UINavigationBar.appearance().barTintColor = bgColor
-        
+                
         // Make sure the engine is on
         ReminderEngine.reminderEngine.initEngine()
         

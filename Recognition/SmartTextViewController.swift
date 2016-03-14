@@ -26,6 +26,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var bodyText: String?
     var isSettingsScreen = true
     
+    var reminderTextMaxHeightConstraint : Constraint? = nil
+    var reminderTextMinHeightConstraint : Constraint? = nil
+
     // MARK: View
     override func viewDidLoad() {
         
@@ -64,23 +67,37 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     override func pa_notificationKeyboardWillShow(notification: NSNotification) {
         self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: true)
+        scrollView.contentOffset = CGPoint(x: 0, y: reminderTextView.frame.origin.y - 20)
+        scrollView.scrollEnabled = false
     }
     
-    func textViewDidChange(textView: UITextView) {
-        //scrollView.scrollRectToVisible(reminderTextView.frame, animated: true)
+    override func pa_notificationKeyboardWillHide(notification: NSNotification) {
+        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
+        scrollView.contentOffset = CGPointZero
+        scrollView.scrollEnabled = true
+
     }
-    
-    
+
     
     func textViewDidEndEditing(textView: UITextView) {
         let newText = reminderTextView.attributedText.string.pa_trim()
         print("new text: \(newText)")
+        
+        if (newText.isEmpty) {
+            self.reminderTextView.attributedText = createReminderText()
+            return;
+        }
+        
         let settings = AppDelegate.delegate().settings
         settings.reminderText = newText
         settings.save()
         UIView.animateWithDuration(0.4) {
             self.underline.alpha = 1
         }
+        
+        self.reminderTextMinHeightConstraint?.updateOffset(0)
+        self.reminderTextMaxHeightConstraint?.updateOffset(999)
+        
         //scrollView.backgroundColor = UIColor.whiteColor()
         reminderTextView.setNeedsLayout()
         underline.setNeedsLayout()
@@ -88,14 +105,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
+        self.reminderTextMinHeightConstraint?.updateOffset(160)
+        self.reminderTextMaxHeightConstraint?.updateOffset(160)
+
         UIView.animateWithDuration(0.4) {
             self.underline.alpha = 0
             //self.scrollView.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
         }
-    }
-    override func pa_notificationKeyboardWillHide(notification: NSNotification) {
-        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
-
     }
 
     // MARK: Text Rendering
@@ -193,16 +209,37 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 make.top.equalTo(textView.snp_bottom).offset(7)
                 make.width.equalTo(textView.snp_width)
                 make.left.equalTo(textView.snp_left)
-                make.bottom.equalTo(scrollView.snp_bottom)
+                self.reminderTextMaxHeightConstraint = make.height.lessThanOrEqualTo(999.0).constraint
+                self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
+                //make.bottom.equalTo(scrollView.snp_bottom)
             }
             reminderTextView.editable = true
             reminderTextView.delegate = self
 
+            reminderTextView.font = UIFont(name: Constants.RegularFont, size: Constants.TextBaseSize)
+            reminderTextView.textColor = Constants.ActiveColor
+
             underline = DashedLineView()
             underline.placeBelowView(reminderTextView)
+            
+            //reminderTextView.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
+            
+            let button = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: "resignFirstResponder")
+            let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+            let button2 = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: "resetReminderText")
+
+            let toolbar = UIToolbar(frame: CGRectMake(0 ,0, 320, 44))
+            toolbar.items = [button, spacer, button2]
+            
+            reminderTextView.inputAccessoryView = toolbar
+
         }
     }
     
+    func resetReminderText() {
+        reminderTextView.attributedText = NSAttributedString(string: Constants.DefaultReminderText)
+        reminderTextView.resignFirstResponder()
+    }
     
     override func viewDidLayoutSubviews() {
 //        print("text frame: \(textView.frame)")

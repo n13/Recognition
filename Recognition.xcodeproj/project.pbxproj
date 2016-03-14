@@ -44,6 +44,7 @@
 		24AD64841C840D160015BF70 /* UIColor+NikReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */; };
 		24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */; };
 		24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B768281C6A40B1000C91BB /* MessageUI.framework */; };
+		24D31DA51C96924B006A826D /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D31DA41C96924B006A826D /* UIFont+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+NikReminders.swift"; sourceTree = "<group>"; };
 		24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnderlineLayoutManager.swift; sourceTree = "<group>"; };
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		24D31DA41C96924B006A826D /* UIFont+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
 		4C44A503D4E29EBB934AED6F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		4C86FAD26D21E8C5BB5CC2FC /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E10FA2A01758FEF1998C7312 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -220,10 +222,10 @@
 		246235181BF9A18C00BDE6D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				2442B8401C69FAF500346E1B /* Recognition-Bridging-Header.h */,
+				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
 				246234F61BF9A0D000BDE6D7 /* Info.plist */,
 				246234F31BF9A0D000BDE6D7 /* LaunchScreen.storyboard */,
-				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
+				2442B8401C69FAF500346E1B /* Recognition-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -297,6 +299,7 @@
 				2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */,
 				240DDB031C82F9C300D486F2 /* String+Ex.swift */,
 				24AD64811C8403A50015BF70 /* UITextView+Ex.swift */,
+				24D31DA41C96924B006A826D /* UIFont+Ex.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B09B611C6B873B0090DCFC /* UnderlineLayoutManager.swift in Sources */,
+				24D31DA51C96924B006A826D /* UIFont+Ex.swift in Sources */,
 				24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */,
 				240DDB041C82F9C300D486F2 /* String+Ex.swift in Sources */,
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
