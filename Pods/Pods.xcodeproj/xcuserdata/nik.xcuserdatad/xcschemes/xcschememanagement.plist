@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NMRangeSlider.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,7 +22,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2C9F79BD33530798BE61A99C6D653D95</key>
+		<key>1D57B8F13CD04E13C3AB34ACE7216ADE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -37,12 +32,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>642DE19BCB6739E4958BD745C8603F26</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>CCEA02648F1916DC27E73025DB877DE4</key>
+		<key>90FDBFA77D14F62A8468ED33745C31D7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

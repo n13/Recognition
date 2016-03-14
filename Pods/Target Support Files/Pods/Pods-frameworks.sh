@@ -53,11 +53,9 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods/DateTools.framework'
-  install_framework 'Pods/NMRangeSlider.framework'
   install_framework 'Pods/SnapKit.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods/DateTools.framework'
-  install_framework 'Pods/NMRangeSlider.framework'
   install_framework 'Pods/SnapKit.framework'
 fi
