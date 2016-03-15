@@ -224,12 +224,12 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             
             //reminderTextView.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
             
-            let button = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: "resignFirstResponder")
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: "resignFirstResponder")
             let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            let button2 = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: "resetReminderText")
+            let resetButton = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: "resetReminderText")
 
             let toolbar = UIToolbar(frame: CGRectMake(0 ,0, 320, 44))
-            toolbar.items = [button, spacer, button2]
+            toolbar.items = [resetButton, spacer, doneButton]
             
             reminderTextView.inputAccessoryView = toolbar
 
@@ -238,6 +238,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     func resetReminderText() {
         reminderTextView.attributedText = NSAttributedString(string: Constants.DefaultReminderText)
+        // note: resigning in the keyboard will get the new text stored in settings 
+        // and also add all the formatting and so on
         reminderTextView.resignFirstResponder()
     }
     
