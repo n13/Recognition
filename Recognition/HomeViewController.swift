@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
                     self.view.layoutIfNeeded()
                 },
                 completion: { b in
-                    self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
+                    self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : Constants.ShortTextHeight))
                     UIView.animateWithDuration(0.4) {
                         self.view.layoutIfNeeded()
                     }
@@ -57,7 +57,7 @@ class HomeViewController: UIViewController {
             
         } else {
             self.textView.attributedText = self.createMainText()
-            self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : 40))
+            self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : Constants.ShortTextHeight))
         }
 
     }

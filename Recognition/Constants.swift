@@ -30,6 +30,8 @@ struct Constants {
     static let BoldFont = "HelveticaNeue-Bold"
     static let RegularFont = "HelveticaNeue"
     static let LightFont = "HelveticaNeue-Light"
+    
+    static let ShortTextHeight = (UIScreen.mainScreen().bounds.width > 320) ? 40 : 80
 
 //    static let MediumFont = "SourceSansPro-Semibold"
 //    static let ExtraHeavyFont = "SourceSansPro-Bold"

@@ -211,7 +211,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 make.left.equalTo(textView.snp_left)
                 self.reminderTextMaxHeightConstraint = make.height.lessThanOrEqualTo(999.0).constraint
                 self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
-                //make.bottom.equalTo(scrollView.snp_bottom)
+                make.bottom.equalTo(scrollView.snp_bottom).offset(-30)
             }
             reminderTextView.editable = true
             reminderTextView.delegate = self
