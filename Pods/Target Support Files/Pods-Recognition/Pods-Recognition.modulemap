@@ -1,0 +1,6 @@
+framework module Pods_Recognition {
+  umbrella header "Pods-Recognition-umbrella.h"
+
+  export *
+  module * { export * }
+}
