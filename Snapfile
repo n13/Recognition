@@ -18,12 +18,12 @@ languages([
 # launch_arguments(["-favColor red"])
 
 # The name of the scheme which contains the UI Tests
-# scheme "SchemeName"
+scheme "Recognition"
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"
 
-# clear_previous_screenshots true # remove the '#' to clear all previously generated screenshots before creating new ones
+clear_previous_screenshots true # remove the '#' to clear all previously generated screenshots before creating new ones
 
 # Choose which project/workspace to use
 # project "./Project.xcodeproj"

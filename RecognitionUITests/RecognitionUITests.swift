@@ -53,7 +53,7 @@ class RecognitionUITests: XCTestCase {
         //app.pickerWheels["12, 12 of 50"].tap()
         
         // Set number of reminders
-        snapshot("02EditSettings")
+        snapshot("03EditSettings")
 
         
         // app.toolbars.buttons["Done"].tap()
