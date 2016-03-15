@@ -30,6 +30,7 @@
 		2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */; };
 		247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247DABDD1C96B4890097A154 /* ButtonView.xib */; };
 		247DABE01C96B64C0097A154 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DABDF1C96B64C0097A154 /* ButtonView.swift */; };
+		247DABE21C97A5680097A154 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DABE11C97A5680097A154 /* SnapshotHelper.swift */; };
 		24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569B1C7EE23800AC9978 /* HomeViewController.swift */; };
 		24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */; };
 		24A256A01C80851000AC9978 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569F1C80851000AC9978 /* BlockView.swift */; };
@@ -95,8 +96,10 @@
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
 		2469DE241C716C5000058ED4 /* DashedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
 		2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ex.swift"; sourceTree = "<group>"; };
+		24708F6B1C97A928002DE544 /* Recognition copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Recognition copy-Info.plist"; path = "/Users/nik/Dropbox/Recognition/Recognition copy-Info.plist"; sourceTree = "<absolute>"; };
 		247DABDD1C96B4890097A154 /* ButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonView.xib; sourceTree = "<group>"; };
 		247DABDF1C96B64C0097A154 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		247DABE11C97A5680097A154 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
 		24A2569B1C7EE23800AC9978 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		24A2569F1C80851000AC9978 /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 				246234E81BF9A0D000BDE6D7 /* Products */,
 				D7F876875E293D5409984FDB /* Pods */,
 				7AE40CF196B12F53F9860559 /* Frameworks */,
+				24708F6B1C97A928002DE544 /* Recognition copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -218,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */,
+				247DABE11C97A5680097A154 /* SnapshotHelper.swift */,
 				2462350C1BF9A0D000BDE6D7 /* Info.plist */,
 			);
 			path = RecognitionUITests;
@@ -560,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2462350B1BF9A0D000BDE6D7 /* RecognitionUITests.swift in Sources */,
+				247DABE21C97A5680097A154 /* SnapshotHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = RecognitionUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -763,6 +770,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = RecognitionUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
