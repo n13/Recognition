@@ -54,7 +54,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         handleSettingsChanged(nil)
         if (!isSettingsScreen && bodyText != nil) {
             let attributedText = NSMutableAttributedString()
-            attributedText.appendText(bodyText!, sizeAdjustment: -10)
+            attributedText.appendText(bodyText!, sizeAdjustment: -10, kerning: 0.0)
             self.textView.attributedText = attributedText
         }
         
@@ -344,11 +344,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         return attributedText
     }
     
-    
-    
-    
     func releaseFirstResponder() {
-        if (self.reminderTextView.isFirstResponder()) {
+        if (self.reminderTextView != nil && self.reminderTextView.isFirstResponder()) {
             self.reminderTextView.resignFirstResponder()
         }
     }

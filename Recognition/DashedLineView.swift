@@ -23,8 +23,8 @@ class DashedLineView: UIView {
     
     func setup() {
         backgroundColor = UIColor.clearColor()
-        dashShape.strokeColor = UIColor.whiteColor().CGColor
-        dashShape.fillColor = nil
+        dashShape.strokeColor = Constants.ActiveColor.CGColor
+        dashShape.lineWidth = 3
         //dashShape.lineDashPattern = [4, 4]
         self.layer.addSublayer(dashShape)
     }

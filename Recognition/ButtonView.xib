@@ -8,22 +8,22 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ButtonView" customModule="Recognition" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="409" height="61"/>
+            <rect key="frame" x="0.0" y="0.0" width="255" height="71"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-B7-Z7D">
-                    <rect key="frame" x="371" y="22" width="38" height="17"/>
+                    <rect key="frame" x="217" y="27.5" width="38" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="9cx-L3-hhB"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="how to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-iX-DXa">
-                    <rect key="frame" x="0.0" y="18" width="65.5" height="24"/>
+                    <rect key="frame" x="0.0" y="23.5" width="65.5" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="237" id="3b0-is-YHx"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
                         <mask key="constraints">
@@ -32,14 +32,14 @@
                     </variation>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-HT-Pa1" customClass="DashedLineView" customModule="Recognition" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="42" width="65.5" height="3"/>
+                    <rect key="frame" x="0.0" y="47.5" width="65.5" height="3"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="6eu-xE-5Qc"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pxd-DS-TMj">
-                    <rect key="frame" x="0.0" y="0.0" width="409" height="61"/>
+                    <rect key="frame" x="0.0" y="0.0" width="255" height="71"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -57,6 +57,7 @@
                 <constraint firstItem="NlJ-B7-Z7D" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="WE7-PA-bD9"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="leading" secondItem="QQJ-iX-DXa" secondAttribute="leading" id="ZFn-Jb-bBl"/>
                 <constraint firstAttribute="bottom" secondItem="pxd-DS-TMj" secondAttribute="bottom" id="bm3-da-oiJ"/>
+                <constraint firstItem="QQJ-iX-DXa" firstAttribute="right" relation="greaterThanOrEqual" secondItem="pxd-DS-TMj" secondAttribute="left" constant="10" id="dsg-yo-Z8U"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eR1-ng-Sn8"/>
                 <constraint firstItem="NlJ-B7-Z7D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="k1B-lA-iqy"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mjY-XA-OQY"/>
@@ -77,7 +78,13 @@
                     <exclude reference="k1B-lA-iqy"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="355.5" y="44.5"/>
+            <connections>
+                <outlet property="button" destination="pxd-DS-TMj" id="CRX-9e-ZEY"/>
+                <outlet property="lineView" destination="8FA-HT-Pa1" id="1Fi-ID-zwv"/>
+                <outlet property="rightArrow" destination="NlJ-B7-Z7D" id="mqL-lh-fcK"/>
+                <outlet property="titleLabel" destination="QQJ-iX-DXa" id="HGv-Wi-I0t"/>
+            </connections>
+            <point key="canvasLocation" x="278.5" y="49.5"/>
         </view>
     </objects>
     <resources>

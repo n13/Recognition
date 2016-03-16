@@ -8,8 +8,13 @@
 
 import UIKit
 import SnapKit
+import MessageUI
 
-class HomeViewController: UIViewController {
+class HomeViewController:
+    UIViewController,
+    MFMailComposeViewControllerDelegate,
+    UIGestureRecognizerDelegate
+{
 
     var scrollView = UIScrollView()
     var titleLabel = UILabel()
@@ -18,6 +23,7 @@ class HomeViewController: UIViewController {
     let headerInset = Constants.TextInset
     let blockheight = 70
 
+    // MARK: View
     override func viewDidLoad() {
         
         textView = UITextView.createCustomTextView()
@@ -26,15 +32,20 @@ class HomeViewController: UIViewController {
         setupViews()
         textView.attributedText = createMainText()
 
+        scrollView.delaysContentTouches = false
+        
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
 
         updateStatus(false)
     }
     
+    override func viewWillAppear(animated: Bool) {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    // MARK: UX State
     func updateStatus(animated: Bool) {
-//        self.textView.attributedText = self.createMainText()
-        
         let running = ReminderEngine.reminderEngine.isRunning
         
         // Note: This animation can be jumpy if updating the text prior - I guess because updating the text
@@ -62,6 +73,7 @@ class HomeViewController: UIViewController {
 
     }
 
+    // MARK: UX Generation
     func setupViews() {
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -115,34 +127,53 @@ class HomeViewController: UIViewController {
         }
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
         
+        let screenSize = UIScreen .mainScreen().bounds.size
+        
         // Change Settings button
-        let changeSettingsButton = UILabel()
-        changeSettingsButton.userInteractionEnabled = true
-        changeSettingsButton.attributedText = createButtonText(Constants.EditSettingsText)
-        scrollView.addSubview(changeSettingsButton)
+        let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: "changeSettingsPressed:")
         changeSettingsButton.snp_makeConstraints { make in
             //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            make.bottom.equalTo(self.view.snp_bottom).offset(-50)
+            make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - 33)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
-        changeSettingsButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "changeSettingsPressed:"))
-        DashedLineView().placeBelowView(changeSettingsButton)
 
-        
-        // Change Settings button
-        let howButton = UILabel()
-        howButton.userInteractionEnabled = true
-        howButton.attributedText = createButtonText("How To", size: 20)
-        scrollView.addSubview(howButton)
+        // How to button
+        let howButton = addLabelButton("How to.", action: "howButtonPressed:")
         howButton.snp_makeConstraints { make in
-            make.bottom.equalTo(self.view.snp_bottom).offset(-15)
+            make.top.equalTo(changeSettingsButton.snp_bottom).offset(20)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
+            //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
         }
-        howButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "howButtonPressed:"))
-        howButton.hidden = true
         
+        // Feedback button
+        let feedbackButton = addLabelButton("Send feedback.", action: "sendFeedbackPressed:")
+        feedbackButton.snp_makeConstraints { make in
+            make.top.equalTo(howButton.snp_bottom).offset(20)
+            make.leading.equalTo(view.snp_leading).offset(headerInset)
+            make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+        }
     }
     
+    func addLabelButton(title: String, action: Selector) -> UILabel {
+        let label = UILabel()
+        label.userInteractionEnabled = true
+        label.attributedText = createButtonText(title)
+        scrollView.addSubview(label)
+        let tappy = UITapGestureRecognizer(target: self, action: action)
+        label.addGestureRecognizer(tappy)
+        tappy.delegate = self
+        DashedLineView().placeBelowView(label)
+        return label
+    }
+    
+    // MARK: Notifications
+    func handleSettingsChanged(notification: NSNotification?) {
+        print("handle settings changed")
+        textView.attributedText = createMainText()
+        updateStatus(false)
+    }
+    
+    // MARK: Actions
     func handleTapOnText(recognizer: UITapGestureRecognizer) {
         let tag = textView.tagForLocation(recognizer.locationInView(textView))
         if let tag = tag {
@@ -154,11 +185,19 @@ class HomeViewController: UIViewController {
             print("no tag")
         }
     }
-    
-    func handleSettingsChanged(notification: NSNotification?) {
-        print("handle settings changed")
-        textView.attributedText = createMainText()
-        updateStatus(false)
+
+    func sendFeedbackPressed(sender: UIGestureRecognizer) {
+        print("send feedback")
+        if MFMailComposeViewController.canSendMail() {
+            let controller = MFMailComposeViewController()
+            controller.mailComposeDelegate = self
+            controller.setSubject("Recognition App Feedback!")
+            controller.setMessageBody("", isHTML: false)
+            controller.setToRecipients(["nheger+recognition@gmail.com"])
+            presentViewController(controller, animated: true, completion: nil)
+        } else {
+            print("device can't send email")
+        }
     }
     
     func howButtonPressed(sender: UIGestureRecognizer) {
@@ -168,16 +207,17 @@ class HomeViewController: UIViewController {
         let text = "" +
             "Take two to five seconds to let go of all thoughts.\n\n" +
             "If thoughts still arise, don't give them much attention.\n\n" +
-            "Then, as best as you can, try to feel your own existence.\n" +
+            "Then, as best as you can, try to feel your own existence.\n\n" +
             //"Try to feel the \"I am\".\n\n" +
-            "Apply yourself sincerely to this practice - sincerity is the only requirement for success."
+            "Apply yourself sincerely to this practice - sincerity is the only requirement for success.\n\n" +
+            "Enjoy!"
 
         vc.isSettingsScreen = false
         vc.titleText = "How to"
         vc.bodyText = text
         presentViewController(vc, animated: true, completion: nil)
-
     }
+    
     func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
@@ -198,6 +238,7 @@ class HomeViewController: UIViewController {
         updateStatus(true)
     }
     
+    // MARK: Text
     func createMainText() -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString()
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
@@ -210,16 +251,15 @@ class HomeViewController: UIViewController {
         // 24 times a day,
         attributedText.appendAttributedString(createBoldText("\(numReminders) reminders per day"))
         
-    /**
+        /**
         attributedText.appendAttributedString(createNormalText("from "))
         attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.startTimeAsDate().asHoursString().lowercaseString)"))
         attributedText.appendAttributedString(createNormalText(" to "))
         attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.endTimeAsDate().asHoursString().lowercaseString):\n"))
         attributedText.appendAttributedString(createNormalText("telling me to:\n"))
         attributedText.appendAttributedString(NSMutableAttributedString.spacerLine(0.2))
-
         attributedText.appendAttributedString(createBoldText("\(AppDelegate.delegate().settings.reminderText)"))
-*/
+        */
         return attributedText
     }
     
@@ -289,5 +329,13 @@ class HomeViewController: UIViewController {
         return onText
     }
     
+    // MARK: MFMailComposeViewControllerDelegate
+    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
 }
