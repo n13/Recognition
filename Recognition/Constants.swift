@@ -22,7 +22,7 @@ struct Constants {
         formatter.dateStyle = .NoStyle;
         return formatter
     }
-    static var DefaultReminderText = "Take 2-5 seconds to recognize that you exist. Let go of all thoughts."
+    static var DefaultReminderText = "Take 2-5 seconds to let go of all thoughts. Recognize that you exist."
     static var TextBaseSize : CGFloat = 34 // adjusted for screen size
     static let ActiveColor = UIColor.nkrReddishOrangeColor()
         
