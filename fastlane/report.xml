@@ -3,29 +3,24 @@
   <testsuite name="fastlane.lanes">
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.00058">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.00073">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000272">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.000343">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: cocoapods" time="8.417238">
+      <testcase classname="fastlane.lanes" name="2: cocoapods" time="21.780545">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: gym" time="138.559588">
+      <testcase classname="fastlane.lanes" name="3: increment_build_number" time="1.476595">
         
-      </testcase>
-    
-      
-      <testcase classname="fastlane.lanes" name="4: pilot" time="284.937296">
-        
-          <failure message="/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/actions/actions_helper.rb:33:in `execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:129:in `block in execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `chdir'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/fast_file.rb:149:in `method_missing'&#10;Fastfile:40:in `block (2 levels) in parsing_binding'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/lane.rb:36:in `call'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:52:in `block in execute'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `chdir'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `execute'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:38:in `block (2 levels) in run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/command.rb:178:in `call'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/command.rb:153:in `run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/runner.rb:428:in `run_active_command'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane_core-0.37.0/lib/fastlane_core/ui/fastlane_runner.rb:23:in `run!'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/delegates.rb:15:in `run!'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:156:in `run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:162:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:22:in `load'&#10;/usr/local/bin/fastlane:22:in `&lt;main&gt;'&#10;&#10;[31mError uploading ipa file, more information see above[0m" />
+          <failure message="/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/actions/actions_helper.rb:33:in `execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:129:in `block in execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `chdir'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:128:in `execute_action'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/fast_file.rb:149:in `method_missing'&#10;Fastfile:39:in `block (2 levels) in parsing_binding'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/lane.rb:36:in `call'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:52:in `block in execute'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `chdir'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/runner.rb:46:in `execute'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/lane_manager.rb:46:in `cruise_lane'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:38:in `block (2 levels) in run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/command.rb:178:in `call'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/command.rb:153:in `run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/runner.rb:428:in `run_active_command'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane_core-0.37.0/lib/fastlane_core/ui/fastlane_runner.rb:23:in `run!'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/commander-4.3.5/lib/commander/delegates.rb:15:in `run!'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:156:in `run'&#10;/usr/local/lib/ruby/gems/2.3.0/gems/fastlane-1.66.0/bin/fastlane:162:in `&lt;top (required)&gt;'&#10;/usr/local/bin/fastlane:22:in `load'&#10;/usr/local/bin/fastlane:22:in `&lt;main&gt;'&#10;&#10;Exit status of command 'cd /Users/nik/Dropbox/Recognition &amp;&amp; agvtool next-version -all' was 6 instead of 0.&#10;There does not seem to be a CURRENT_PROJECT_VERSION key set for this project.  Add this key to your target's expert build settings.&#10;&#10;" />
         
       </testcase>
     
