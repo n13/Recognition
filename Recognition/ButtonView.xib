@@ -11,18 +11,18 @@
             <rect key="frame" x="0.0" y="0.0" width="255" height="71"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-B7-Z7D">
-                    <rect key="frame" x="217" y="27.5" width="38" height="17"/>
+                <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rightArrowSmall" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-B7-Z7D">
+                    <rect key="frame" x="217" y="27" width="38" height="17"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="38" id="9cx-L3-hhB"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="how to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-iX-DXa">
-                    <rect key="frame" x="0.0" y="23.5" width="65.5" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="how to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-iX-DXa">
+                    <rect key="frame" x="0.0" y="23" width="65.5" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="237" id="3b0-is-YHx"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -31,9 +31,9 @@
                         </mask>
                     </variation>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-HT-Pa1" customClass="DashedLineView" customModule="Recognition" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="47.5" width="65.5" height="3"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-HT-Pa1" customClass="DashedLineView" customModule="Recognition" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="47.5" width="255" height="3"/>
+                    <color key="backgroundColor" red="1" green="0.54720481899999995" blue="0.4126115883" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="3" id="6eu-xE-5Qc"/>
                     </constraints>
@@ -57,6 +57,7 @@
                 <constraint firstItem="NlJ-B7-Z7D" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="WE7-PA-bD9"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="leading" secondItem="QQJ-iX-DXa" secondAttribute="leading" id="ZFn-Jb-bBl"/>
                 <constraint firstAttribute="bottom" secondItem="pxd-DS-TMj" secondAttribute="bottom" id="bm3-da-oiJ"/>
+                <constraint firstItem="8FA-HT-Pa1" firstAttribute="trailing" secondItem="NlJ-B7-Z7D" secondAttribute="trailing" id="ctm-pr-23o"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="right" relation="greaterThanOrEqual" secondItem="pxd-DS-TMj" secondAttribute="left" constant="10" id="dsg-yo-Z8U"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eR1-ng-Sn8"/>
                 <constraint firstItem="NlJ-B7-Z7D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="k1B-lA-iqy"/>
@@ -74,6 +75,7 @@
                     <exclude reference="VIJ-3R-6Xf"/>
                     <exclude reference="ZFn-Jb-bBl"/>
                     <exclude reference="ySS-LF-ngo"/>
+                    <exclude reference="N8b-br-l0e"/>
                     <exclude reference="6G1-fN-f3S"/>
                     <exclude reference="k1B-lA-iqy"/>
                 </mask>
@@ -88,6 +90,6 @@
         </view>
     </objects>
     <resources>
-        <image name="rightArrow" width="30" height="17"/>
+        <image name="rightArrowSmall" width="18" height="11"/>
     </resources>
 </document>

@@ -18,7 +18,7 @@ class ButtonView: UIView {
     
     
     func setText(s: String) {
-        titleLabel.font = UIFont(name: Constants.BoldFont, size: 20)
+        titleLabel.font = UIFont(name: Constants.BoldFont, size: 17)
         titleLabel.textColor = UIColor.blackColor()
         titleLabel.text = s
     }
@@ -26,6 +26,6 @@ class ButtonView: UIView {
     override func intrinsicContentSize() -> CGSize {
         let labelSize = titleLabel.intrinsicContentSize()
         let buttonSize = rightArrow.intrinsicContentSize()
-        return CGSize(width: labelSize.width + 10 + buttonSize.width, height: max(labelSize.height, buttonSize.height))
+        return CGSize(width: labelSize.width + 10 + buttonSize.width, height: max(33, max(labelSize.height, buttonSize.height)))
     }
 }
