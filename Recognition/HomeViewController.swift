@@ -92,7 +92,7 @@ class HomeViewController:
         titleLabel.attributedText = headerText
         scrollView.addSubview(titleLabel)
         titleLabel.snp_makeConstraints { make in
-            make.top.equalTo(40) // topLayoutGuide.length seems 0...
+            make.top.equalTo(self.view.snp_top).offset(40) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
         }
 
