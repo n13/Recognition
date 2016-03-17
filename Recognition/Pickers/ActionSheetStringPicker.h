@@ -59,6 +59,9 @@ typedef void(^ActionStringCancelBlock)(ActionSheetStringPicker *picker);
 
 - (instancetype)initWithTitle:(NSString *)title rows:(NSArray *)strings initialSelection:(NSInteger)index doneBlock:(ActionStringDoneBlock)doneBlock cancelBlock:(ActionStringCancelBlock)cancelBlockOrNil origin:(id)origin;
 
+// small helper method to get string value - only works if rows are an array of [NSString] -Nik
+- (NSString *)selectedValueAsString;
+
 @property (nonatomic, copy) ActionStringDoneBlock onActionSheetDone;
 @property (nonatomic, copy) ActionStringCancelBlock onActionSheetCancel;
 

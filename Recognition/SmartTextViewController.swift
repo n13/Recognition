@@ -399,17 +399,22 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     func showNumRemindersControl(title: String, number: Int) {
         
         var rows = [String]()
-        for ix in 1...50 {
+        for ix in 1...30 {
             rows.append("\(ix)")
         }
+        // increments of 5 until 50
+        rows.appendContentsOf(["35", "40", "45", "50"])
+        // increments of 100 for those crazy experiments
+        rows.appendContentsOf(["100", "200", "300", "400", "500"])
+        let initialIndex = rows.indexOf("\(number)") ?? 11
         
-        //let actionSheetStringPicker
-        
-        let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: number-1,
+        let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: initialIndex,
             doneBlock: {
                 picker, index, value in
                 let settings = AppDelegate.delegate().settings
-                settings.remindersPerDay = index + 1
+                let valueString: NSString = value as! NSString
+                settings.remindersPerDay = valueString.integerValue
+                //print("times per day set to: \(settings.remindersPerDay)")
                 settings.save()
                 picker.removeObserver(self, forKeyPath: "selectedIndex")
                 return
@@ -427,7 +432,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         if (keyPath == "selectedIndex") {
             if let picker = object as? ActionSheetStringPicker{
                 let settings = AppDelegate.delegate().settings
-                settings.remindersPerDay = picker.selectedIndex + 1
+                settings.remindersPerDay = (picker.selectedValueAsString() as NSString).integerValue
                 settings.save()
             }
         }

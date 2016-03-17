@@ -116,6 +116,16 @@
     }
 }
 
+- (NSString *)selectedValueAsString {
+    if (self.data.count > 0 && self.selectedIndex >= 0 && self.selectedIndex < self.data.count) {
+        id selectedObject = (self.data)[(NSUInteger) self.selectedIndex];
+        if ([selectedObject isKindOfClass:[NSString class]]) {
+            return selectedObject;
+        }
+    }
+    return nil;
+}
+
 #pragma mark - UIPickerViewDelegate / DataSource
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
