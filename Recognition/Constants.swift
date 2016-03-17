@@ -14,6 +14,12 @@ struct Constants {
     static let NotificationCategory = "RECOGNITION_CATEGORY"
     static let TextInset = 25
     
+    static let isSmallDevice = (UIScreen.mainScreen().bounds.width <= 320)
+    
+    static let HomeBaseSize:CGFloat = isSmallDevice ? 26 : 32
+    static let OnOffButtonSize:CGFloat = HomeBaseSize + 2
+    static var TextBaseSize : CGFloat = HomeBaseSize + 2 // adjusted for screen size
+
     static let EditSettingsText = "Edit settings."
     
     static var timeFormat: NSDateFormatter {
@@ -23,7 +29,6 @@ struct Constants {
         return formatter
     }
     static var DefaultReminderText = "Take 2-5 seconds to let go of all thoughts. Recognize that you exist."
-    static var TextBaseSize : CGFloat = 34 // adjusted for screen size
     static let ActiveColor = UIColor.nkrReddishOrangeColor()
         
     static let MediumFont = "HelveticaNeue-Medium"
@@ -31,8 +36,9 @@ struct Constants {
     static let RegularFont = "HelveticaNeue"
     static let LightFont = "HelveticaNeue-Light"
     
-    static let ShortTextHeight = (UIScreen.mainScreen().bounds.width > 320) ? 40 : 80
-
+    static let ShortTextHeight = isSmallDevice ? 80 : 40
+    
+    
 //    static let MediumFont = "SourceSansPro-Semibold"
 //    static let ExtraHeavyFont = "SourceSansPro-Bold"
 //    static let RegularFont = "SourceSansPro-Regular"

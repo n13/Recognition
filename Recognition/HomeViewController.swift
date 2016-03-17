@@ -140,7 +140,7 @@ class HomeViewController:
         // How to button
         let howButton = addLabelButton("How to.", action: "howButtonPressed:")
         howButton.snp_makeConstraints { make in
-            make.top.equalTo(changeSettingsButton.snp_bottom).offset(20)
+            make.top.equalTo(changeSettingsButton.snp_bottom).offset(25)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
             //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
         }
@@ -263,15 +263,12 @@ class HomeViewController:
         return attributedText
     }
     
-    let BaseSize:CGFloat = 32
-    static let OnOffButtonSize:CGFloat = 34
-    
     func createNormalText(s: String) -> NSMutableAttributedString {
         
         // letter spacing -0.9
         // line height 43
         
-        let font = UIFont(name: Constants.RegularFont, size: BaseSize)!
+        let font = UIFont(name: Constants.RegularFont, size: Constants.HomeBaseSize)!
         let text = NSMutableAttributedString(string: s)
 
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -283,7 +280,7 @@ class HomeViewController:
     }
     
     func createBoldText(s: String) -> NSMutableAttributedString {
-        let font = UIFont(name: Constants.MediumFont, size: BaseSize)!
+        let font = UIFont(name: Constants.MediumFont, size: Constants.HomeBaseSize)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
@@ -293,7 +290,7 @@ class HomeViewController:
         return text
     }
     
-    func createButtonText(s: String, size: CGFloat = OnOffButtonSize) -> NSMutableAttributedString {
+    func createButtonText(s: String, size: CGFloat = Constants.OnOffButtonSize) -> NSMutableAttributedString {
         let font = UIFont(name: Constants.RegularFont, size: size)!
         let text = NSMutableAttributedString(string: s)
         
@@ -312,7 +309,7 @@ class HomeViewController:
         
         let offColor = UIColor.nkrPaleSalmonColor()
         
-        let font = UIFont(name: Constants.BoldFont, size: HomeViewController.OnOffButtonSize)!
+        let font = UIFont(name: Constants.BoldFont, size: Constants.OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
         onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
         let offText = NSMutableAttributedString(string: "off")
