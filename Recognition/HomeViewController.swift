@@ -140,7 +140,7 @@ class HomeViewController:
         // How to button
         let howButton = addLabelButton("How to.", action: "howButtonPressed:")
         howButton.snp_makeConstraints { make in
-            make.top.equalTo(changeSettingsButton.snp_bottom).offset(25)
+            make.top.equalTo(changeSettingsButton.snp_bottom).offset(28)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
             //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
         }

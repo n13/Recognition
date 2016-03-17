@@ -36,7 +36,7 @@ struct Constants {
     static let RegularFont = "HelveticaNeue"
     static let LightFont = "HelveticaNeue-Light"
     
-    static let ShortTextHeight = isSmallDevice ? 80 : 40
+    static let ShortTextHeight = 40
     
     
 //    static let MediumFont = "SourceSansPro-Semibold"
