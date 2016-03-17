@@ -16,9 +16,9 @@ struct Constants {
     
     static let isSmallDevice = (UIScreen.mainScreen().bounds.width <= 320)
     
-    static let HomeBaseSize:CGFloat = isSmallDevice ? 26 : 32
+    static let HomeBaseSize:CGFloat = isSmallDevice ? 26 : 32 // adjusted for screen size
     static let OnOffButtonSize:CGFloat = HomeBaseSize + 2
-    static var TextBaseSize : CGFloat = HomeBaseSize + 2 // adjusted for screen size
+    static var TextBaseSize : CGFloat = HomeBaseSize + 2
 
     static let EditSettingsText = "Edit settings."
     
