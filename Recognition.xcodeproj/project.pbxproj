@@ -169,6 +169,7 @@
 			children = (
 				245433851C43AE0E00D5509F /* ReminderEngine.swift */,
 				2442B83E1C69C69400346E1B /* Constants.swift */,
+				244207FB1C15620200EEF7D9 /* Settings.swift */,
 				24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */,
 			);
 			name = Model;
@@ -293,8 +294,6 @@
 			children = (
 				24A2569B1C7EE23800AC9978 /* HomeViewController.swift */,
 				246359361C68623F0097CC76 /* SmartTextViewController.swift */,
-				24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */,
-				244207FB1C15620200EEF7D9 /* Settings.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -302,6 +301,7 @@
 		24E0EB4E1C0FED450051314B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */,
 				24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */,
 				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
 				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
