@@ -405,7 +405,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // increments of 5 until 50
         rows.appendContentsOf(["35", "40", "45", "50"])
         // increments of 100 for those crazy experiments
-        rows.appendContentsOf(["100", "200", "300", "400", "500"])
+        rows.appendContentsOf(["100", "200"])//, "300", "400", "500"])
         let initialIndex = rows.indexOf("\(number)") ?? 11
         
         let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: initialIndex,
