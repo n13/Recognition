@@ -132,14 +132,14 @@ class ReminderEngine {
         print("reminders: \(numberOfReminders)")
         print("minutes per reminder: \(minutesPerReminder)")
 
-        
         var reminderTimes = [NSDate]()
         var fireTime = startTime
         for _ in 0..<numberOfReminders {
             fireTime = fireTime.dateByAddingMinutes(minutesPerReminder)
             if (fireTime.minute() == 30 || fireTime.minute() == 0) {
-                print("full or half hour, shifting time")
+                //print("full or half hour, shifting time: \(fireTime.toLocalString())")
                 fireTime = fireTime.dateByAddingMinutes(-5)
+                //print("new time: \(fireTime.toLocalString())")
             }
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
