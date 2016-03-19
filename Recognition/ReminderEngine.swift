@@ -125,17 +125,18 @@ class ReminderEngine {
             totalMinutes = 1
         }
         let numberOfReminders = settings.remindersPerDay
-        let minutesPerReminder = Int(totalMinutes / Float(numberOfReminders))
+        let minutesPerReminder = totalMinutes / Float(numberOfReminders)
         
         print("start: \(startTime.toLocalString())")
         print("end: \(endTime.toLocalString()) ")
+        print("total minutes: \(totalMinutes)")
         print("reminders: \(numberOfReminders)")
         print("minutes per reminder: \(minutesPerReminder)")
 
         var reminderTimes = [NSDate]()
         var fireTime = startTime
         for _ in 0..<numberOfReminders {
-            fireTime = fireTime.dateByAddingMinutes(minutesPerReminder)
+            fireTime = fireTime.dateByAddingSeconds(Int(minutesPerReminder * 60.0))
             if (fireTime.minute() == 30 || fireTime.minute() == 0) {
                 //print("full or half hour, shifting time: \(fireTime.toLocalString())")
                 fireTime = fireTime.dateByAddingMinutes(-5)
@@ -143,9 +144,9 @@ class ReminderEngine {
             }
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
-                //print("added reminder time: \(fireTime.toLocalString())")
+                //print("\(n) added reminder time: \(fireTime.toLocalString())")
             } else {
-                //print("added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
+                //print("\(n) added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
                 reminderTimes.append(fireTime.dateByAddingDays(1))
             }
         }
