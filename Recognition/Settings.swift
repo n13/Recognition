@@ -56,12 +56,13 @@ class Settings {
     }
     
     func setupDefaults() {
-        print("setting defaults...")
+        //print("setting defaults...")
         NSUserDefaults.standardUserDefaults().registerDefaults([
-            Keys.startTime: Float(8.0),
+            Keys.startTime: Float(9.0),
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
-            Keys.reminderText: Constants.DefaultReminderText
+            Keys.reminderText: Constants.DefaultReminderText,
+            Keys.IsRunning: true
             ])
     }
     
