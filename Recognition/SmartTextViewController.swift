@@ -261,22 +261,28 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    let popupBaseView = UIView(frame: CGRectZero)
+    
     func textTapped(recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
-        let value = textView.tagForLocation(recognizer.locationInView(textView))
+        let locationTapped = recognizer.locationInView(textView)
+        let value = textView.tagForLocation(locationTapped)
         
+        textView.addSubview(popupBaseView)
+        popupBaseView.frame = CGRect(x: locationTapped.x, y: locationTapped.y, width: 1, height: 1)
+
         if let value = value {
             switch value {
             case Tag.StartTime:
-                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate())
+                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate(), popupBaseView: popupBaseView)
                 break
                 
             case Tag.EndTime:
-                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate())
+                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate(), popupBaseView: popupBaseView)
                 break
                 
             case Tag.NumberOfReminders:
-                showNumRemindersControl("Reminders Per Day", number: AppDelegate.delegate().settings.remindersPerDay)
+                showNumRemindersControl("Reminders Per Day", number: AppDelegate.delegate().settings.remindersPerDay, popupBaseView: popupBaseView)
                 break
                 
             default:
@@ -350,7 +356,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
     }
 
-    func showTimeControl(tag: String, text: String, time: NSDate) {
+    func showTimeControl(tag: String, text: String, time: NSDate, popupBaseView: UIView) {
         let isStartDate = tag == Tag.StartTime
         let picker = ActionSheetDatePicker(
             title: text,
@@ -362,7 +368,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             },
             cancelBlock: { picker in
             },
-            origin: self.view)
+            origin: popupBaseView)
         
         picker.hideCancel = true
         picker.minuteInterval = 30
@@ -396,7 +402,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
 
     
-    func showNumRemindersControl(title: String, number: Int) {
+    func showNumRemindersControl(title: String, number: Int, popupBaseView: UIView) {
         
         var rows = [String]()
         for ix in 1...30 {
@@ -422,7 +428,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 picker.removeObserver(self, forKeyPath: "selectedIndex")
                 return
             },
-            origin: self.view)
+            origin: popupBaseView)
         actionSheetStringPicker.hideCancel = true
         actionSheetStringPicker.addObserver(self, forKeyPath: "selectedIndex", options: .New, context: nil)
         actionSheetStringPicker.showActionSheetPicker()

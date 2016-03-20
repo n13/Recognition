@@ -127,20 +127,23 @@ class HomeViewController:
         }
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
         
-        let screenSize = UIScreen .mainScreen().bounds.size
+        let screenSize = UIScreen.mainScreen().bounds.size
+        
+        let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         
         // Change Settings button
         let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: "changeSettingsPressed:")
         changeSettingsButton.snp_makeConstraints { make in
             //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - 33)
+            make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
 
+        let howToOffset:CGFloat = Constants.isIpad() ? 20 : 28
         // How to button
         let howButton = addLabelButton("How to.", action: "howButtonPressed:")
         howButton.snp_makeConstraints { make in
-            make.top.equalTo(changeSettingsButton.snp_bottom).offset(28)
+            make.top.equalTo(changeSettingsButton.snp_bottom).offset(howToOffset)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
             //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
         }

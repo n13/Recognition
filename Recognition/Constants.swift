@@ -38,7 +38,10 @@ struct Constants {
     
     static let ShortTextHeight = 40
     
-    
+    static func isIpad() -> Bool {
+        let model = UIDevice.currentDevice().model
+        return model.lowercaseString.containsString("ipad")
+    }
 //    static let MediumFont = "SourceSansPro-Semibold"
 //    static let ExtraHeavyFont = "SourceSansPro-Bold"
 //    static let RegularFont = "SourceSansPro-Regular"
