@@ -35,13 +35,34 @@ class HomeViewController:
         scrollView.delaysContentTouches = false
         
         // Notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
 
         updateStatus(false)
     }
     
     override func viewWillAppear(animated: Bool) {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        checkNotificationsAreEnabled()
+    }
+    
+    func checkNotificationsAreEnabled() {
+        // check notification status
+        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
+            if (settings.types.rawValue == UIUserNotificationType.None.rawValue ) {
+                print("settings OFF, handling...")
+                let alertVC = UIAlertController(title: "Notifications are OFF", message: "Notifications are off so you will not receive any reminders. Please turn on notifications in Settings.", preferredStyle: .ActionSheet)
+                alertVC.addAction(UIAlertAction(title: "Open Settings", style: .Default) { value in
+                    print("tapped default button")
+                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+                    })
+                alertVC.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                presentViewController(alertVC, animated: true, completion: nil)
+            }
+        }
+        
     }
     
     // MARK: UX State
