@@ -14,18 +14,20 @@ class UnderlineLayoutManager : NSLayoutManager {
         glyphRange: NSRange,
         underlineType underlineVal: NSUnderlineStyle,
         baselineOffset: CGFloat,
-        var lineFragmentRect lineRect: CGRect,
+        lineFragmentRect lineRectParameter: CGRect,
         lineFragmentGlyphRange lineGlyphRange: NSRange,
         containerOrigin: CGPoint)
     {
         let dotted = (underlineVal.rawValue & NSUnderlineStyle.PatternDot.rawValue) > 0
+        
+        var lineRect = lineRectParameter
         
         // get current UIFont for the glyphRange
         let characterRange = self.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
         let superUnderlineAttribute = textStorage?.attribute(Constants.SuperUnderlineStyle, atIndex: characterRange.location, effectiveRange: nil)
         
         // check the next line
-        var superUnderline = superUnderlineAttribute != nil
+        let superUnderline = superUnderlineAttribute != nil
         var skipUnderline = false
         
         // super underline mode follows these rules:
@@ -78,7 +80,7 @@ class UnderlineLayoutManager : NSLayoutManager {
             lineRect.size.width = lastPosition - firstPosition
             
             let multiple = dashLength + gapLength
-            var lineW = lineRect.size.width / multiple
+            let lineW = lineRect.size.width / multiple
             let roundedNum = ceil(lineW)
             
             lineRect.size.width = roundedNum * multiple
