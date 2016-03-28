@@ -140,9 +140,9 @@ class ReminderEngine {
         for n in 0..<numberOfReminders {
             fireTime = fireTime.dateByAddingTimeInterval(secondsPerReminder)
             if (minutesPerReminder >= 20 && (fireTime.minute() == 30 || fireTime.minute() == 0)) {
-                print("full or half hour, shifting time: \(fireTime.toLocalString())")
+                //print("full or half hour, shifting time: \(fireTime.toLocalString())")
                 fireTime = fireTime.dateByAddingMinutes(-5)
-                print("new time: \(fireTime.toLocalString())")
+                //print("new time: \(fireTime.toLocalString())")
             }
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)

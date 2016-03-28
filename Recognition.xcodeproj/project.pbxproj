@@ -48,6 +48,8 @@
 		24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B768281C6A40B1000C91BB /* MessageUI.framework */; };
 		24D225441C9908C300DA1C1F /* UIView+Nib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D225431C9908C300DA1C1F /* UIView+Nib.swift */; };
 		24D31DA51C96924B006A826D /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D31DA41C96924B006A826D /* UIFont+Ex.swift */; };
+		24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */; };
+		24F0B5351CA8CDEA005A8AEF /* NSObject+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */; };
 		9D79DB6687020E8313D339EE /* Pods_Recognition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C693DA32A12264A999958345 /* Pods_Recognition.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,8 @@
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		24D225431C9908C300DA1C1F /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		24D31DA41C96924B006A826D /* UIFont+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
+		24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+FirstLaunch.swift"; sourceTree = "<group>"; };
+		24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Notifications.swift"; sourceTree = "<group>"; };
 		4A45E76E7518483634C1BEB4 /* Pods-Recognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.release.xcconfig"; sourceTree = "<group>"; };
 		921E3DD77BDC31479E4B246D /* Pods-Recognition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.debug.xcconfig"; sourceTree = "<group>"; };
 		C693DA32A12264A999958345 /* Pods_Recognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -315,6 +319,8 @@
 				24AD64811C8403A50015BF70 /* UITextView+Ex.swift */,
 				24D31DA41C96924B006A826D /* UIFont+Ex.swift */,
 				24D225431C9908C300DA1C1F /* UIView+Nib.swift */,
+				24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */,
+				24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -528,12 +534,14 @@
 				24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */,
 				240DDB041C82F9C300D486F2 /* String+Ex.swift in Sources */,
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
+				24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */,
 				243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */,
 				24D225441C9908C300DA1C1F /* UIView+Nib.swift in Sources */,
 				24AD64841C840D160015BF70 /* UIColor+NikReminders.swift in Sources */,
 				24A256BF1C80B93300AC9978 /* SWActionSheet.m in Sources */,
+				24F0B5351CA8CDEA005A8AEF /* NSObject+Notifications.swift in Sources */,
 				24A256A01C80851000AC9978 /* BlockView.swift in Sources */,
 				2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */,
 				24A256BB1C80B93300AC9978 /* ActionSheetLocalePicker.m in Sources */,

@@ -8,6 +8,15 @@
 
 import UIKit
 
+
+
+enum NotificationStateMachine:Int {
+    case NotYetAsked = 0
+    case InProgressBeforeDialog = 1
+    case InProgressAfterDialog = 2
+    case AskedAndAnswered = 3
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -15,43 +24,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var settings = Settings()
     
+    var notificationState: NotificationStateMachine = .NotYetAsked
+    
+    var notificationsRegistered = false
+    
     static func delegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate! as! AppDelegate
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
+        //UIFont.listFonts() // DEBUG
+
+        // track notifications state
+        notificationState = .NotYetAsked
         
-        //UIFont.listFonts()
-        
-        // defaults
+        // Settings defaults
         settings.setupDefaults()
         
-        // set up all our notifications and stuff
+        // Set up and register our notifications
         setupNotificationCategoriesAndActions()
         
+        // Make sure the engine is on
+        ReminderEngine.reminderEngine.initEngine()
+        
+        // Appearance defaults
+        application.setStatusBarStyle(.LightContent, animated: false)
+        UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
+        UIButton.appearance().tintColor = Constants.ActiveColor
+        UISwitch.appearance().onTintColor = Constants.ActiveColor
+        
+        // Handle incoming notifications - app start because user pushed on a notification
         if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
             print("launching with notification: \(notification)")
             handleNotification(notification)
         }
-                
-        // Make sure the engine is on
-        ReminderEngine.reminderEngine.initEngine()
-        
-
-        application.setStatusBarStyle(.LightContent, animated: false)
-        
-        UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
-        
-        
-
-        
-        UIButton.appearance().tintColor = Constants.ActiveColor
-        UISwitch.appearance().onTintColor = Constants.ActiveColor
         
         return true
     }
-
+    
     func setupNotificationCategoriesAndActions() {
         
         let types = UIUserNotificationType([.Badge, .Sound, .Alert])
@@ -83,10 +94,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let notificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
         
+        notificationState = .InProgressBeforeDialog
+        
+        // this pops the dialog
         UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+    }
+    
+    // this will be called after notifications are registered, and after the user dialog for registering notifications for the first time
+    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
         
-
-        
+        //print("DID register \(notificationSettings)")
+        notificationsRegistered = true
+        notificationState = .AskedAndAnswered
+        postNotification(Constants.UserAnsweredNotificationsDialog)
     }
     
     // MARK: Handle Notifications

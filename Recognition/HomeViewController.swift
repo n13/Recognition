@@ -41,9 +41,31 @@ class HomeViewController:
 
         updateStatus(false)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleIncomingNotification), name: Constants.LocalNotificationArrived, object: nil)
+        // listen to notifications coming in
+        addObserverForNotification(Constants.LocalNotificationArrived, selector:  #selector(HomeViewController.handleIncomingNotification))
+        
+        // listen to the user answering notifications dialog
+        addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
+        addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
+
     }
     
+    func handleApplicationDidBecomeActive() {
+        //print("app is becoming active - check notification status")
+        // Note: If this fails, then worst case we show the dialog too much - that's OK
+        // The worst that can happen is that we show the dialog when we launch for the first time
+        // But that does not appear to happen. 
+        if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
+            checkNotificationsAreEnabled()
+        }
+    }
+    
+    func handleUserAnsweredNotificationsDialog() {
+        //print("user answered notifications dialog... checking for notification settings!")
+        checkNotificationsAreEnabled()
+    }
+    
+
     func handleIncomingNotification() {
         let message = AppDelegate.delegate().settings.reminderText
         print("handle incoming notification: \(message)")
@@ -58,11 +80,17 @@ class HomeViewController:
     }
     
     override func viewDidAppear(animated: Bool) {
-        checkNotificationsAreEnabled()
+        if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
+            print("checking on notifications")
+            checkNotificationsAreEnabled()
+        }
     }
     
     func checkNotificationsAreEnabled() {
-        // check notification status
+        // check notification status - except not on first launch. 
+        // On first launch the user will be presented with the system notifications dialog. So we don't check or 
+        // Do anything
+                
         if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
             if (settings.types.rawValue == UIUserNotificationType.None.rawValue ) {
                 print("settings OFF, handling...")
@@ -72,7 +100,9 @@ class HomeViewController:
                     UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
                     })
                 alertVC.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                presentViewController(alertVC, animated: true, completion: nil)
+                presentViewController(alertVC, animated: true) { [weak self] in
+                    self?.alertViewIsShowing = false
+                }
             }
         }
     }
