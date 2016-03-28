@@ -7,7 +7,7 @@
 //
 
 import Darwin
-
+/*
 public func arc4random <T: IntegerLiteralConvertible> (type: T.Type) -> T {
     var r: T = 0
     arc4random_buf(&r, Int(sizeof(T)))
@@ -93,4 +93,6 @@ public extension Double {
         let r = Double(arc4random(UInt64)) / Double(UInt64.max)
         return (r * (upper - lower)) + lower
     }
+ 
 }
+ */

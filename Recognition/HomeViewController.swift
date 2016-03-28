@@ -186,14 +186,14 @@ class HomeViewController:
             // text heigh constraint so we can shrink this view
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
         }
-        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "handleTapOnText:"))
+        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.handleTapOnText(_:))))
         
         let screenSize = UIScreen.mainScreen().bounds.size
         
         let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         
         // Change Settings button
-        let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: "changeSettingsPressed:")
+        let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:)))
         changeSettingsButton.snp_makeConstraints { make in
             //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
             make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom)
@@ -202,7 +202,7 @@ class HomeViewController:
 
         let howToOffset:CGFloat = Constants.isIpad() ? 20 : 28
         // How to button
-        let howButton = addLabelButton("How to.", action: "howButtonPressed:")
+        let howButton = addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
         howButton.snp_makeConstraints { make in
             make.top.equalTo(changeSettingsButton.snp_bottom).offset(howToOffset)
             make.leading.equalTo(view.snp_leading).offset(headerInset)
@@ -210,7 +210,7 @@ class HomeViewController:
         }
         
         // Feedback button
-        let feedbackButton = addLabelButton("Send feedback.", action: "sendFeedbackPressed:")
+        let feedbackButton = addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
         feedbackButton.snp_makeConstraints { make in
             make.top.equalTo(howButton.snp_bottom).offset(20)
             make.leading.equalTo(view.snp_leading).offset(headerInset)

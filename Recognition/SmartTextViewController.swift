@@ -36,18 +36,18 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         title = "Settings"
         
         // Done button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "doneButtonPressed:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:)))
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:Constants.ActiveColor], forState: .Normal)
         
         // UX
         setupViews()
         
         // Tap recognizer
-        let tappy = UITapGestureRecognizer(target: self, action: "textTapped:")
+        let tappy = UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.textTapped(_:)))
         textView.addGestureRecognizer(tappy)
         
         // taps outside the text view need to release the focus
-        let releaser = UITapGestureRecognizer(target: self, action: "releaseFirstResponder")
+        let releaser = UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.releaseFirstResponder))
         view.addGestureRecognizer(releaser)
         
         // UX config
@@ -59,7 +59,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
         
         // Notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChanged:", name: Settings.Notifications.SettingsChanged, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SmartTextViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
         
         self.pa_addKeyboardListeners()
         
@@ -160,7 +160,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // done button
         let doneLabel = UILabel()
         doneLabel.userInteractionEnabled = true
-        doneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: "doneButtonPressed:"))
+        doneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:))))
         
         doneLabel.attributedText = NSMutableAttributedString.mm_attributedString(
             "done",
@@ -224,9 +224,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             
             //reminderTextView.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
             
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: "resignFirstResponder")
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
             let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            let resetButton = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: "resetReminderText")
+            let resetButton = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: #selector(SmartTextViewController.resetReminderText))
 
             let toolbar = UIToolbar(frame: CGRectMake(0 ,0, 320, 44))
             toolbar.items = [resetButton, spacer, doneButton]

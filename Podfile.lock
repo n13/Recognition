@@ -1,15 +1,15 @@
 PODS:
   - DateTools (1.7.0)
-  - SnapKit (0.15.0)
+  - SnapKit (0.20.0)
 
 DEPENDENCIES:
   - DateTools
-  - SnapKit (~> 0.15.0)
+  - SnapKit
 
 SPEC CHECKSUMS:
   DateTools: 53288ee8b905fdc75897a1e6b5cc0144b14cba60
-  SnapKit: 4962eed2ee18e48cbd2b2292fffc57efe7235f87
+  SnapKit: 5fce3c1bbbf1fbd31de9aa92f33eb9fa03f15650
 
-PODFILE CHECKSUM: 31a5117ba4949e63f934911f8baca5d1ec85ebae
+PODFILE CHECKSUM: 0f6f86b9b119a540dd8062a633c1d7261d73b282
 
 COCOAPODS: 1.0.0.beta.5

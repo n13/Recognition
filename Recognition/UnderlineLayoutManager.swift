@@ -89,7 +89,7 @@ class UnderlineLayoutManager : NSLayoutManager {
 
 
         // construct the path
-        var path = UIBezierPath()
+        let path = UIBezierPath()
         let y = lineRect.origin.y + lineRect.size.height - 1
         path.moveToPoint(CGPoint(x: lineRect.origin.x, y: y))
         path.addLineToPoint(CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
