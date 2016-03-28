@@ -106,6 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func handleNotification(notification: UILocalNotification) {
         print("handling notification")
+        NSNotificationCenter.defaultCenter().postNotificationName(Constants.LocalNotificationArrived, object: nil, userInfo: nil)
     }
     
     func applicationWillResignActive(application: UIApplication) {

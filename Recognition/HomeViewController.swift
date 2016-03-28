@@ -22,6 +22,8 @@ class HomeViewController:
     var textHeightConstraint : Constraint? = nil
     let headerInset = Constants.TextInset
     let blockheight = 70
+    
+    var alertVC: UIAlertController?
 
     // MARK: View
     override func viewDidLoad() {
@@ -38,6 +40,17 @@ class HomeViewController:
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
 
         updateStatus(false)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleIncomingNotification), name: Constants.LocalNotificationArrived, object: nil)
+    }
+    
+    func handleIncomingNotification() {
+        let message = AppDelegate.delegate().settings.reminderText
+        print("handle incoming notification: \(message)")
+//        alertVC = UIAlertController(title: "Recognition", message: message, preferredStyle: .Alert)
+//        presentViewController(alertVC!, animated: true, completion: { [weak self] in
+//            self?.alertVC = nil
+//        })
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -62,7 +75,6 @@ class HomeViewController:
                 presentViewController(alertVC, animated: true, completion: nil)
             }
         }
-        
     }
     
     // MARK: UX State

@@ -9,6 +9,10 @@
 import Foundation
 
 struct Constants {
+    
+    // Notifications
+    static let LocalNotificationArrived = "LocalNotificationArrived"
+    
     static let SmartTag = "SmartTag"
     static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
     static let NotificationCategory = "RECOGNITION_CATEGORY"
