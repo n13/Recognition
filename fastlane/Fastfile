@@ -47,6 +47,16 @@ platform :ios do
     # sh "your_script.sh"
     # You can also use other beta testing services here (run `fastlane actions`)
   end
+  
+  desc "NEW Beta Build to Apple TestFlight"  
+  lane :betaTF do
+    # match(type: "appstore") # more information: https://codesigning.guide
+    gym(scheme: "Recognition") # Build your app - more options available
+    pilot
+
+    # sh "your_script.sh"
+    # You can also use other beta testing services here (run `fastlane actions`)
+  end
 
   desc "Deploy a new version to the App Store"
   lane :appstore do
