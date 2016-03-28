@@ -100,7 +100,7 @@ class HomeViewController:
                     UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
                     })
                 alertVC.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                presentViewController(alertVC, animated: true, nil)
+                presentViewController(alertVC, animated: true, completion: nil)
             }
         }
     }
