@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 enum NotificationStateMachine:Int {
     case NotYetAsked = 0
     case InProgressBeforeDialog = 1

@@ -19,6 +19,7 @@ class HomeViewController:
     var scrollView = UIScrollView()
     var titleLabel = UILabel()
     var textView: UITextView!
+    var errorLabel: UILabel?
     var textHeightConstraint : Constraint? = nil
     let headerInset = Constants.TextInset
     let blockheight = 70
@@ -55,14 +56,12 @@ class HomeViewController:
         // Note: If this fails, then worst case we show the dialog too much - that's OK
         // The worst that can happen is that we show the dialog when we launch for the first time
         // But that does not appear to happen. 
-        if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
-            checkNotificationsAreEnabled()
-        }
+        updateStatus(false)
     }
     
     func handleUserAnsweredNotificationsDialog() {
         //print("user answered notifications dialog... checking for notification settings!")
-        checkNotificationsAreEnabled()
+        updateStatus(false)
     }
     
 
@@ -86,28 +85,34 @@ class HomeViewController:
         }
     }
     
-    func checkNotificationsAreEnabled() {
+    func checkNotificationsAreEnabled() -> Bool {
         // check notification status - except not on first launch. 
         // On first launch the user will be presented with the system notifications dialog. So we don't check or 
         // Do anything
-                
+        if (AppDelegate.delegate().notificationState != .AskedAndAnswered) {
+            return true
+        }
+        
         if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
-            if (settings.types.rawValue == UIUserNotificationType.None.rawValue ) {
-                print("settings OFF, handling...")
-                let alertVC = UIAlertController(title: "Notifications are OFF", message: "Notifications are off so you will not receive any reminders. Please turn on notifications in Settings.", preferredStyle: .ActionSheet)
-                alertVC.addAction(UIAlertAction(title: "Open Settings", style: .Default) { value in
-                    print("tapped default button")
-                    UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
-                    })
-                alertVC.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                presentViewController(alertVC, animated: true, completion: nil)
+            if settings.types.rawValue == UIUserNotificationType.None.rawValue {
+                print("Notifications disabled")
+                return false;
+            } else {
+                return true
             }
+        } else {
+            // unable to figure it out, assume they're on - this should never happen
+            print("Error: unable to determine notifications state!")
+            return true
         }
     }
     
     // MARK: UX State
     func updateStatus(animated: Bool) {
         let running = ReminderEngine.reminderEngine.isRunning
+        let notificationsEnabled = checkNotificationsAreEnabled()
+        
+        showHideErrorLabel(!notificationsEnabled)
         
         // Note: This animation can be jumpy if updating the text prior - I guess because updating the text
         // and the new height get set on the new layout call and the text outside the bounds isn't even rendered
@@ -121,7 +126,7 @@ class HomeViewController:
                     self.view.layoutIfNeeded()
                 },
                 completion: { b in
-                    self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : Constants.ShortTextHeight))
+                    self.textHeightConstraint!.updateOffset(CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
                     UIView.animateWithDuration(0.4) {
                         self.view.layoutIfNeeded()
                     }
@@ -129,7 +134,7 @@ class HomeViewController:
             
         } else {
             self.textView.attributedText = self.createMainText()
-            self.textHeightConstraint!.updateOffset(CGFloat(running ? 1000 : Constants.ShortTextHeight))
+            self.textHeightConstraint!.updateOffset(CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
         }
 
     }
@@ -327,6 +332,34 @@ class HomeViewController:
         return attributedText
     }
     
+    func showHideErrorLabel(show: Bool) {
+        if errorLabel != nil && !show {
+            errorLabel?.removeFromSuperview()
+            scrollView.viewWithTag(33)?.removeFromSuperview()
+            errorLabel = nil
+        } else if (show && errorLabel == nil) {
+            let label = UILabel()
+            label.numberOfLines = 0
+            label.attributedText = createButtonText("Notifications are off so you will not receive any reminders. Tap here to turn on notifications in System Settings", size: 20)
+            scrollView.addSubview(label)
+            label.snp_makeConstraints { make in
+                make.top.equalTo(self.textView.snp_bottom).offset(20)
+                make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
+                make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
+            }
+            label.userInteractionEnabled = true
+            label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.errorLabelTapped)))
+            errorLabel = label
+            let underline = DashedLineView()
+            underline.placeBelowView(label)
+            underline.tag = 33
+        }
+    }
+    
+    func errorLabelTapped() {
+        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+    }
+    
     func createNormalText(s: String) -> NSMutableAttributedString {
         
         // letter spacing -0.9
@@ -372,13 +405,14 @@ class HomeViewController:
         let running = ReminderEngine.reminderEngine.isRunning
         
         let offColor = UIColor.nkrPaleSalmonColor()
+        let onColor = Constants.ActiveColor
         
         let font = UIFont(name: Constants.BoldFont, size: Constants.OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
-        onText.applyAttribute(NSForegroundColorAttributeName, value: running ? Constants.ActiveColor : offColor)
+        onText.applyAttribute(NSForegroundColorAttributeName, value: running ? onColor : offColor)
         let offText = NSMutableAttributedString(string: "off")
         offText.applyAttribute(NSFontAttributeName, value: font)
-        offText.applyAttribute(NSForegroundColorAttributeName, value: running ? offColor : Constants.ActiveColor)
+        offText.applyAttribute(NSForegroundColorAttributeName, value: running ? offColor : onColor)
         
         // combine the two
         onText.appendAttributedString(offText)
