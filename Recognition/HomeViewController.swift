@@ -320,15 +320,6 @@ class HomeViewController:
         // 24 times a day,
         attributedText.appendAttributedString(createBoldText("\(numReminders) reminders per day"))
         
-        /**
-        attributedText.appendAttributedString(createNormalText("from "))
-        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.startTimeAsDate().asHoursString().lowercaseString)"))
-        attributedText.appendAttributedString(createNormalText(" to "))
-        attributedText.appendAttributedString(createBoldText("\(ReminderEngine.reminderEngine.endTimeAsDate().asHoursString().lowercaseString):\n"))
-        attributedText.appendAttributedString(createNormalText("telling me to:\n"))
-        attributedText.appendAttributedString(NSMutableAttributedString.spacerLine(0.2))
-        attributedText.appendAttributedString(createBoldText("\(AppDelegate.delegate().settings.reminderText)"))
-        */
         return attributedText
     }
     

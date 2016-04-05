@@ -313,8 +313,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     func createText() -> NSMutableAttributedString {
         
         let attributedText = NSMutableAttributedString()
-        
-        let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay) reminders"
+        let settings = AppDelegate.delegate().settings
+        let numReminders = "\(settings.remindersPerDay) reminders"
         
         attributedText.appendText("schedule\n")
         attributedText.appendClickableText(numReminders, tag: Tag.NumberOfReminders, lineHeightMultiple: 0.85)
@@ -325,9 +325,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         let startText = ReminderEngine.reminderEngine.startTimeAsDate().asHoursString()
         attributedText.appendClickableText(startText, tag: Tag.StartTime)
         attributedText.appendText("\nto\t", lineHeightMultiple: 1.3)
-        
         let endText = ReminderEngine.reminderEngine.endTimeAsDate().asHoursString()
         attributedText.appendClickableText(endText, tag: Tag.EndTime, lineHeightMultiple: 1.3)
+        if (settings.endTimeIsPlusOneDay()) {
+            attributedText.appendText(" +1", color: Constants.ActiveColor, lineHeightMultiple: 1.3)
+        }
         
         attributedText.appendText("\ntelling me to", lineHeightMultiple:1.8)
         

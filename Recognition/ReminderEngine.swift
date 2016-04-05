@@ -119,7 +119,12 @@ class ReminderEngine {
         let nowTime = NSDate()
         let settings = AppDelegate.delegate().settings
         let startTime = startTimeAsDate()
-        let endTime = endTimeAsDate()
+        var endTime = endTimeAsDate()
+        
+        if settings.endTimeIsPlusOneDay() {
+            endTime = endTime.dateByAddingDays(1)
+        }
+        
         var totalMinutes: Double = Double(endTime.minutesLaterThan(startTime))
         if (totalMinutes < 1) {
             totalMinutes = 1
@@ -127,6 +132,11 @@ class ReminderEngine {
         let numberOfReminders = settings.remindersPerDay
         let secondsPerReminder:NSTimeInterval = (totalMinutes * 60.0) / Double(numberOfReminders)
         let minutesPerReminder = secondsPerReminder / 60.0
+        var randomizerSeconds = secondsPerReminder / 10.0 // 10% randomness added
+        
+        if (randomizerSeconds < 60) {
+            randomizerSeconds = 0
+        }
         
         print("start: \(startTime.toLocalString())")
         print("end: \(endTime.toLocalString()) ")
@@ -139,11 +149,6 @@ class ReminderEngine {
         var fireTime = startTime
         for n in 0..<numberOfReminders {
             fireTime = fireTime.dateByAddingTimeInterval(secondsPerReminder)
-            if (minutesPerReminder >= 20 && (fireTime.minute() == 30 || fireTime.minute() == 0)) {
-                //print("full or half hour, shifting time: \(fireTime.toLocalString())")
-                fireTime = fireTime.dateByAddingMinutes(-5)
-                //print("new time: \(fireTime.toLocalString())")
-            }
             if fireTime.isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
                 //print("\(n) added reminder time: \(fireTime.toLocalString())")
@@ -152,6 +157,23 @@ class ReminderEngine {
                 reminderTimes.append(fireTime.dateByAddingDays(1))
             }
         }
+        
+        //print("randomizing in progress...")
+        if (randomizerSeconds != 0) {
+            for n in 0..<reminderTimes.count {
+                //print("reminder time before: \(reminderTimes[n].toLocalString())")
+
+                let offset = -randomizerSeconds + drand48() * (randomizerSeconds * 2)
+                reminderTimes[n] = reminderTimes[n].dateByAddingTimeInterval(offset)
+                
+                //print("random offset: \(offset)")
+
+                //print("reminder time after: \(reminderTimes[n].toLocalString())")
+
+            }
+        }
+        
+        
         return reminderTimes
     }
 

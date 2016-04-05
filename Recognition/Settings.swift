@@ -55,6 +55,10 @@ class Settings {
         }
     }
     
+    func endTimeIsPlusOneDay() -> Bool {
+        return startTime >= stopTime
+    }
+    
     func setupDefaults() {
         //print("setting defaults...")
         NSUserDefaults.standardUserDefaults().registerDefaults([
