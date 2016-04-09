@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		240DDB041C82F9C300D486F2 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DDB031C82F9C300D486F2 /* String+Ex.swift */; };
-		242E72BF1CB8AE4A00E518AA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242E72BE1CB8AE4A00E518AA /* CloudKit.framework */; };
 		243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE6FB1C65E4C6001182AB /* TimeCell.swift */; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
 		2442B83F1C69C69400346E1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B83E1C69C69400346E1B /* Constants.swift */; };
@@ -26,6 +25,7 @@
 		2462350B1BF9A0D000BDE6D7 /* RecognitionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */; };
 		246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359361C68623F0097CC76 /* SmartTextViewController.swift */; };
 		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
+		24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24675D5C1CB9100800D53EDF /* CloudKit.framework */; };
 		2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE241C716C5000058ED4 /* DashedLineView.swift */; };
 		2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */; };
 		247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247DABDD1C96B4890097A154 /* ButtonView.xib */; };
@@ -73,7 +73,6 @@
 
 /* Begin PBXFileReference section */
 		240DDB031C82F9C300D486F2 /* String+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
-		242E72BE1CB8AE4A00E518AA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		243CE6FB1C65E4C6001182AB /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2442B83E1C69C69400346E1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		2462350C1BF9A0D000BDE6D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		246359361C68623F0097CC76 /* SmartTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartTextViewController.swift; sourceTree = "<group>"; };
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
+		24675D5C1CB9100800D53EDF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2469DE241C716C5000058ED4 /* DashedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
 		2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ex.swift"; sourceTree = "<group>"; };
 		24708F6B1C97A928002DE544 /* Recognition copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Recognition copy-Info.plist"; path = "/Users/nik/Dropbox/Recognition/Recognition copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -149,7 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */,
-				242E72BF1CB8AE4A00E518AA /* CloudKit.framework in Frameworks */,
+				24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */,
 				245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */,
 				9D79DB6687020E8313D339EE /* Pods_Recognition.framework in Frameworks */,
 			);
@@ -333,7 +333,7 @@
 		7AE40CF196B12F53F9860559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				242E72BE1CB8AE4A00E518AA /* CloudKit.framework */,
+				24675D5C1CB9100800D53EDF /* CloudKit.framework */,
 				24B768281C6A40B1000C91BB /* MessageUI.framework */,
 				245C45031BFDA53000410591 /* NotificationCenter.framework */,
 				E10FA2A01758FEF1998C7312 /* Pods.framework */,

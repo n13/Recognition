@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import MessageUI
+import CloudKit
 
 class HomeViewController:
     UIViewController,
@@ -44,6 +45,22 @@ class HomeViewController:
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
         addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
 
+        
+        // debug test cloud kit
+        
+//        CKContainer *myContainer = [CKContainer defaultContainer];
+//        CKDatabase *publicDatabase = [myContainer publicCloudDatabase];
+
+        
+        let container = CKContainer(identifier: "iCloud.com.recognitionmeditation")
+        let publicDatabase = container.publicCloudDatabase
+        let query = CKQuery(recordType: "ReminderText", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        
+        publicDatabase.performQuery(query, inZoneWithID: nil) { results, error in
+            print("found: \(results)")
+            print("error: \(error)")
+        }
+        
     }
     
     func handleApplicationDidBecomeActive() {
