@@ -29,13 +29,8 @@ class HomeViewController:
     // MARK: View
     override func viewDidLoad() {
         
-        textView = UITextView.createCustomTextView()
-        textView.scrollEnabled = false
         // UX
         setupViews()
-        textView.attributedText = createMainText()
-
-        scrollView.delaysContentTouches = false
         
         // Notifications
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
@@ -146,11 +141,13 @@ class HomeViewController:
         // scroll view
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.delaysContentTouches = false
         view.addSubview(scrollView)
         scrollView.snp_makeConstraints{ make in
             make.edges.equalTo(view)
         }
         
+
         // title label
         titleLabel.numberOfLines = 0
         let headerText = NSMutableAttributedString.mm_attributedString("recognition", sizeAdjustment: 16, isBold: true, kerning: -1.4, color: Constants.BlackTextColor)
@@ -180,6 +177,8 @@ class HomeViewController:
 
 
         // Text view
+        textView = UITextView.createCustomTextView()
+        textView.scrollEnabled = false
         scrollView.addSubview(textView)
         textView.snp_makeConstraints { make in
 //            make.top.equalTo(underLabel.snp_bottom).offset(36)
@@ -192,7 +191,8 @@ class HomeViewController:
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
         }
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.handleTapOnText(_:))))
-        
+        textView.attributedText = createMainText()
+
         let screenSize = UIScreen.mainScreen().bounds.size
         
         let offsetFromBottom:CGFloat = 166
