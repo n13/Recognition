@@ -195,7 +195,7 @@ class HomeViewController:
         
         let screenSize = UIScreen.mainScreen().bounds.size
         
-        let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
+        let offsetFromBottom:CGFloat = 166
         
         // Change Settings button
         let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:)))
@@ -205,7 +205,7 @@ class HomeViewController:
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
 
-        let howToOffset:CGFloat = Constants.isIpad() ? 20 : 28
+        let howToOffset:CGFloat = 20
         // How to button
         let howButton = addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
         howButton.snp_makeConstraints { make in
