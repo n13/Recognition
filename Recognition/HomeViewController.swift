@@ -22,6 +22,7 @@ class HomeViewController:
     var textView: UITextView!
     var errorLabel: UILabel?
     var textHeightConstraint : Constraint? = nil
+    var changeSettingsButtonBottomOffsetConstraint : Constraint? = nil
     let headerInset = Constants.TextInset
     let blockheight = 70
     
@@ -51,7 +52,7 @@ class HomeViewController:
 //        CKContainer *myContainer = [CKContainer defaultContainer];
 //        CKDatabase *publicDatabase = [myContainer publicCloudDatabase];
 
-        
+        /*
         let container = CKContainer(identifier: "iCloud.com.recognitionmeditation")
         let publicDatabase = container.publicCloudDatabase
         let query = CKQuery(recordType: "ReminderText", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
@@ -60,7 +61,7 @@ class HomeViewController:
             print("found: \(results)")
             print("error: \(error)")
         }
-        
+        */
     }
     
     func handleApplicationDidBecomeActive() {
@@ -91,10 +92,40 @@ class HomeViewController:
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
             print("checking on notifications")
             checkNotificationsAreEnabled()
         }
+        // bounce
+        
+
+        if (!Constants.isIpad()) {
+            UIView.setAnimationDelay(1.0)
+            bounceMenu()
+        }
+    }
+    
+    func bounceMenu() {
+//        let editSettingsButtonOffsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
+        let screenSize = UIScreen.mainScreen().bounds.size
+        self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 166)
+        let duration = 0.2
+        UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
+        UIView.animateWithDuration(duration,
+                                   animations: {
+                                    print("bouncing up")
+                                    self.view.layoutIfNeeded()
+            },
+                                   completion: { b in
+                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 33)
+                                    UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
+                                    UIView.animateWithDuration(duration) {
+                                        print("bouncing down")
+                                        self.view.layoutIfNeeded()
+                                    }
+        })
+        
     }
     
     func checkNotificationsAreEnabled() -> Bool {
@@ -212,17 +243,17 @@ class HomeViewController:
 
         let screenSize = UIScreen.mainScreen().bounds.size
         
-        let offsetFromBottom:CGFloat = 166
+        let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         
         // Change Settings button
         let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:)))
         changeSettingsButton.snp_makeConstraints { make in
             //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom)
+            changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
             make.leading.equalTo(view.snp_leading).offset(headerInset)
         }
 
-        let howToOffset:CGFloat = 20
+        let howToOffset:CGFloat = Constants.isIpad() ? 20 : 28
         // How to button
         let howButton = addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
         howButton.snp_makeConstraints { make in
@@ -315,6 +346,7 @@ class HomeViewController:
     }
     
     func onOffPressed() {
+        bounceMenu()//debug
         print("on off")
         if (ReminderEngine.reminderEngine.isRunning) {
             ReminderEngine.reminderEngine.stop()
