@@ -5,4 +5,5 @@ use_frameworks!
 target "Recognition" do
   pod 'SnapKit'
   pod 'DateTools'
+  pod 'EVCloudKitDao'
 end
