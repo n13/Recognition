@@ -245,30 +245,28 @@ class HomeViewController:
         
         let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         
-        // Change Settings button
-        let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:)))
-        changeSettingsButton.snp_makeConstraints { make in
-            //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-        }
+        // buttons
+        let buttons = [
+            addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:))),
+            addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:))),
+            addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
+        ]
+        let howToOffset:CGFloat = 20//Constants.isIpad() ? 20 : 28
 
-        let howToOffset:CGFloat = Constants.isIpad() ? 20 : 28
-        // How to button
-        let howButton = addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
-        howButton.snp_makeConstraints { make in
-            make.top.equalTo(changeSettingsButton.snp_bottom).offset(howToOffset)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+        for (index, button) in buttons.enumerate() {
+            button.snp_makeConstraints { make in
+                if (index == 0) {
+                    changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
+                } else {
+                    make.top.equalTo(buttons[index-1].snp_bottom).offset(howToOffset)
+                }
+                make.leading.equalTo(view.snp_leading).offset(headerInset)
+                if (index == buttons.count-1) {
+                    make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+                }
+            }
         }
         
-        // Feedback button
-        let feedbackButton = addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
-        feedbackButton.snp_makeConstraints { make in
-            make.top.equalTo(howButton.snp_bottom).offset(20)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
-        }
     }
     
     func addLabelButton(title: String, action: Selector) -> UILabel {
