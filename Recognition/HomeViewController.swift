@@ -9,6 +9,7 @@
 import UIKit
 import SnapKit
 import MessageUI
+import CloudKit
 
 class HomeViewController:
     UIViewController,
@@ -21,6 +22,7 @@ class HomeViewController:
     var textView: UITextView!
     var errorLabel: UILabel?
     var textHeightConstraint : Constraint? = nil
+    var changeSettingsButtonBottomOffsetConstraint : Constraint? = nil
     let headerInset = Constants.TextInset
     let blockheight = 70
     
@@ -44,6 +46,22 @@ class HomeViewController:
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
         addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
 
+        
+        // debug test cloud kit
+        
+//        CKContainer *myContainer = [CKContainer defaultContainer];
+//        CKDatabase *publicDatabase = [myContainer publicCloudDatabase];
+
+        /*
+        let container = CKContainer(identifier: "iCloud.com.recognitionmeditation")
+        let publicDatabase = container.publicCloudDatabase
+        let query = CKQuery(recordType: "ReminderText", predicate: NSPredicate(format: "TRUEPREDICATE", argumentArray: nil))
+        
+        publicDatabase.performQuery(query, inZoneWithID: nil) { results, error in
+            print("found: \(results)")
+            print("error: \(error)")
+        }
+        */
     }
     
     func handleApplicationDidBecomeActive() {
@@ -74,10 +92,40 @@ class HomeViewController:
     }
     
     override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
             print("checking on notifications")
             checkNotificationsAreEnabled()
         }
+        // bounce
+        
+
+        if (!Constants.isIpad()) {
+            UIView.setAnimationDelay(1.0)
+            bounceMenu()
+        }
+    }
+    
+    func bounceMenu() {
+//        let editSettingsButtonOffsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
+        let screenSize = UIScreen.mainScreen().bounds.size
+        self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 166)
+        let duration = 0.2
+        UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
+        UIView.animateWithDuration(duration,
+                                   animations: {
+                                    print("bouncing up")
+                                    self.view.layoutIfNeeded()
+            },
+                                   completion: { b in
+                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 33)
+                                    UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
+                                    UIView.animateWithDuration(duration) {
+                                        print("bouncing down")
+                                        self.view.layoutIfNeeded()
+                                    }
+        })
+        
     }
     
     func checkNotificationsAreEnabled() -> Bool {
@@ -195,32 +243,30 @@ class HomeViewController:
 
         let screenSize = UIScreen.mainScreen().bounds.size
         
-        let offsetFromBottom:CGFloat = 166
+        let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         
-        // Change Settings button
-        let changeSettingsButton = addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:)))
-        changeSettingsButton.snp_makeConstraints { make in
-            //make.bottom.equalTo(self.view.snp_bottom).offset(-80)
-            make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-        }
+        // buttons
+        let buttons = [
+            addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:))),
+            addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:))),
+            addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
+        ]
+        let howToOffset:CGFloat = 20//Constants.isIpad() ? 20 : 28
 
-        let howToOffset:CGFloat = 20
-        // How to button
-        let howButton = addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
-        howButton.snp_makeConstraints { make in
-            make.top.equalTo(changeSettingsButton.snp_bottom).offset(howToOffset)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            //make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+        for (index, button) in buttons.enumerate() {
+            button.snp_makeConstraints { make in
+                if (index == 0) {
+                    changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
+                } else {
+                    make.top.equalTo(buttons[index-1].snp_bottom).offset(howToOffset)
+                }
+                make.leading.equalTo(view.snp_leading).offset(headerInset)
+                if (index == buttons.count-1) {
+                    make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+                }
+            }
         }
         
-        // Feedback button
-        let feedbackButton = addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
-        feedbackButton.snp_makeConstraints { make in
-            make.top.equalTo(howButton.snp_bottom).offset(20)
-            make.leading.equalTo(view.snp_leading).offset(headerInset)
-            make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
-        }
     }
     
     func addLabelButton(title: String, action: Selector) -> UILabel {
@@ -298,6 +344,7 @@ class HomeViewController:
     }
     
     func onOffPressed() {
+        bounceMenu()//debug
         print("on off")
         if (ReminderEngine.reminderEngine.isRunning) {
             ReminderEngine.reminderEngine.stop()

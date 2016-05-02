@@ -25,6 +25,7 @@
 		2462350B1BF9A0D000BDE6D7 /* RecognitionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2462350A1BF9A0D000BDE6D7 /* RecognitionUITests.swift */; };
 		246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359361C68623F0097CC76 /* SmartTextViewController.swift */; };
 		246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 246359381C6882D50097CC76 /* UITextView+SmartTags.swift */; };
+		24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24675D5C1CB9100800D53EDF /* CloudKit.framework */; };
 		2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE241C716C5000058ED4 /* DashedLineView.swift */; };
 		2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */; };
 		247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247DABDD1C96B4890097A154 /* ButtonView.xib */; };
@@ -97,6 +98,7 @@
 		2462350C1BF9A0D000BDE6D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		246359361C68623F0097CC76 /* SmartTextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartTextViewController.swift; sourceTree = "<group>"; };
 		246359381C6882D50097CC76 /* UITextView+SmartTags.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextView+SmartTags.swift"; sourceTree = "<group>"; };
+		24675D5C1CB9100800D53EDF /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		2469DE241C716C5000058ED4 /* DashedLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashedLineView.swift; sourceTree = "<group>"; };
 		2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Ex.swift"; sourceTree = "<group>"; };
 		24708F6B1C97A928002DE544 /* Recognition copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Recognition copy-Info.plist"; path = "/Users/nik/Dropbox/Recognition/Recognition copy-Info.plist"; sourceTree = "<absolute>"; };
@@ -132,6 +134,7 @@
 		24B768281C6A40B1000C91BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		24D225431C9908C300DA1C1F /* UIView+Nib.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Nib.swift"; sourceTree = "<group>"; };
 		24D31DA41C96924B006A826D /* UIFont+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Ex.swift"; sourceTree = "<group>"; };
+		24E054FD1CB8AA480037887C /* Recognition.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Recognition.entitlements; path = Recognition/Recognition.entitlements; sourceTree = "<group>"; };
 		24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+FirstLaunch.swift"; sourceTree = "<group>"; };
 		24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Notifications.swift"; sourceTree = "<group>"; };
 		4A45E76E7518483634C1BEB4 /* Pods-Recognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.release.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */,
+				24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */,
 				245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */,
 				9D79DB6687020E8313D339EE /* Pods_Recognition.framework in Frameworks */,
 			);
@@ -239,6 +243,7 @@
 		246235181BF9A18C00BDE6D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				24E054FD1CB8AA480037887C /* Recognition.entitlements */,
 				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
 				246234F61BF9A0D000BDE6D7 /* Info.plist */,
 				246234F31BF9A0D000BDE6D7 /* LaunchScreen.storyboard */,
@@ -328,6 +333,7 @@
 		7AE40CF196B12F53F9860559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24675D5C1CB9100800D53EDF /* CloudKit.framework */,
 				24B768281C6A40B1000C91BB /* MessageUI.framework */,
 				245C45031BFDA53000410591 /* NotificationCenter.framework */,
 				E10FA2A01758FEF1998C7312 /* Pods.framework */,
@@ -417,6 +423,11 @@
 					246234E61BF9A0D000BDE6D7 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = FC2EL78J4P;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					246234FA1BF9A0D000BDE6D7 = {
 						CreatedOnToolsVersion = 7.1;
@@ -708,6 +719,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Recognition/Recognition.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -732,6 +744,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Recognition/Recognition.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Recognition/Info.plist;
