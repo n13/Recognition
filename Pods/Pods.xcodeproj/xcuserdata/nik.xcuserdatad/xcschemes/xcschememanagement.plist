@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>EVCloudKitDao.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>EVReflection.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Recognition.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +32,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3DA988CC88CB17FFBEE140A64E125835</key>
+		<key>17C9A91E7F9E7BFA7D9E53C51B68B662</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>61F7580C5F4A0273931B3E9D2B47BCB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +47,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>ECCB5EA5044EFC9A5FDAABEC35B93FDA</key>
+		<key>B4EC86BE61687632FE1DA572145FE3C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C2315E2DE0F136A011EAFAB0801F3830</key>
 		<dict>
 			<key>primary</key>
 			<true/>
