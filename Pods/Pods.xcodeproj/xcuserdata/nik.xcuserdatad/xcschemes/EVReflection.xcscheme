@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'C2315E2DE0F136A011EAFAB0801F3830'
-               BlueprintName = 'EVReflection'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'EVReflection.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C2315E2DE0F136A011EAFAB0801F3830"
+               BlueprintName = "EVReflection"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "EVReflection.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
