@@ -248,6 +248,7 @@ class HomeViewController:
         // buttons
         let buttons = [
             addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:))),
+            addLabelButton("Share.", action: #selector(HomeViewController.shareButtonPressed(_:))),
             addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:))),
             addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
         ]
@@ -314,25 +315,7 @@ class HomeViewController:
             print("device can't send email")
         }
     }
-    
-    func howButtonPressed(sender: UIGestureRecognizer) {
-        print("change settings")
-        let vc = SmartTextViewController.createMain()
-        
-        let text = "" +
-            "Take two to five seconds to let go of all thoughts.\n\n" +
-            "If thoughts still arise, don't give them much attention.\n\n" +
-            "Then, as best as you can, try to feel your own existence.\n\n" +
-            //"Try to feel the \"I am\".\n\n" +
-            "Apply yourself sincerely to this practice - sincerity is the only requirement for success.\n\n" +
-            "Enjoy!"
 
-        vc.isSettingsScreen = false
-        vc.titleText = "How to"
-        vc.bodyText = text
-        presentViewController(vc, animated: true, completion: nil)
-    }
-    
     func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
@@ -342,7 +325,35 @@ class HomeViewController:
         presentViewController(vc, animated: true, completion: nil)
 
     }
-    
+
+    func shareButtonPressed(sender: UIGestureRecognizer) {
+        print("share")
+        let vc = SmartTextViewController.createMain()
+        //let nav = UINavigationController(rootViewController: vc)
+        //nav.modalTransitionStyle = .FlipHorizontal
+        vc.modalTransitionStyle = .FlipHorizontal
+        presentViewController(vc, animated: true, completion: nil)
+
+    }
+
+    func howButtonPressed(sender: UIGestureRecognizer) {
+        print("change settings")
+        let vc = SmartTextViewController.createMain()
+
+        let text = "" +
+                "Take two to five seconds to let go of all thoughts.\n\n" +
+                "If thoughts still arise, don't give them much attention.\n\n" +
+                "Then, as best as you can, try to feel your own existence.\n\n" +
+                //"Try to feel the \"I am\".\n\n" +
+                "Apply yourself sincerely to this practice - sincerity is the only requirement for success.\n\n" +
+                "Enjoy!"
+
+        vc.isSettingsScreen = false
+        vc.titleText = "How to"
+        vc.bodyText = text
+        presentViewController(vc, animated: true, completion: nil)
+    }
+
     func onOffPressed() {
         bounceMenu()//debug
         print("on off")
