@@ -25,7 +25,8 @@ class HomeViewController:
     var changeSettingsButtonBottomOffsetConstraint : Constraint? = nil
     let headerInset = Constants.TextInset
     let blockheight = 70
-    
+    let offsetFromBottom:CGFloat = 88//Constants.isIpad() ? 166 : 60
+
     var alertVC: UIAlertController?
 
     // MARK: View
@@ -107,7 +108,6 @@ class HomeViewController:
     }
     
     func bounceMenu() {
-//        let editSettingsButtonOffsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
         let screenSize = UIScreen.mainScreen().bounds.size
         self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 166)
         let duration = 0.2
@@ -118,7 +118,7 @@ class HomeViewController:
                                     self.view.layoutIfNeeded()
             },
                                    completion: { b in
-                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 33)
+                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - self.offsetFromBottom)
                                     UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
                                     UIView.animateWithDuration(duration) {
                                         print("bouncing down")
@@ -243,8 +243,6 @@ class HomeViewController:
 
         let screenSize = UIScreen.mainScreen().bounds.size
         
-        let offsetFromBottom:CGFloat = Constants.isIpad() ? 166 : 33
-        
         // buttons
         let buttons = [
             addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:))),
@@ -254,6 +252,7 @@ class HomeViewController:
         ]
         let howToOffset:CGFloat = 20//Constants.isIpad() ? 20 : 28
 
+        // space out the buttons vertically
         for (index, button) in buttons.enumerate() {
             button.snp_makeConstraints { make in
                 if (index == 0) {
@@ -328,12 +327,17 @@ class HomeViewController:
 
     func shareButtonPressed(sender: UIGestureRecognizer) {
         print("share")
+        let textToShare = "I love the Recognition Meditation app - check it out!"
         let vc = SmartTextViewController.createMain()
-        //let nav = UINavigationController(rootViewController: vc)
-        //nav.modalTransitionStyle = .FlipHorizontal
-        vc.modalTransitionStyle = .FlipHorizontal
-        presentViewController(vc, animated: true, completion: nil)
 
+        let screenShotImage = vc.takeScreenshot()
+
+        if let myWebsite = NSURL(string: "https://itunes.apple.com/us/app/recognition-meditation/id1085370087") {
+            let objectsToShare = [textToShare, screenShotImage!, myWebsite]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            self.presentViewController(activityVC, animated: true, completion: nil)
+        }
     }
 
     func howButtonPressed(sender: UIGestureRecognizer) {

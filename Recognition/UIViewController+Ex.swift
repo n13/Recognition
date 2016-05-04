@@ -9,5 +9,11 @@
 import Foundation
 
 extension UIViewController {
-    
+    func takeScreenshot() -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(view.bounds.size, false, UIScreen.mainScreen().scale)
+        view.drawViewHierarchyInRect(view.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image
+    }
 }
