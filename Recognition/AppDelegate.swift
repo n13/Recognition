@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EVCloudKitDao
 
 enum NotificationStateMachine:Int {
     case NotYetAsked = 0
@@ -29,11 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static func delegate() -> AppDelegate {
         return UIApplication.sharedApplication().delegate! as! AppDelegate
     }
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         //UIFont.listFonts() // DEBUG
-
+        
         // track notifications state
         notificationState = .NotYetAsked
         

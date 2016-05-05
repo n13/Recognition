@@ -16,4 +16,12 @@ extension UIViewController {
         UIGraphicsEndImageContext()
         return image
     }
+    
+    func addCancelButton() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(UIViewController.cancelButtonPressed))
+    }
+    
+    func cancelButtonPressed() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

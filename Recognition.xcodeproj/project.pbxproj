@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		240DDB041C82F9C300D486F2 /* String+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240DDB031C82F9C300D486F2 /* String+Ex.swift */; };
+		2420C0811CD9C1140088048C /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0801CD9C1140088048C /* ListViewController.swift */; };
+		2420C0831CD9C54D0088048C /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0821CD9C54D0088048C /* ListCell.swift */; };
+		2420C0851CDAF76D0088048C /* ReminderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0841CDAF76D0088048C /* ReminderText.swift */; };
+		2420C0871CDAFFFB0088048C /* HistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0861CDAFFFB0088048C /* HistoryList.swift */; };
 		243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE6FB1C65E4C6001182AB /* TimeCell.swift */; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
 		2442B83F1C69C69400346E1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B83E1C69C69400346E1B /* Constants.swift */; };
@@ -73,6 +77,10 @@
 
 /* Begin PBXFileReference section */
 		240DDB031C82F9C300D486F2 /* String+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Ex.swift"; sourceTree = "<group>"; };
+		2420C0801CD9C1140088048C /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		2420C0821CD9C54D0088048C /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
+		2420C0841CDAF76D0088048C /* ReminderText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderText.swift; sourceTree = "<group>"; };
+		2420C0861CDAFFFB0088048C /* HistoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryList.swift; sourceTree = "<group>"; };
 		243CE6FB1C65E4C6001182AB /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2442B83E1C69C69400346E1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -179,6 +187,8 @@
 				2442B83E1C69C69400346E1B /* Constants.swift */,
 				244207FB1C15620200EEF7D9 /* Settings.swift */,
 				24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */,
+				2420C0841CDAF76D0088048C /* ReminderText.swift */,
+				2420C0861CDAFFFB0088048C /* HistoryList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -259,6 +269,7 @@
 				24A2569F1C80851000AC9978 /* BlockView.swift */,
 				247DABDF1C96B64C0097A154 /* ButtonView.swift */,
 				247DABDD1C96B4890097A154 /* ButtonView.xib */,
+				2420C0821CD9C54D0088048C /* ListCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -303,6 +314,7 @@
 			children = (
 				24A2569B1C7EE23800AC9978 /* HomeViewController.swift */,
 				246359361C68623F0097CC76 /* SmartTextViewController.swift */,
+				2420C0801CD9C1140088048C /* ListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -547,12 +559,14 @@
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
 				24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
+				2420C0851CDAF76D0088048C /* ReminderText.swift in Sources */,
 				24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */,
 				243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */,
 				24D225441C9908C300DA1C1F /* UIView+Nib.swift in Sources */,
 				24AD64841C840D160015BF70 /* UIColor+NikReminders.swift in Sources */,
 				24A256BF1C80B93300AC9978 /* SWActionSheet.m in Sources */,
 				24F0B5351CA8CDEA005A8AEF /* NSObject+Notifications.swift in Sources */,
+				2420C0811CD9C1140088048C /* ListViewController.swift in Sources */,
 				24A256A01C80851000AC9978 /* BlockView.swift in Sources */,
 				2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */,
 				24A256BB1C80B93300AC9978 /* ActionSheetLocalePicker.m in Sources */,
@@ -570,8 +584,10 @@
 				2469DE251C716C5000058ED4 /* DashedLineView.swift in Sources */,
 				245C45021BFDA4EC00410591 /* UILocalNotification+Ex.swift in Sources */,
 				24A256BA1C80B93300AC9978 /* ActionSheetDistancePicker.m in Sources */,
+				2420C0871CDAFFFB0088048C /* HistoryList.swift in Sources */,
 				2442B83F1C69C69400346E1B /* Constants.swift in Sources */,
 				247DABE01C96B64C0097A154 /* ButtonView.swift in Sources */,
+				2420C0831CD9C54D0088048C /* ListCell.swift in Sources */,
 				24A256B81C80B93300AC9978 /* ActionSheetCustomPicker.m in Sources */,
 				24A256BC1C80B93300AC9978 /* ActionSheetMultipleStringPicker.m in Sources */,
 			);

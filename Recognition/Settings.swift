@@ -16,6 +16,7 @@ class Settings {
         static let stopTime = "stopTime"
         static let remindersPerDay = "remindersPerDay"
         static let reminderText = "reminderText"
+        static let historyList = "historyList"
     }
     
     struct Notifications {
@@ -55,6 +56,24 @@ class Settings {
         }
     }
     
+    var history: HistoryList {
+        get {
+            let arr:[String] = NSUserDefaults.standardUserDefaults().arrayForKey(Keys.historyList) as! [String]
+            return HistoryList(arr: arr)
+        }
+        set(value) {
+            let arr: [String] = history.toArray()
+            print("setting history kist: \(arr)")
+            NSUserDefaults.standardUserDefaults().setValue(arr, forKey: Keys.historyList)
+        }
+    }
+
+    func setReminderAndUpdateHistory(reminderText: String) {
+        self.reminderText = reminderText
+        let h = self.history
+        self.history = h
+    }
+    
     func endTimeIsPlusOneDay() -> Bool {
         return startTime >= stopTime
     }
@@ -66,6 +85,7 @@ class Settings {
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
             Keys.reminderText: Constants.DefaultReminderText,
+            Keys.historyList: [],
             Keys.IsRunning: true
             ])
     }

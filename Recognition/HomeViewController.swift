@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 import MessageUI
-import CloudKit
+import EVCloudKitDao
 
 class HomeViewController:
     UIViewController,
@@ -29,6 +29,9 @@ class HomeViewController:
 
     var alertVC: UIAlertController?
 
+    // DB test
+    let dao: EVCloudKitDao = EVCloudKitDao.publicDBForContainer("iCloud.com.recognitionmeditation")
+
     // MARK: View
     override func viewDidLoad() {
         
@@ -47,6 +50,22 @@ class HomeViewController:
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
         addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
 
+        // test EV cloud kit dao
+        dao.query(ReminderText()
+            , completionHandler: { results in
+                
+                for result in results.results {
+                    print("foo: "+result.Text + " \(result.Votes)")
+                }
+                
+                EVLog("query : result count = \(results.results.count)")
+                
+                return true
+            }, errorHandler: { error in
+                EVLog("<--- ERROR query Message")
+        })
+        
+        
         
         // debug test cloud kit
         
@@ -99,12 +118,10 @@ class HomeViewController:
             checkNotificationsAreEnabled()
         }
         // bounce
-        
-
-        if (!Constants.isIpad()) {
-            UIView.setAnimationDelay(1.0)
-            bounceMenu()
-        }
+//        if (!Constants.isIpad()) {
+//            UIView.setAnimationDelay(1.0)
+//            bounceMenu()
+//        }
     }
     
     func bounceMenu() {
@@ -318,10 +335,10 @@ class HomeViewController:
     func changeSettingsPressed(sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
-        //let nav = UINavigationController(rootViewController: vc)
-        //nav.modalTransitionStyle = .FlipHorizontal
-        vc.modalTransitionStyle = .FlipHorizontal
-        presentViewController(vc, animated: true, completion: nil)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalTransitionStyle = .FlipHorizontal
+        //vc.modalTransitionStyle = .FlipHorizontal
+        presentViewController(nav, animated: true, completion: nil)
 
     }
 

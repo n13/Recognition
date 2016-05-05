@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -13,23 +13,12 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rightArrowSmall" translatesAutoresizingMaskIntoConstraints="NO" id="NlJ-B7-Z7D">
                     <rect key="frame" x="217" y="27" width="38" height="17"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="38" id="9cx-L3-hhB"/>
-                    </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="how to" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQJ-iX-DXa">
                     <rect key="frame" x="0.0" y="23" width="65.5" height="24"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="237" id="3b0-is-YHx"/>
-                    </constraints>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="3b0-is-YHx"/>
-                        </mask>
-                    </variation>
                 </label>
                 <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8FA-HT-Pa1" customClass="DashedLineView" customModule="Recognition" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="47.5" width="255" height="3"/>
@@ -44,42 +33,23 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="NlJ-B7-Z7D" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6G1-fN-f3S"/>
                 <constraint firstItem="8FA-HT-Pa1" firstAttribute="leading" secondItem="QQJ-iX-DXa" secondAttribute="leading" id="8hh-3f-LGR"/>
                 <constraint firstAttribute="trailing" secondItem="pxd-DS-TMj" secondAttribute="trailing" id="9dc-3u-lvF"/>
                 <constraint firstItem="8FA-HT-Pa1" firstAttribute="top" secondItem="QQJ-iX-DXa" secondAttribute="bottom" id="BBv-iw-rNc"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="centerY" secondItem="NlJ-B7-Z7D" secondAttribute="centerY" id="Kqu-gT-q7w"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="LfE-Fb-kHQ"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Mwu-wD-M18"/>
-                <constraint firstItem="8FA-HT-Pa1" firstAttribute="width" secondItem="QQJ-iX-DXa" secondAttribute="width" id="N8b-br-l0e"/>
-                <constraint firstItem="pxd-DS-TMj" firstAttribute="centerY" secondItem="QQJ-iX-DXa" secondAttribute="centerY" id="Otz-xs-uGR"/>
-                <constraint firstItem="pxd-DS-TMj" firstAttribute="trailing" secondItem="NlJ-B7-Z7D" secondAttribute="trailing" id="VIJ-3R-6Xf"/>
                 <constraint firstItem="NlJ-B7-Z7D" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="WE7-PA-bD9"/>
-                <constraint firstItem="pxd-DS-TMj" firstAttribute="leading" secondItem="QQJ-iX-DXa" secondAttribute="leading" id="ZFn-Jb-bBl"/>
                 <constraint firstAttribute="bottom" secondItem="pxd-DS-TMj" secondAttribute="bottom" id="bm3-da-oiJ"/>
                 <constraint firstItem="8FA-HT-Pa1" firstAttribute="trailing" secondItem="NlJ-B7-Z7D" secondAttribute="trailing" id="ctm-pr-23o"/>
-                <constraint firstItem="QQJ-iX-DXa" firstAttribute="right" relation="greaterThanOrEqual" secondItem="pxd-DS-TMj" secondAttribute="left" constant="10" id="dsg-yo-Z8U"/>
                 <constraint firstItem="QQJ-iX-DXa" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eR1-ng-Sn8"/>
-                <constraint firstItem="NlJ-B7-Z7D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="k1B-lA-iqy"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mjY-XA-OQY"/>
                 <constraint firstItem="pxd-DS-TMj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="rWt-oT-1fp"/>
-                <constraint firstItem="QQJ-iX-DXa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="ySS-LF-ngo"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="Otz-xs-uGR"/>
-                    <exclude reference="VIJ-3R-6Xf"/>
-                    <exclude reference="ZFn-Jb-bBl"/>
-                    <exclude reference="ySS-LF-ngo"/>
-                    <exclude reference="N8b-br-l0e"/>
-                    <exclude reference="6G1-fN-f3S"/>
-                    <exclude reference="k1B-lA-iqy"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="button" destination="pxd-DS-TMj" id="CRX-9e-ZEY"/>
                 <outlet property="lineView" destination="8FA-HT-Pa1" id="1Fi-ID-zwv"/>
