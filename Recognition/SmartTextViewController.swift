@@ -18,6 +18,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var reminderTextView: UITextView!
     var underline: DashedLineView!
     var presetsButton: ButtonView?
+    var dismissKeyboardOnShow = false
 
     let textInset = Constants.TextInset
     var textHeightConstraint : Constraint? = nil
@@ -72,6 +73,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         if self.navigationController != nil && !self.navigationController!.navigationBarHidden {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if (dismissKeyboardOnShow) {
+            reminderTextView.resignFirstResponder()
+            dismissKeyboardOnShow = false
+        }
 
     }
     
@@ -83,7 +91,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         let info = notification.userInfo
         let kbSize = info?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
         if let size = kbSize {
-            changeButtonBottomOffset?.updateOffset(-size.height)
+            changeButtonBottomOffset?.updateOffset(-size.height+1)
         }
         self.reminderTextMinHeightConstraint?.updateOffset(160)
         self.reminderTextMaxHeightConstraint?.updateOffset(160)
@@ -149,59 +157,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             make.edges.equalTo(0)
         }
         
-        //print("topLayoutGuide.length \(topLayoutGuide)")
-        
-        //scrollView.contentInset = UIEdgeInsets(top: 45, left: 0, bottom: 0, right: 0)
-        
-        // top label
-        let headerInset = 15
-        headerLabel = UILabel()
-        headerLabel.numberOfLines = 0
-        headerLabel.attributedText = NSMutableAttributedString.mm_attributedString(
-            titleText,
-            sizeAdjustment: 6,
-            isBold: true,
-            kerning: -0.6,
-            color: Constants.GreyTextColor,
-            lineHeightMultiple: 0.8)
-        scrollView.addSubview(headerLabel)
-        headerLabel.snp_makeConstraints { make in
-            make.top.equalTo(46) // topLayoutGuide.length seems 0...
-            make.leading.equalTo(headerInset)
-            make.trailing.equalTo(-headerInset)
-        }
-        headerLabel.backgroundColor = UIColor.clearColor()
-        
         let textOffsetFromHeader = 40
         
-        // done button
-        let doneLabel = UILabel()
-        doneLabel.userInteractionEnabled = true
-        doneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:))))
-        
-        doneLabel.attributedText = NSMutableAttributedString.mm_attributedString(
-            "done",
-            sizeAdjustment: 0,
-            isBold: true,
-            kerning: -0.6,
-            color: Constants.ActiveColor,
-            lineHeightMultiple: 0.8)
-        scrollView.addSubview(doneLabel)
-        doneLabel.snp_makeConstraints { make in
-            make.baseline.equalTo(headerLabel.snp_baseline) // topLayoutGuide.length seems 0...
-            make.trailing.equalTo(-headerInset)
-        }
-
-        // line view
-        let line = DashedLineView()
-        scrollView.addSubview(line)
-        line.dashShape.strokeColor = UIColor.nkrPaleSalmonColor().colorWithAlphaComponent(0.9).CGColor
-        line.dashShape.lineWidth = 2
-        line.snp_makeConstraints { make in
-            make.top.equalTo(headerLabel.snp_baseline).offset(18) // topLayoutGuide.length seems 0...
-            make.leading.equalTo(0)
-            make.trailing.equalTo(0)
-        }
+        headerLabel = createHeaderViews(scrollView, titleText: titleText, doneButtonText: "done", doneButtonAction: #selector(SmartTextViewController.doneButtonPressed(_:)))
         
         // main text view
         textView = UITextView.createCustomTextView()
@@ -252,10 +210,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 //make.bottom.equalTo(scrollView.snp_bottom).offset(-30)
                 changeButtonBottomOffset = make.bottom.equalTo(view.snp_bottomMargin).offset(-10).constraint
             }
-            presetsButton?.alpha = 0
+            //presetsButton?.alpha = 0
             presetsButton?.button.addTarget(self, action: #selector(SmartTextViewController.presetsButtonPressed(_:)), forControlEvents: .TouchUpInside)
-            
-            //reminderTextView.backgroundColor = UIColor(white: 0.5, alpha: 0.2)
             
             let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
             let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
@@ -283,10 +239,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     // MARK: Actions
     func handleSettingsChanged(notification: NSNotification?) {
-        print("handle settings changed")
+        print("handle settings changed - new reminder text: \(AppDelegate.delegate().settings.reminderText)")
         if (isSettingsScreen) {
             textView.attributedText = createText()
             reminderTextView.attributedText = createReminderText()
+            reminderTextView.endEditing(true)
         }
     }
     
@@ -295,12 +252,38 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     func presetsButtonPressed(sender: AnyObject) {
+//        print("presets")
+//        let vc = ListViewController.createMain()
+//        vc.title = "Choose Reminder Text"
+//        //let nvc = UINavigationController(rootViewController: vc)
+//        
+//        vc.doneBlock = { newText in
+//            print("done selecting")
+//            if let text = newText {
+//                print("different text")
+//                //self.reminderTextView.text = text
+//                self.resignCurrentFirstResponder()
+//                //self.dismissKeyboardOnShow = true
+//            }
+//        }
+//        
+//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+//        self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
         print("presets")
-        let vc = ListViewController.createMain()
-        vc.title = "Choose Reminder Text"
-        //let nvc = UINavigationController(rootViewController: vc)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let vc = HistoryListViewController()
+        vc.title = "History"
+        vc.doneBlock = { newText in
+            print("done selecting")
+            if let text = newText {
+                print("different text")
+                //self.reminderTextView.text = text
+                self.resignCurrentFirstResponder()
+                //self.dismissKeyboardOnShow = true
+            }
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

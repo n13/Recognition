@@ -12,6 +12,7 @@
 		2420C0831CD9C54D0088048C /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0821CD9C54D0088048C /* ListCell.swift */; };
 		2420C0851CDAF76D0088048C /* ReminderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0841CDAF76D0088048C /* ReminderText.swift */; };
 		2420C0871CDAFFFB0088048C /* HistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0861CDAFFFB0088048C /* HistoryList.swift */; };
+		2420C08A1CDB5B640088048C /* UIView+ResignFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0891CDB5B640088048C /* UIView+ResignFirstResponder.m */; };
 		243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE6FB1C65E4C6001182AB /* TimeCell.swift */; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
 		2442B83F1C69C69400346E1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B83E1C69C69400346E1B /* Constants.swift */; };
@@ -35,6 +36,9 @@
 		247DABDE1C96B4890097A154 /* ButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 247DABDD1C96B4890097A154 /* ButtonView.xib */; };
 		247DABE01C96B64C0097A154 /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DABDF1C96B64C0097A154 /* ButtonView.swift */; };
 		247DABE21C97A5680097A154 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247DABE11C97A5680097A154 /* SnapshotHelper.swift */; };
+		247F1F911CDEEC3F006263BD /* UIViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F901CDEEC3F006263BD /* UIViewController+Design.swift */; };
+		247F1F931CDF16F1006263BD /* ListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F921CDF16F1006263BD /* ListViewController2.swift */; };
+		247F1F951CDF1E22006263BD /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F941CDF1E22006263BD /* HistoryListViewController.swift */; };
 		24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569B1C7EE23800AC9978 /* HomeViewController.swift */; };
 		24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */; };
 		24A256A01C80851000AC9978 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569F1C80851000AC9978 /* BlockView.swift */; };
@@ -81,6 +85,8 @@
 		2420C0821CD9C54D0088048C /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		2420C0841CDAF76D0088048C /* ReminderText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderText.swift; sourceTree = "<group>"; };
 		2420C0861CDAFFFB0088048C /* HistoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryList.swift; sourceTree = "<group>"; };
+		2420C0881CDB5B640088048C /* UIView+ResignFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ResignFirstResponder.h"; sourceTree = "<group>"; };
+		2420C0891CDB5B640088048C /* UIView+ResignFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ResignFirstResponder.m"; sourceTree = "<group>"; };
 		243CE6FB1C65E4C6001182AB /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2442B83E1C69C69400346E1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -113,6 +119,9 @@
 		247DABDD1C96B4890097A154 /* ButtonView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ButtonView.xib; sourceTree = "<group>"; };
 		247DABDF1C96B64C0097A154 /* ButtonView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
 		247DABE11C97A5680097A154 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnapshotHelper.swift; sourceTree = "<group>"; };
+		247F1F901CDEEC3F006263BD /* UIViewController+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Design.swift"; sourceTree = "<group>"; };
+		247F1F921CDF16F1006263BD /* ListViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController2.swift; sourceTree = "<group>"; };
+		247F1F941CDF1E22006263BD /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
 		24A2569B1C7EE23800AC9978 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		24A2569F1C80851000AC9978 /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -315,6 +324,8 @@
 				24A2569B1C7EE23800AC9978 /* HomeViewController.swift */,
 				246359361C68623F0097CC76 /* SmartTextViewController.swift */,
 				2420C0801CD9C1140088048C /* ListViewController.swift */,
+				247F1F921CDF16F1006263BD /* ListViewController2.swift */,
+				247F1F941CDF1E22006263BD /* HistoryListViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -323,6 +334,7 @@
 			isa = PBXGroup;
 			children = (
 				24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */,
+				247F1F901CDEEC3F006263BD /* UIViewController+Design.swift */,
 				24AD64831C840D160015BF70 /* UIColor+NikReminders.swift */,
 				245C45011BFDA4EC00410591 /* UILocalNotification+Ex.swift */,
 				245C45051BFDD9E200410591 /* RandomNumbers.swift */,
@@ -331,6 +343,8 @@
 				246359381C6882D50097CC76 /* UITextView+SmartTags.swift */,
 				2442B8411C69FAF600346E1B /* UIViewController+CommonUtils.h */,
 				2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */,
+				2420C0881CDB5B640088048C /* UIView+ResignFirstResponder.h */,
+				2420C0891CDB5B640088048C /* UIView+ResignFirstResponder.m */,
 				2469DE261C716C7300058ED4 /* NSMutableAttributedString+Ex.swift */,
 				240DDB031C82F9C300D486F2 /* String+Ex.swift */,
 				24AD64811C8403A50015BF70 /* UITextView+Ex.swift */,
@@ -558,6 +572,7 @@
 				240DDB041C82F9C300D486F2 /* String+Ex.swift in Sources */,
 				245C45081BFDE29100410591 /* NSDate+Ex.swift in Sources */,
 				24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */,
+				2420C08A1CDB5B640088048C /* UIView+ResignFirstResponder.m in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
 				2420C0851CDAF76D0088048C /* ReminderText.swift in Sources */,
 				24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */,
@@ -569,10 +584,12 @@
 				2420C0811CD9C1140088048C /* ListViewController.swift in Sources */,
 				24A256A01C80851000AC9978 /* BlockView.swift in Sources */,
 				2469DE271C716C7300058ED4 /* NSMutableAttributedString+Ex.swift in Sources */,
+				247F1F911CDEEC3F006263BD /* UIViewController+Design.swift in Sources */,
 				24A256BB1C80B93300AC9978 /* ActionSheetLocalePicker.m in Sources */,
 				245433861C43AE0E00D5509F /* ReminderEngine.swift in Sources */,
 				2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */,
 				24AD64821C8403A50015BF70 /* UITextView+Ex.swift in Sources */,
+				247F1F951CDF1E22006263BD /* HistoryListViewController.swift in Sources */,
 				24A256B71C80B93300AC9978 /* AbstractActionSheetPicker.m in Sources */,
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
 				246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */,
@@ -590,6 +607,7 @@
 				2420C0831CD9C54D0088048C /* ListCell.swift in Sources */,
 				24A256B81C80B93300AC9978 /* ActionSheetCustomPicker.m in Sources */,
 				24A256BC1C80B93300AC9978 /* ActionSheetMultipleStringPicker.m in Sources */,
+				247F1F931CDF16F1006263BD /* ListViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

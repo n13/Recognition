@@ -6,12 +6,23 @@
 //  Copyright © 2016 Nikolaus Heger. All rights reserved.
 //
 
+import EVCloudKitDao
+
 class ListViewController: UITableViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-    var reminderTexts: [String] = []
+    var doneBlock: ((newText:String?) -> ())?
+    var reminderTexts: [String] = [] {
+        didSet {
+            if (segmentedControl.selectedSegmentIndex == 1) {
+                self.tableView?.reloadData()
+            }
+        }
+    }
     let historyList = AppDelegate.delegate().settings.history
+
+    let dao: EVCloudKitDao = EVCloudKitDao.publicDBForContainer("iCloud.com.recognitionmeditation")
 
     //MARK: View
     override func viewDidLoad() {
@@ -20,18 +31,42 @@ class ListViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
-        
+        tableView.separatorStyle = .None
         segmentedControl.tintColor = Constants.ActiveColor
         
+        reloadReminderTexts()
+        
     }
-    
+    func reloadReminderTexts() {
+        // test EV cloud kit dao
+        dao.query(ReminderText()
+            , completionHandler: { results in
+                
+                for result in results.results {
+                    print("foo: "+result.Text + " \(result.Votes)")
+                }
+                
+                EVLog("query : result count = \(results.results.count)")
+                
+                var reminderTexts = results.results
+                reminderTexts.sortInPlace { rt1, rt2 in
+                    rt1.Votes > rt2.Votes
+                }
+                self.reminderTexts = reminderTexts.map { $0.Text }
+                return true
+            }, errorHandler: { error in
+                EVLog("<--- ERROR query Message")
+        })
+        
+
+    }
     
     //MARK: Actions
     @IBAction func segmentedControlSelected(sender: UISegmentedControl) {
         tableView.reloadData()
     }
     
-    // list shit
+    //MARK:  TableView stuff
     func rows() -> Int {
         return segmentedControl.selectedSegmentIndex == 0 ? historyList.count() - 1 : reminderTexts.count
     }
@@ -64,6 +99,7 @@ class ListViewController: UITableViewController {
         let text = textAtIndex(indexPath.row)
         AppDelegate.delegate().settings.setReminderAndUpdateHistory(text)
         self.navigationController?.popViewControllerAnimated(true)
+        doneBlock?(newText: text)
     }
     
     // TODO 

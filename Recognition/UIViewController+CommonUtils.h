@@ -1,7 +1,7 @@
 //
 //  UIViewController+CommonUtils.h
 //
-//  Created by Carlos Alcala on 5/15/15.
+//  Created by Nik Heger on 5/15/15.
 //  Copyright (c) 2015 ponga. All rights reserved.
 //
 
@@ -24,5 +24,8 @@
 - (void)pa_notificationKeyboardWillShow:(NSNotification*)notification;
 - (void)pa_notificationKeyboardWillHide:(NSNotification*)notification;
 - (void)moveScrollViewForKeyboard:(UIScrollView*)scrollView notification:(NSNotification *)notification keyboardShowing:(BOOL)keyboardShowing;
+
+#pragma mark key focus
+- (void)resignCurrentFirstResponder;
 
 @end

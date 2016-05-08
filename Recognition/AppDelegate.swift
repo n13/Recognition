@@ -53,6 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
         UIButton.appearance().tintColor = Constants.ActiveColor
         UISwitch.appearance().onTintColor = Constants.ActiveColor
+        UINavigationBar.appearance().tintColor = Constants.ActiveColor
+        let font  = UIFont(name: Constants.RegularFont, size: 20.0)
+        UINavigationBar.appearance().titleTextAttributes = [
+            NSFontAttributeName : font!
+        ]
         
         // Handle incoming notifications - app start because user pushed on a notification
         if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {

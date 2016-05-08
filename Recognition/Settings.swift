@@ -62,16 +62,18 @@ class Settings {
             return HistoryList(arr: arr)
         }
         set(value) {
-            let arr: [String] = history.toArray()
-            print("setting history kist: \(arr)")
+            let arr = history.array
+            print("setting history hist: \(arr)")
             NSUserDefaults.standardUserDefaults().setValue(arr, forKey: Keys.historyList)
         }
     }
 
-    func setReminderAndUpdateHistory(reminderText: String) {
-        self.reminderText = reminderText
+    func setReminderAndUpdateHistory(text: String) {
+        self.reminderText = text
         let h = self.history
-        self.history = h
+        h.addItemToHistory(text)
+        NSUserDefaults.standardUserDefaults().setValue(h.array, forKey: Keys.historyList)
+        save()
     }
     
     func endTimeIsPlusOneDay() -> Bool {

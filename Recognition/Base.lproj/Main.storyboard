@@ -81,27 +81,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WNc-FZ-5mP" id="HtE-b0-01p">
                                     <rect key="frame" x="0.0" y="0.0" width="561" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klq-kJ-x3r">
-                                            <rect key="frame" x="8" y="8" width="584" height="27.5"/>
-                                            <string key="text">Recognize awareness
-Recognize spaciousness
-Recognize timelessness</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="klq-kJ-x3r" secondAttribute="bottom" id="ChB-7M-jAI"/>
-                                        <constraint firstItem="klq-kJ-x3r" firstAttribute="trailing" secondItem="HtE-b0-01p" secondAttribute="trailingMargin" id="TTQ-zz-wh7"/>
-                                        <constraint firstItem="klq-kJ-x3r" firstAttribute="top" secondItem="HtE-b0-01p" secondAttribute="topMargin" id="jvO-eh-JUm"/>
-                                        <constraint firstItem="klq-kJ-x3r" firstAttribute="leading" secondItem="HtE-b0-01p" secondAttribute="leadingMargin" id="kag-m8-Ol5"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="label" destination="klq-kJ-x3r" id="0mW-uQ-YsI"/>
-                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Disclaimer" id="vuh-XW-88e">
                                 <rect key="frame" x="0.0" y="116" width="600" height="44"/>

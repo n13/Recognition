@@ -18,7 +18,7 @@ struct Constants {
     static let SmartTag = "SmartTag"
     static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
     static let NotificationCategory = "RECOGNITION_CATEGORY"
-    static let TextInset = 25
+    static let TextInset: CGFloat = 25
     
     static let isSmallDevice = (UIScreen.mainScreen().bounds.width <= 320)
     

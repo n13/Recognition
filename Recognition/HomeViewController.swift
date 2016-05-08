@@ -9,7 +9,6 @@
 import UIKit
 import SnapKit
 import MessageUI
-import EVCloudKitDao
 
 class HomeViewController:
     UIViewController,
@@ -29,9 +28,6 @@ class HomeViewController:
 
     var alertVC: UIAlertController?
 
-    // DB test
-    let dao: EVCloudKitDao = EVCloudKitDao.publicDBForContainer("iCloud.com.recognitionmeditation")
-
     // MARK: View
     override func viewDidLoad() {
         
@@ -48,24 +44,7 @@ class HomeViewController:
         
         // listen to the user answering notifications dialog
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
-        addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
-
-        // test EV cloud kit dao
-        dao.query(ReminderText()
-            , completionHandler: { results in
-                
-                for result in results.results {
-                    print("foo: "+result.Text + " \(result.Votes)")
-                }
-                
-                EVLog("query : result count = \(results.results.count)")
-                
-                return true
-            }, errorHandler: { error in
-                EVLog("<--- ERROR query Message")
-        })
-        
-        
+        addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))        
         
         // debug test cloud kit
         

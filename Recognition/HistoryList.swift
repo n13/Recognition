@@ -24,13 +24,13 @@ class HistoryList {
         if let ix = ix {
             array.removeAtIndex(ix)
         }
+        while array.count >= maxSize {
+            print("max size exceeded - removing last item")
+            array.removeLast()
+        }
         array.insert(obj, atIndex: 0)
     }
-    
-    func toArray() -> [String] {
-        return array
-    }
-    
+        
     func count() -> Int {
         return array.count
     }
