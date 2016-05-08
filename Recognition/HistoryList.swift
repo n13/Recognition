@@ -10,7 +10,7 @@
 class HistoryList {
         
     var array:[String] = []
-    private let maxSize = 100
+    private let maxSize = 30
     
     init() {
     }
