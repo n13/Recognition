@@ -323,7 +323,7 @@ class HomeViewController:
 
     func shareButtonPressed(sender: UIGestureRecognizer) {
         print("share")
-        let textToShare = "I love the Recognition Meditation app - check it out!"
+        let textToShare = "I want to share with you the Recognition Meditation app - it's a free download, check it out."
         let vc = SmartTextViewController.createMain()
 
         let screenShotImage = vc.takeScreenshot()
@@ -331,7 +331,6 @@ class HomeViewController:
         if let myWebsite = NSURL(string: "https://itunes.apple.com/us/app/recognition-meditation/id1085370087") {
             let objectsToShare = [textToShare, screenShotImage!, myWebsite]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            
             self.presentViewController(activityVC, animated: true, completion: nil)
         }
     }

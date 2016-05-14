@@ -137,7 +137,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         } else {
             let settings = AppDelegate.delegate().settings
             settings.setReminderAndUpdateHistory(newText)
-            settings.save()
         }
     }
     
