@@ -87,7 +87,7 @@
     }
 }
 
-- (void)pa_resignCurrentFirstResponder {
+- (void)resignCurrentFirstResponder {
     [self.view findAndResignFirstResponder];
 }
 
