@@ -11,7 +11,9 @@ import SnapKit
 extension UIViewController {
     
     // Create header text label and underline view, and the done button
-    func createHeaderViews(theView: UIView, titleText: String, doneButtonText: String, doneButtonAction: Selector) -> UILabel {
+    func createHeaderViews(theView: UIView, titleText: String, doneButtonText: String, doneButtonAction: Selector)
+        -> (headerLabel: UILabel, underline: UIView, doneLabel: UILabel)
+    {
         // top label
         let headerInset = 15
         let headerLabel = UILabel()
@@ -60,7 +62,7 @@ extension UIViewController {
             make.trailing.equalTo(0)
         }
 
-        return headerLabel
+        return (headerLabel:headerLabel, underline: line, doneLabel: doneLabel)
     }
     
 }
