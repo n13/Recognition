@@ -69,11 +69,15 @@ class Settings {
     }
 
     func setReminderAndUpdateHistory(text: String) {
-        self.reminderText = text
-        let h = self.history
-        h.addItemToHistory(text)
-        NSUserDefaults.standardUserDefaults().setValue(h.array, forKey: Keys.historyList)
-        save()
+        if (self.reminderText == text) {
+            print("new text is the same as the old text - ignoring new text, history unchanged")
+        } else {
+            self.reminderText = text
+            let h = self.history
+            h.addItemToHistory(text)
+            NSUserDefaults.standardUserDefaults().setValue(h.array, forKey: Keys.historyList)
+            save()
+        }
     }
     
     func endTimeIsPlusOneDay() -> Bool {
@@ -87,7 +91,7 @@ class Settings {
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
             Keys.reminderText: Constants.DefaultReminderText,
-            Keys.historyList: [],
+            Keys.historyList: [Constants.DefaultReminderText],
             Keys.IsRunning: true
             ])
     }
