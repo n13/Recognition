@@ -9,7 +9,6 @@
 class ListViewController2: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let tableView = UITableView()
-    var headerLabel: UILabel!
     
     // set these
     var titleText: String!
@@ -20,12 +19,11 @@ class ListViewController2: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewDidLoad() {
         //let headerInset = 15
         view.backgroundColor = UIColor.whiteColor()
-        headerLabel = createHeaderViews(view, titleText: titleText, doneButtonText: doneButtonText, doneButtonAction: #selector(ListViewController2.cancelButtonPressed(_:)))
-        
-        
+        let headerViews = createHeaderViews(view, titleText: titleText, doneButtonText: doneButtonText, doneButtonAction: #selector(ListViewController2.cancelButtonPressed(_:)))
+                
         view.addSubview(tableView)
         tableView.snp_makeConstraints { make in
-            make.top.equalTo(headerLabel.snp_bottom).offset(40)
+            make.top.equalTo(headerViews.headerLabel.snp_bottom).offset(10)
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.bottom.equalTo(0)
