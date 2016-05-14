@@ -36,7 +36,6 @@ class ListViewController2: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.separatorStyle = .None
         tableView.dataSource = self
         tableView.delegate = self
- tableView.backgroundColor = UIColor.greenColor()
     }
     
     @IBAction func cancelButtonPressed(sender: AnyObject) {
