@@ -72,9 +72,13 @@ class Settings {
         if (self.reminderText == text) {
             print("new text is the same as the old text - ignoring new text, history unchanged")
         } else {
-            self.reminderText = text
+            let previousText = self.reminderText
             let h = self.history
-            h.addItemToHistory(text)
+            if previousText != Constants.DefaultReminderText {
+                h.addItemToHistory(previousText)                
+            }
+            h.removeItemFromHistory(text)
+            self.reminderText = text
             NSUserDefaults.standardUserDefaults().setValue(h.array, forKey: Keys.historyList)
             save()
         }
@@ -86,12 +90,16 @@ class Settings {
     
     func setupDefaults() {
         //print("setting defaults...")
+        
+        //print("removing history")
+        //NSUserDefaults.standardUserDefaults().removeObjectForKey(Keys.historyList) // DEBUG don't check in
+        
         NSUserDefaults.standardUserDefaults().registerDefaults([
             Keys.startTime: Float(9.0),
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
             Keys.reminderText: Constants.DefaultReminderText,
-            Keys.historyList: [Constants.DefaultReminderText],
+            Keys.historyList: [],
             Keys.IsRunning: true
             ])
     }

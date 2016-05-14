@@ -20,28 +20,32 @@ class HistoryListViewController: ListViewController2 {
     
     
     //MARK:  TableView stuff
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 2
+    }
+
     func rows() -> Int {
-        return historyList.count() - 1
+        return historyList.count()
     }
     
-    func textAtIndex(index: Int) -> String {
-        return historyList.array[index+1]
+    func textAtIndex(indexPath: NSIndexPath) -> String {
+        return indexPath.section == 0 ? historyList.array[indexPath.row] : Constants.DefaultReminderText
     }
-    
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return historyList.count() - 1
+        return section == 0 ? historyList.count() : 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let text = textAtIndex(indexPath.row)
+        let text = textAtIndex(indexPath)
         let cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as! ListCell
         cell.setData(text)
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let text = textAtIndex(indexPath.row)
+        let text = textAtIndex(indexPath)
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             cell.accessoryType = .Checkmark
         }
