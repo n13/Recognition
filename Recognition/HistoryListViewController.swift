@@ -14,8 +14,8 @@ class HistoryListViewController: ListViewController2 {
     override func viewDidLoad() {
         titleText = "History"
         doneButtonText = "cancel"
-        
         super.viewDidLoad()
+        tableView.reloadData()
     }
     
     
