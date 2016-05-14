@@ -10,7 +10,7 @@
 class HistoryList {
         
     var array:[String] = []
-    private let maxSize = 30
+    private let maxSize = 100
     
     init() {
     }
@@ -25,8 +25,10 @@ class HistoryList {
             array.removeAtIndex(ix)
         }
         while array.count >= maxSize {
-            print("max size exceeded - removing last item")
+            print("max size exceeded - removing last item, adding default back as last item in the list")
             array.removeLast()
+            array.removeLast()
+            array.append(Constants.DefaultReminderText)
         }
         array.insert(obj, atIndex: 0)
     }
