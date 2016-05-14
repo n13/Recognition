@@ -103,7 +103,7 @@ class HomeViewController:
 //        }
     }
     
-    func bounceMenu() {
+    func bounceMenu_DISABLED() {
         let screenSize = UIScreen.mainScreen().bounds.size
         self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 166)
         let duration = 0.2
@@ -355,8 +355,6 @@ class HomeViewController:
     }
 
     func onOffPressed() {
-        bounceMenu()//debug
-        print("on off")
         if (ReminderEngine.reminderEngine.isRunning) {
             ReminderEngine.reminderEngine.stop()
         } else {

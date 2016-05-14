@@ -39,6 +39,7 @@
 		247F1F911CDEEC3F006263BD /* UIViewController+Design.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F901CDEEC3F006263BD /* UIViewController+Design.swift */; };
 		247F1F931CDF16F1006263BD /* ListViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F921CDF16F1006263BD /* ListViewController2.swift */; };
 		247F1F951CDF1E22006263BD /* HistoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F941CDF1E22006263BD /* HistoryListViewController.swift */; };
+		247F1F971CDF272A006263BD /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247F1F961CDF272A006263BD /* BaseTableViewCell.swift */; };
 		24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569B1C7EE23800AC9978 /* HomeViewController.swift */; };
 		24A2569E1C7EE29800AC9978 /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */; };
 		24A256A01C80851000AC9978 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A2569F1C80851000AC9978 /* BlockView.swift */; };
@@ -122,6 +123,7 @@
 		247F1F901CDEEC3F006263BD /* UIViewController+Design.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Design.swift"; sourceTree = "<group>"; };
 		247F1F921CDF16F1006263BD /* ListViewController2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController2.swift; sourceTree = "<group>"; };
 		247F1F941CDF1E22006263BD /* HistoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryListViewController.swift; sourceTree = "<group>"; };
+		247F1F961CDF272A006263BD /* BaseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		24A2569B1C7EE23800AC9978 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		24A2569D1C7EE29800AC9978 /* UIViewController+Ex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 		24A2569F1C80851000AC9978 /* BlockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
@@ -352,6 +354,7 @@
 				24D225431C9908C300DA1C1F /* UIView+Nib.swift */,
 				24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */,
 				24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */,
+				247F1F961CDF272A006263BD /* BaseTableViewCell.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -574,6 +577,7 @@
 				24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */,
 				2420C08A1CDB5B640088048C /* UIView+ResignFirstResponder.m in Sources */,
 				246234EB1BF9A0D000BDE6D7 /* AppDelegate.swift in Sources */,
+				247F1F971CDF272A006263BD /* BaseTableViewCell.swift in Sources */,
 				2420C0851CDAF76D0088048C /* ReminderText.swift in Sources */,
 				24A2569C1C7EE23800AC9978 /* HomeViewController.swift in Sources */,
 				243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */,
