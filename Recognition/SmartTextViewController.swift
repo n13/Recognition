@@ -17,8 +17,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var textView: UITextView!
     var reminderTextView: UITextView!
     var underline: DashedLineView!
-    var presetsButton: ButtonView?
-    var dismissKeyboardOnShow = false
 
     let textInset = Constants.TextInset
     var textHeightConstraint : Constraint? = nil
@@ -31,6 +29,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     
     var reminderTextMaxHeightConstraint : Constraint? = nil
     var reminderTextMinHeightConstraint : Constraint? = nil
+    
+    var editMode = false
 
     // MARK: View
     override func viewDidLoad() {
@@ -76,73 +76,73 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     override func viewDidAppear(animated: Bool) {
-        if (dismissKeyboardOnShow) {
-            reminderTextView.resignFirstResponder()
-            dismissKeyboardOnShow = false
-        }
-
     }
     
     override func pa_notificationKeyboardWillShow(notification: NSNotification) {
-        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: true)
-        scrollView.contentOffset = CGPoint(x: 0, y: reminderTextView.frame.origin.y - 20)
-        scrollView.scrollEnabled = false
-        
-        let info = notification.userInfo
-        let kbSize = info?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
-        if let size = kbSize {
-            changeButtonBottomOffset?.updateOffset(-size.height+1)
-        }
-        self.reminderTextMinHeightConstraint?.updateOffset(160)
-        self.reminderTextMaxHeightConstraint?.updateOffset(160)
-        UIView.animateWithDuration(0.4) {
-            self.underline.alpha = 0
-            self.presetsButton?.alpha = 1
+        print("keyboard will show")
+        if (!editMode) {
+            editMode = true
+            self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: true)
+            scrollView.contentOffset = CGPoint(x: 0, y: reminderTextView.frame.origin.y - 20)
+            scrollView.scrollEnabled = false
+            scrollView.delaysContentTouches = false
             
-            //self.scrollView.backgroundColor = UIColor(white: 0.5, alpha: 1.0)
+            let info = notification.userInfo
+            let kbSize = info?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
+            if let size = kbSize {
+                changeButtonBottomOffset?.updateOffset(-size.height+1)
+            }
+            self.reminderTextView.scrollEnabled = true
+            self.reminderTextMinHeightConstraint?.updateOffset(240)
+            self.reminderTextMaxHeightConstraint?.updateOffset(240)
+            UIView.animateWithDuration(0.4) {
+                self.underline.alpha = 0
+            }
         }
-
     }
     
+    // NOTE: This can come in multiple times.
     override func pa_notificationKeyboardWillHide(notification: NSNotification) {
-        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
-        scrollView.contentOffset = CGPointZero
-        scrollView.scrollEnabled = true
-        changeButtonBottomOffset?.updateOffset(-5)
-        self.reminderTextMinHeightConstraint?.updateOffset(0)
-        self.reminderTextMaxHeightConstraint?.updateOffset(999)
-        
-        UIView.animateWithDuration(0.4) {
-            self.underline.alpha = 1
-            self.presetsButton?.alpha = 0
-        }
-        reminderTextView.setNeedsLayout()
-        underline.setNeedsLayout()
 
+        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
 
     }
 
     
     func textViewDidEndEditing(textView: UITextView) {
         let newText = reminderTextView.attributedText.string.pa_trim()
-        print("new text: \(newText)")
+        print("end editing. new text: \(newText)")
+
+        editMode = false
+
+        scrollView.contentOffset = CGPointZero
+        scrollView.scrollEnabled = true
+        scrollView.delaysContentTouches = true
         
-        if (newText.isEmpty) {
-            self.reminderTextView.attributedText = createReminderText()
-            return;
+        changeButtonBottomOffset?.updateOffset(-5)
+        
+        self.reminderTextView.scrollEnabled = false
+        self.reminderTextMinHeightConstraint?.updateOffset(0)
+        self.reminderTextMaxHeightConstraint?.updateOffset(999)
+        
+        UIView.animateWithDuration(0.4) {
+            self.underline.alpha = 1
         }
-        
-        
-        let settings = AppDelegate.delegate().settings
-        settings.setReminderAndUpdateHistory(newText)
-        settings.save()
-        
+        reminderTextView.setNeedsLayout()
+        underline.setNeedsLayout()
 
-        //scrollView.backgroundColor = UIColor.whiteColor()
-
+        if (newText.isEmpty) {
+            // do nothing
+            self.reminderTextView.attributedText = createReminderText()
+        } else {
+            let settings = AppDelegate.delegate().settings
+            settings.setReminderAndUpdateHistory(newText)
+            settings.save()
+        }
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
+        print("begin editing")
     }
 
     // MARK: Text Rendering
@@ -159,7 +159,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         let textOffsetFromHeader = 40
         
-        headerLabel = createHeaderViews(scrollView, titleText: titleText, doneButtonText: "done", doneButtonAction: #selector(SmartTextViewController.doneButtonPressed(_:)))
+        let headerViews = createHeaderViews(scrollView, titleText: titleText, doneButtonText: "done", doneButtonAction: #selector(SmartTextViewController.doneButtonPressed(_:)))
+        headerLabel = headerViews.headerLabel
         
         // main text view
         textView = UITextView.createCustomTextView()
@@ -197,28 +198,12 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             underline = DashedLineView()
             underline.placeBelowView(reminderTextView)
             
-            presetsButton = ButtonView.fromNib() as ButtonView // note: "as.. " is only required because of swift bug?!
-            view.addSubview(presetsButton!)
-            presetsButton?.setText("Choose text from a list")
-            presetsButton?.snp_makeConstraints { make in
-                //make.top.equalTo(reminderTextView.snp_bottom).offset(0)
-//                make.right.equalTo(0)
-
-                make.left.equalTo(-1)
-                make.right.equalTo(1)
-                make.height.equalTo(40)
-                //make.bottom.equalTo(scrollView.snp_bottom).offset(-30)
-                changeButtonBottomOffset = make.bottom.equalTo(view.snp_bottomMargin).offset(-10).constraint
-            }
-            //presetsButton?.alpha = 0
-            presetsButton?.button.addTarget(self, action: #selector(SmartTextViewController.presetsButtonPressed(_:)), forControlEvents: .TouchUpInside)
-            
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
+            let historyButton = UIBarButtonItem(title: "History →", style: .Done, target: self, action: #selector(SmartTextViewController.historyButtonPressed(_:)))
             let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            let resetButton = UIBarButtonItem(title: "Reset Text", style: .Done, target: self, action: #selector(SmartTextViewController.resetReminderText))
-
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
+            
             let toolbar = UIToolbar(frame: CGRectMake(0 ,0, 320, 44))
-            toolbar.items = [resetButton, spacer, doneButton]
+            toolbar.items = [historyButton, spacer, doneButton]
             
             reminderTextView.inputAccessoryView = toolbar
 
@@ -251,37 +236,17 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func presetsButtonPressed(sender: AnyObject) {
-//        print("presets")
-//        let vc = ListViewController.createMain()
-//        vc.title = "Choose Reminder Text"
-//        //let nvc = UINavigationController(rootViewController: vc)
-//        
-//        vc.doneBlock = { newText in
-//            print("done selecting")
-//            if let text = newText {
-//                print("different text")
-//                //self.reminderTextView.text = text
-//                self.resignCurrentFirstResponder()
-//                //self.dismissKeyboardOnShow = true
-//            }
-//        }
-//        
-//        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
-//        self.navigationController?.setNavigationBarHidden(false, animated: true)
-//        self.navigationController?.pushViewController(vc, animated: true)
-        
-        
-        print("presets")
+    func historyButtonPressed(sender: AnyObject) {
+        print("history")
+
+        self.resignCurrentFirstResponder()
+
         let vc = HistoryListViewController()
         vc.title = "History"
         vc.doneBlock = { newText in
             print("done selecting")
             if let text = newText {
-                print("different text")
-                //self.reminderTextView.text = text
-                self.resignCurrentFirstResponder()
-                //self.dismissKeyboardOnShow = true
+                print("new text: \(text)")
             }
         }
         self.navigationController?.pushViewController(vc, animated: true)
@@ -367,8 +332,6 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     func createOnOffText(isOnLabel: Bool) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString()
         let sizeAdjustment: CGFloat = 0
-        //        attributedText.appendText("reminders are ", sizeAdjustment: sizeAdjustment, color: UIColor.lightGrayColor())
-        //attributedText.appendClickableText(running() ? "on" : "off", tag: Tag.ToggleOnOff, sizeAdjustment: sizeAdjustment)
         attributedText.appendText((isOnLabel) ? "on" : "off", sizeAdjustment: sizeAdjustment, color: Constants.ActiveColor)
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -440,7 +403,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         // increments of 5 until 50
         rows.appendContentsOf(["35", "40", "45", "50"])
         // increments of 100 for those crazy experiments
-        rows.appendContentsOf(["100", "200"])//, "300", "400", "500"])
+        rows.appendContentsOf(["100", "200", "300", "400", "500"])
         let initialIndex = rows.indexOf("\(number)") ?? 11
         
         let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: initialIndex,
