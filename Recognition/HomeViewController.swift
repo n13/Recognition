@@ -242,9 +242,9 @@ class HomeViewController:
         // buttons
         let buttons = [
             addLabelButton(Constants.EditSettingsText, action: #selector(HomeViewController.changeSettingsPressed(_:))),
+            addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:))),
             addLabelButton("Share.", action: #selector(HomeViewController.shareButtonPressed(_:))),
-            addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:))),
-            addLabelButton("Send feedback.", action: #selector(HomeViewController.sendFeedbackPressed(_:)))
+            addLabelButton("How to.", action: #selector(HomeViewController.howButtonPressed(_:)))
         ]
         let howToOffset:CGFloat = 20//Constants.isIpad() ? 20 : 28
 
