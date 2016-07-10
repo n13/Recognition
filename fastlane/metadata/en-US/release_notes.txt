@@ -1,0 +1,4 @@
+- Bugfixes
+- History feature to go back to previous reminder texts
+- Up to 500 reminders for those hard-core experiments
+- Share button

@@ -225,7 +225,6 @@ class HomeViewController:
         textView.scrollEnabled = false
         scrollView.addSubview(textView)
         textView.snp_makeConstraints { make in
-//            make.top.equalTo(underLabel.snp_bottom).offset(36)
             make.top.equalTo(underline.snp_bottom).offset(36)
             make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
             make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
