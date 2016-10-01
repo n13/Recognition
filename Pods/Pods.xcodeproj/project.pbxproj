@@ -7,62 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01CDCCC9F2F8108C7BF35081FA1CD0BF /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADF8B3C20B930F5C8774A3B7E97A109C /* View+SnapKit.swift */; };
-		02AB9FB75D43C92347141C9821613887 /* EVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB134DA850A46E3FB22D87E0AB52CE /* EVExtensions.swift */; };
-		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E209B75D2E964F5CE4BE754677CF0C4 /* DateTools-dummy.m */; };
-		2063285D0E5507A1D077CA097DBAF039 /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD09E478174F396579B5762588A81737 /* EVWorkaroundHelpers.swift */; };
-		21F429DFC06416D9499455E286D20DB0 /* EVCloudData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1882876F73F89F9BD7CA17ACBBDB5D99 /* EVCloudData.swift */; };
-		226E131440605490B474B6DB078BF808 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19F8E927B0790FCA2670053E623F16E1 /* ConstraintRelation.swift */; };
-		24A3D75756B861E0BDD93D9CBC217517 /* EVCloudKitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7CCB1C4B6B504B3AF0C8744CF3C9F65 /* EVCloudKitEnums.swift */; };
+		01CDCCC9F2F8108C7BF35081FA1CD0BF /* View+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11EBC07F98B7EDFDF630AD243C82CCE4 /* View+SnapKit.swift */; };
+		19D228ED87FF16C882731F1ED7992B4E /* DateTools-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F5C98C0C1CD18195E41D27B414614A4 /* DateTools-dummy.m */; };
+		1CFA8732590E75CD31A1D0D7F37EE894 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */; };
+		21F429DFC06416D9499455E286D20DB0 /* EVCloudData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6EC97E7B2AA78F04C142F4C3BF45EEA /* EVCloudData.swift */; };
+		226E131440605490B474B6DB078BF808 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30A5135C86949774285BF233BE374F8 /* ConstraintRelation.swift */; };
+		24A3D75756B861E0BDD93D9CBC217517 /* EVCloudKitEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC53690794C955110303AE1B9DBD71E /* EVCloudKitEnums.swift */; };
 		2990C4EB44597F23857A1D954C13B6BD /* Pods-Recognition-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E2D19F7A00680DC107EC58EAAAB3848 /* Pods-Recognition-dummy.m */; };
-		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 51DE86016CDD2F140997B4F23867695B /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		30B9F3B513FF3337EAC5554B728471CA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */; };
-		371031165E6C2D84362DBCD9CAD2AD17 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95293B7A68199EDB185D36C6C531A4 /* LayoutConstraint.swift */; };
-		3C3892997E6EA9C30B08197EE0D22BA7 /* EVObjectDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F68FD09B6A281E4C41262347B4E8A69 /* EVObjectDescription.swift */; };
-		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = CD7F7D023B713FDD54F596D5575E322B /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		42A3018E0B8B9FC5FFC5AB5D8224C09D /* EVglobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 256C0E5E1B5FFD3AE08B6BDAF9F31F78 /* EVglobal.swift */; };
-		4835B689E7E8B352F6D5C3D1C87645DB /* SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526645F94A31158B806D0BDA79D6C59E /* SnapKit.swift */; };
+		2DAF4E8CD18ED10B30CCFB8FF1984A46 /* DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 9092659B4A7F1CFDDEF4A1F86F4338BB /* DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		371031165E6C2D84362DBCD9CAD2AD17 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31F1234127D752A784FB01AEDF414F7F /* LayoutConstraint.swift */; };
+		4159C0A759E6090F2C58FCB2492DFB05 /* DTTimePeriod.m in Sources */ = {isa = PBXBuildFile; fileRef = 331434522E10B4E1D9DD2D456E7D3C84 /* DTTimePeriod.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		42A3018E0B8B9FC5FFC5AB5D8224C09D /* EVglobal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53BC3FCD49E6292373F77EA60C8AA769 /* EVglobal.swift */; };
+		4835B689E7E8B352F6D5C3D1C87645DB /* SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA9D56D5545141335A0EB9E8D343ECF /* SnapKit.swift */; };
+		491648434A22622F749A7DFCFD394A69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */; };
 		4DBAC8925EB6ED9A9D84566BDB04290B /* EVReflection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EFE65F5EE1B48CA5776EB134B229D3 /* EVReflection.framework */; };
-		53CE5FF681A1A106D98F601AB9E80B5E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94772665BA5A3FF29E962D539056F711 /* ConstraintAttributes.swift */; };
-		5847A00A2094EC333A91FFBFC9CD7258 /* EVCloudKitDao-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A7D7A532F01FA8283233E08F93A0C3F /* EVCloudKitDao-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A53267DA5B4CFF8440F58E07B4D74C7 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = F06004A086809283CFAD3664982CA1C5 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5A86306FC584FDB3A9DDF10A5DA30BF6 /* EVCloudKitDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D409B2444211ABF03B86FE863333581 /* EVCloudKitDataObject.swift */; };
-		5D57C7832C4CF11D20649B7FB77BF20D /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBBEFB0B40BABB7DC21EF6712FEC02BC /* CloudKit.framework */; };
-		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 6C530B83E17D6B4F05587A2B14A58135 /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 09FFC7E6C5039C271CCFAE296F1B5870 /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F390C6CADD1B54EA827581C107D4AE4 /* EVReflection-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 78A9E8F9FB705DEEAB3E296A17BB996D /* EVReflection-dummy.m */; };
-		72539E1BA48FDE1DD877350F331F8894 /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D761CFC0640B644DFBE61020AC67AC5 /* ViewController+SnapKit.swift */; };
-		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BC29A6FD39E5887E73092FB937F72D1 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 83D12B96867482CD846DA821B93EF47F /* DateTools.bundle */; };
-		79D97CB8955D3B749DF15906DCDD222E /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EF4CAD500794592A41B7E383A2C85B /* ConstraintMaker.swift */; };
-		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 1EAE96A1C0E218BC2957EA08E4FEF3CC /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		8012205003360DF6D6F16E8D04F15267 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = A770AA87AC56F34E1D4615B6AEFC3EF5 /* Debugging.swift */; };
-		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = 96B42ACF0BEC12AD23506B1283435D94 /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		844A3F437D262EA60421F56BE3C578EF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */; };
-		856AFEE2CA3D8C3372C5F9B1968E1008 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC962EFDB28542094E6B3D984AC72312 /* Constraint.swift */; };
-		87A942595C1C7A1B31044F0160988E59 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */; };
-		92B84C02635CEBC06497804A2EE32ED7 /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC866AAFCF15D7B07245173C8B08C1F /* EVReflection.swift */; };
-		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 174FF5C9BCB5ECB595E7F9B8D1171DC0 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9D748D38BC95236287BD23F1B52CD6EA /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F892B78B6AF7C455CCD6862D4DD3AFF6 /* EdgeInsets.swift */; };
-		9FBB8E18ACE0663C4454836CB21DE581 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CC6FA014BC31E64407992E3D29368BC /* EVObject.swift */; };
-		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 248F4AB6CBF678FFFCE046A6DBB20F0B /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		A59840161CA0D7B8E8C46EA88B8721D9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */; };
-		AE76FA35D673350679C3774652D1D56A /* EVSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0E032EC6E43744BF65117E39D888DD /* EVSort.swift */; };
-		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 44485274741B11262C34EA265E285780 /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		B0CA76B9F5E7FA851293E8035B6A5A84 /* EVReflection-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AE5A0EE5F38005AD054705170226CF0 /* EVReflection-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F66705F5A222E6953CE025A17D9C40A /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BE0838B6F61D200F37B74083DEF13713 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68BCA869DE98FD4BE062F7D8600B366E /* ConstraintItem.swift */; };
-		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = F279A63295468BAEDF1A4891771AA2D9 /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C310068ABB97D6FAA6BEC7CC315BAAA0 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19C9C9548FE516BD9A3B59E819672ECA /* ConstraintDescription.swift */; };
-		C3A3442AD6A0F26E43C256CE4F3075A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */; };
-		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 15132A296EE0AB722D1A6D0AC0909B53 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		CFCED6E85F06BD6A8D7F4D0D2F3E1D3F /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6AF540306A3F0FFB9860A748B7E414 /* SnapKit-dummy.m */; };
+		53CE5FF681A1A106D98F601AB9E80B5E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AFF816C72CB95A20325967FA49FB53C /* ConstraintAttributes.swift */; };
+		5847A00A2094EC333A91FFBFC9CD7258 /* EVCloudKitDao-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7496F1CCFA2550002F4A02DA89D10B60 /* EVCloudKitDao-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		58BA23010623ADD8B65C078B989F3F0F /* EVExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37A7FDC8EB571FCEF0DA7E08FD25563E /* EVExtensions.swift */; };
+		5A53267DA5B4CFF8440F58E07B4D74C7 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA8C3F57F47C597EF17B99A052917031 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5A86306FC584FDB3A9DDF10A5DA30BF6 /* EVCloudKitDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F5D879BA5DAED3A857139A01557E828 /* EVCloudKitDataObject.swift */; };
+		65547597A093702CDE8DFB293B80C1B7 /* EVObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907902B016B076D4DC6F2F5666C20EF2 /* EVObject.swift */; };
+		66D6CA16EF2371E39FAB73473A89D8C1 /* NSDate+DateTools.h in Headers */ = {isa = PBXBuildFile; fileRef = FD042A2AFF14E9CBB3723A279DC83D95 /* NSDate+DateTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6F00A3D837A718CBC5D7C7157CCF71A2 /* DTTimePeriodGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = B616C53E9011EDF8427119AD66A19A9B /* DTTimePeriodGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7139E85552B07B9DC712AD058205DFF2 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D6D5B53DCC7023CA758CCB63231C037 /* CloudKit.framework */; };
+		72539E1BA48FDE1DD877350F331F8894 /* ViewController+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A9816939643D695817F852597A8EC6C /* ViewController+SnapKit.swift */; };
+		729719BE516B8080199215BB6A52117A /* DateTools-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6CBE396A9831E216883B9BE2634E3451 /* DateTools-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7902018FD0635F9A5E4C13BFD67E3750 /* DateTools.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3A4237851FB1F250AEAF79FAE463EF31 /* DateTools.bundle */; };
+		79D97CB8955D3B749DF15906DCDD222E /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B661DDD4C5E0BF4422B21821612C29A /* ConstraintMaker.swift */; };
+		7A3C7A5DAEB1C695F060F0248053A1A6 /* NSDate+DateTools.m in Sources */ = {isa = PBXBuildFile; fileRef = CC60D8A4E12D46C4512194ECE6F38776 /* NSDate+DateTools.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		8012205003360DF6D6F16E8D04F15267 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69FA393E72A30328CD2793C86BAB4FE /* Debugging.swift */; };
+		801E845E678344633F3972FA4FC16B7C /* DTTimePeriodChain.m in Sources */ = {isa = PBXBuildFile; fileRef = B40E1A1A4F63165165EDCD31DDE924C2 /* DTTimePeriodChain.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		856AFEE2CA3D8C3372C5F9B1968E1008 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287B9E099E92F805620DFECD0E1EC234 /* Constraint.swift */; };
+		9BC7910A61F45206D435065CD0F23BA0 /* DTTimePeriod.h in Headers */ = {isa = PBXBuildFile; fileRef = 03AAEC76EC33FEF29773CE179E3F5511 /* DTTimePeriod.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D748D38BC95236287BD23F1B52CD6EA /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854FDF02C52F84696E2B6EC20DBFDB05 /* EdgeInsets.swift */; };
+		A4A5DE1784D58F0D9AC336BE0A4936C4 /* DTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 7AEA40FADCD509EC76A3F044E1D4E2AD /* DTConstants.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		AE76FA35D673350679C3774652D1D56A /* EVSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323766C9FCA0746BBB34B86B39EC8503 /* EVSort.swift */; };
+		AFF4480B4B63FA58209AEC8052207A92 /* DTTimePeriodCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = B97C189138A42D454D21D270B1B5E289 /* DTTimePeriodCollection.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		B0CA76B9F5E7FA851293E8035B6A5A84 /* EVReflection-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FA17787AC59C8AA952F93E75D7056D7 /* EVReflection-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4137B6F5B1EF819B8DF88A194F598ED /* DTError.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E0CC95B30759A8A1CCF6C8C6218AFEE /* DTError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B4EF8289C66BA23F33FAB41D775C6AAD /* EVReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7F1590A12AD0A811B3C775F10F5FA6 /* EVReflection.swift */; };
+		BE0838B6F61D200F37B74083DEF13713 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D6DAD0618831917FF1A54BEA3DA150 /* ConstraintItem.swift */; };
+		C16E0F1A698E02F1D49D4593A71BE38F /* DTConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FD4C30D1F686F2C77F97BAD7F9BA26 /* DTConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C310068ABB97D6FAA6BEC7CC315BAAA0 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889267C36C2DD47220133F85E46F188A /* ConstraintDescription.swift */; };
+		CC1CD7BAF05F362DECAA5698D1100896 /* DTError.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8F7AAD0FEF390E8A45DAFDDD9AF72 /* DTError.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		CD7BF8E7BE07829BEC1F681E09002654 /* EVReflection-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0702151A2BF1C5EE5DD902771F2F3E24 /* EVReflection-dummy.m */; };
+		CFCED6E85F06BD6A8D7F4D0D2F3E1D3F /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F70E96335B702447FCA6A81B7FC0D6 /* SnapKit-dummy.m */; };
 		D744742DEB78D95824A8FC9761E73F0E /* Pods-Recognition-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8A1C7C32FD783DEB96258B893BF727 /* Pods-Recognition-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 4043B8B2A50B707E76AE7CF45FA7FCE5 /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		DDD8A746BB2B9E0189CD6E872E517791 /* EVCloudKitDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7408F398BC84B0B73FF294D10E85B57 /* EVCloudKitDao.swift */; };
-		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 3DD1D926E5547D7A7DFF9FEBEAF671AC /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 1FE1AA397C6BCA9B899BBE498BCDEC2C /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FD2EC4B66FECC08D7BBE5C305E40C3EA /* EVCloudKitDao-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F3E408A1644DEC154729ADABD03D5831 /* EVCloudKitDao-dummy.m */; };
+		DD710EA2C8E2D3E0917519775D1F571C /* DTTimePeriodGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3325428C809D72079FBDD334048A4B /* DTTimePeriodGroup.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		DDD8A746BB2B9E0189CD6E872E517791 /* EVCloudKitDao.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420417A8C60583C9E2ED721B4C9A7890 /* EVCloudKitDao.swift */; };
+		DFBFDB682BD3A1A170DF625C79BB01D4 /* EVWorkaroundHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D943A21D164E8208E0590048D9707D7 /* EVWorkaroundHelpers.swift */; };
+		E3832DA37918850AB4AAF695CDF73657 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */; };
+		E3C1314B3E825850525C07406FC2F45D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */; };
+		ED23F2E7F716AE0E370F58FD1188FBEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */; };
+		EE13D588E52431089F7406353C90A144 /* DTTimePeriodChain.h in Headers */ = {isa = PBXBuildFile; fileRef = 48037C2EDAA505E2AFB58A03EDB8990D /* DTTimePeriodChain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F423AB12C14DA731C42897A3D929D2B8 /* DTTimePeriodCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = D51D0A99DE488A8B3C7D891C8029D6BA /* DTTimePeriodCollection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FD2EC4B66FECC08D7BBE5C305E40C3EA /* EVCloudKitDao-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A6DAE56982AD8749FF6D8DA9A9727640 /* EVCloudKitDao-dummy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,88 +103,87 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		09FFC7E6C5039C271CCFAE296F1B5870 /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
+		03AAEC76EC33FEF29773CE179E3F5511 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
+		0702151A2BF1C5EE5DD902771F2F3E24 /* EVReflection-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVReflection-dummy.m"; sourceTree = "<group>"; };
 		0A093489FDC67447CCE395F8148494E2 /* DateTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DateTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		15132A296EE0AB722D1A6D0AC0909B53 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
-		174FF5C9BCB5ECB595E7F9B8D1171DC0 /* DTTimePeriod.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriod.h; path = DateTools/DTTimePeriod.h; sourceTree = "<group>"; };
-		17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		1882876F73F89F9BD7CA17ACBBDB5D99 /* EVCloudData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudData.swift; path = AppMessage/AppMessage/CloudKit/EVCloudData.swift; sourceTree = "<group>"; };
-		19C9C9548FE516BD9A3B59E819672ECA /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
-		19F8E927B0790FCA2670053E623F16E1 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
-		1BFB134DA850A46E3FB22D87E0AB52CE /* EVExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVExtensions.swift; path = EVReflection/pod/EVExtensions.swift; sourceTree = "<group>"; };
+		0A9816939643D695817F852597A8EC6C /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ViewController+SnapKit.swift"; path = "Source/ViewController+SnapKit.swift"; sourceTree = "<group>"; };
+		0FA17787AC59C8AA952F93E75D7056D7 /* EVReflection-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-umbrella.h"; sourceTree = "<group>"; };
+		11EBC07F98B7EDFDF630AD243C82CCE4 /* View+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+SnapKit.swift"; path = "Source/View+SnapKit.swift"; sourceTree = "<group>"; };
 		1DEAAF3D6E8ABE6F3BC0B1204ECE3847 /* Pods-Recognition-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Recognition-resources.sh"; sourceTree = "<group>"; };
-		1EAE96A1C0E218BC2957EA08E4FEF3CC /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
-		1EFDBC7DA2BF03B8DAFCFC7B88389C85 /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
-		1FE1AA397C6BCA9B899BBE498BCDEC2C /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
-		21DC14CC071F5D34BDD33A1E5B80C713 /* EVReflection.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EVReflection.modulemap; sourceTree = "<group>"; };
-		23A9CDF74318D971F88AC718CE00A3C0 /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
-		248F4AB6CBF678FFFCE046A6DBB20F0B /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
-		256C0E5E1B5FFD3AE08B6BDAF9F31F78 /* EVglobal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVglobal.swift; path = AppMessage/AppMessage/CloudKit/EVglobal.swift; sourceTree = "<group>"; };
+		23D6DAD0618831917FF1A54BEA3DA150 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
+		287B9E099E92F805620DFECD0E1EC234 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
+		28E315657AF0824A48BA51C970F80F89 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
+		2BE8F7AAD0FEF390E8A45DAFDDD9AF72 /* DTError.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTError.m; path = DateTools/DTError.m; sourceTree = "<group>"; };
 		2C8A1C7C32FD783DEB96258B893BF727 /* Pods-Recognition-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Recognition-umbrella.h"; sourceTree = "<group>"; };
-		2CC6FA014BC31E64407992E3D29368BC /* EVObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVObject.swift; path = EVReflection/pod/EVObject.swift; sourceTree = "<group>"; };
-		3629791DA99BA0739B01535821C196C9 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
-		3A95293B7A68199EDB185D36C6C531A4 /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
-		3D6AF540306A3F0FFB9860A748B7E414 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
-		3DD1D926E5547D7A7DFF9FEBEAF671AC /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
-		3E209B75D2E964F5CE4BE754677CF0C4 /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
-		4043B8B2A50B707E76AE7CF45FA7FCE5 /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
-		44485274741B11262C34EA265E285780 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
-		4602FB87C3E612440CD7172684B872A3 /* EVCloudKitDao.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EVCloudKitDao.modulemap; sourceTree = "<group>"; };
+		2F5C98C0C1CD18195E41D27B414614A4 /* DateTools-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "DateTools-dummy.m"; sourceTree = "<group>"; };
+		31F1234127D752A784FB01AEDF414F7F /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
+		323766C9FCA0746BBB34B86B39EC8503 /* EVSort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVSort.swift; path = AppMessage/AppMessage/CloudKit/EVSort.swift; sourceTree = "<group>"; };
+		331434522E10B4E1D9DD2D456E7D3C84 /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
+		37A7FDC8EB571FCEF0DA7E08FD25563E /* EVExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVExtensions.swift; path = EVReflection/pod/EVExtensions.swift; sourceTree = "<group>"; };
+		37F70E96335B702447FCA6A81B7FC0D6 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
+		39AFFFC95CECD83DD60F6B0A5CE845FB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3A4237851FB1F250AEAF79FAE463EF31 /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
+		420417A8C60583C9E2ED721B4C9A7890 /* EVCloudKitDao.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitDao.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitDao.swift; sourceTree = "<group>"; };
+		48037C2EDAA505E2AFB58A03EDB8990D /* DTTimePeriodChain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodChain.h; path = DateTools/DTTimePeriodChain.h; sourceTree = "<group>"; };
 		484D1B10856DA57B8A86C136C9D2CB8B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4AECE70ADE5ED8C5B6D01C3B134D43AB /* EVReflection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVReflection.xcconfig; sourceTree = "<group>"; };
+		4B661DDD4C5E0BF4422B21821612C29A /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
+		4E0CC95B30759A8A1CCF6C8C6218AFEE /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
 		4E2D19F7A00680DC107EC58EAAAB3848 /* Pods-Recognition-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Recognition-dummy.m"; sourceTree = "<group>"; };
-		4F66705F5A222E6953CE025A17D9C40A /* DTError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTError.h; path = DateTools/DTError.h; sourceTree = "<group>"; };
+		503E441B100388066B325995425D263B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B4EE7A4FDE146B144B450C2428D81B /* EVReflection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EVReflection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		51DE86016CDD2F140997B4F23867695B /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
-		526645F94A31158B806D0BDA79D6C59E /* SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SnapKit.swift; path = Source/SnapKit.swift; sourceTree = "<group>"; };
+		53BC3FCD49E6292373F77EA60C8AA769 /* EVglobal.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVglobal.swift; path = AppMessage/AppMessage/CloudKit/EVglobal.swift; sourceTree = "<group>"; };
+		54809331E7F4C0243A73E6569BB477C4 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SnapKit.modulemap; sourceTree = "<group>"; };
 		58EFE65F5EE1B48CA5776EB134B229D3 /* EVReflection.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EVReflection.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5BC29A6FD39E5887E73092FB937F72D1 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
-		68BCA869DE98FD4BE062F7D8600B366E /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
-		6C530B83E17D6B4F05587A2B14A58135 /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
-		6F68FD09B6A281E4C41262347B4E8A69 /* EVObjectDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVObjectDescription.swift; path = EVReflection/pod/EVObjectDescription.swift; sourceTree = "<group>"; };
-		78A9E8F9FB705DEEAB3E296A17BB996D /* EVReflection-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVReflection-dummy.m"; sourceTree = "<group>"; };
-		7A7D7A532F01FA8283233E08F93A0C3F /* EVCloudKitDao-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVCloudKitDao-umbrella.h"; sourceTree = "<group>"; };
+		6AFF816C72CB95A20325967FA49FB53C /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
+		6CBE396A9831E216883B9BE2634E3451 /* DateTools-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-umbrella.h"; sourceTree = "<group>"; };
+		6F268E00CE59DB17C9218CE7F4E938F1 /* EVReflection.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EVReflection.modulemap; sourceTree = "<group>"; };
+		730C21B50F121DF176C53AF05B9F760D /* DateTools.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = DateTools.xcconfig; sourceTree = "<group>"; };
+		7496F1CCFA2550002F4A02DA89D10B60 /* EVCloudKitDao-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVCloudKitDao-umbrella.h"; sourceTree = "<group>"; };
+		7AEA40FADCD509EC76A3F044E1D4E2AD /* DTConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTConstants.m; path = DateTools/DTConstants.m; sourceTree = "<group>"; };
 		7CB54F25296C51DF06C4B5B5D3E22215 /* Pods-Recognition-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Recognition-acknowledgements.plist"; sourceTree = "<group>"; };
-		7D409B2444211ABF03B86FE863333581 /* EVCloudKitDataObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitDataObject.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitDataObject.swift; sourceTree = "<group>"; };
-		822A32EBF7B5287765DBC3A128A11907 /* EVCloudKitDao-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVCloudKitDao-prefix.pch"; sourceTree = "<group>"; };
-		83D12B96867482CD846DA821B93EF47F /* DateTools.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = DateTools.bundle; path = DateTools/DateTools.bundle; sourceTree = "<group>"; };
-		85F908A31477B2F8ACC282D8B94E14E6 /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
-		87AB172F6A624D635BB6EF11B3F9110A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D6D5B53DCC7023CA758CCB63231C037 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
+		8109863C6FCE53AD6CCB64F544ACE5D9 /* EVCloudKitDao.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVCloudKitDao.xcconfig; sourceTree = "<group>"; };
+		854FDF02C52F84696E2B6EC20DBFDB05 /* EdgeInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EdgeInsets.swift; path = Source/EdgeInsets.swift; sourceTree = "<group>"; };
+		87FD4C30D1F686F2C77F97BAD7F9BA26 /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
+		889267C36C2DD47220133F85E46F188A /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
 		8BC808663B552605563B34B532844B4A /* Pods-Recognition-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Recognition-frameworks.sh"; sourceTree = "<group>"; };
-		8D761CFC0640B644DFBE61020AC67AC5 /* ViewController+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ViewController+SnapKit.swift"; path = "Source/ViewController+SnapKit.swift"; sourceTree = "<group>"; };
+		907902B016B076D4DC6F2F5666C20EF2 /* EVObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVObject.swift; path = EVReflection/pod/EVObject.swift; sourceTree = "<group>"; };
+		9092659B4A7F1CFDDEF4A1F86F4338BB /* DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DateTools.h; path = DateTools/DateTools.h; sourceTree = "<group>"; };
 		92E073D9CB14FFDD3F0A30EC1A807378 /* Pods-Recognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Recognition.release.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		94772665BA5A3FF29E962D539056F711 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
-		96B42ACF0BEC12AD23506B1283435D94 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
-		9A0E032EC6E43744BF65117E39D888DD /* EVSort.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVSort.swift; path = AppMessage/AppMessage/CloudKit/EVSort.swift; sourceTree = "<group>"; };
-		9AE5A0EE5F38005AD054705170226CF0 /* EVReflection-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-umbrella.h"; sourceTree = "<group>"; };
+		9D943A21D164E8208E0590048D9707D7 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVWorkaroundHelpers.swift; path = EVReflection/pod/EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
+		9F5D879BA5DAED3A857139A01557E828 /* EVCloudKitDataObject.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitDataObject.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitDataObject.swift; sourceTree = "<group>"; };
+		A09FBA77451AA8EBD5345CD7C6FCD2C9 /* EVReflection.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVReflection.xcconfig; sourceTree = "<group>"; };
 		A28A75E2BE9602C703F0028EB78720DB /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A770AA87AC56F34E1D4615B6AEFC3EF5 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
-		A7CCB1C4B6B504B3AF0C8744CF3C9F65 /* EVCloudKitEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitEnums.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitEnums.swift; sourceTree = "<group>"; };
-		ADF8B3C20B930F5C8774A3B7E97A109C /* View+SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+SnapKit.swift"; path = "Source/View+SnapKit.swift"; sourceTree = "<group>"; };
+		A6DAE56982AD8749FF6D8DA9A9727640 /* EVCloudKitDao-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVCloudKitDao-dummy.m"; sourceTree = "<group>"; };
+		A934E36CABC46DD024EC3D4DB6CAE1ED /* DateTools-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "DateTools-prefix.pch"; sourceTree = "<group>"; };
+		AA38346950868EF20A0530D5A713EEE9 /* EVReflection-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-prefix.pch"; sourceTree = "<group>"; };
 		B0DC8238BE0A2AE39BFC0EE1D221DEAE /* Pods-Recognition-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Recognition-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B30A5135C86949774285BF233BE374F8 /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
+		B40E1A1A4F63165165EDCD31DDE924C2 /* DTTimePeriodChain.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodChain.m; path = DateTools/DTTimePeriodChain.m; sourceTree = "<group>"; };
 		B4474679B8280109589E21CAAF2057AB /* Pods-Recognition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Recognition.debug.xcconfig"; sourceTree = "<group>"; };
+		B616C53E9011EDF8427119AD66A19A9B /* DTTimePeriodGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodGroup.h; path = DateTools/DTTimePeriodGroup.h; sourceTree = "<group>"; };
 		B7D5F8024C27423E8D37DE3968084683 /* EVCloudKitDao.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EVCloudKitDao.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF299B9D5B4AAB1DDD12DAF60E5EEA71 /* EVCloudKitDao.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = EVCloudKitDao.xcconfig; sourceTree = "<group>"; };
+		B907B125326D33E35202BF55B2C4FC62 /* DateTools.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = DateTools.modulemap; sourceTree = "<group>"; };
+		B97C189138A42D454D21D270B1B5E289 /* DTTimePeriodCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodCollection.m; path = DateTools/DTTimePeriodCollection.m; sourceTree = "<group>"; };
+		BA8C3F57F47C597EF17B99A052917031 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
+		BD7F1590A12AD0A811B3C775F10F5FA6 /* EVReflection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflection.swift; path = EVReflection/pod/EVReflection.swift; sourceTree = "<group>"; };
+		BDBCB1624119816713DE956DE50A3130 /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
+		C50971C68506AFA2047648E69BCA7DD8 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C58CC9051A2E876137D8E87C765E1454 /* Pods-Recognition.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Recognition.modulemap"; sourceTree = "<group>"; };
-		CBBEFB0B40BABB7DC21EF6712FEC02BC /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.2.sdk/System/Library/Frameworks/CloudKit.framework; sourceTree = DEVELOPER_DIR; };
-		CD09E478174F396579B5762588A81737 /* EVWorkaroundHelpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVWorkaroundHelpers.swift; path = EVReflection/pod/EVWorkaroundHelpers.swift; sourceTree = "<group>"; };
+		CBC53690794C955110303AE1B9DBD71E /* EVCloudKitEnums.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitEnums.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitEnums.swift; sourceTree = "<group>"; };
+		CC60D8A4E12D46C4512194ECE6F38776 /* NSDate+DateTools.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSDate+DateTools.m"; path = "DateTools/NSDate+DateTools.m"; sourceTree = "<group>"; };
+		CD0B0A71C44A79DE70586F118E9AD53D /* EVCloudKitDao-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVCloudKitDao-prefix.pch"; sourceTree = "<group>"; };
 		CD4A591B87658EB1808548BD13E02773 /* Pods_Recognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CD7F7D023B713FDD54F596D5575E322B /* DTTimePeriod.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriod.m; path = DateTools/DTTimePeriod.m; sourceTree = "<group>"; };
-		D4EC1A40C68ECC1CE24D1BD6591DBE96 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5EF4CAD500794592A41B7E383A2C85B /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
-		D737113A0D1071C8F3C79B3007C55E46 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
-		D7408F398BC84B0B73FF294D10E85B57 /* EVCloudKitDao.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudKitDao.swift; path = AppMessage/AppMessage/CloudKit/EVCloudKitDao.swift; sourceTree = "<group>"; };
-		DC962EFDB28542094E6B3D984AC72312 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
-		E5BE4B5776CDFA9D8E3402FA91DEAC8B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EF00B09F5E299F571DB75E8D1A0CC80B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F06004A086809283CFAD3664982CA1C5 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
-		F279A63295468BAEDF1A4891771AA2D9 /* DTConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTConstants.h; path = DateTools/DTConstants.h; sourceTree = "<group>"; };
-		F3E408A1644DEC154729ADABD03D5831 /* EVCloudKitDao-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "EVCloudKitDao-dummy.m"; sourceTree = "<group>"; };
-		F4D953BB969BD5D25821E7FAEFE1EAE8 /* EVReflection-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "EVReflection-prefix.pch"; sourceTree = "<group>"; };
-		F892B78B6AF7C455CCD6862D4DD3AFF6 /* EdgeInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EdgeInsets.swift; path = Source/EdgeInsets.swift; sourceTree = "<group>"; };
-		FE684070BD5E01CF1521974C62B7FE43 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SnapKit.modulemap; sourceTree = "<group>"; };
-		FFC866AAFCF15D7B07245173C8B08C1F /* EVReflection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVReflection.swift; path = EVReflection/pod/EVReflection.swift; sourceTree = "<group>"; };
+		D1FB467B9085DEB368AFB522D7021D2F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D51D0A99DE488A8B3C7D891C8029D6BA /* DTTimePeriodCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = DTTimePeriodCollection.h; path = DateTools/DTTimePeriodCollection.h; sourceTree = "<group>"; };
+		D69FA393E72A30328CD2793C86BAB4FE /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
+		D6EC97E7B2AA78F04C142F4C3BF45EEA /* EVCloudData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EVCloudData.swift; path = AppMessage/AppMessage/CloudKit/EVCloudData.swift; sourceTree = "<group>"; };
+		DCA9D56D5545141335A0EB9E8D343ECF /* SnapKit.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SnapKit.swift; path = Source/SnapKit.swift; sourceTree = "<group>"; };
+		EA3325428C809D72079FBDD334048A4B /* DTTimePeriodGroup.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DTTimePeriodGroup.m; path = DateTools/DTTimePeriodGroup.m; sourceTree = "<group>"; };
+		EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		F6F4B6BF8FAEC10967051939B833688B /* EVCloudKitDao.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = EVCloudKitDao.modulemap; sourceTree = "<group>"; };
+		FD042A2AFF14E9CBB3723A279DC83D95 /* NSDate+DateTools.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSDate+DateTools.h"; path = "DateTools/NSDate+DateTools.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,7 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A59840161CA0D7B8E8C46EA88B8721D9 /* Foundation.framework in Frameworks */,
+				1CFA8732590E75CD31A1D0D7F37EE894 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,9 +199,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D57C7832C4CF11D20649B7FB77BF20D /* CloudKit.framework in Frameworks */,
+				7139E85552B07B9DC712AD058205DFF2 /* CloudKit.framework in Frameworks */,
 				4DBAC8925EB6ED9A9D84566BDB04290B /* EVReflection.framework in Frameworks */,
-				30B9F3B513FF3337EAC5554B728471CA /* Foundation.framework in Frameworks */,
+				ED23F2E7F716AE0E370F58FD1188FBEB /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,7 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				844A3F437D262EA60421F56BE3C578EF /* Foundation.framework in Frameworks */,
+				E3832DA37918850AB4AAF695CDF73657 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +217,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3A3442AD6A0F26E43C256CE4F3075A1 /* Foundation.framework in Frameworks */,
+				491648434A22622F749A7DFCFD394A69 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,48 +225,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A942595C1C7A1B31044F0160988E59 /* Foundation.framework in Frameworks */,
+				E3C1314B3E825850525C07406FC2F45D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02DB2B045006DB36790EF78316273DD7 /* Support Files */ = {
+		03AC1CD88F543912FF1B0079F480D184 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				85F908A31477B2F8ACC282D8B94E14E6 /* DateTools.modulemap */,
-				1EFDBC7DA2BF03B8DAFCFC7B88389C85 /* DateTools.xcconfig */,
-				3E209B75D2E964F5CE4BE754677CF0C4 /* DateTools-dummy.m */,
-				23A9CDF74318D971F88AC718CE00A3C0 /* DateTools-prefix.pch */,
-				5BC29A6FD39E5887E73092FB937F72D1 /* DateTools-umbrella.h */,
-				D4EC1A40C68ECC1CE24D1BD6591DBE96 /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/DateTools";
-			sourceTree = "<group>";
-		};
-		0967347A3082E0A1235A7AB865F09882 /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				CBBEFB0B40BABB7DC21EF6712FEC02BC /* CloudKit.framework */,
-				17DDF4FAA3DD08B38B03E3101360D783 /* Foundation.framework */,
+				7D6D5B53DCC7023CA758CCB63231C037 /* CloudKit.framework */,
+				EA5F5648500FA04747C18C7124D7A48E /* Foundation.framework */,
 			);
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		1658DE42A6E29D46AE507D5B55AC6F9F /* EVCloudKitDao */ = {
+		1368B9C9E356085EB9127DD0C0BD849A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				1882876F73F89F9BD7CA17ACBBDB5D99 /* EVCloudData.swift */,
-				D7408F398BC84B0B73FF294D10E85B57 /* EVCloudKitDao.swift */,
-				7D409B2444211ABF03B86FE863333581 /* EVCloudKitDataObject.swift */,
-				A7CCB1C4B6B504B3AF0C8744CF3C9F65 /* EVCloudKitEnums.swift */,
-				256C0E5E1B5FFD3AE08B6BDAF9F31F78 /* EVglobal.swift */,
-				9A0E032EC6E43744BF65117E39D888DD /* EVSort.swift */,
-				D886FB0374DD5223725F0C3008D8684A /* Support Files */,
+				3A4237851FB1F250AEAF79FAE463EF31 /* DateTools.bundle */,
 			);
-			path = EVCloudKitDao;
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		1ADEB9997852C6C612FCE06C28E03A48 /* DateTools */ = {
+			isa = PBXGroup;
+			children = (
+				9092659B4A7F1CFDDEF4A1F86F4338BB /* DateTools.h */,
+				87FD4C30D1F686F2C77F97BAD7F9BA26 /* DTConstants.h */,
+				7AEA40FADCD509EC76A3F044E1D4E2AD /* DTConstants.m */,
+				4E0CC95B30759A8A1CCF6C8C6218AFEE /* DTError.h */,
+				2BE8F7AAD0FEF390E8A45DAFDDD9AF72 /* DTError.m */,
+				03AAEC76EC33FEF29773CE179E3F5511 /* DTTimePeriod.h */,
+				331434522E10B4E1D9DD2D456E7D3C84 /* DTTimePeriod.m */,
+				48037C2EDAA505E2AFB58A03EDB8990D /* DTTimePeriodChain.h */,
+				B40E1A1A4F63165165EDCD31DDE924C2 /* DTTimePeriodChain.m */,
+				D51D0A99DE488A8B3C7D891C8029D6BA /* DTTimePeriodCollection.h */,
+				B97C189138A42D454D21D270B1B5E289 /* DTTimePeriodCollection.m */,
+				B616C53E9011EDF8427119AD66A19A9B /* DTTimePeriodGroup.h */,
+				EA3325428C809D72079FBDD334048A4B /* DTTimePeriodGroup.m */,
+				FD042A2AFF14E9CBB3723A279DC83D95 /* NSDate+DateTools.h */,
+				CC60D8A4E12D46C4512194ECE6F38776 /* NSDate+DateTools.m */,
+				1368B9C9E356085EB9127DD0C0BD849A /* Resources */,
+				65749564AAB5110E691CE1827FF8F71B /* Support Files */,
+			);
+			path = DateTools;
 			sourceTree = "<group>";
 		};
 		3A9212FA1643D747B3E5786C927365A1 /* Products */ = {
@@ -283,25 +285,41 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FF9AC70D453EBCB2AE67563FB1B027F /* EVReflection */ = {
+		3BFF9F41DCD37EF44687F331A6973E9E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BFB134DA850A46E3FB22D87E0AB52CE /* EVExtensions.swift */,
-				2CC6FA014BC31E64407992E3D29368BC /* EVObject.swift */,
-				6F68FD09B6A281E4C41262347B4E8A69 /* EVObjectDescription.swift */,
-				FFC866AAFCF15D7B07245173C8B08C1F /* EVReflection.swift */,
-				CD09E478174F396579B5762588A81737 /* EVWorkaroundHelpers.swift */,
-				F78594D90CEA611506CEA31D4C0D7A6C /* Support Files */,
+				1ADEB9997852C6C612FCE06C28E03A48 /* DateTools */,
+				A1A4D79D05029CFE325D4C6AF814E34C /* EVCloudKitDao */,
+				44880C88A419F60093BA23930CACBB8E /* EVReflection */,
+				9016B7C9CF0BD96CBFF47719D3C5F8C1 /* SnapKit */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		44880C88A419F60093BA23930CACBB8E /* EVReflection */ = {
+			isa = PBXGroup;
+			children = (
+				37A7FDC8EB571FCEF0DA7E08FD25563E /* EVExtensions.swift */,
+				907902B016B076D4DC6F2F5666C20EF2 /* EVObject.swift */,
+				BD7F1590A12AD0A811B3C775F10F5FA6 /* EVReflection.swift */,
+				9D943A21D164E8208E0590048D9707D7 /* EVWorkaroundHelpers.swift */,
+				BBF18292360508369498F09430C123C9 /* Support Files */,
 			);
 			path = EVReflection;
 			sourceTree = "<group>";
 		};
-		61923A6B5FF5ECE01CD87DB33985EB87 /* Resources */ = {
+		65749564AAB5110E691CE1827FF8F71B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				83D12B96867482CD846DA821B93EF47F /* DateTools.bundle */,
+				B907B125326D33E35202BF55B2C4FC62 /* DateTools.modulemap */,
+				730C21B50F121DF176C53AF05B9F760D /* DateTools.xcconfig */,
+				2F5C98C0C1CD18195E41D27B414614A4 /* DateTools-dummy.m */,
+				A934E36CABC46DD024EC3D4DB6CAE1ED /* DateTools-prefix.pch */,
+				6CBE396A9831E216883B9BE2634E3451 /* DateTools-umbrella.h */,
+				C50971C68506AFA2047648E69BCA7DD8 /* Info.plist */,
 			);
-			name = Resources;
+			name = "Support Files";
+			path = "../Target Support Files/DateTools";
 			sourceTree = "<group>";
 		};
 		6F26AA0F8830AA461F983F0E40AD0A9C /* Targets Support Files */ = {
@@ -312,121 +330,100 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		75EA48B7735AB93A94C4C96858A9459B /* DateTools */ = {
-			isa = PBXGroup;
-			children = (
-				51DE86016CDD2F140997B4F23867695B /* DateTools.h */,
-				F279A63295468BAEDF1A4891771AA2D9 /* DTConstants.h */,
-				248F4AB6CBF678FFFCE046A6DBB20F0B /* DTConstants.m */,
-				4F66705F5A222E6953CE025A17D9C40A /* DTError.h */,
-				15132A296EE0AB722D1A6D0AC0909B53 /* DTError.m */,
-				174FF5C9BCB5ECB595E7F9B8D1171DC0 /* DTTimePeriod.h */,
-				CD7F7D023B713FDD54F596D5575E322B /* DTTimePeriod.m */,
-				3DD1D926E5547D7A7DFF9FEBEAF671AC /* DTTimePeriodChain.h */,
-				96B42ACF0BEC12AD23506B1283435D94 /* DTTimePeriodChain.m */,
-				1FE1AA397C6BCA9B899BBE498BCDEC2C /* DTTimePeriodCollection.h */,
-				44485274741B11262C34EA265E285780 /* DTTimePeriodCollection.m */,
-				09FFC7E6C5039C271CCFAE296F1B5870 /* DTTimePeriodGroup.h */,
-				4043B8B2A50B707E76AE7CF45FA7FCE5 /* DTTimePeriodGroup.m */,
-				6C530B83E17D6B4F05587A2B14A58135 /* NSDate+DateTools.h */,
-				1EAE96A1C0E218BC2957EA08E4FEF3CC /* NSDate+DateTools.m */,
-				61923A6B5FF5ECE01CD87DB33985EB87 /* Resources */,
-				02DB2B045006DB36790EF78316273DD7 /* Support Files */,
-			);
-			path = DateTools;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				E1E7151D5C9FACCF5EF338AA9D8B31BE /* Frameworks */,
-				944996F95A0291E346B874DC044C570F /* Pods */,
+				3BFF9F41DCD37EF44687F331A6973E9E /* Pods */,
 				3A9212FA1643D747B3E5786C927365A1 /* Products */,
 				6F26AA0F8830AA461F983F0E40AD0A9C /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		944996F95A0291E346B874DC044C570F /* Pods */ = {
+		83338115554F360FFBA4FD15FF467AFC /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				75EA48B7735AB93A94C4C96858A9459B /* DateTools */,
-				1658DE42A6E29D46AE507D5B55AC6F9F /* EVCloudKitDao */,
-				4FF9AC70D453EBCB2AE67563FB1B027F /* EVReflection */,
-				D26E6BB2F5560056D66906E3F2BC2B41 /* SnapKit */,
+				F6F4B6BF8FAEC10967051939B833688B /* EVCloudKitDao.modulemap */,
+				8109863C6FCE53AD6CCB64F544ACE5D9 /* EVCloudKitDao.xcconfig */,
+				A6DAE56982AD8749FF6D8DA9A9727640 /* EVCloudKitDao-dummy.m */,
+				CD0B0A71C44A79DE70586F118E9AD53D /* EVCloudKitDao-prefix.pch */,
+				7496F1CCFA2550002F4A02DA89D10B60 /* EVCloudKitDao-umbrella.h */,
+				D1FB467B9085DEB368AFB522D7021D2F /* Info.plist */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/EVCloudKitDao";
 			sourceTree = "<group>";
 		};
-		D26E6BB2F5560056D66906E3F2BC2B41 /* SnapKit */ = {
+		86186E3D608C0069932BFF2B8E2C8D4E /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				DC962EFDB28542094E6B3D984AC72312 /* Constraint.swift */,
-				94772665BA5A3FF29E962D539056F711 /* ConstraintAttributes.swift */,
-				19C9C9548FE516BD9A3B59E819672ECA /* ConstraintDescription.swift */,
-				68BCA869DE98FD4BE062F7D8600B366E /* ConstraintItem.swift */,
-				D5EF4CAD500794592A41B7E383A2C85B /* ConstraintMaker.swift */,
-				19F8E927B0790FCA2670053E623F16E1 /* ConstraintRelation.swift */,
-				A770AA87AC56F34E1D4615B6AEFC3EF5 /* Debugging.swift */,
-				F892B78B6AF7C455CCD6862D4DD3AFF6 /* EdgeInsets.swift */,
-				3A95293B7A68199EDB185D36C6C531A4 /* LayoutConstraint.swift */,
-				526645F94A31158B806D0BDA79D6C59E /* SnapKit.swift */,
-				ADF8B3C20B930F5C8774A3B7E97A109C /* View+SnapKit.swift */,
-				8D761CFC0640B644DFBE61020AC67AC5 /* ViewController+SnapKit.swift */,
-				D4C12429484673B3CA551C1D20E68323 /* Support Files */,
-			);
-			path = SnapKit;
-			sourceTree = "<group>";
-		};
-		D4C12429484673B3CA551C1D20E68323 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				E5BE4B5776CDFA9D8E3402FA91DEAC8B /* Info.plist */,
-				FE684070BD5E01CF1521974C62B7FE43 /* SnapKit.modulemap */,
-				3629791DA99BA0739B01535821C196C9 /* SnapKit.xcconfig */,
-				3D6AF540306A3F0FFB9860A748B7E414 /* SnapKit-dummy.m */,
-				D737113A0D1071C8F3C79B3007C55E46 /* SnapKit-prefix.pch */,
-				F06004A086809283CFAD3664982CA1C5 /* SnapKit-umbrella.h */,
+				503E441B100388066B325995425D263B /* Info.plist */,
+				54809331E7F4C0243A73E6569BB477C4 /* SnapKit.modulemap */,
+				BDBCB1624119816713DE956DE50A3130 /* SnapKit.xcconfig */,
+				37F70E96335B702447FCA6A81B7FC0D6 /* SnapKit-dummy.m */,
+				28E315657AF0824A48BA51C970F80F89 /* SnapKit-prefix.pch */,
+				BA8C3F57F47C597EF17B99A052917031 /* SnapKit-umbrella.h */,
 			);
 			name = "Support Files";
 			path = "../Target Support Files/SnapKit";
 			sourceTree = "<group>";
 		};
-		D886FB0374DD5223725F0C3008D8684A /* Support Files */ = {
+		9016B7C9CF0BD96CBFF47719D3C5F8C1 /* SnapKit */ = {
 			isa = PBXGroup;
 			children = (
-				4602FB87C3E612440CD7172684B872A3 /* EVCloudKitDao.modulemap */,
-				BF299B9D5B4AAB1DDD12DAF60E5EEA71 /* EVCloudKitDao.xcconfig */,
-				F3E408A1644DEC154729ADABD03D5831 /* EVCloudKitDao-dummy.m */,
-				822A32EBF7B5287765DBC3A128A11907 /* EVCloudKitDao-prefix.pch */,
-				7A7D7A532F01FA8283233E08F93A0C3F /* EVCloudKitDao-umbrella.h */,
-				87AB172F6A624D635BB6EF11B3F9110A /* Info.plist */,
+				287B9E099E92F805620DFECD0E1EC234 /* Constraint.swift */,
+				6AFF816C72CB95A20325967FA49FB53C /* ConstraintAttributes.swift */,
+				889267C36C2DD47220133F85E46F188A /* ConstraintDescription.swift */,
+				23D6DAD0618831917FF1A54BEA3DA150 /* ConstraintItem.swift */,
+				4B661DDD4C5E0BF4422B21821612C29A /* ConstraintMaker.swift */,
+				B30A5135C86949774285BF233BE374F8 /* ConstraintRelation.swift */,
+				D69FA393E72A30328CD2793C86BAB4FE /* Debugging.swift */,
+				854FDF02C52F84696E2B6EC20DBFDB05 /* EdgeInsets.swift */,
+				31F1234127D752A784FB01AEDF414F7F /* LayoutConstraint.swift */,
+				DCA9D56D5545141335A0EB9E8D343ECF /* SnapKit.swift */,
+				11EBC07F98B7EDFDF630AD243C82CCE4 /* View+SnapKit.swift */,
+				0A9816939643D695817F852597A8EC6C /* ViewController+SnapKit.swift */,
+				86186E3D608C0069932BFF2B8E2C8D4E /* Support Files */,
+			);
+			path = SnapKit;
+			sourceTree = "<group>";
+		};
+		A1A4D79D05029CFE325D4C6AF814E34C /* EVCloudKitDao */ = {
+			isa = PBXGroup;
+			children = (
+				D6EC97E7B2AA78F04C142F4C3BF45EEA /* EVCloudData.swift */,
+				420417A8C60583C9E2ED721B4C9A7890 /* EVCloudKitDao.swift */,
+				9F5D879BA5DAED3A857139A01557E828 /* EVCloudKitDataObject.swift */,
+				CBC53690794C955110303AE1B9DBD71E /* EVCloudKitEnums.swift */,
+				53BC3FCD49E6292373F77EA60C8AA769 /* EVglobal.swift */,
+				323766C9FCA0746BBB34B86B39EC8503 /* EVSort.swift */,
+				83338115554F360FFBA4FD15FF467AFC /* Support Files */,
+			);
+			path = EVCloudKitDao;
+			sourceTree = "<group>";
+		};
+		BBF18292360508369498F09430C123C9 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6F268E00CE59DB17C9218CE7F4E938F1 /* EVReflection.modulemap */,
+				A09FBA77451AA8EBD5345CD7C6FCD2C9 /* EVReflection.xcconfig */,
+				0702151A2BF1C5EE5DD902771F2F3E24 /* EVReflection-dummy.m */,
+				AA38346950868EF20A0530D5A713EEE9 /* EVReflection-prefix.pch */,
+				0FA17787AC59C8AA952F93E75D7056D7 /* EVReflection-umbrella.h */,
+				39AFFFC95CECD83DD60F6B0A5CE845FB /* Info.plist */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/EVCloudKitDao";
+			path = "../Target Support Files/EVReflection";
 			sourceTree = "<group>";
 		};
 		E1E7151D5C9FACCF5EF338AA9D8B31BE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				58EFE65F5EE1B48CA5776EB134B229D3 /* EVReflection.framework */,
-				0967347A3082E0A1235A7AB865F09882 /* iOS */,
+				03AC1CD88F543912FF1B0079F480D184 /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		F78594D90CEA611506CEA31D4C0D7A6C /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				21DC14CC071F5D34BDD33A1E5B80C713 /* EVReflection.modulemap */,
-				4AECE70ADE5ED8C5B6D01C3B134D43AB /* EVReflection.xcconfig */,
-				78A9E8F9FB705DEEAB3E296A17BB996D /* EVReflection-dummy.m */,
-				F4D953BB969BD5D25821E7FAEFE1EAE8 /* EVReflection-prefix.pch */,
-				9AE5A0EE5F38005AD054705170226CF0 /* EVReflection-umbrella.h */,
-				EF00B09F5E299F571DB75E8D1A0CC80B /* Info.plist */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/EVReflection";
 			sourceTree = "<group>";
 		};
 		FC8AE03E7FFF48505BF37384043A51D9 /* Pods-Recognition */ = {
@@ -579,7 +576,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 15B54FF8CD53412C32634AF9EF874685 /* Build configuration list for PBXNativeTarget "EVReflection" */;
 			buildPhases = (
-				5581567F5A7B1F3AB877DA311E600249 /* Sources */,
+				E9D4D025B669C4DCF8DA0F8FB5A8DF13 /* Sources */,
 				D65F309A7BCD4A378366BE352FDBE1E5 /* Frameworks */,
 				46E3FDBE881EBADBA8E59F9D0E643531 /* Headers */,
 			);
@@ -598,7 +595,7 @@
 		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
@@ -649,19 +646,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5581567F5A7B1F3AB877DA311E600249 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02AB9FB75D43C92347141C9821613887 /* EVExtensions.swift in Sources */,
-				9FBB8E18ACE0663C4454836CB21DE581 /* EVObject.swift in Sources */,
-				3C3892997E6EA9C30B08197EE0D22BA7 /* EVObjectDescription.swift in Sources */,
-				6F390C6CADD1B54EA827581C107D4AE4 /* EVReflection-dummy.m in Sources */,
-				92B84C02635CEBC06497804A2EE32ED7 /* EVReflection.swift in Sources */,
-				2063285D0E5507A1D077CA097DBAF039 /* EVWorkaroundHelpers.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		71B1D889CCEA12AA4B996A2FF71F4964 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -693,6 +677,18 @@
 				4835B689E7E8B352F6D5C3D1C87645DB /* SnapKit.swift in Sources */,
 				01CDCCC9F2F8108C7BF35081FA1CD0BF /* View+SnapKit.swift in Sources */,
 				72539E1BA48FDE1DD877350F331F8894 /* ViewController+SnapKit.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9D4D025B669C4DCF8DA0F8FB5A8DF13 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				58BA23010623ADD8B65C078B989F3F0F /* EVExtensions.swift in Sources */,
+				65547597A093702CDE8DFB293B80C1B7 /* EVObject.swift in Sources */,
+				CD7BF8E7BE07829BEC1F681E09002654 /* EVReflection-dummy.m in Sources */,
+				B4EF8289C66BA23F33FAB41D775C6AAD /* EVReflection.swift in Sources */,
+				DFBFDB682BD3A1A170DF625C79BB01D4 /* EVWorkaroundHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -740,65 +736,7 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		060203C167A6C479DF2C2D091B6405F9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFDBC7DA2BF03B8DAFCFC7B88389C85 /* DateTools.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DateTools/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = DateTools;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		079FFAD50F368D00BF1E363C9070A79F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AECE70ADE5ED8C5B6D01C3B134D43AB /* EVReflection.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EVReflection/EVReflection-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EVReflection/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EVReflection/EVReflection.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = EVReflection;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		0FEF5718042ECCEBCE6AD588391CB3C1 /* Release */ = {
+		01AE89D1AD8A8EE7F3617F9DDB27E9EC /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92E073D9CB14FFDD3F0A30EC1A807378 /* Pods-Recognition.release.xcconfig */;
 			buildSettings = {
@@ -825,15 +763,16 @@
 				PRODUCT_NAME = Pods_Recognition;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		30D2AFDE7F5BE827E484BBE6B1B9FFC3 /* Debug */ = {
+		0A7A2A913E5380BCC28A4890D4023F2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AECE70ADE5ED8C5B6D01C3B134D43AB /* EVReflection.xcconfig */;
+			baseConfigurationReference = BDBCB1624119816713DE956DE50A3130 /* SnapKit.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -844,26 +783,27 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/EVReflection/EVReflection-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/EVReflection/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/EVReflection/EVReflection.modulemap";
+				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = EVReflection;
+				PRODUCT_NAME = SnapKit;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		3F8433412FD472029AE4357AC2F8275B /* Debug */ = {
+		13B50285D4B49E483C33B2D9837265C4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF299B9D5B4AAB1DDD12DAF60E5EEA71 /* EVCloudKitDao.xcconfig */;
+			baseConfigurationReference = 8109863C6FCE53AD6CCB64F544ACE5D9 /* EVCloudKitDao.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -885,53 +825,83 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		811519CB8F683AC06F9C98B55AC40F11 /* Release */ = {
+		149B7D6E909299DE822F32AD7F342614 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 730C21B50F121DF176C53AF05B9F760D /* DateTools.xcconfig */;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"POD_CONFIGURATION_RELEASE=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DateTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = DateTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
-		882EB4391EC2E701934974DA86F7343F /* Debug */ = {
+		209D7D9A798908B9670EFF2B7ED42EE1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4474679B8280109589E21CAAF2057AB /* Pods-Recognition.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Recognition/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-Recognition/Pods-Recognition.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_Recognition;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		47BEF9D903506B003EA5C2B249729489 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -969,9 +939,168 @@
 			};
 			name = Debug;
 		};
-		97339FE691473DD0F1F8806018D9C1B8 /* Release */ = {
+		60706A2E1050614D05583E5EFBAC99C5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF299B9D5B4AAB1DDD12DAF60E5EEA71 /* EVCloudKitDao.xcconfig */;
+			baseConfigurationReference = A09FBA77451AA8EBD5345CD7C6FCD2C9 /* EVReflection.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EVReflection/EVReflection-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EVReflection/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EVReflection/EVReflection.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = EVReflection;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		69CCFDC7A6CBAF16C9710D75B68708C0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 730C21B50F121DF176C53AF05B9F760D /* DateTools.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/DateTools/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = DateTools;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		7FF6D335CC38DD33F93C6F7B18486E1E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BDBCB1624119816713DE956DE50A3130 /* SnapKit.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SnapKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8EDD22F5A756F9F2236F0FB8D182412E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A09FBA77451AA8EBD5345CD7C6FCD2C9 /* EVReflection.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/EVReflection/EVReflection-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/EVReflection/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/EVReflection/EVReflection.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = EVReflection;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AAF678CED40D3499169D10F63CA0719E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E35D02D03D6C107F53AA4895DAE2EAF0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8109863C6FCE53AD6CCB64F544ACE5D9 /* EVCloudKitDao.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -992,128 +1121,7 @@
 				PRODUCT_NAME = EVCloudKitDao;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		A6799B6594C8C37BB99EFCFF7BD15EB8 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFDBC7DA2BF03B8DAFCFC7B88389C85 /* DateTools.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/DateTools/DateTools-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/DateTools/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/DateTools/DateTools.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = DateTools;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		B5C0F9FDC791541C1812F161F0FB8907 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B4474679B8280109589E21CAAF2057AB /* Pods-Recognition.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-Recognition/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Recognition/Pods-Recognition.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_Recognition;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		C96B4BE38BAE04DDBD7073486400CCC9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3629791DA99BA0739B01535821C196C9 /* SnapKit.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = SnapKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		F402A277E52EBF5433C9D896DD7F4DE8 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3629791DA99BA0739B01535821C196C9 /* SnapKit.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/SnapKit/SnapKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SnapKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SnapKit/SnapKit.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = SnapKit;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1126,8 +1134,8 @@
 		07666EBA09BA7A043867AB650C314FB4 /* Build configuration list for PBXNativeTarget "Pods-Recognition" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				B5C0F9FDC791541C1812F161F0FB8907 /* Debug */,
-				0FEF5718042ECCEBCE6AD588391CB3C1 /* Release */,
+				209D7D9A798908B9670EFF2B7ED42EE1 /* Debug */,
+				01AE89D1AD8A8EE7F3617F9DDB27E9EC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1135,8 +1143,8 @@
 		15B54FF8CD53412C32634AF9EF874685 /* Build configuration list for PBXNativeTarget "EVReflection" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				30D2AFDE7F5BE827E484BBE6B1B9FFC3 /* Debug */,
-				079FFAD50F368D00BF1E363C9070A79F /* Release */,
+				60706A2E1050614D05583E5EFBAC99C5 /* Debug */,
+				8EDD22F5A756F9F2236F0FB8D182412E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1144,8 +1152,8 @@
 		2269D25D4262D419585A981D71BF540B /* Build configuration list for PBXNativeTarget "EVCloudKitDao" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3F8433412FD472029AE4357AC2F8275B /* Debug */,
-				97339FE691473DD0F1F8806018D9C1B8 /* Release */,
+				13B50285D4B49E483C33B2D9837265C4 /* Debug */,
+				E35D02D03D6C107F53AA4895DAE2EAF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1153,8 +1161,8 @@
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				882EB4391EC2E701934974DA86F7343F /* Debug */,
-				811519CB8F683AC06F9C98B55AC40F11 /* Release */,
+				47BEF9D903506B003EA5C2B249729489 /* Debug */,
+				AAF678CED40D3499169D10F63CA0719E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1162,8 +1170,8 @@
 		84414D6A065A79E1E77018E00D7538B5 /* Build configuration list for PBXNativeTarget "SnapKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C96B4BE38BAE04DDBD7073486400CCC9 /* Debug */,
-				F402A277E52EBF5433C9D896DD7F4DE8 /* Release */,
+				0A7A2A913E5380BCC28A4890D4023F2A /* Debug */,
+				7FF6D335CC38DD33F93C6F7B18486E1E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1171,8 +1179,8 @@
 		B43E01F5BF2588222B5923C17216C970 /* Build configuration list for PBXNativeTarget "DateTools" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A6799B6594C8C37BB99EFCFF7BD15EB8 /* Debug */,
-				060203C167A6C479DF2C2D091B6405F9 /* Release */,
+				149B7D6E909299DE822F32AD7F342614 /* Debug */,
+				69CCFDC7A6CBAF16C9710D75B68708C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "17C9A91E7F9E7BFA7D9E53C51B68B662"
-               BlueprintName = "EVCloudKitDao"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "EVCloudKitDao.framework">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '17C9A91E7F9E7BFA7D9E53C51B68B662'
+               BlueprintName = 'EVCloudKitDao'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'EVCloudKitDao.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
