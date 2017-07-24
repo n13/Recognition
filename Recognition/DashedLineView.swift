@@ -17,13 +17,13 @@ class DashedLineView: UIView {
     }
     
     init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         setup()
     }
     
     func setup() {
-        backgroundColor = UIColor.clearColor()
-        dashShape.strokeColor = Constants.ActiveColor.CGColor
+        backgroundColor = UIColor.clear
+        dashShape.strokeColor = Constants.ActiveColor.cgColor
         dashShape.lineWidth = 3
         //dashShape.lineDashPattern = [4, 4]
         self.layer.addSublayer(dashShape)
@@ -33,15 +33,15 @@ class DashedLineView: UIView {
         super.layoutSubviews()
         // make a line
         let path = UIBezierPath()
-        path.moveToPoint(CGPoint(x: 0, y: 0))
-        path.addLineToPoint(CGPoint(x: self.bounds.width, y: 0))
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: self.bounds.width, y: 0))
         // update layer
-        dashShape.path = path.CGPath
+        dashShape.path = path.cgPath
         dashShape.frame = self.bounds
     }
     
-    func placeBelowView(viewToUnderline: UIView) {
-        dashShape.strokeColor = Constants.ActiveColor.CGColor
+    func placeBelowView(_ viewToUnderline: UIView) {
+        dashShape.strokeColor = Constants.ActiveColor.cgColor
         dashShape.lineWidth = 4
         viewToUnderline.superview!.addSubview(self)
         snp_makeConstraints { make in

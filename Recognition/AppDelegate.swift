@@ -10,10 +10,10 @@ import UIKit
 import EVCloudKitDao
 
 enum NotificationStateMachine:Int {
-    case NotYetAsked = 0
-    case InProgressBeforeDialog = 1
-    case InProgressAfterDialog = 2
-    case AskedAndAnswered = 3
+    case notYetAsked = 0
+    case inProgressBeforeDialog = 1
+    case inProgressAfterDialog = 2
+    case askedAndAnswered = 3
 }
 
 @UIApplicationMain
@@ -23,21 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var settings = Settings()
     
-    var notificationState: NotificationStateMachine = .NotYetAsked
+    var notificationState: NotificationStateMachine = .notYetAsked
     
     var notificationsRegistered = false
     
     static func delegate() -> AppDelegate {
-        return UIApplication.sharedApplication().delegate! as! AppDelegate
+        return UIApplication.shared.delegate! as! AppDelegate
     }
     
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         //UIFont.listFonts() // DEBUG
         
         // track notifications state
-        notificationState = .NotYetAsked
+        notificationState = .notYetAsked
         
         // Settings defaults
         settings.setupDefaults()
@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ReminderEngine.reminderEngine.initEngine()
         
         // Appearance defaults
-        application.setStatusBarStyle(.LightContent, animated: false)
+        application.setStatusBarStyle(.lightContent, animated: false)
         UIBarButtonItem.appearance().tintColor = Constants.ActiveColor
         UIButton.appearance().tintColor = Constants.ActiveColor
         UISwitch.appearance().onTintColor = Constants.ActiveColor
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ]
         
         // Handle incoming notifications - app start because user pushed on a notification
-        if let notification = launchOptions?[UIApplicationLaunchOptionsLocalNotificationKey] as? UILocalNotification {
+        if let notification = launchOptions?[UIApplicationLaunchOptionsKey.localNotification] as? UILocalNotification {
             print("launching with notification: \(notification)")
             handleNotification(notification)
         }
@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func setupNotificationCategoriesAndActions() {
         
-        let types = UIUserNotificationType([.Badge, .Sound, .Alert])
+        let types = UIUserNotificationType([.badge, .sound, .alert])
         let recognitionCategory = UIMutableUserNotificationCategory()
         
         // Identifier to include in your push payload and local notification
@@ -79,80 +79,80 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let acceptAction = UIMutableUserNotificationAction()
         acceptAction.identifier = "ACCEPT"
         acceptAction.title = "Done"
-        acceptAction.activationMode = .Background
-        acceptAction.destructive = false
-        acceptAction.authenticationRequired = false
+        acceptAction.activationMode = .background
+        acceptAction.isDestructive = false
+        acceptAction.isAuthenticationRequired = false
 
         let declineAction = UIMutableUserNotificationAction()
         declineAction.identifier = "DECLINE"
         declineAction.title = "Not now"
-        declineAction.activationMode = .Background
-        declineAction.destructive = true
-        declineAction.authenticationRequired = false
+        declineAction.activationMode = .background
+        declineAction.isDestructive = true
+        declineAction.isAuthenticationRequired = false
         
         // Add the actions to the category and set the action context
-        recognitionCategory.setActions([acceptAction, declineAction], forContext: .Default)
+        recognitionCategory.setActions([acceptAction, declineAction], for: .default)
         // Set the actions to present in a minimal context
-        recognitionCategory.setActions([acceptAction, declineAction], forContext: .Minimal)
+        recognitionCategory.setActions([acceptAction, declineAction], for: .minimal)
         
         let categories = Set([recognitionCategory])
         
-        let notificationSettings = UIUserNotificationSettings(forTypes: types, categories: categories)
+        let notificationSettings = UIUserNotificationSettings(types: types, categories: categories)
         
-        notificationState = .InProgressBeforeDialog
+        notificationState = .inProgressBeforeDialog
         
         // this pops the dialog
-        UIApplication.sharedApplication().registerUserNotificationSettings(notificationSettings)
+        UIApplication.shared.registerUserNotificationSettings(notificationSettings)
     }
     
     // this will be called after notifications are registered, and after the user dialog for registering notifications for the first time
-    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
         
         //print("DID register \(notificationSettings)")
         notificationsRegistered = true
-        notificationState = .AskedAndAnswered
+        notificationState = .askedAndAnswered
         postNotification(Constants.UserAnsweredNotificationsDialog)
     }
     
     // MARK: Handle Notifications
     
-    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
         print("got notification: \(notification)")
         handleNotification(notification)
     }
     
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, completionHandler: () -> Void) {
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, completionHandler: @escaping () -> Void) {
         print("handle 1 \(notification)")
     }
     
-    func application(application: UIApplication, handleActionWithIdentifier identifier: String?, forLocalNotification notification: UILocalNotification, withResponseInfo responseInfo: [NSObject : AnyObject], completionHandler: () -> Void) {
+    func application(_ application: UIApplication, handleActionWithIdentifier identifier: String?, for notification: UILocalNotification, withResponseInfo responseInfo: [AnyHashable: Any], completionHandler: @escaping () -> Void) {
         print("handle 2 \(notification) \(responseInfo)")
     }
     
-    func handleNotification(notification: UILocalNotification) {
+    func handleNotification(_ notification: UILocalNotification) {
         print("handling notification")
-        NSNotificationCenter.defaultCenter().postNotificationName(Constants.LocalNotificationArrived, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: Constants.LocalNotificationArrived), object: nil, userInfo: nil)
     }
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 

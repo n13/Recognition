@@ -8,45 +8,46 @@
 
 import Foundation
 
-extension NSDate {
+extension Date {
     func toLocalString() -> String {
-        return NSDateFormatter.localizedStringFromDate(self, dateStyle: .MediumStyle, timeStyle: .MediumStyle)
+        return DateFormatter.localizedString(from: self, dateStyle: .medium, timeStyle: .medium)
     }
     
-    func isBeforeHourToday(otherDate: NSDate) -> Bool {
-        if self.hour() == otherDate.hour() {
-            return self.minute() < otherDate.minute()
+    func isBeforeHourToday(_ otherDate: Date) -> Bool {
+        if (self as NSDate).hour() == (otherDate as NSDate).hour() {
+            return (self as NSDate).minute() < (otherDate as NSDate).minute()
         } else {
-            return self.hour() < otherDate.hour()
+            return (self as NSDate).hour() < (otherDate as NSDate).hour()
         }
     }
     
     func asHoursAndMinutesFloat() -> Float {
-        let hoursFloat: Float = Float(hour()) + Float(minute()) / 60.0
-        print("hour float: hour: \(hour()) minute: \(minute()) float: \(hoursFloat)")
+        let aDate = self as NSDate
+        let hoursFloat: Float = Float(aDate.hour()) + Float(aDate.minute()) / 60.0
+        print("hour float: hour: \(aDate.hour()) minute: \(aDate.minute()) float: \(hoursFloat)")
         return hoursFloat
     }
     
-    func hourAsDate(hour0_24: Float) -> NSDate {
-        let nowTime = NSDate()
+    func hourAsDate(_ hour0_24: Float) -> Date {
+        let nowTime = Date()
         let hour = Int(hour0_24)
         let minute: Int = Int(60.0 * (hour0_24 - Float(hour)))
-        return NSDate(year: nowTime.year(), month: nowTime.month(), day: nowTime.day(), hour: hour, minute: minute, second: 0)
+        return NSDate(year: (nowTime as NSDate).year(), month: (nowTime as NSDate).month(), day: (nowTime as NSDate).day(), hour: hour, minute: minute, second: 0) as Date
     }
     
-    static func hourAsDateToday(hour0_24: Float) -> NSDate {
-        return NSDate().hourAsDate(hour0_24)
+    static func hourAsDateToday(_ hour0_24: Float) -> Date {
+        return Date().hourAsDate(hour0_24)
     }
     
     func asHoursString() -> String {
-        var ns = Constants.timeFormat.stringFromDate(self).lowercaseString as NSString
+        var ns = Constants.timeFormat.string(from: self).lowercased() as NSString
         if ns.hasSuffix(" am") {
-            ns = ns.substringToIndex(ns.length-3)
-            ns = "\(ns)" + "am"
+            ns = ns.substring(to: ns.length-3) as NSString
+            ns = "\(ns)" + "am" as NSString
         }
         if ns.hasSuffix(" pm") {
-            ns = ns.substringToIndex(ns.length-3)
-            ns = "\(ns)" + "pm"
+            ns = ns.substring(to: ns.length-3) as NSString
+            ns = "\(ns)" + "pm" as NSString
         }
         return ns as String
     }

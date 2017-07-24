@@ -12,7 +12,7 @@ class ListViewController: UITableViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-    var doneBlock: ((newText:String?) -> ())?
+    var doneBlock: ((_ newText:String?) -> ())?
     var reminderTexts: [String] = [] {
         didSet {
             if (segmentedControl.selectedSegmentIndex == 1) {
@@ -31,7 +31,7 @@ class ListViewController: UITableViewController {
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 44.0
-        tableView.separatorStyle = .None
+        tableView.separatorStyle = .none
         segmentedControl.tintColor = Constants.ActiveColor
         
         reloadReminderTexts()
@@ -42,14 +42,14 @@ class ListViewController: UITableViewController {
         dao.query(ReminderText()
             , completionHandler: { results in
                 
-                for result in results.results {
+                for result in results.0 {
                     print("foo: "+result.Text + " \(result.Votes)")
                 }
                 
-                EVLog("query : result count = \(results.results.count)")
+                EVLog("query : result count = \(results.0.count)")
                 
-                var reminderTexts = results.results
-                reminderTexts.sortInPlace { rt1, rt2 in
+                var reminderTexts = results.0
+                reminderTexts.sort { rt1, rt2 in
                     rt1.Votes > rt2.Votes
                 }
                 self.reminderTexts = reminderTexts.map { $0.Text }
@@ -62,7 +62,7 @@ class ListViewController: UITableViewController {
     }
     
     //MARK: Actions
-    @IBAction func segmentedControlSelected(sender: UISegmentedControl) {
+    @IBAction func segmentedControlSelected(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
     
@@ -71,7 +71,7 @@ class ListViewController: UITableViewController {
         return segmentedControl.selectedSegmentIndex == 0 ? historyList.count() - 1 : reminderTexts.count
     }
     
-    func textAtIndex(index: Int) -> String {
+    func textAtIndex(_ index: Int) -> String {
         if segmentedControl.selectedSegmentIndex == 0 {
             return historyList.array[index+1]
         } else {
@@ -80,26 +80,26 @@ class ListViewController: UITableViewController {
     }
     
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return segmentedControl.selectedSegmentIndex == 0 ?
         historyList.count() - 1 :
         reminderTexts.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = textAtIndex(indexPath.row)
-        let cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as! ListCell
         cell.setData(text)
-        cell.accessoryType = .Checkmark
-        cell.accessoryType = .None
+        cell.accessoryType = .checkmark
+        cell.accessoryType = .none
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let text = textAtIndex(indexPath.row)
         AppDelegate.delegate().settings.setReminderAndUpdateHistory(text)
-        self.navigationController?.popViewControllerAnimated(true)
-        doneBlock?(newText: text)
+        self.navigationController?.popViewController(animated: true)
+        doneBlock?(text)
     }
     
     // TODO 

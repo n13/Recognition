@@ -10,7 +10,7 @@
 class HistoryList {
         
     var array:[String] = []
-    private let maxSize = 100
+    fileprivate let maxSize = 100
     
     init() {
     }
@@ -19,22 +19,22 @@ class HistoryList {
         array = arr
     }
     
-    func addItemToHistory(obj: String) {
-        let ix = array.indexOf(obj)
+    func addItemToHistory(_ obj: String) {
+        let ix = array.index(of: obj)
         if let ix = ix {
-            array.removeAtIndex(ix)
+            array.remove(at: ix)
         }
         while array.count >= maxSize {
             print("max size exceeded - removing last item, adding default back as last item in the list")
             array.removeLast()
         }
-        array.insert(obj, atIndex: 0)
+        array.insert(obj, at: 0)
     }
     
-    func removeItemFromHistory(obj: String) {
-        let ix = array.indexOf(obj)
+    func removeItemFromHistory(_ obj: String) {
+        let ix = array.index(of: obj)
         if let ix = ix {
-            array.removeAtIndex(ix)
+            array.remove(at: ix)
         }
 
     }

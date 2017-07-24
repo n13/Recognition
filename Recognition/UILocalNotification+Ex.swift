@@ -11,15 +11,15 @@ import NotificationCenter
 
 extension UILocalNotification {
     
-    static func scheduleAlert(message: String, fireDate: NSDate) {
+    static func scheduleAlert(_ message: String, fireDate: Date) {
         let notification = UILocalNotification()
         notification.fireDate = fireDate
         notification.alertBody = message
-        notification.timeZone = NSTimeZone.systemTimeZone()
+        notification.timeZone = TimeZone.current
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.category = Constants.NotificationCategory
-        notification.repeatInterval = NSCalendarUnit.Day
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        notification.repeatInterval = NSCalendar.Unit.day
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
 
 }

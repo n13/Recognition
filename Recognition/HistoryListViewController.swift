@@ -21,7 +21,7 @@ class HistoryListViewController: ListViewController2 {
     
     //MARK:  TableView stuff
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
         return 2
     }
 
@@ -29,29 +29,29 @@ class HistoryListViewController: ListViewController2 {
         return historyList.count()
     }
     
-    func textAtIndex(indexPath: NSIndexPath) -> String {
+    func textAtIndex(_ indexPath: IndexPath) -> String {
         return indexPath.section == 0 ? historyList.array[indexPath.row] : Constants.DefaultReminderText
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return section == 0 ? historyList.count() : 1
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = textAtIndex(indexPath)
-        let cell = tableView.dequeueReusableCellWithIdentifier("ListCell") as! ListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as! ListCell
         cell.setData(text)
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath) {
         let text = textAtIndex(indexPath)
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            cell.accessoryType = .Checkmark
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
         }
         AppDelegate.delegate().settings.setReminderAndUpdateHistory(text)
-        doneBlock?(newText: text)
-        self.navigationController?.popViewControllerAnimated(true)
+        doneBlock?(text)
+        self.navigationController?.popViewController(animated: true)
     }
 
 }

@@ -20,7 +20,7 @@ class ReminderEngine {
             // we are running update ensures we have correct dates set
             updateReminders()
         }
-        observer = NSNotificationCenter.defaultCenter().addObserverForName(Settings.Notifications.SettingsChanged, object: nil, queue: nil) { notification in
+        observer = NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: Settings.Notifications.SettingsChanged), object: nil, queue: nil) { notification in
             if self.isRunning {
                 self.updateReminders()
             }
@@ -29,7 +29,7 @@ class ReminderEngine {
     }
     
     // instance variables
-    var futureReminders = [NSDate]()
+    var futureReminders = [Date]()
     var observer: NSObjectProtocol!
 
     var isRunning: Bool {
@@ -54,7 +54,7 @@ class ReminderEngine {
     // cancels all existing reminders and creates new ones
     func updateReminders() {
         // kill all existing notifications
-        UIApplication.sharedApplication().cancelAllLocalNotifications()
+        UIApplication.shared.cancelAllLocalNotifications()
         
         // if we're running, add new notifications
         if (isRunning) {
@@ -65,39 +65,39 @@ class ReminderEngine {
                 scheduleNotification(date)
             }
         } else {
-            futureReminders = [NSDate]()
+            futureReminders = [Date]()
         }
     }
     
-    private func scheduleNotification(date: NSDate) {
+    fileprivate func scheduleNotification(_ date: Date) {
         let settings = AppDelegate.delegate().settings
         let notification = UILocalNotification()
         notification.fireDate = date
         notification.alertBody = settings.reminderText
-        notification.timeZone = NSTimeZone.systemTimeZone()
+        notification.timeZone = TimeZone.current
         notification.soundName = UILocalNotificationDefaultSoundName
         notification.category = Constants.NotificationCategory
         // this is the trick - we just set a daily repetition
         // othewise 64 reminders is the most we can schedule
-        notification.repeatInterval = NSCalendarUnit.Day
-        UIApplication.sharedApplication().scheduleLocalNotification(notification)
+        notification.repeatInterval = NSCalendar.Unit.day
+        UIApplication.shared.scheduleLocalNotification(notification)
     }
     
     // MARK: Conversion methods
-    func startTimeAsDate() -> NSDate {
-        let nowTime = NSDate()
+    func startTimeAsDate() -> Date {
+        let nowTime = Date()
         return nowTime.hourAsDate(AppDelegate.delegate().settings.startTime)
     }
     
-    func endTimeAsDate() -> NSDate {
-        let nowTime = NSDate()
+    func endTimeAsDate() -> Date {
+        let nowTime = Date()
         return nowTime.hourAsDate(AppDelegate.delegate().settings.stopTime)
     }
     
     // note that the returned date can only be used for hour and minute. 
     // calendar date might be the next day.
-    func nextReminderToday() -> NSDate? {
-        let now = NSDate()
+    func nextReminderToday() -> Date? {
+        let now = Date()
         for date in futureReminders {
             if !date.isBeforeHourToday(now) {
                 return date
@@ -106,8 +106,8 @@ class ReminderEngine {
         return nil
     }
     func remindersRemainingToday() -> Int {
-        let now = NSDate()
-        for (index,date) in futureReminders.enumerate() {
+        let now = Date()
+        for (index,date) in futureReminders.enumerated() {
             if !date.isBeforeHourToday(now) {
                 return futureReminders.count - index
             }
@@ -115,22 +115,22 @@ class ReminderEngine {
         return 0
     }
     // MARK: Model
-    private func createReminderTimesForToday() -> [NSDate] {
-        let nowTime = NSDate()
+    fileprivate func createReminderTimesForToday() -> [Date] {
+        let nowTime = Date()
         let settings = AppDelegate.delegate().settings
         let startTime = startTimeAsDate()
         var endTime = endTimeAsDate()
         
         if settings.endTimeIsPlusOneDay() {
-            endTime = endTime.dateByAddingDays(1)
+            endTime = (endTime as NSDate).addingDays(1)
         }
         
-        var totalMinutes: Double = Double(endTime.minutesLaterThan(startTime))
+        var totalMinutes: Double = Double((endTime as NSDate).minutesLaterThan(startTime))
         if (totalMinutes < 1) {
             totalMinutes = 1
         }
         let numberOfReminders = settings.remindersPerDay
-        let secondsPerReminder:NSTimeInterval = (totalMinutes * 60.0) / Double(numberOfReminders)
+        let secondsPerReminder:TimeInterval = (totalMinutes * 60.0) / Double(numberOfReminders)
         let minutesPerReminder = secondsPerReminder / 60.0
         var randomizerSeconds = secondsPerReminder / 10.0 // 10% randomness added
         
@@ -145,16 +145,16 @@ class ReminderEngine {
         print("seconds per reminder: \(secondsPerReminder)")
         print("minutes per reminder: \(minutesPerReminder)")
 
-        var reminderTimes = [NSDate]()
+        var reminderTimes = [Date]()
         var fireTime = startTime
         for n in 0..<numberOfReminders {
-            fireTime = fireTime.dateByAddingTimeInterval(secondsPerReminder)
-            if fireTime.isLaterThan(nowTime) {
+            fireTime = fireTime.addingTimeInterval(secondsPerReminder)
+            if (fireTime as NSDate).isLaterThan(nowTime) {
                 reminderTimes.append(fireTime)
                 //print("\(n) added reminder time: \(fireTime.toLocalString())")
             } else {
                 //print("\(n) added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
-                reminderTimes.append(fireTime.dateByAddingDays(1))
+                reminderTimes.append((fireTime as NSDate).addingDays(1))
             }
         }
         
@@ -164,7 +164,7 @@ class ReminderEngine {
                 //print("reminder time before: \(reminderTimes[n].toLocalString())")
 
                 let offset = -randomizerSeconds + drand48() * (randomizerSeconds * 2)
-                reminderTimes[n] = reminderTimes[n].dateByAddingTimeInterval(offset)
+                reminderTimes[n] = reminderTimes[n].addingTimeInterval(offset)
                 
                 //print("random offset: \(offset)")
 

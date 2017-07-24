@@ -11,9 +11,9 @@ import Foundation
 extension UIFont {
     
     static func listFonts() {
-        for familyName:AnyObject in UIFont.familyNames().sort() {
+        for familyName:String in UIFont.familyNames.sorted() {
             print("Family Name: \(familyName)")
-            for fontName:AnyObject in UIFont.fontNamesForFamilyName(familyName as! String).sort() {
+            for fontName in UIFont.fontNames(forFamilyName: familyName).sorted() {
                 print("--Font Name: \(fontName)")
             }
         }

@@ -11,7 +11,7 @@ import SnapKit
 extension UIViewController {
     
     // Create header text label and underline view, and the done button
-    func createHeaderViews(theView: UIView, titleText: String, doneButtonText: String, doneButtonAction: Selector)
+    func createHeaderViews(_ theView: UIView, titleText: String, doneButtonText: String, doneButtonAction: Selector)
         -> (headerLabel: UILabel, underline: UIView, doneLabel: UILabel)
     {
         // top label
@@ -31,11 +31,11 @@ extension UIViewController {
             make.leading.equalTo(headerInset)
             make.trailing.equalTo(-headerInset)
         }
-        headerLabel.backgroundColor = UIColor.clearColor()
+        headerLabel.backgroundColor = UIColor.clear
                 
         // done button
         let doneLabel = UILabel()
-        doneLabel.userInteractionEnabled = true
+        doneLabel.isUserInteractionEnabled = true
         doneLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: doneButtonAction))
         
         doneLabel.attributedText = NSMutableAttributedString.mm_attributedString(
@@ -54,7 +54,7 @@ extension UIViewController {
         // line view
         let line = DashedLineView()
         theView.addSubview(line)
-        line.dashShape.strokeColor = UIColor.nkrPaleSalmonColor().colorWithAlphaComponent(0.9).CGColor
+        line.dashShape.strokeColor = UIColor.nkrPaleSalmonColor().withAlphaComponent(0.9).cgColor
         line.dashShape.lineWidth = 2
         line.snp_makeConstraints { make in
             make.top.equalTo(headerLabel.snp_baseline).offset(18) // topLayoutGuide.length seems 0...

@@ -20,7 +20,7 @@ class BlockView: UIView {
     var inset = 0
     
     init() {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         setup()
     }
 
@@ -29,24 +29,24 @@ class BlockView: UIView {
         setup()
     }
     
-    func setNumberText(text: String) {
+    func setNumberText(_ text: String) {
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Right
+        paragraphStyle.alignment = NSTextAlignment.right
         
         let attributes: [String:AnyObject] = [
             NSFontAttributeName: UIFont(name:
                 Constants.LightFont, size: 50)!,
-            NSKernAttributeName: -3.0,
+            NSKernAttributeName: -3.0 as AnyObject,
             NSParagraphStyleAttributeName: paragraphStyle
         ]
         
-        let s = NSMutableAttributedString(string: text.lowercaseString, attributes: attributes)
+        let s = NSMutableAttributedString(string: text.lowercased(), attributes: attributes)
         
         numberLabel.attributedText = s
     }
     
-    func setLabelText(text: String) {
+    func setLabelText(_ text: String) {
         textLabel.text = text
     }
     

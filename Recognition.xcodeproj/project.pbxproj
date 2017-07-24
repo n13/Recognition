@@ -60,7 +60,7 @@
 		24D31DA51C96924B006A826D /* UIFont+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D31DA41C96924B006A826D /* UIFont+Ex.swift */; };
 		24F0B5331CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */; };
 		24F0B5351CA8CDEA005A8AEF /* NSObject+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */; };
-		9D79DB6687020E8313D339EE /* Pods_Recognition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C693DA32A12264A999958345 /* Pods_Recognition.framework */; };
+		D0D6F89297736EE503269245 /* Pods_Recognition.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D11821460D01C69F3F02E870 /* Pods_Recognition.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,9 +156,9 @@
 		24E054FD1CB8AA480037887C /* Recognition.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Recognition.entitlements; path = Recognition/Recognition.entitlements; sourceTree = "<group>"; };
 		24F0B5321CA8BE70005A8AEF /* NSUserDefaults+FirstLaunch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+FirstLaunch.swift"; sourceTree = "<group>"; };
 		24F0B5341CA8CDEA005A8AEF /* NSObject+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Notifications.swift"; sourceTree = "<group>"; };
-		4A45E76E7518483634C1BEB4 /* Pods-Recognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.release.xcconfig"; sourceTree = "<group>"; };
-		921E3DD77BDC31479E4B246D /* Pods-Recognition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.debug.xcconfig"; sourceTree = "<group>"; };
-		C693DA32A12264A999958345 /* Pods_Recognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		60B67F53A697AA6C3E4AECDD /* Pods-Recognition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.debug.xcconfig"; sourceTree = "<group>"; };
+		AF011623FC698A5F9CF468FC /* Pods-Recognition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Recognition.release.xcconfig"; path = "Pods/Target Support Files/Pods-Recognition/Pods-Recognition.release.xcconfig"; sourceTree = "<group>"; };
+		D11821460D01C69F3F02E870 /* Pods_Recognition.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Recognition.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10FA2A01758FEF1998C7312 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -170,7 +170,7 @@
 				24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */,
 				24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */,
 				245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */,
-				9D79DB6687020E8313D339EE /* Pods_Recognition.framework in Frameworks */,
+				D0D6F89297736EE503269245 /* Pods_Recognition.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,7 +214,7 @@
 				246234E81BF9A0D000BDE6D7 /* Products */,
 				7AE40CF196B12F53F9860559 /* Frameworks */,
 				24708F6B1C97A928002DE544 /* Recognition copy-Info.plist */,
-				AD66816A8DD6F56831AD0A37 /* Pods */,
+				8B1EE029F82CA00184AC2D58 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -366,16 +366,16 @@
 				24B768281C6A40B1000C91BB /* MessageUI.framework */,
 				245C45031BFDA53000410591 /* NotificationCenter.framework */,
 				E10FA2A01758FEF1998C7312 /* Pods.framework */,
-				C693DA32A12264A999958345 /* Pods_Recognition.framework */,
+				D11821460D01C69F3F02E870 /* Pods_Recognition.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		AD66816A8DD6F56831AD0A37 /* Pods */ = {
+		8B1EE029F82CA00184AC2D58 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				921E3DD77BDC31479E4B246D /* Pods-Recognition.debug.xcconfig */,
-				4A45E76E7518483634C1BEB4 /* Pods-Recognition.release.xcconfig */,
+				60B67F53A697AA6C3E4AECDD /* Pods-Recognition.debug.xcconfig */,
+				AF011623FC698A5F9CF468FC /* Pods-Recognition.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -387,12 +387,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2462350F1BF9A0D000BDE6D7 /* Build configuration list for PBXNativeTarget "Recognition" */;
 			buildPhases = (
-				581B8C42C1D63FADDAF826AB /* [CP] Check Pods Manifest.lock */,
+				5DA1E62A6F14E1971C77EA62 /* [CP] Check Pods Manifest.lock */,
 				246234E31BF9A0D000BDE6D7 /* Sources */,
 				246234E41BF9A0D000BDE6D7 /* Frameworks */,
 				246234E51BF9A0D000BDE6D7 /* Resources */,
-				F29E0CCB22D6D25CC3089650 /* [CP] Embed Pods Frameworks */,
-				7CDA476AD59F8CD293C1B599 /* [CP] Copy Pods Resources */,
+				25CB0C511C7DB5ACA5169200 /* [CP] Embed Pods Frameworks */,
+				BFD50B96783964C2D20B7364 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -446,12 +446,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0710;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Nikolaus Heger";
 				TargetAttributes = {
 					246234E61BF9A0D000BDE6D7 = {
 						CreatedOnToolsVersion = 7.1;
 						DevelopmentTeam = FC2EL78J4P;
+						LastSwiftMigration = 0830;
 						SystemCapabilities = {
 							com.apple.iCloud = {
 								enabled = 1;
@@ -460,10 +461,12 @@
 					};
 					246234FA1BF9A0D000BDE6D7 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 246234E61BF9A0D000BDE6D7;
 					};
 					246235051BF9A0D000BDE6D7 = {
 						CreatedOnToolsVersion = 7.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 246234E61BF9A0D000BDE6D7;
 					};
 				};
@@ -517,37 +520,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		581B8C42C1D63FADDAF826AB /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		7CDA476AD59F8CD293C1B599 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recognition/Pods-Recognition-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F29E0CCB22D6D25CC3089650 /* [CP] Embed Pods Frameworks */ = {
+		25CB0C511C7DB5ACA5169200 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -560,6 +533,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recognition/Pods-Recognition-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5DA1E62A6F14E1971C77EA62 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		BFD50B96783964C2D20B7364 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Recognition/Pods-Recognition-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -681,8 +684,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -727,8 +732,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -747,6 +754,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -755,7 +763,7 @@
 		};
 		246235101BF9A0D000BDE6D7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 921E3DD77BDC31479E4B246D /* Pods-Recognition.debug.xcconfig */;
+			baseConfigurationReference = 60B67F53A697AA6C3E4AECDD /* Pods-Recognition.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -766,7 +774,7 @@
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
 				INFOPLIST_FILE = Recognition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdwavespirituality.recognition;
@@ -774,13 +782,14 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Recognition/Recognition-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		246235111BF9A0D000BDE6D7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A45E76E7518483634C1BEB4 /* Pods-Recognition.release.xcconfig */;
+			baseConfigurationReference = AF011623FC698A5F9CF468FC /* Pods-Recognition.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -788,12 +797,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Recognition/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.thirdwavespirituality.recognition;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Recognition/Recognition-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -806,6 +816,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Recognition.app/Recognition";
 			};
 			name = Debug;
@@ -818,6 +829,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Recognition.app/Recognition";
 			};
 			name = Release;
@@ -830,6 +842,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Recognition;
 				USES_XCTRUNNER = YES;
 			};
@@ -843,6 +856,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.instaminder.RecognitionUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Recognition;
 				USES_XCTRUNNER = YES;
 			};

@@ -39,9 +39,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         title = "Settings"
         
         // Done button
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:)))
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:Constants.ActiveColor], forState: .Normal)
-        navigationController?.navigationBarHidden = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:)))
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:Constants.ActiveColor], for: UIControlState())
+        navigationController?.isNavigationBarHidden = true
         
         // UX
         setupViews()
@@ -63,71 +63,71 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
         
         // Notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SmartTextViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SmartTextViewController.handleSettingsChanged(_:)), name: NSNotification.Name(rawValue: Settings.Notifications.SettingsChanged), object: nil)
         
         self.pa_addKeyboardListeners()
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        if self.navigationController != nil && !self.navigationController!.navigationBarHidden {
+    override func viewWillAppear(_ animated: Bool) {
+        if self.navigationController != nil && !self.navigationController!.isNavigationBarHidden {
             self.navigationController?.setNavigationBarHidden(true, animated: true)
         }
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
     }
     
-    override func pa_notificationKeyboardWillShow(notification: NSNotification) {
+    override func pa_notificationKeyboardWillShow(_ notification: Notification) {
         print("keyboard will show")
         if (!editMode) {
             editMode = true
-            self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: true)
+            self.moveScrollView(forKeyboard: scrollView, notification: notification, keyboardShowing: true)
             scrollView.contentOffset = CGPoint(x: 0, y: reminderTextView.frame.origin.y - 20)
-            scrollView.scrollEnabled = false
+            scrollView.isScrollEnabled = false
             scrollView.delaysContentTouches = false
             
             let info = notification.userInfo
-            let kbSize = info?[UIKeyboardFrameEndUserInfoKey]?.CGRectValue().size
-            if let size = kbSize {
-                changeButtonBottomOffset?.updateOffset(-size.height+1)
+            let kbSize = (info?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
+            if kbSize != nil {
+                changeButtonBottomOffset?.updateOffset(amount: -kbSize.height+1)
             }
-            self.reminderTextView.scrollEnabled = true
-            self.reminderTextMinHeightConstraint?.updateOffset(240)
-            self.reminderTextMaxHeightConstraint?.updateOffset(240)
-            UIView.animateWithDuration(0.4) {
+            self.reminderTextView.isScrollEnabled = true
+            self.reminderTextMinHeightConstraint?.updateOffset(amount: 240)
+            self.reminderTextMaxHeightConstraint?.updateOffset(amount: 240)
+            UIView.animate(withDuration: 0.4, animations: {
                 self.underline.alpha = 0
-            }
+            }) 
         }
     }
     
     // NOTE: This can come in multiple times.
-    override func pa_notificationKeyboardWillHide(notification: NSNotification) {
+    override func pa_notificationKeyboardWillHide(_ notification: Notification) {
 
-        self.moveScrollViewForKeyboard(scrollView, notification: notification, keyboardShowing: false)
+        self.moveScrollView(forKeyboard: scrollView, notification: notification, keyboardShowing: false)
 
     }
 
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         let newText = reminderTextView.attributedText.string.pa_trim()
         print("end editing. new text: \(newText)")
 
         editMode = false
 
-        scrollView.contentOffset = CGPointZero
-        scrollView.scrollEnabled = true
+        scrollView.contentOffset = CGPoint.zero
+        scrollView.isScrollEnabled = true
         scrollView.delaysContentTouches = true
         
-        changeButtonBottomOffset?.updateOffset(-5)
+        changeButtonBottomOffset?.updateOffset(amount: -5)
         
-        self.reminderTextView.scrollEnabled = false
-        self.reminderTextMinHeightConstraint?.updateOffset(0)
-        self.reminderTextMaxHeightConstraint?.updateOffset(999)
+        self.reminderTextView.isScrollEnabled = false
+        self.reminderTextMinHeightConstraint?.updateOffset(amount: 0)
+        self.reminderTextMaxHeightConstraint?.updateOffset(amount: 999)
         
-        UIView.animateWithDuration(0.4) {
+        UIView.animate(withDuration: 0.4, animations: {
             self.underline.alpha = 1
-        }
+        }) 
         reminderTextView.setNeedsLayout()
         underline.setNeedsLayout()
 
@@ -140,7 +140,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         print("begin editing")
     }
 
@@ -188,7 +188,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
                 make.bottom.equalTo(scrollView.snp_bottom).offset(-30)
             }
-            reminderTextView.editable = true
+            reminderTextView.isEditable = true
             reminderTextView.delegate = self
 
             reminderTextView.font = UIFont(name: Constants.RegularFont, size: Constants.TextBaseSize)
@@ -197,11 +197,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             underline = DashedLineView()
             underline.placeBelowView(reminderTextView)
             
-            let historyButton = UIBarButtonItem(title: "History →", style: .Done, target: self, action: #selector(SmartTextViewController.historyButtonPressed(_:)))
-            let spacer = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
-            let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
+            let historyButton = UIBarButtonItem(title: "History →", style: .done, target: self, action: #selector(SmartTextViewController.historyButtonPressed(_:)))
+            let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: reminderTextView, action: #selector(UIResponder.resignFirstResponder))
             
-            let toolbar = UIToolbar(frame: CGRectMake(0 ,0, 320, 44))
+            let toolbar = UIToolbar(frame: CGRect(x: 0 ,y: 0, width: 320, height: 44))
             toolbar.items = [historyButton, spacer, doneButton]
             
             reminderTextView.inputAccessoryView = toolbar
@@ -222,7 +222,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     // MARK: Actions
-    func handleSettingsChanged(notification: NSNotification?) {
+    func handleSettingsChanged(_ notification: Notification?) {
         print("handle settings changed - new reminder text: \(AppDelegate.delegate().settings.reminderText)")
         if (isSettingsScreen) {
             textView.attributedText = createText()
@@ -231,11 +231,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
     }
     
-    @IBAction func doneButtonPressed(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonPressed(_ sender: AnyObject) {
+        dismiss(animated: true, completion: nil)
     }
     
-    func historyButtonPressed(sender: AnyObject) {
+    func historyButtonPressed(_ sender: AnyObject) {
         print("history")
 
         self.resignCurrentFirstResponder()
@@ -252,11 +252,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
 
-    let popupBaseView = UIView(frame: CGRectZero)
+    let popupBaseView = UIView(frame: CGRect.zero)
     
-    func textTapped(recognizer: UITapGestureRecognizer) {
+    func textTapped(_ recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
-        let locationTapped = recognizer.locationInView(textView)
+        let locationTapped = recognizer.location(in: textView)
         let value = textView.tagForLocation(locationTapped)
         
         textView.addSubview(popupBaseView)
@@ -265,11 +265,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         if let value = value {
             switch value {
             case Tag.StartTime:
-                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate(), popupBaseView: popupBaseView)
+                showTimeControl(Tag.StartTime, text: "From", time: ReminderEngine.reminderEngine.startTimeAsDate() as Date, popupBaseView: popupBaseView)
                 break
                 
             case Tag.EndTime:
-                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate(), popupBaseView: popupBaseView)
+                showTimeControl(Tag.EndTime, text: "To:", time: ReminderEngine.reminderEngine.endTimeAsDate() as Date, popupBaseView: popupBaseView)
                 break
                 
             case Tag.NumberOfReminders:
@@ -328,13 +328,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
     }
     
-    func createOnOffText(isOnLabel: Bool) -> NSMutableAttributedString {
+    func createOnOffText(_ isOnLabel: Bool) -> NSMutableAttributedString {
         let attributedText = NSMutableAttributedString()
         let sizeAdjustment: CGFloat = 0
         attributedText.appendText((isOnLabel) ? "on" : "off", sizeAdjustment: sizeAdjustment, color: Constants.ActiveColor)
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = NSTextAlignment.Right
+        paragraphStyle.alignment = NSTextAlignment.right
         
         attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
         
@@ -342,44 +342,44 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     func releaseFirstResponder() {
-        if (self.reminderTextView != nil && self.reminderTextView.isFirstResponder()) {
+        if (self.reminderTextView != nil && self.reminderTextView.isFirstResponder) {
             self.reminderTextView.resignFirstResponder()
         }
     }
 
-    func showTimeControl(tag: String, text: String, time: NSDate, popupBaseView: UIView) {
+    func showTimeControl(_ tag: String, text: String, time: Date, popupBaseView: UIView) {
         let isStartDate = tag == Tag.StartTime
         let picker = ActionSheetDatePicker(
             title: text,
-            datePickerMode: UIDatePickerMode.Time,
+            datePickerMode: UIDatePickerMode.time,
             selectedDate: time,
             doneBlock: { picker, selectedDate, origin in
                 print("\(selectedDate)")
-                self.setDate(selectedDate as! NSDate, isStartDate: isStartDate)
+                self.setDate(selectedDate as! Date, isStartDate: isStartDate)
             },
-            cancelBlock: { picker in
+            cancel: { picker in
             },
             origin: popupBaseView)
         
-        picker.hideCancel = true
-        picker.minuteInterval = 30
-        picker.showActionSheetPicker()
+        picker?.hideCancel = true
+        picker?.minuteInterval = 30
+        picker?.show()
 
-        print("picker.pickerView \(picker.pickerView)")
-        if let pickerView = picker.pickerView as? UIDatePicker {
+        print("picker.pickerView \(picker?.pickerView)")
+        if let pickerView = picker?.pickerView as? UIDatePicker {
             print("adding observer")
-            pickerView.addTarget(self, action: (isStartDate ? "startDateChanged:" : "endDateChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+            pickerView.addTarget(self, action: (isStartDate ? #selector(SmartTextViewController.startDateChanged(_:)) : #selector(SmartTextViewController.endDateChanged(_:))), for: UIControlEvents.valueChanged)
         }
     }
     
-    func startDateChanged(datePicker: UIDatePicker) {
+    func startDateChanged(_ datePicker: UIDatePicker) {
         setDate(datePicker.date, isStartDate: true)
     }
-    func endDateChanged(datePicker: UIDatePicker) {
+    func endDateChanged(_ datePicker: UIDatePicker) {
         setDate(datePicker.date, isStartDate: false)
     }
     
-    func setDate(selectedDate: NSDate, isStartDate: Bool) {
+    func setDate(_ selectedDate: Date, isStartDate: Bool) {
         let settings = AppDelegate.delegate().settings
         let date = selectedDate
         let f = date.asHoursAndMinutesFloat()
@@ -393,17 +393,17 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
 
     
-    func showNumRemindersControl(title: String, number: Int, popupBaseView: UIView) {
+    func showNumRemindersControl(_ title: String, number: Int, popupBaseView: UIView) {
         
         var rows = [String]()
         for ix in 1...30 {
             rows.append("\(ix)")
         }
         // increments of 5 until 50
-        rows.appendContentsOf(["35", "40", "45", "50"])
+        rows.append(contentsOf: ["35", "40", "45", "50"])
         // increments of 100 for those crazy experiments
-        rows.appendContentsOf(["100", "200", "300", "400", "500"])
-        let initialIndex = rows.indexOf("\(number)") ?? 11
+        rows.append(contentsOf: ["100", "200", "300", "400", "500"])
+        let initialIndex = rows.index(of: "\(number)") ?? 11
         
         let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminders Per Day", rows: rows, initialSelection: initialIndex,
             doneBlock: {
@@ -413,19 +413,19 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 settings.remindersPerDay = valueString.integerValue
                 //print("times per day set to: \(settings.remindersPerDay)")
                 settings.save()
-                picker.removeObserver(self, forKeyPath: "selectedIndex")
+                picker?.removeObserver(self, forKeyPath: "selectedIndex")
                 return
-            }, cancelBlock: { picker in
-                picker.removeObserver(self, forKeyPath: "selectedIndex")
+            }, cancel: { picker in
+                picker?.removeObserver(self, forKeyPath: "selectedIndex")
                 return
             },
             origin: popupBaseView)
-        actionSheetStringPicker.hideCancel = true
-        actionSheetStringPicker.addObserver(self, forKeyPath: "selectedIndex", options: .New, context: nil)
-        actionSheetStringPicker.showActionSheetPicker()
+        actionSheetStringPicker?.hideCancel = true
+        actionSheetStringPicker?.addObserver(self, forKeyPath: "selectedIndex", options: .new, context: nil)
+        actionSheetStringPicker?.show()
     }
     
-    override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "selectedIndex") {
             if let picker = object as? ActionSheetStringPicker{
                 let settings = AppDelegate.delegate().settings
@@ -436,7 +436,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
 
     
-    func pickerChanged(sender: UIDatePicker) {
+    func pickerChanged(_ sender: UIDatePicker) {
         print("picker changed to \(sender.date)")
     }
     

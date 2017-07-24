@@ -20,7 +20,7 @@ struct Constants {
     static let NotificationCategory = "RECOGNITION_CATEGORY"
     static let TextInset: CGFloat = 25
     
-    static let isSmallDevice = (UIScreen.mainScreen().bounds.width <= 320)
+    static let isSmallDevice = (UIScreen.main.bounds.width <= 320)
     
     static let HomeBaseSize:CGFloat = isSmallDevice ? 26 : 32 // adjusted for screen size
     static let OnOffButtonSize:CGFloat = HomeBaseSize + 2
@@ -28,10 +28,10 @@ struct Constants {
 
     static let EditSettingsText = "Edit settings."
     
-    static var timeFormat: NSDateFormatter {
-        let formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle;
-        formatter.dateStyle = .NoStyle;
+    static var timeFormat: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short;
+        formatter.dateStyle = .none;
         return formatter
     }
     static var DefaultReminderText = "Take 2-5 seconds to let go of all thoughts. Recognize that you exist."
@@ -45,8 +45,8 @@ struct Constants {
     static let ShortTextHeight = 40
     
     static func isIpad() -> Bool {
-        let model = UIDevice.currentDevice().model
-        return model.lowercaseString.containsString("ipad")
+        let model = UIDevice.current.model
+        return model.lowercased().contains("ipad")
     }
 //    static let MediumFont = "SourceSansPro-Semibold"
 //    static let ExtraHeavyFont = "SourceSansPro-Bold"
@@ -58,6 +58,6 @@ struct Constants {
 
     //68 68 68
     static let GreyTextColor = UIColor(red: 68.0/255.0, green: 68.0/255.0, blue: 68.0/255.0, alpha: 1.0)
-    static let BlackTextColor = UIColor.blackColor()
+    static let BlackTextColor = UIColor.black
 
 }

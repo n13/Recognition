@@ -35,7 +35,7 @@ class HomeViewController:
         setupViews()
         
         // Notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.handleSettingsChanged(_:)), name: Settings.Notifications.SettingsChanged, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeViewController.handleSettingsChanged(_:)), name: NSNotification.Name(rawValue: Settings.Notifications.SettingsChanged), object: nil)
 
         updateStatus(false)
         
@@ -44,7 +44,7 @@ class HomeViewController:
         
         // listen to the user answering notifications dialog
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
-        addObserverForNotification(UIApplicationDidBecomeActiveNotification, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))        
+        addObserverForNotification(NSNotification.Name.UIApplicationDidBecomeActive._rawValue as String, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
         
         // debug test cloud kit
         
@@ -86,13 +86,13 @@ class HomeViewController:
 //        })
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if (AppDelegate.delegate().notificationState == .AskedAndAnswered) {
+        if (AppDelegate.delegate().notificationState == .askedAndAnswered) {
             print("checking on notifications")
             checkNotificationsAreEnabled()
         }
@@ -104,22 +104,22 @@ class HomeViewController:
     }
     
     func bounceMenu_DISABLED() {
-        let screenSize = UIScreen.mainScreen().bounds.size
-        self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - 166)
+        let screenSize = UIScreen.main.bounds.size
+        self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(amount: screenSize.height - 166)
         let duration = 0.2
-        UIView.setAnimationCurve(UIViewAnimationCurve.EaseOut)
-        UIView.animateWithDuration(duration,
+        UIView.setAnimationCurve(UIViewAnimationCurve.easeOut)
+        UIView.animate(withDuration: duration,
                                    animations: {
                                     print("bouncing up")
                                     self.view.layoutIfNeeded()
             },
                                    completion: { b in
-                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(screenSize.height - self.offsetFromBottom)
-                                    UIView.setAnimationCurve(UIViewAnimationCurve.EaseIn)
-                                    UIView.animateWithDuration(duration) {
+                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(amount: screenSize.height - self.offsetFromBottom)
+                                    UIView.setAnimationCurve(UIViewAnimationCurve.easeIn)
+                                    UIView.animate(withDuration: duration, animations: {
                                         print("bouncing down")
                                         self.view.layoutIfNeeded()
-                                    }
+                                    }) 
         })
         
     }
@@ -128,12 +128,12 @@ class HomeViewController:
         // check notification status - except not on first launch. 
         // On first launch the user will be presented with the system notifications dialog. So we don't check or 
         // Do anything
-        if (AppDelegate.delegate().notificationState != .AskedAndAnswered) {
+        if (AppDelegate.delegate().notificationState != .askedAndAnswered) {
             return true
         }
         
-        if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
-            if settings.types.rawValue == UIUserNotificationType.None.rawValue {
+        if let settings = UIApplication.shared.currentUserNotificationSettings {
+            if settings.types.rawValue == UIUserNotificationType().rawValue {
                 print("Notifications disabled")
                 return false;
             } else {
@@ -147,7 +147,7 @@ class HomeViewController:
     }
     
     // MARK: UX State
-    func updateStatus(animated: Bool) {
+    func updateStatus(_ animated: Bool) {
         let running = ReminderEngine.reminderEngine.isRunning
         let notificationsEnabled = checkNotificationsAreEnabled()
         
@@ -160,20 +160,20 @@ class HomeViewController:
         // Solution - animation layered two times... the first one is basically just setting the text, and waiting for that to 
         // finish. The second one moves the text.
         if (animated) {
-            UIView.animateWithDuration(0.05, animations: {
+            UIView.animate(withDuration: 0.05, animations: {
                     self.textView.attributedText = self.createMainText()
                     self.view.layoutIfNeeded()
                 },
                 completion: { b in
-                    self.textHeightConstraint!.updateOffset(CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
-                    UIView.animateWithDuration(0.4) {
+                    self.textHeightConstraint!.updateOffset(amount: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
+                    UIView.animate(withDuration: 0.4, animations: {
                         self.view.layoutIfNeeded()
-                    }
+                    }) 
             })
             
         } else {
             self.textView.attributedText = self.createMainText()
-            self.textHeightConstraint!.updateOffset(CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
+            self.textHeightConstraint!.updateOffset(amount: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
         }
 
     }
@@ -217,12 +217,12 @@ class HomeViewController:
             make.top.equalTo(underline.snp_bottom).offset(-4) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
         }
-        underLabel.hidden = true
+        underLabel.isHidden = true
 
 
         // Text view
         textView = UITextView.createCustomTextView()
-        textView.scrollEnabled = false
+        textView.isScrollEnabled = false
         scrollView.addSubview(textView)
         textView.snp_makeConstraints { make in
             make.top.equalTo(underline.snp_bottom).offset(36)
@@ -236,7 +236,7 @@ class HomeViewController:
         textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.handleTapOnText(_:))))
         textView.attributedText = createMainText()
 
-        let screenSize = UIScreen.mainScreen().bounds.size
+        let screenSize = UIScreen.main.bounds.size
         
         // buttons
         let buttons = [
@@ -248,7 +248,7 @@ class HomeViewController:
         let howToOffset:CGFloat = 20//Constants.isIpad() ? 20 : 28
 
         // space out the buttons vertically
-        for (index, button) in buttons.enumerate() {
+        for (index, button) in buttons.enumerated() {
             button.snp_makeConstraints { make in
                 if (index == 0) {
                     changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
@@ -264,9 +264,9 @@ class HomeViewController:
         
     }
     
-    func addLabelButton(title: String, action: Selector) -> UILabel {
+    func addLabelButton(_ title: String, action: Selector) -> UILabel {
         let label = UILabel()
-        label.userInteractionEnabled = true
+        label.isUserInteractionEnabled = true
         label.attributedText = createButtonText(title)
         scrollView.addSubview(label)
         let tappy = UITapGestureRecognizer(target: self, action: action)
@@ -277,15 +277,15 @@ class HomeViewController:
     }
     
     // MARK: Notifications
-    func handleSettingsChanged(notification: NSNotification?) {
+    func handleSettingsChanged(_ notification: Notification?) {
         print("handle settings changed")
         textView.attributedText = createMainText()
         updateStatus(false)
     }
     
     // MARK: Actions
-    func handleTapOnText(recognizer: UITapGestureRecognizer) {
-        let tag = textView.tagForLocation(recognizer.locationInView(textView))
+    func handleTapOnText(_ recognizer: UITapGestureRecognizer) {
+        let tag = textView.tagForLocation(recognizer.location(in: textView))
         if let tag = tag {
             print("tag: \(tag)")
             if tag == "onoff" {
@@ -296,7 +296,7 @@ class HomeViewController:
         }
     }
 
-    func sendFeedbackPressed(sender: UIGestureRecognizer) {
+    func sendFeedbackPressed(_ sender: UIGestureRecognizer) {
         print("send feedback")
         if MFMailComposeViewController.canSendMail() {
             let controller = MFMailComposeViewController()
@@ -304,37 +304,37 @@ class HomeViewController:
             controller.setSubject("Recognition App Feedback!")
             controller.setMessageBody("", isHTML: false)
             controller.setToRecipients(["nheger+recognition@gmail.com"])
-            presentViewController(controller, animated: true, completion: nil)
+            present(controller, animated: true, completion: nil)
         } else {
             print("device can't send email")
         }
     }
 
-    func changeSettingsPressed(sender: UIGestureRecognizer) {
+    func changeSettingsPressed(_ sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
-        let nav = UINavigationController(rootViewController: vc)
-        nav.modalTransitionStyle = .FlipHorizontal
+        let nav = UINavigationController(rootViewController: vc!)
+        nav.modalTransitionStyle = .flipHorizontal
         //vc.modalTransitionStyle = .FlipHorizontal
-        presentViewController(nav, animated: true, completion: nil)
+        present(nav, animated: true, completion: nil)
 
     }
 
-    func shareButtonPressed(sender: UIGestureRecognizer) {
+    func shareButtonPressed(_ sender: UIGestureRecognizer) {
         print("share")
         let textToShare = "I want to share with you the Recognition Meditation app - it's a free download, check it out."
         let vc = SmartTextViewController.createMain()
 
-        let screenShotImage = vc.takeScreenshot()
+        let screenShotImage = vc?.takeScreenshot()
 
-        if let myWebsite = NSURL(string: "https://itunes.apple.com/us/app/recognition-meditation/id1085370087") {
-            let objectsToShare = [textToShare, screenShotImage!, myWebsite]
+        if let myWebsite = URL(string: "https://itunes.apple.com/us/app/recognition-meditation/id1085370087") {
+            let objectsToShare = [textToShare, screenShotImage!, myWebsite] as [Any]
             let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-            self.presentViewController(activityVC, animated: true, completion: nil)
+            self.present(activityVC, animated: true, completion: nil)
         }
     }
 
-    func howButtonPressed(sender: UIGestureRecognizer) {
+    func howButtonPressed(_ sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
 
@@ -346,10 +346,10 @@ class HomeViewController:
                 "Apply yourself sincerely to this practice - sincerity is the only requirement for success.\n\n" +
                 "Enjoy!"
 
-        vc.isSettingsScreen = false
-        vc.titleText = "How to"
-        vc.bodyText = text
-        presentViewController(vc, animated: true, completion: nil)
+        vc?.isSettingsScreen = false
+        vc?.titleText = "How to"
+        vc?.bodyText = text
+        present(vc!, animated: true, completion: nil)
     }
 
     func onOffPressed() {
@@ -366,18 +366,18 @@ class HomeViewController:
         let attributedText = NSMutableAttributedString()
         let numReminders = "\(AppDelegate.delegate().settings.remindersPerDay)"
         
-        attributedText.appendAttributedString(createNormalText("Reminders are "))
-        attributedText.appendAttributedString(createOnOffText())
-        attributedText.appendAttributedString(createNormalText("\n"))
-        attributedText.appendAttributedString(NSMutableAttributedString.spacerLine(0.3))
+        attributedText.append(createNormalText("Reminders are "))
+        attributedText.append(createOnOffText())
+        attributedText.append(createNormalText("\n"))
+        attributedText.append(NSMutableAttributedString.spacerLine(0.3))
 
         // 24 times a day,
-        attributedText.appendAttributedString(createBoldText("\(numReminders) reminders per day"))
+        attributedText.append(createBoldText("\(numReminders) reminders per day"))
         
         return attributedText
     }
     
-    func showHideErrorLabel(show: Bool) {
+    func showHideErrorLabel(_ show: Bool) {
         if errorLabel != nil && !show {
             errorLabel?.removeFromSuperview()
             scrollView.viewWithTag(33)?.removeFromSuperview()
@@ -392,7 +392,7 @@ class HomeViewController:
                 make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
                 make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
             }
-            label.userInteractionEnabled = true
+            label.isUserInteractionEnabled = true
             label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.errorLabelTapped)))
             errorLabel = label
             let underline = DashedLineView()
@@ -402,10 +402,10 @@ class HomeViewController:
     }
     
     func errorLabelTapped() {
-        UIApplication.sharedApplication().openURL(NSURL(string: UIApplicationOpenSettingsURLString)!)
+        UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
     }
     
-    func createNormalText(s: String) -> NSMutableAttributedString {
+    func createNormalText(_ s: String) -> NSMutableAttributedString {
         
         // letter spacing -0.9
         // line height 43
@@ -414,30 +414,30 @@ class HomeViewController:
         let text = NSMutableAttributedString(string: s)
 
         text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -0.9)
+        text.applyAttribute(NSKernAttributeName, value: -0.9 as AnyObject)
         text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
 
         return text
 
     }
     
-    func createBoldText(s: String) -> NSMutableAttributedString {
+    func createBoldText(_ s: String) -> NSMutableAttributedString {
         let font = UIFont(name: Constants.MediumFont, size: Constants.HomeBaseSize)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -1.0)
+        text.applyAttribute(NSKernAttributeName, value: -1.0 as AnyObject)
         text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
 
         return text
     }
     
-    func createButtonText(s: String, size: CGFloat = Constants.OnOffButtonSize) -> NSMutableAttributedString {
+    func createButtonText(_ s: String, size: CGFloat = Constants.OnOffButtonSize) -> NSMutableAttributedString {
         let font = UIFont(name: Constants.RegularFont, size: size)!
         let text = NSMutableAttributedString(string: s)
         
         text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -0.5)
+        text.applyAttribute(NSKernAttributeName, value: -0.5 as AnyObject)
         text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrReddishOrangeColor())
         
         return text
@@ -460,21 +460,21 @@ class HomeViewController:
         offText.applyAttribute(NSForegroundColorAttributeName, value: running ? offColor : onColor)
         
         // combine the two
-        onText.appendAttributedString(offText)
+        onText.append(offText)
         
         onText.applyAttribute(NSFontAttributeName, value: font)
-        onText.applyAttribute(Constants.SmartTag, value: "onoff")
-        onText.applyAttribute(NSKernAttributeName, value: -1)
+        onText.applyAttribute(Constants.SmartTag, value: "onoff" as AnyObject)
+        onText.applyAttribute(NSKernAttributeName, value: -1 as AnyObject)
 
         return onText
     }
     
     // MARK: MFMailComposeViewControllerDelegate
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWithGestureRecognizer otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
     

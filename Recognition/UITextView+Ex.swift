@@ -20,7 +20,7 @@ extension UITextView {
         let layoutManager = UnderlineLayoutManager()
         
         // 3. Create a text container
-        let containerSize = CGSize(width: newTextViewRect.width, height: CGFloat.max)
+        let containerSize = CGSize(width: newTextViewRect.width, height: CGFloat.greatestFiniteMagnitude)
         let container = NSTextContainer(size: containerSize)
         container.widthTracksTextView = true
         layoutManager.addTextContainer(container)
@@ -29,9 +29,9 @@ extension UITextView {
         let textView = UITextView(frame: newTextViewRect, textContainer: container)
         
         // make this work in a scroll view
-        textView.editable = false
-        textView.scrollEnabled = false
-        textView.selectable = false
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.isSelectable = false
         
         // compensate for iOS text offset of 15, 15
         //textView.contentInset = UIEdgeInsets(top: -15, left: -5, bottom: -8, right: -8)

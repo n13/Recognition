@@ -33,8 +33,8 @@ class RecognitionUITests: XCTestCase {
     }
     
     func testUX() {
-        XCUIDevice.sharedDevice().orientation = .FaceUp
-        XCUIDevice.sharedDevice().orientation = .Portrait
+        XCUIDevice.shared().orientation = .faceUp
+        XCUIDevice.shared().orientation = .portrait
         
         
         let app = XCUIApplication()
@@ -47,7 +47,7 @@ class RecognitionUITests: XCTestCase {
         // SETTINGS SCREEN
         snapshot("02Settings")
 
-        let scroller = app.scrollViews.elementBoundByIndex(0)
+        let scroller = app.scrollViews.element(boundBy: 0)
         scroller.tapAtPosition(CGPoint(x: 100, y: 201))
         
         //app.pickerWheels["12, 12 of 50"].tap()
@@ -66,17 +66,17 @@ class RecognitionUITests: XCTestCase {
     // helper
     
 
-    func waitFor(element:XCUIElement, seconds waitSeconds:Double) {
+    func waitFor(_ element:XCUIElement, seconds waitSeconds:Double) {
         let exists = NSPredicate(format: "exists == 1")
-        expectationForPredicate(exists, evaluatedWithObject: element, handler: nil)
-        waitForExpectationsWithTimeout(waitSeconds, handler: nil)
+        expectation(for: exists, evaluatedWith: element, handler: nil)
+        waitForExpectations(timeout: waitSeconds, handler: nil)
     }
 
     
 }
 extension XCUIElement /*TapAtPosition*/ {
-    func tapAtPosition(let position: CGPoint) {
-        let cooridnate = self.coordinateWithNormalizedOffset(CGVector(dx: 0, dy: 0)).coordinateWithOffset(CGVector(dx: position.x, dy: position.y))
+    func tapAtPosition(_ position: CGPoint) {
+        let cooridnate = self.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0)).withOffset(CGVector(dx: position.x, dy: position.y))
         cooridnate.tap()
     }
 }

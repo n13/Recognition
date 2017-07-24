@@ -38,9 +38,9 @@ class ButtonView: UIView {
         titleLabel.textColor = Constants.ActiveColor
 
         self.layer.borderWidth = 1
-        self.layer.borderColor = Constants.ActiveColor.CGColor
+        self.layer.borderColor = Constants.ActiveColor.cgColor
         
-        lineView.hidden = true
+        lineView.isHidden = true
 //
 //        
 //        let packView = UIView()
@@ -73,8 +73,8 @@ class ButtonView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        let labelSize = titleLabel.intrinsicContentSize()
-        let arrowSize = rightArrow.intrinsicContentSize()
+        let labelSize = titleLabel.intrinsicContentSize
+        let arrowSize = rightArrow.intrinsicContentSize
                 
         let padding:CGFloat = 15
         let x = self.bounds.width / 2.0 - (labelSize.width + padding + arrowSize.width) / 2.0
@@ -83,15 +83,15 @@ class ButtonView: UIView {
         rightArrow.frame = CGRect(x: x + titleLabel.frame.size.width + padding, y: rightArrow.frame.origin.y, width: rightArrow.frame.size.width, height: rightArrow.frame.size.height)
     }
     
-    func setText(s: String) {
+    func setText(_ s: String) {
         titleLabel.text = s
         titleLabel.sizeToFit()
     }
  
     
-    override func intrinsicContentSize() -> CGSize {
-        let labelSize = titleLabel.intrinsicContentSize()
-        let buttonSize = rightArrow.intrinsicContentSize()
+    override var intrinsicContentSize : CGSize {
+        let labelSize = titleLabel.intrinsicContentSize
+        let buttonSize = rightArrow.intrinsicContentSize
         return CGSize(width: labelSize.width + 10 + buttonSize.width, height: max(33, max(labelSize.height, buttonSize.height)))
     }
 }

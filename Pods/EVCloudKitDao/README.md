@@ -9,6 +9,7 @@ EVCloudKitDao
 [![Stars](https://img.shields.io/github/stars/evermeer/EVCloudKitDao.svg?style=flat)](https://github.com/evermeer/EVCloudKitDao/stargazers)
 [![Documentation](https://img.shields.io/badge/documented-100%-brightgreen.svg?style=flat)](http://cocoadocs.org/docsets/EVCloudKitDao)
 [![Version](https://img.shields.io/cocoapods/v/EVCloudKitDao.svg?style=flat)](http://cocoadocs.org/docsets/EVCloudKitDao)
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/matteocrippa/awesome-swift#other-data)
 
 [![Language](https://img.shields.io/badge/language-swift2-f48041.svg?style=flat)](https://developer.apple.com/swift)
 [![Platform](https://img.shields.io/cocoapods/p/EVCloudKitDao.svg?style=flat)](http://cocoadocs.org/docsets/EVCloudKitDao)
@@ -51,12 +52,12 @@ I'm looking for feedback. Please let me know if you want something changed or ad
 ## A picture says more than 1000 words
 Here are screenshots of the included demo app chat functionality:
 
-![Screenshot0](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshot.png?raw=true)
-![Screenshot1](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshot2.png?raw=true)
+![Screenshot0](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshots/Screenshot.png?raw=true)
+![Screenshot1](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshots/Screenshot2.png?raw=true)
 
 
-![Screenshot2](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshot3.PNG?raw=true)
-![Screenshot3](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshot4.PNG?raw=true)
+![Screenshot2](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshots/Screenshot3.PNG?raw=true)
+![Screenshot3](https://github.com/evermeer/EVCloudKitDao/blob/master/Screenshots/Screenshot4.PNG?raw=true)
 
 ## Documentation ##
 Documentation is now available at [cocoadocs.org](http://cocoadocs.org/docsets/EVCloudKitDao/)
@@ -143,7 +144,7 @@ Version 0.36 of cocoapods will make a dynamic framework of all the pods that you
 import EVCloudKitDao
 ```
 
-If you want support for older versions than iOS 8.0, then you can also just copy the Cloudkit folder containing the 5 classes EVCloudKitDao, EVCloudData, EVReflection, EVCloudKitDataObject and EVglobal to your app.
+If you want support for older versions than iOS 8.0, then you can also just copy the Cloudkit folder containing the 5 classes EVCloudKitDao, EVCloudData, EVReflection, EVCloudData and EVglobal to your app.
 
 When you have added EVCloudKitDao to your project, then have a look at the AppMessage code for how to implement push notifications and how to connect to CloudKit data (see AppDelegate.swift and LeftMenuViewController.swift) For contacts see the RightMenuViewController.swift and for other usage see the TestsViewController.swift
 
@@ -183,8 +184,8 @@ Below is all the code you need to setup a news feed including push notification 
 
 
 ```swift
-// Just enherit from EVCloudKitDataObject so that you have access to the CloudKit metadata
-class News : EVCloudKitDataObject {
+// Just enherit from EVCloudData so that you have access to the CloudKit metadata
+class News : EVCloudData {
     var Subject : String = ""
     var Text : String = ""
 }
@@ -276,8 +277,8 @@ class NewsViewController : UIViewController, UITableViewDataSource, UITableViewD
 
 ## How to use the EVCloudKitDao
 ```swift
-// Just enherit from EVCloudKitDataObject so that you have access to the CloudKit metadata
-class Message : EVCloudKitDataObject {
+// Just enherit from EVCloudData so that you have access to the CloudKit metadata
+class Message : EVCloudData {
     var From : String = ""
     var To : String = ""
     var Text : String = ""
@@ -390,15 +391,14 @@ EVCloudKitDao is available under the MIT license. See the LICENSE file for more 
 ## My other libraries:
 Also see my other open source iOS libraries:
 
-- [EVReflection](https://github.com/evermeer/EVReflection) - Swift library with reflection functions with support for NSCoding, Printable, Hashable, Equatable and JSON 
+- [EVReflection](https://github.com/evermeer/EVReflection) - Reflection based (Dictionary, CKRecord, JSON and XML) object mapping with extensions for Alamofire and Moya with RxSwift or ReactiveSwift 
 - [EVCloudKitDao](https://github.com/evermeer/EVCloudKitDao) - Simplified access to Apple's CloudKit
 - [EVFaceTracker](https://github.com/evermeer/EVFaceTracker) - Calculate the distance and angle of your device with regards to your face in order to simulate a 3D effect
 - [EVURLCache](https://github.com/evermeer/EVURLCache) - a NSURLCache subclass for handling all web requests that use NSURLReques
-- [AlamofireJsonToObject](https://github.com/evermeer/AlamofireJsonToObjects) - An Alamofire extension which converts JSON response data into swift objects using EVReflection
-- [AlamofireXmlToObject](https://github.com/evermeer/AlamofireXmlToObjects) - An Alamofire extension which converts XML response data into swift objects using EVReflection and XMLDictionary
 - [AlamofireOauth2](https://github.com/evermeer/AlamofireOauth2) - A swift implementation of OAuth2 using Alamofire
 - [EVWordPressAPI](https://github.com/evermeer/EVWordPressAPI) - Swift Implementation of the WordPress (Jetpack) API using AlamofireOauth2, AlomofireJsonToObjects and EVReflection (work in progress)
 - [PassportScanner](https://github.com/evermeer/PassportScanner) - Scan the MRZ code of a passport and extract the firstname, lastname, passport number, nationality, date of birth, expiration date and personal numer.
+- [AttributedTextView](https://github.com/evermeer/AttributedTextView) - Easiest way to create an attributed UITextView with support for multiple links (url, hashtags, mentions).
 
 
 ## Evolution of EVReflection (Gource Visualization)

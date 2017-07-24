@@ -10,21 +10,21 @@ import UIKit
 
 class UnderlineLayoutManager : NSLayoutManager {    
     
-    override func drawUnderlineForGlyphRange(
-        glyphRange: NSRange,
+    override func drawUnderline(
+        forGlyphRange glyphRange: NSRange,
         underlineType underlineVal: NSUnderlineStyle,
         baselineOffset: CGFloat,
         lineFragmentRect lineRectParameter: CGRect,
         lineFragmentGlyphRange lineGlyphRange: NSRange,
         containerOrigin: CGPoint)
     {
-        let dotted = (underlineVal.rawValue & NSUnderlineStyle.PatternDot.rawValue) > 0
+        let dotted = (underlineVal.rawValue & NSUnderlineStyle.patternDot.rawValue) > 0
         
         var lineRect = lineRectParameter
         
         // get current UIFont for the glyphRange
-        let characterRange = self.characterRangeForGlyphRange(glyphRange, actualGlyphRange: nil)
-        let superUnderlineAttribute = textStorage?.attribute(Constants.SuperUnderlineStyle, atIndex: characterRange.location, effectiveRange: nil)
+        let characterRange = self.characterRange(forGlyphRange: glyphRange, actualGlyphRange: nil)
+        let superUnderlineAttribute = textStorage?.attribute(Constants.SuperUnderlineStyle, at: characterRange.location, effectiveRange: nil)
         
         // check the next line
         let superUnderline = superUnderlineAttribute != nil
@@ -36,11 +36,11 @@ class UnderlineLayoutManager : NSLayoutManager {
         if (superUnderline) {
             var nextLineIsUnderlined = false
             // peek at the next line
-            let lineCharacterRange = self.characterRangeForGlyphRange(lineGlyphRange, actualGlyphRange: nil)
+            let lineCharacterRange = self.characterRange(forGlyphRange: lineGlyphRange, actualGlyphRange: nil)
             let nextIndex = lineCharacterRange.location + lineCharacterRange.length
-            let foo : NSString = textStorage!.string
+            let foo : NSString = textStorage!.string as NSString
             if (nextIndex < textStorage!.length) {
-                let superUnderlineAttributeNextLine = textStorage?.attribute(Constants.SuperUnderlineStyle, atIndex: nextIndex, effectiveRange: nil)
+                let superUnderlineAttributeNextLine = textStorage?.attribute(Constants.SuperUnderlineStyle, at: nextIndex, effectiveRange: nil)
                 nextLineIsUnderlined = superUnderlineAttributeNextLine != nil
             }
             if nextLineIsUnderlined {
@@ -68,12 +68,12 @@ class UnderlineLayoutManager : NSLayoutManager {
             lineRect.origin.y += 18
 
         } else {
-            let firstPosition = locationForGlyphAtIndex(glyphRange.location).x;
+            let firstPosition = location(forGlyphAt: glyphRange.location).x;
             var lastPosition: CGFloat
             if (NSMaxRange(glyphRange) < NSMaxRange(lineGlyphRange)) {
-                lastPosition = locationForGlyphAtIndex(NSMaxRange(glyphRange)).x;
+                lastPosition = location(forGlyphAt: NSMaxRange(glyphRange)).x;
             } else {
-                lastPosition = lineFragmentUsedRectForGlyphAtIndex(NSMaxRange(glyphRange)-1, effectiveRange:nil).size.width;
+                lastPosition = lineFragmentUsedRect(forGlyphAt: NSMaxRange(glyphRange)-1, effectiveRange:nil).size.width;
             }
             // Offset line by container origin
             lineRect.origin.x += firstPosition
@@ -91,8 +91,8 @@ class UnderlineLayoutManager : NSLayoutManager {
         // construct the path
         let path = UIBezierPath()
         let y = lineRect.origin.y + lineRect.size.height - 1
-        path.moveToPoint(CGPoint(x: lineRect.origin.x, y: y))
-        path.addLineToPoint(CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
+        path.move(to: CGPoint(x: lineRect.origin.x, y: y))
+        path.addLine(to: CGPoint(x: lineRect.origin.x + lineRect.size.width, y: y))
 
         // Line width
         path.lineWidth = 2.0

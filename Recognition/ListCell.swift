@@ -27,7 +27,7 @@ class ListCell: BaseTableViewCell {
         }
     }
     
-    func setData(text: String) {
+    func setData(_ text: String) {
         let t = NSMutableAttributedString()
         t.appendClickableText(text, tag: "", dottedLine: false, fullWidthUnderline: false, lineHeightMultiple:0.9)
         label.attributedText = t

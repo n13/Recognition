@@ -25,50 +25,50 @@ class Settings {
     
     var startTime:Float {
         get {
-            return NSUserDefaults.standardUserDefaults().floatForKey(Keys.startTime)
+            return UserDefaults.standard.float(forKey: Keys.startTime)
         }
         set(value) {
-            NSUserDefaults.standardUserDefaults().setFloat(value, forKey: Keys.startTime)
+            UserDefaults.standard.set(value, forKey: Keys.startTime)
         }
     }
     var stopTime:Float {
         get {
-            return NSUserDefaults.standardUserDefaults().floatForKey(Keys.stopTime)
+            return UserDefaults.standard.float(forKey: Keys.stopTime)
         }
         set(value) {
-            NSUserDefaults.standardUserDefaults().setFloat(value, forKey: Keys.stopTime)
+            UserDefaults.standard.set(value, forKey: Keys.stopTime)
         }
     }
     var remindersPerDay: Int {
         get {
-            return NSUserDefaults.standardUserDefaults().integerForKey(Keys.remindersPerDay)
+            return UserDefaults.standard.integer(forKey: Keys.remindersPerDay)
         }
         set(value) {
-            NSUserDefaults.standardUserDefaults().setInteger(value, forKey: Keys.remindersPerDay)
+            UserDefaults.standard.set(value, forKey: Keys.remindersPerDay)
         }
     }
     var reminderText: String {
         get {
-            return NSUserDefaults.standardUserDefaults().stringForKey(Keys.reminderText)!
+            return UserDefaults.standard.string(forKey: Keys.reminderText)!
         }
         set(value) {
-            NSUserDefaults.standardUserDefaults().setValue(value, forKey: Keys.reminderText)
+            UserDefaults.standard.setValue(value, forKey: Keys.reminderText)
         }
     }
     
     var history: HistoryList {
         get {
-            let arr:[String] = NSUserDefaults.standardUserDefaults().arrayForKey(Keys.historyList) as! [String]
+            let arr:[String] = UserDefaults.standard.array(forKey: Keys.historyList) as! [String]
             return HistoryList(arr: arr)
         }
         set(value) {
             let arr = history.array
             print("setting history hist: \(arr)")
-            NSUserDefaults.standardUserDefaults().setValue(arr, forKey: Keys.historyList)
+            UserDefaults.standard.setValue(arr, forKey: Keys.historyList)
         }
     }
 
-    func setReminderAndUpdateHistory(text: String) {
+    func setReminderAndUpdateHistory(_ text: String) {
         if (self.reminderText == text) {
             print("new text is the same as the old text - ignoring new text, history unchanged")
         } else {
@@ -79,7 +79,7 @@ class Settings {
             }
             h.removeItemFromHistory(text)
             self.reminderText = text
-            NSUserDefaults.standardUserDefaults().setValue(h.array, forKey: Keys.historyList)
+            UserDefaults.standard.setValue(h.array, forKey: Keys.historyList)
             save()
         }
     }
@@ -94,7 +94,7 @@ class Settings {
         //print("removing history")
         //NSUserDefaults.standardUserDefaults().removeObjectForKey(Keys.historyList) // DEBUG don't check in
         
-        NSUserDefaults.standardUserDefaults().registerDefaults([
+        UserDefaults.standard.register(defaults: [
             Keys.startTime: Float(9.0),
             Keys.stopTime: Float(21.0),
             Keys.remindersPerDay: Int(12),
@@ -107,16 +107,16 @@ class Settings {
     var running: Bool {
         get {
             // note: returns false if it's not running
-            return NSUserDefaults.standardUserDefaults().boolForKey(Keys.IsRunning)
+            return UserDefaults.standard.bool(forKey: Keys.IsRunning)
         }
         set(value) {
-            NSUserDefaults.standardUserDefaults().setBool(value, forKey: Keys.IsRunning)
+            UserDefaults.standard.set(value, forKey: Keys.IsRunning)
         }
     }
     
     func save() {
-        NSUserDefaults.standardUserDefaults().synchronize()
-        let center = NSNotificationCenter.defaultCenter()
-        center.postNotificationName(Notifications.SettingsChanged, object: nil)
+        UserDefaults.standard.synchronize()
+        let center = NotificationCenter.default
+        center.post(name: Notification.Name(rawValue: Notifications.SettingsChanged), object: nil)
     }
 }

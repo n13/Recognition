@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '17C9A91E7F9E7BFA7D9E53C51B68B662'
+               BlueprintIdentifier = '7D8656B17A81DC70121DE7184FBC4351'
                BlueprintName = 'EVCloudKitDao'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'EVCloudKitDao.framework'>

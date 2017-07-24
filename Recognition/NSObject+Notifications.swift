@@ -10,15 +10,15 @@ import Foundation
 
 extension NSObject {
     
-    func addObserverForNotification(name: String, selector: Selector) {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: selector, name: name, object: nil)
+    func addObserverForNotification(_ name: String, selector: Selector) {
+        NotificationCenter.default.addObserver(self, selector: selector, name: NSNotification.Name(rawValue: name), object: nil)
     }
     
-    func removeObserverForNotification(name: String) {
-            NSNotificationCenter.defaultCenter().removeObserver(self, name: name, object: nil)
+    func removeObserverForNotification(_ name: String) {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: name), object: nil)
     }
     
-    func postNotification(name: String) {
-        NSNotificationCenter.defaultCenter().postNotificationName(name, object: self, userInfo: nil)
+    func postNotification(_ name: String) {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: name), object: self, userInfo: nil)
     }
 }
