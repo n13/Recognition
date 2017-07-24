@@ -26,7 +26,7 @@ extension UIViewController {
             color: Constants.GreyTextColor,
             lineHeightMultiple: 0.8)
         theView.addSubview(headerLabel)
-        headerLabel.snp_makeConstraints { make in
+        headerLabel.snp.makeConstraints { make in
             make.top.equalTo(46) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
             make.trailing.equalTo(-headerInset)
@@ -46,8 +46,8 @@ extension UIViewController {
             color: Constants.ActiveColor,
             lineHeightMultiple: 0.8)
         theView.addSubview(doneLabel)
-        doneLabel.snp_makeConstraints { make in
-            make.baseline.equalTo(headerLabel.snp_baseline) // topLayoutGuide.length seems 0...
+        doneLabel.snp.makeConstraints { make in
+            make.lastBaseline.equalTo(headerLabel.snp.lastBaseline) // topLayoutGuide.length seems 0...
             make.trailing.equalTo(-headerInset)
         }
         
@@ -56,8 +56,8 @@ extension UIViewController {
         theView.addSubview(line)
         line.dashShape.strokeColor = UIColor.nkrPaleSalmonColor().withAlphaComponent(0.9).cgColor
         line.dashShape.lineWidth = 2
-        line.snp_makeConstraints { make in
-            make.top.equalTo(headerLabel.snp_baseline).offset(18) // topLayoutGuide.length seems 0...
+        line.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.lastBaseline).offset(18) // topLayoutGuide.length seems 0...
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
         }

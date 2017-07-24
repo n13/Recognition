@@ -22,8 +22,8 @@ class ListViewController2: UIViewController, UITableViewDelegate, UITableViewDat
         let headerViews = createHeaderViews(view, titleText: titleText, doneButtonText: doneButtonText, doneButtonAction: #selector(ListViewController2.cancelButtonPressed(_:)))
                 
         view.addSubview(tableView)
-        tableView.snp_makeConstraints { make in
-            make.top.equalTo(headerViews.headerLabel.snp_bottom).offset(10)
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(headerViews.headerLabel.snp.bottom).offset(10)
             make.leading.equalTo(0)
             make.trailing.equalTo(0)
             make.bottom.equalTo(0)

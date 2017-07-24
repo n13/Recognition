@@ -57,22 +57,22 @@ class BlockView: UIView {
         addSubview(textLabel)
         
         if (!labelOnLeft) {
-            textLabel.snp_remakeConstraints{ make in
+            textLabel.snp.remakeConstraints{ make in
                 make.left.equalTo(60)
-                make.baseline.equalTo(0)
+                make.lastBaseline.equalTo(0)
             }
-            numberLabel.snp_remakeConstraints { make in
-                make.right.equalTo(textLabel.snp_left).offset(-10)
-                make.baseline.equalTo(0)
+            numberLabel.snp.remakeConstraints { make in
+                make.right.equalTo(textLabel.snp.left).offset(-10)
+                make.lastBaseline.equalTo(0)
             }
         } else {
-            textLabel.snp_remakeConstraints{ make in
+            textLabel.snp.remakeConstraints{ make in
                 make.leading.equalTo(inset)
-                make.baseline.equalTo(0)
+                make.lastBaseline.equalTo(0)
             }
-            numberLabel.snp_remakeConstraints { make in
-                make.leading.equalTo(textLabel.snp_trailing).offset(10)
-                make.baseline.equalTo(0)
+            numberLabel.snp.remakeConstraints { make in
+                make.leading.equalTo(textLabel.snp.trailing).offset(10)
+                make.lastBaseline.equalTo(0)
             }
 
         }

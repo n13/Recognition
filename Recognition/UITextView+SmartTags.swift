@@ -27,7 +27,6 @@ extension UITextView {
             if let _ = value {
                 return value as? String
             }
-            print("value: \(value)")
         }
         return nil
     }

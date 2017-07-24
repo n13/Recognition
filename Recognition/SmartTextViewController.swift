@@ -87,14 +87,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             scrollView.isScrollEnabled = false
             scrollView.delaysContentTouches = false
             
-            let info = notification.userInfo
-            let kbSize = (info?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
-            if kbSize != nil {
-                changeButtonBottomOffset?.updateOffset(amount: -kbSize.height+1)
+            if let info = notification.userInfo {
+                let kbSize = (info[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue.size
+                changeButtonBottomOffset?.update(offset: -kbSize.height+1)
             }
             self.reminderTextView.isScrollEnabled = true
-            self.reminderTextMinHeightConstraint?.updateOffset(amount: 240)
-            self.reminderTextMaxHeightConstraint?.updateOffset(amount: 240)
+            self.reminderTextMinHeightConstraint?.update(offset: 240)
+            self.reminderTextMaxHeightConstraint?.update(offset: 240)
             UIView.animate(withDuration: 0.4, animations: {
                 self.underline.alpha = 0
             }) 
@@ -119,11 +118,11 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         scrollView.isScrollEnabled = true
         scrollView.delaysContentTouches = true
         
-        changeButtonBottomOffset?.updateOffset(amount: -5)
+        changeButtonBottomOffset?.update(offset: -5)
         
         self.reminderTextView.isScrollEnabled = false
-        self.reminderTextMinHeightConstraint?.updateOffset(amount: 0)
-        self.reminderTextMaxHeightConstraint?.updateOffset(amount: 999)
+        self.reminderTextMinHeightConstraint?.update(offset: 0)
+        self.reminderTextMaxHeightConstraint?.update(offset: 999)
         
         UIView.animate(withDuration: 0.4, animations: {
             self.underline.alpha = 1
@@ -152,7 +151,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         scrollView.showsVerticalScrollIndicator = false
         
         view.addSubview(scrollView)
-        scrollView.snp_makeConstraints{ make in
+        scrollView.snp.makeConstraints{ make in
             make.edges.equalTo(0)
         }
         
@@ -165,12 +164,12 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         textView = UITextView.createCustomTextView()
         scrollView.addSubview(textView)
         
-        textView.snp_makeConstraints { make in
-            make.top.equalTo(headerLabel.snp_baseline).offset(textOffsetFromHeader)
-            make.leading.equalTo(scrollView.snp_leading).offset(textInset)
-            make.trailing.equalTo(scrollView.snp_trailing).offset(-textInset)
-            make.width.equalTo(view.snp_width).offset(-textInset*2)
-            //make.bottom.equalTo(scrollView.snp_bottom)
+        textView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.lastBaseline).offset(textOffsetFromHeader)
+            make.leading.equalTo(scrollView.snp.leading).offset(textInset)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-textInset)
+            make.width.equalTo(view.snp.width).offset(-textInset*2)
+            //make.bottom.equalTo(scrollView.snp.bottom)
             
             // text heigh constraint so we can shrink this view
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint // DEBUG remove
@@ -180,13 +179,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         if (isSettingsScreen) {
             reminderTextView = UITextView.createCustomTextView()
             scrollView.addSubview(reminderTextView)
-            reminderTextView.snp_makeConstraints { make in
-                make.top.equalTo(textView.snp_bottom).offset(7)
-                make.width.equalTo(textView.snp_width)
-                make.left.equalTo(textView.snp_left)
+            reminderTextView.snp.makeConstraints { make in
+                make.top.equalTo(textView.snp.bottom).offset(7)
+                make.width.equalTo(textView.snp.width)
+                make.left.equalTo(textView.snp.left)
                 self.reminderTextMaxHeightConstraint = make.height.lessThanOrEqualTo(999.0).constraint
                 self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
-                make.bottom.equalTo(scrollView.snp_bottom).offset(-30)
+                make.bottom.equalTo(scrollView.snp.bottom).offset(-30)
             }
             reminderTextView.isEditable = true
             reminderTextView.delegate = self
@@ -354,7 +353,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             datePickerMode: UIDatePickerMode.time,
             selectedDate: time,
             doneBlock: { picker, selectedDate, origin in
-                print("\(selectedDate)")
+                print("\(String(describing: selectedDate))")
                 self.setDate(selectedDate as! Date, isStartDate: isStartDate)
             },
             cancel: { picker in
@@ -365,7 +364,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         picker?.minuteInterval = 30
         picker?.show()
 
-        print("picker.pickerView \(picker?.pickerView)")
+        print("picker.pickerView \(String(describing: picker?.pickerView))")
         if let pickerView = picker?.pickerView as? UIDatePicker {
             print("adding observer")
             pickerView.addTarget(self, action: (isStartDate ? #selector(SmartTextViewController.startDateChanged(_:)) : #selector(SmartTextViewController.endDateChanged(_:))), for: UIControlEvents.valueChanged)

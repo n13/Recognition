@@ -13,16 +13,16 @@ class ListCell: BaseTableViewCell {
     override func customSetup() {
         label.numberOfLines = 0
         self.contentView.addSubview(label)
-        label.snp_makeConstraints { make in
+        label.snp.makeConstraints { make in
             make.edges.equalTo(self.contentView).inset(UIEdgeInsets(top: 20, left: Constants.TextInset, bottom: 20, right: Constants.TextInset))
         }
         let line = DashedLineView()
         line.placeBelowView(label)
         line.clipsToBounds = true
-        line.snp_remakeConstraints { make in
-            make.top.equalTo(label.snp_bottom).offset(18)
-            make.left.equalTo(label.snp_left)
-            make.right.equalTo(label.snp_right)
+        line.snp.remakeConstraints { make in
+            make.top.equalTo(label.snp.bottom).offset(18)
+            make.left.equalTo(label.snp.left)
+            make.right.equalTo(label.snp.right)
             make.height.equalTo(2)
         }
     }

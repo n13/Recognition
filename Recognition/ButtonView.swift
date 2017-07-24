@@ -49,24 +49,24 @@ class ButtonView: UIView {
 //        packView.addSubview(titleLabel)
 //        packView.addSubview(rightArrow)
 //        
-//        titleLabel.snp_makeConstraints { make in
+//        titleLabel.snp.makeConstraints { make in
 //            make.left.equalTo(0)
 //            make.top.equalTo(0)
 //            make.bottom.equalTo(0)
-//            make.right.equalTo(rightArrow.snp_left).offset(5).priority(600)
+//            make.right.equalTo(rightArrow.snp.left).offset(5).priority(600)
 //        }
-//        rightArrow.snp_makeConstraints { make in
+//        rightArrow.snp.makeConstraints { make in
 //            make.centerY.equalTo(titleLabel.snp_centerY)
 //        }
 //        packView.backgroundColor = UIColor.yellowColor()
 //        
-//        packView.snp_makeConstraints { make in
+//        packView.snp.makeConstraints { make in
 //            make.center.equalTo(0)
 //            make.width.equalTo(200)
 //        }
 //        packView.setContentHuggingPriority(999, forAxis: .Horizontal)
 //        
-//        button.snp_makeConstraints { make in
+//        button.snp.makeConstraints { make in
 //            make.edges.equalTo(0)
 //        }
     }

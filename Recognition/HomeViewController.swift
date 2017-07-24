@@ -105,7 +105,7 @@ class HomeViewController:
     
     func bounceMenu_DISABLED() {
         let screenSize = UIScreen.main.bounds.size
-        self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(amount: screenSize.height - 166)
+        self.changeSettingsButtonBottomOffsetConstraint?.update(offset: screenSize.height - 166)
         let duration = 0.2
         UIView.setAnimationCurve(UIViewAnimationCurve.easeOut)
         UIView.animate(withDuration: duration,
@@ -114,7 +114,7 @@ class HomeViewController:
                                     self.view.layoutIfNeeded()
             },
                                    completion: { b in
-                                    self.changeSettingsButtonBottomOffsetConstraint?.updateOffset(amount: screenSize.height - self.offsetFromBottom)
+                                    self.changeSettingsButtonBottomOffsetConstraint?.update(offset: screenSize.height - self.offsetFromBottom)
                                     UIView.setAnimationCurve(UIViewAnimationCurve.easeIn)
                                     UIView.animate(withDuration: duration, animations: {
                                         print("bouncing down")
@@ -124,6 +124,7 @@ class HomeViewController:
         
     }
     
+    @discardableResult
     func checkNotificationsAreEnabled() -> Bool {
         // check notification status - except not on first launch. 
         // On first launch the user will be presented with the system notifications dialog. So we don't check or 
@@ -165,7 +166,7 @@ class HomeViewController:
                     self.view.layoutIfNeeded()
                 },
                 completion: { b in
-                    self.textHeightConstraint!.updateOffset(amount: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
+                    self.textHeightConstraint!.update(offset: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
                     UIView.animate(withDuration: 0.4, animations: {
                         self.view.layoutIfNeeded()
                     }) 
@@ -173,7 +174,7 @@ class HomeViewController:
             
         } else {
             self.textView.attributedText = self.createMainText()
-            self.textHeightConstraint!.updateOffset(amount: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
+            self.textHeightConstraint!.update(offset: CGFloat(running && notificationsEnabled ? 1000 : Constants.ShortTextHeight))
         }
 
     }
@@ -187,10 +188,9 @@ class HomeViewController:
         scrollView.showsVerticalScrollIndicator = false
         scrollView.delaysContentTouches = false
         view.addSubview(scrollView)
-        scrollView.snp_makeConstraints{ make in
+        scrollView.snp.makeConstraints{ make in
             make.edges.equalTo(view)
         }
-        
 
         // title label
         titleLabel.numberOfLines = 0
@@ -198,8 +198,8 @@ class HomeViewController:
         headerText.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
         titleLabel.attributedText = headerText
         scrollView.addSubview(titleLabel)
-        titleLabel.snp_makeConstraints { make in
-            make.top.equalTo(self.view.snp_top).offset(40) // topLayoutGuide.length seems 0...
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.view.snp.top).offset(40) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
         }
 
@@ -213,8 +213,8 @@ class HomeViewController:
         utext.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
         underLabel.attributedText = utext
         scrollView.addSubview(underLabel)
-        underLabel.snp_makeConstraints { make in
-            make.top.equalTo(underline.snp_bottom).offset(-4) // topLayoutGuide.length seems 0...
+        underLabel.snp.makeConstraints { make in
+            make.top.equalTo(underline.snp.bottom).offset(-4) // topLayoutGuide.length seems 0...
             make.leading.equalTo(headerInset)
         }
         underLabel.isHidden = true
@@ -224,11 +224,11 @@ class HomeViewController:
         textView = UITextView.createCustomTextView()
         textView.isScrollEnabled = false
         scrollView.addSubview(textView)
-        textView.snp_makeConstraints { make in
-            make.top.equalTo(underline.snp_bottom).offset(36)
-            make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
-            make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
-            make.width.equalTo(view.snp_width).offset(-headerInset*2)
+        textView.snp.makeConstraints { make in
+            make.top.equalTo(underline.snp.bottom).offset(36)
+            make.leading.equalTo(scrollView.snp.leading).offset(headerInset)
+            make.trailing.equalTo(scrollView.snp.trailing).offset(-headerInset)
+            make.width.equalTo(view.snp.width).offset(-headerInset*2)
             
             // text heigh constraint so we can shrink this view
             self.textHeightConstraint = make.height.lessThanOrEqualTo(CGFloat(1000)).constraint
@@ -249,15 +249,15 @@ class HomeViewController:
 
         // space out the buttons vertically
         for (index, button) in buttons.enumerated() {
-            button.snp_makeConstraints { make in
+            button.snp.makeConstraints { make in
                 if (index == 0) {
-                    changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp_top).offset(screenSize.height - offsetFromBottom).constraint
+                    changeSettingsButtonBottomOffsetConstraint = make.bottom.equalTo(self.scrollView.snp.top).offset(screenSize.height - offsetFromBottom).constraint
                 } else {
-                    make.top.equalTo(buttons[index-1].snp_bottom).offset(howToOffset)
+                    make.top.equalTo(buttons[index-1].snp.bottom).offset(howToOffset)
                 }
-                make.leading.equalTo(view.snp_leading).offset(headerInset)
+                make.leading.equalTo(view.snp.leading).offset(headerInset)
                 if (index == buttons.count-1) {
-                    make.bottom.equalTo(self.scrollView.snp_bottom).offset(-20)
+                    make.bottom.equalTo(self.scrollView.snp.bottom).offset(-20)
                 }
             }
         }
@@ -387,10 +387,10 @@ class HomeViewController:
             label.numberOfLines = 0
             label.attributedText = createButtonText("Notifications are off so you will not receive any reminders. Tap here to turn on notifications in System Settings", size: 20)
             scrollView.addSubview(label)
-            label.snp_makeConstraints { make in
-                make.top.equalTo(self.textView.snp_bottom).offset(20)
-                make.leading.equalTo(scrollView.snp_leading).offset(headerInset)
-                make.trailing.equalTo(scrollView.snp_trailing).offset(-headerInset)
+            label.snp.makeConstraints { make in
+                make.top.equalTo(self.textView.snp.bottom).offset(20)
+                make.leading.equalTo(scrollView.snp.leading).offset(headerInset)
+                make.trailing.equalTo(scrollView.snp.trailing).offset(-headerInset)
             }
             label.isUserInteractionEnabled = true
             label.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(HomeViewController.errorLabelTapped)))
