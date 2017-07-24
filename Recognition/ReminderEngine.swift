@@ -61,9 +61,14 @@ class ReminderEngine {
             futureReminders = createReminderTimesForToday()
             print("Setting reminders for:")
             for date in futureReminders {
-                //print("reminder with daily repeat on: \(date.toLocalString())")
+                print("reminder with daily repeat on: \(date.toLocalString())")
                 scheduleNotification(date)
             }
+            // System enforces a 64 notification maximum
+//            if let num = UIApplication.shared.scheduledLocalNotifications?.count {
+//                print("scheduled: \(num) notifications!")
+//            }
+            
         } else {
             futureReminders = [Date]()
         }
