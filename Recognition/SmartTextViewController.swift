@@ -16,6 +16,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     var headerLabel: UILabel!
     var textView: UITextView!
     var reminderTextView: UITextView!
+    var soundTextView: UITextView?
     var underline: DashedLineView!
 
     let textInset = Constants.TextInset
@@ -47,8 +48,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         setupViews()
         
         // Tap recognizer
-        let tappy = UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.textTapped(_:)))
-        textView.addGestureRecognizer(tappy)
+        textView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.textTapped(_:))))
+        soundTextView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.textTapped(_:))))
         
         // taps outside the text view need to release the focus
         let releaser = UITapGestureRecognizer(target: self, action: #selector(SmartTextViewController.releaseFirstResponder))
@@ -96,7 +97,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             self.reminderTextMaxHeightConstraint?.update(offset: 240)
             UIView.animate(withDuration: 0.4, animations: {
                 self.underline.alpha = 0
-            }) 
+            })
+            
+            soundTextView?.isHidden = true
         }
     }
     
@@ -113,6 +116,8 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         print("end editing. new text: \(newText)")
 
         editMode = false
+
+        soundTextView?.isHidden = false
 
         scrollView.contentOffset = CGPoint.zero
         scrollView.isScrollEnabled = true
@@ -177,6 +182,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         // this should be in a subclass or whatever
         if (isSettingsScreen) {
+            // =========================
+            // Reminder text
+            // =========================
             reminderTextView = UITextView.createCustomTextView()
             scrollView.addSubview(reminderTextView)
             reminderTextView.snp.makeConstraints { make in
@@ -185,7 +193,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 make.left.equalTo(textView.snp.left)
                 self.reminderTextMaxHeightConstraint = make.height.lessThanOrEqualTo(999.0).constraint
                 self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
-                make.bottom.equalTo(scrollView.snp.bottom).offset(-30)
+                //make.bottom.equalTo(scrollView.snp.bottom).offset(-30)
             }
             reminderTextView.isEditable = true
             reminderTextView.delegate = self
@@ -204,6 +212,22 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
             toolbar.items = [historyButton, spacer, doneButton]
             
             reminderTextView.inputAccessoryView = toolbar
+
+            // =========================
+            // Sound text
+            // =========================
+            soundTextView = UITextView.createCustomTextView()
+            scrollView.addSubview(soundTextView!)
+            soundTextView!.snp.makeConstraints { make in
+                make.top.equalTo(reminderTextView.snp.bottom).offset(7)
+                make.width.equalTo(textView.snp.width)
+                make.left.equalTo(textView.snp.left)
+                self.reminderTextMaxHeightConstraint = make.height.lessThanOrEqualTo(999.0).constraint
+                self.reminderTextMinHeightConstraint = make.height.greaterThanOrEqualTo(0.0).constraint
+                make.bottom.equalTo(scrollView.snp.bottom).offset(-30)
+            }
+            soundTextView!.isEditable = false
+            soundTextView!.delegate = self
 
         }
     }
@@ -226,6 +250,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         if (isSettingsScreen) {
             textView.attributedText = createText()
             reminderTextView.attributedText = createReminderText()
+            soundTextView?.attributedText = createSoundText()
             reminderTextView.endEditing(true)
         }
     }
@@ -275,6 +300,10 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
                 showNumRemindersControl("Reminders Per Day", number: AppDelegate.delegate().settings.remindersPerDay, popupBaseView: popupBaseView)
                 break
                 
+            case Tag.Sound:
+                showSoundControl("Reminder Sound", selectedSound: AppDelegate.delegate().settings.reminderSound, popupBaseView: popupBaseView)
+                break
+                
             default:
                 break
             }
@@ -289,6 +318,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         static let EndTime = "#endTime"
         static let ReminderText = "#text"
         static let ToggleOnOff = "#OnOff"
+        static let Sound = "#Sound"
     }
     
     func createReminderText() -> NSMutableAttributedString {
@@ -325,6 +355,13 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         return attributedText
         
+    }
+    
+    func createSoundText() -> NSMutableAttributedString {
+        let attributedText = NSMutableAttributedString()
+        attributedText.appendText("Reminder sound:\n")
+        attributedText.appendClickableText(AppDelegate.delegate().settings.reminderSound, tag: Tag.Sound, lineHeightMultiple: 0.85)
+        return attributedText
     }
     
     func createOnOffText(_ isOnLabel: Bool) -> NSMutableAttributedString {
@@ -424,6 +461,32 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         actionSheetStringPicker?.show()
     }
     
+    func showSoundControl(_ title: String, selectedSound: String, popupBaseView: UIView) {
+        
+        let rows = [SoundValue.Default, SoundValue.Small, SoundValue.Medium, SoundValue.Big]
+        
+        let selectedIndex = rows.index(of: selectedSound) ?? 0
+        
+        let actionSheetStringPicker = ActionSheetStringPicker(title: "Reminder Sound", rows: rows, initialSelection: selectedIndex,
+                                                              doneBlock: {
+                                                                picker, index, value in
+                                                                let settings = AppDelegate.delegate().settings
+                                                                let valueString: NSString = value as! NSString
+                                                                settings.reminderSound = valueString as String
+                                                                print("sound set to: \(settings.reminderSound)")
+                                                                picker?.removeObserver(self, forKeyPath: "selectedIndex")
+                                                                settings.save()
+                                                                return
+        }, cancel: { picker in
+            picker?.removeObserver(self, forKeyPath: "selectedIndex")
+            return
+        },
+           origin: popupBaseView)
+        actionSheetStringPicker?.hideCancel = false
+        actionSheetStringPicker?.addObserver(self, forKeyPath: "selectedIndex", options: .new, context: nil)
+        actionSheetStringPicker?.show()
+    }
+    
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if (keyPath == "selectedIndex") {
             if let picker = object as? ActionSheetStringPicker{
@@ -435,9 +498,9 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
 
     
-    func pickerChanged(_ sender: UIDatePicker) {
-        print("picker changed to \(sender.date)")
-    }
+//    func pickerChanged(_ sender: UIDatePicker) {
+//        print("picker changed to \(sender.date)")
+//    }
     
     
 }
