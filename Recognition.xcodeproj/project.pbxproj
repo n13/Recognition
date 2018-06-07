@@ -14,6 +14,8 @@
 		2420C0871CDAFFFB0088048C /* HistoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0861CDAFFFB0088048C /* HistoryList.swift */; };
 		2420C08A1CDB5B640088048C /* UIView+ResignFirstResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2420C0891CDB5B640088048C /* UIView+ResignFirstResponder.m */; };
 		243CE6FC1C65E4C6001182AB /* TimeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243CE6FB1C65E4C6001182AB /* TimeCell.swift */; };
+		2441AD3D1F8B559E00D02379 /* ReminderSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2441AD3C1F8B559E00D02379 /* ReminderSound.swift */; };
+		2441AD421F8B58F100D02379 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2441AD411F8B58F100D02379 /* AVFoundation.framework */; };
 		244207FC1C15620200EEF7D9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244207FB1C15620200EEF7D9 /* Settings.swift */; };
 		2442B83F1C69C69400346E1B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2442B83E1C69C69400346E1B /* Constants.swift */; };
 		2442B8431C69FAF600346E1B /* UIViewController+CommonUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 2442B8421C69FAF600346E1B /* UIViewController+CommonUtils.m */; };
@@ -89,6 +91,11 @@
 		2420C0881CDB5B640088048C /* UIView+ResignFirstResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ResignFirstResponder.h"; sourceTree = "<group>"; };
 		2420C0891CDB5B640088048C /* UIView+ResignFirstResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ResignFirstResponder.m"; sourceTree = "<group>"; };
 		243CE6FB1C65E4C6001182AB /* TimeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeCell.swift; sourceTree = "<group>"; };
+		2441AD3C1F8B559E00D02379 /* ReminderSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderSound.swift; sourceTree = "<group>"; };
+		2441AD3E1F8B56BF00D02379 /* small_bowl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = small_bowl.m4a; sourceTree = "<group>"; };
+		2441AD3F1F8B56CA00D02379 /* medium_bowl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = medium_bowl.m4a; sourceTree = "<group>"; };
+		2441AD401F8B56D400D02379 /* big_bowl.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = big_bowl.m4a; sourceTree = "<group>"; };
+		2441AD411F8B58F100D02379 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		244207FB1C15620200EEF7D9 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2442B83E1C69C69400346E1B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2442B8401C69FAF500346E1B /* Recognition-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Recognition-Bridging-Header.h"; path = "Recognition/Recognition-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -167,6 +174,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2441AD421F8B58F100D02379 /* AVFoundation.framework in Frameworks */,
 				24B768291C6A40B1000C91BB /* MessageUI.framework in Frameworks */,
 				24675D5D1CB9100800D53EDF /* CloudKit.framework in Frameworks */,
 				245C45041BFDA53000410591 /* NotificationCenter.framework in Frameworks */,
@@ -200,6 +208,7 @@
 				24B09B601C6B873B0090DCFC /* UnderlineLayoutManager.swift */,
 				2420C0841CDAF76D0088048C /* ReminderText.swift */,
 				2420C0861CDAFFFB0088048C /* HistoryList.swift */,
+				2441AD3C1F8B559E00D02379 /* ReminderSound.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -264,6 +273,9 @@
 		246235181BF9A18C00BDE6D7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				2441AD3E1F8B56BF00D02379 /* small_bowl.m4a */,
+				2441AD3F1F8B56CA00D02379 /* medium_bowl.m4a */,
+				2441AD401F8B56D400D02379 /* big_bowl.m4a */,
 				24E054FD1CB8AA480037887C /* Recognition.entitlements */,
 				246234F11BF9A0D000BDE6D7 /* Assets.xcassets */,
 				246234F61BF9A0D000BDE6D7 /* Info.plist */,
@@ -362,6 +374,7 @@
 		7AE40CF196B12F53F9860559 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2441AD411F8B58F100D02379 /* AVFoundation.framework */,
 				24675D5C1CB9100800D53EDF /* CloudKit.framework */,
 				24B768281C6A40B1000C91BB /* MessageUI.framework */,
 				245C45031BFDA53000410591 /* NotificationCenter.framework */,
@@ -601,6 +614,7 @@
 				244207FC1C15620200EEF7D9 /* Settings.swift in Sources */,
 				246359391C6882D50097CC76 /* UITextView+SmartTags.swift in Sources */,
 				24A256B91C80B93300AC9978 /* ActionSheetDatePicker.m in Sources */,
+				2441AD3D1F8B559E00D02379 /* ReminderSound.swift in Sources */,
 				246359371C68623F0097CC76 /* SmartTextViewController.swift in Sources */,
 				24A256BE1C80B93300AC9978 /* DistancePickerView.m in Sources */,
 				24A256BD1C80B93300AC9978 /* ActionSheetStringPicker.m in Sources */,

@@ -35,6 +35,8 @@ struct Constants {
         return formatter
     }
     static var DefaultReminderText = "Take 2-5 seconds to let go of all thoughts. Recognize that you exist."
+    
+    
     static let ActiveColor = UIColor.nkrReddishOrangeColor()
         
     static let MediumFont = "HelveticaNeue-Medium"

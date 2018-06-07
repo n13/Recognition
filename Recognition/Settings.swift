@@ -17,10 +17,21 @@ class Settings {
         static let remindersPerDay = "remindersPerDay"
         static let reminderText = "reminderText"
         static let historyList = "historyList"
+        static let reminderSound = "reminderSound"
     }
     
     struct Notifications {
         static let SettingsChanged = "SettingsChanged"
+    }
+    
+    
+    var reminderSound:String {
+        get {
+            return UserDefaults.standard.string(forKey: Keys.reminderSound) ?? SoundValue.Default
+        }
+        set(value) {
+            UserDefaults.standard.set(value, forKey: Keys.reminderSound)
+        }
     }
     
     var startTime:Float {
@@ -100,7 +111,8 @@ class Settings {
             Keys.remindersPerDay: Int(12),
             Keys.reminderText: Constants.DefaultReminderText,
             Keys.historyList: [],
-            Keys.IsRunning: true
+            Keys.IsRunning: true,
+            Keys.reminderSound: SoundValue.Default
             ])
     }
     
