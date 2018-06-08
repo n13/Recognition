@@ -8,12 +8,6 @@
 
 import Foundation
 
-// Protocol that can be used for sub objects to define that parsing will be done in the parent using the 'setValue forKey' function
-public protocol EVCustomReflectable {
-    func constructWith(value: Any?)
-    func toCodableValue() -> Any
-}
-
 // MARK: - Protocol with the overridable functions. All functionality is added to this in the extension below.
 public protocol EVReflectable: class, NSObjectProtocol  {
     /**
@@ -59,7 +53,7 @@ public protocol EVReflectable: class, NSObjectProtocol  {
      
      - returns: The decoded value
      */
-    func decodePropertyValue(value: Any, key: String) -> Any
+    func decodePropertyValue(value: Any, key: String) -> Any?
 
     /**
      You can add general value encoding to an object when you implement this function. You can for instance use it to base64 encode, url encode, html encode, unicode, etc.
@@ -156,7 +150,7 @@ extension EVReflectable where Self: NSObject {
     public init(dictionary: NSDictionary, conversionOptions: ConversionOptions = .DefaultDeserialize, forKeyPath: String? = nil) {
         self.init()
         if let v = self as? EVCustomReflectable {
-            v.constructWith(value: dictionary)
+            let _ = v.constructWith(value: dictionary)
         } else {
             EVReflection.setPropertiesfromDictionary(dictionary, anyObject: self, conversionOptions: conversionOptions, forKeyPath: forKeyPath)
         }
@@ -172,7 +166,7 @@ extension EVReflectable where Self: NSObject {
         self.init()
         let dictionary = EVReflection.dictionaryFromJson(json)
         if let v = self as? EVCustomReflectable {
-            v.constructWith(value: dictionary)
+            let _ = v.constructWith(value: dictionary)
         } else {
             EVReflection.setPropertiesfromDictionary(dictionary, anyObject: self, conversionOptions: conversionOptions, forKeyPath: forKeyPath)
         }
@@ -188,7 +182,7 @@ extension EVReflectable where Self: NSObject {
         self.init()
         let dictionary: NSDictionary = (((try! JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary))  ?? NSDictionary())!
         if let v = self as? EVCustomReflectable {
-            v.constructWith(value: dictionary)
+            let _ = v.constructWith(value: dictionary)
         } else {
             EVReflection.setPropertiesfromDictionary(dictionary, anyObject: self, conversionOptions: conversionOptions, forKeyPath: forKeyPath)
         }
@@ -207,7 +201,7 @@ extension EVReflectable where Self: NSObject {
         if let temp = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? EVReflectable {
             if let v = self as? EVCustomReflectable {
                 let dictionary = temp.toDictionary(conversionOptions)
-                v.constructWith(value: dictionary)
+                let _ = v.constructWith(value: dictionary)
             } else {
                 EVReflection.setPropertiesfromDictionary( temp.toDictionary(conversionOptions), anyObject: self, conversionOptions: conversionOptions)
             }
@@ -226,7 +220,7 @@ extension EVReflectable where Self: NSObject {
         if let temp = NSKeyedUnarchiver.unarchiveObject(withFile: filePath) as? EVReflectable {
             if let v = self as? EVCustomReflectable {
                 let dictionary = temp.toDictionary(conversionOptions)
-                v.constructWith(value: dictionary)
+                let _ = v.constructWith(value: dictionary)
             } else {
                 EVReflection.setPropertiesfromDictionary( temp.toDictionary(conversionOptions), anyObject: self, conversionOptions: conversionOptions)
             }
@@ -243,7 +237,7 @@ extension EVReflectable where Self: NSObject {
         self.init()
         let dict = usingValuesFrom.toDictionary()
         if let v = self as? EVCustomReflectable {
-            v.constructWith(value: dict)
+            let _ = v.constructWith(value: dict)
         } else {
             EVReflection.setPropertiesfromDictionary(dict, anyObject: self, conversionOptions: conversionOptions)
         }
@@ -362,7 +356,7 @@ extension EVReflectable {
      
      - returns: The decoded value
      */
-    public func decodePropertyValue(value: Any, key: String) -> Any {
+    public func decodePropertyValue(value: Any, key: String) -> Any? {
         return value
     }
     
@@ -469,11 +463,8 @@ extension EVReflectable {
      - returns: The json string
      */
     public func toJsonString(_ conversionOptions: ConversionOptions = .DefaultSerialize, prettyPrinted: Bool = false) -> String {
-        if let obj = self as? NSObject {
-            return EVReflection.toJsonString(obj, conversionOptions: conversionOptions, prettyPrinted: prettyPrinted)
-        }
-        evPrint(.ShouldExtendNSObject, "ERROR: You should only extend object with EVReflectable that are derived from NSObject!")
-        return "{}"
+        let data = self.toJsonData(conversionOptions, prettyPrinted: prettyPrinted)
+        return String(data: data, encoding: .utf8) ?? "{}"
     }
     
     /**
@@ -484,10 +475,25 @@ extension EVReflectable {
      - returns: The json Data
      */
     public func toJsonData(_ conversionOptions: ConversionOptions = .DefaultSerialize, prettyPrinted: Bool = false) -> Data {
-        if let obj = self as? NSObject {
-            return EVReflection.toJsonData(obj, conversionOptions: conversionOptions, prettyPrinted: prettyPrinted)
+        var dict: NSDictionary
+        
+        // Custom or standard toDictionary
+        if let v = self as? EVCustomReflectable {
+            dict = v.toCodableValue() as? NSDictionary ?? NSDictionary()
+        } else {
+            dict = self.toDictionary(conversionOptions)
         }
-        evPrint(.ShouldExtendNSObject, "ERROR: You should only extend object with EVReflectable that are derived from NSObject!")
+        
+        if let v = self as? NSObject {
+            dict = EVReflection.convertDictionaryForJsonSerialization(dict, theObject: v)
+        }
+        
+        do {
+            if prettyPrinted {
+                return try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+            }
+            return try JSONSerialization.data(withJSONObject: dict, options: [])
+        } catch { }
         return Data()
     }
     

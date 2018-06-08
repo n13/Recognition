@@ -1,23 +1,30 @@
 PODS:
   - DateTools (2.0.0)
-  - EVCloudKitDao (3.3.3):
+  - EVCloudKitDao (3.5.2):
     - EVReflection/CloudKit
-  - EVReflection/CloudKit (4.16.3):
+  - EVReflection/CloudKit (5.6.1):
     - EVReflection/Core
-  - EVReflection/Core (4.16.3)
-  - SnapKit (3.2.0)
+  - EVReflection/Core (5.6.1)
+  - SnapKit (4.0.0)
 
 DEPENDENCIES:
   - DateTools
   - EVCloudKitDao
   - SnapKit
 
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - DateTools
+    - EVCloudKitDao
+    - EVReflection
+    - SnapKit
+
 SPEC CHECKSUMS:
   DateTools: 933ac9c490f21f92127cf690ccd8c397e0126caf
-  EVCloudKitDao: fc9a2554efc34fb2797cafc761e52457d639a009
-  EVReflection: 78a60b3c628a2e765652cdc554a903a3e40b16c8
-  SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
+  EVCloudKitDao: 0e65209efb535e49e8fe7d707a14190e5f92ac11
+  EVReflection: d05ebbafc851b7a4cd3d625182662463a5819ab8
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
 PODFILE CHECKSUM: 1eda902c59cda7577ec5c1f5216d5e3ef53e2840
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.5.3

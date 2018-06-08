@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = Constants.ActiveColor
         let font  = UIFont(name: Constants.RegularFont, size: 20.0)
         UINavigationBar.appearance().titleTextAttributes = [
-            NSFontAttributeName : font!
+            NSAttributedStringKey.font : font!
         ]
         
         // Handle incoming notifications - app start because user pushed on a notification

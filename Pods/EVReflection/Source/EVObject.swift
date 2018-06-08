@@ -12,6 +12,7 @@ import Foundation
  Object that implements EVReflectable and NSCoding. Use this object as your base class
  instead of NSObject and you wil automatically have support for all these protocols.
  */
+@objcMembers
 open class EVObject: NSObject, NSCoding, EVReflectable  {
     // These are redundant in Swift 2+: CustomDebugStringConvertible, CustomStringConvertible, Hashable, Equatable
     
@@ -25,7 +26,7 @@ open class EVObject: NSObject, NSCoding, EVReflectable  {
      */
     open override func setValue(_ value: Any!, forUndefinedKey key: String) {
         if let kvc = self as? EVGenericsKVC {
-            kvc.setGenericValue(value as AnyObject!, forUndefinedKey: key)
+            kvc.setGenericValue(value as AnyObject?, forUndefinedKey: key)
         } else {
             self.addStatusMessage(.IncorrectKey, message: "The class '\(EVReflection.swiftStringFromClass(self))' is not key value coding-compliant for the key '\(key)'")
             evPrint(.IncorrectKey, "\nWARNING: The class '\(EVReflection.swiftStringFromClass(self))' is not key value coding-compliant for the key '\(key)'\n There is no support for optional type, array of optionals or enum properties.\nAs a workaround you can implement the function 'setValue forUndefinedKey' for this. See the unit tests for more information\n")
@@ -144,7 +145,7 @@ open class EVObject: NSObject, NSCoding, EVReflectable  {
      
      - returns: The decoded value
      */
-    open func decodePropertyValue(value: Any, key: String) -> Any {
+    open func decodePropertyValue(value: Any, key: String) -> Any? {
         return value
     }
     

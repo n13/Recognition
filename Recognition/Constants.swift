@@ -15,8 +15,8 @@ struct Constants {
     
     static let UserAnsweredNotificationsDialog = "UserAnsweredNotificationsDialog"
 
-    static let SmartTag = "SmartTag"
-    static let SuperUnderlineStyle = "SuperUnderlineStyle-_-:)"
+    static let SmartTag = NSAttributedStringKey("SmartTag")
+    static let SuperUnderlineStyle = NSAttributedStringKey("SuperUnderlineStyle-_-:)")
     static let NotificationCategory = "RECOGNITION_CATEGORY"
     static let TextInset: CGFloat = 25
     
