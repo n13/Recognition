@@ -35,10 +35,8 @@ struct ReminderSound {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
             
-            /// change fileTypeHint according to the type of your audio file (you can omit this)
-            
-            let player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileTypeMPEGLayer3)
-            
+            let player = try AVAudioPlayer(contentsOf: url)
+
             // no need for prepareToPlay because prepareToPlay is happen automatically when calling play()
             player.play()
         } catch let error as NSError {

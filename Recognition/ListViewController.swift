@@ -40,15 +40,15 @@ class ListViewController: UITableViewController {
     func reloadReminderTexts() {
         // test EV cloud kit dao
         dao.query(ReminderText()
-            , completionHandler: { results in
+            , completionHandler: { results, finished in
                 
-                for result in results.0 {
+                for result in results {
                     print("foo: "+result.Text + " \(result.Votes)")
                 }
                 
-                EVLog("query : result count = \(results.0.count)")
+                EVLog("query : result count = \(results.count)")
                 
-                var reminderTexts = results.0
+                var reminderTexts = results
                 reminderTexts.sort { rt1, rt2 in
                     rt1.Votes > rt2.Votes
                 }

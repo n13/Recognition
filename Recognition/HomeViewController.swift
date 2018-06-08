@@ -44,7 +44,7 @@ class HomeViewController:
         
         // listen to the user answering notifications dialog
         addObserverForNotification(Constants.UserAnsweredNotificationsDialog, selector:  #selector(HomeViewController.handleUserAnsweredNotificationsDialog))
-        addObserverForNotification(NSNotification.Name.UIApplicationDidBecomeActive._rawValue as String, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
+        addObserverForNotification(NSNotification.Name.UIApplicationDidBecomeActive.rawValue as String, selector:  #selector(HomeViewController.handleApplicationDidBecomeActive))
         
         // debug test cloud kit
         
@@ -63,7 +63,7 @@ class HomeViewController:
         */
     }
     
-    func handleApplicationDidBecomeActive() {
+    @objc func handleApplicationDidBecomeActive() {
         //print("app is becoming active - check notification status")
         // Note: If this fails, then worst case we show the dialog too much - that's OK
         // The worst that can happen is that we show the dialog when we launch for the first time
@@ -71,13 +71,13 @@ class HomeViewController:
         updateStatus(false)
     }
     
-    func handleUserAnsweredNotificationsDialog() {
+    @objc func handleUserAnsweredNotificationsDialog() {
         //print("user answered notifications dialog... checking for notification settings!")
         updateStatus(false)
     }
     
 
-    func handleIncomingNotification() {
+    @objc func handleIncomingNotification() {
         let message = AppDelegate.delegate().settings.reminderText
         print("handle incoming notification: \(message)")
 //        alertVC = UIAlertController(title: "Recognition", message: message, preferredStyle: .Alert)
@@ -195,7 +195,7 @@ class HomeViewController:
         // title label
         titleLabel.numberOfLines = 0
         let headerText = NSMutableAttributedString.mm_attributedString("recognition", sizeAdjustment: 16, isBold: true, kerning: -1.4, color: Constants.BlackTextColor)
-        headerText.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
+        headerText.applyAttribute(NSAttributedStringKey.font, value: UIFont(name: Constants.BoldFont, size: 50)!)
         titleLabel.attributedText = headerText
         scrollView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
@@ -210,7 +210,7 @@ class HomeViewController:
 
         let underLabel = UILabel()
         let utext = NSMutableAttributedString.mm_attributedString("meditation", sizeAdjustment: 16, isBold: true, kerning: 0.2, color: Constants.BlackTextColor)
-        utext.applyAttribute(NSFontAttributeName, value: UIFont(name: Constants.BoldFont, size: 50)!)
+        utext.applyAttribute(NSAttributedStringKey.font, value: UIFont(name: Constants.BoldFont, size: 50)!)
         underLabel.attributedText = utext
         scrollView.addSubview(underLabel)
         underLabel.snp.makeConstraints { make in
@@ -277,14 +277,14 @@ class HomeViewController:
     }
     
     // MARK: Notifications
-    func handleSettingsChanged(_ notification: Notification?) {
+    @objc func handleSettingsChanged(_ notification: Notification?) {
         print("handle settings changed")
         textView.attributedText = createMainText()
         updateStatus(false)
     }
     
     // MARK: Actions
-    func handleTapOnText(_ recognizer: UITapGestureRecognizer) {
+    @objc func handleTapOnText(_ recognizer: UITapGestureRecognizer) {
         let tag = textView.tagForLocation(recognizer.location(in: textView))
         if let tag = tag {
             print("tag: \(tag)")
@@ -296,7 +296,7 @@ class HomeViewController:
         }
     }
 
-    func sendFeedbackPressed(_ sender: UIGestureRecognizer) {
+    @objc func sendFeedbackPressed(_ sender: UIGestureRecognizer) {
         print("send feedback")
         if MFMailComposeViewController.canSendMail() {
             let controller = MFMailComposeViewController()
@@ -310,7 +310,7 @@ class HomeViewController:
         }
     }
 
-    func changeSettingsPressed(_ sender: UIGestureRecognizer) {
+    @objc func changeSettingsPressed(_ sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
         let nav = UINavigationController(rootViewController: vc!)
@@ -320,7 +320,7 @@ class HomeViewController:
 
     }
 
-    func shareButtonPressed(_ sender: UIGestureRecognizer) {
+    @objc func shareButtonPressed(_ sender: UIGestureRecognizer) {
         print("share")
         let textToShare = "I want to share with you the Recognition Meditation app - it's a free download, check it out."
         let vc = SmartTextViewController.createMain()
@@ -334,7 +334,7 @@ class HomeViewController:
         }
     }
 
-    func howButtonPressed(_ sender: UIGestureRecognizer) {
+    @objc func howButtonPressed(_ sender: UIGestureRecognizer) {
         print("change settings")
         let vc = SmartTextViewController.createMain()
 
@@ -401,7 +401,7 @@ class HomeViewController:
         }
     }
     
-    func errorLabelTapped() {
+    @objc func errorLabelTapped() {
         UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
     }
     
@@ -413,9 +413,9 @@ class HomeViewController:
         let font = UIFont(name: Constants.RegularFont, size: Constants.HomeBaseSize)!
         let text = NSMutableAttributedString(string: s)
 
-        text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -0.9 as AnyObject)
-        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
+        text.applyAttribute(NSAttributedStringKey.font, value: font)
+        text.applyAttribute(NSAttributedStringKey.kern, value: -0.9)
+        text.applyAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.nkrLogotypeLightColor())
 
         return text
 
@@ -425,9 +425,9 @@ class HomeViewController:
         let font = UIFont(name: Constants.MediumFont, size: Constants.HomeBaseSize)!
         let text = NSMutableAttributedString(string: s)
         
-        text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -1.0 as AnyObject)
-        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrLogotypeLightColor())
+        text.applyAttribute(NSAttributedStringKey.font, value: font)
+        text.applyAttribute(NSAttributedStringKey.kern, value: -1.0)
+        text.applyAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.nkrLogotypeLightColor())
 
         return text
     }
@@ -436,9 +436,9 @@ class HomeViewController:
         let font = UIFont(name: Constants.RegularFont, size: size)!
         let text = NSMutableAttributedString(string: s)
         
-        text.applyAttribute(NSFontAttributeName, value: font)
-        text.applyAttribute(NSKernAttributeName, value: -0.5 as AnyObject)
-        text.applyAttribute(NSForegroundColorAttributeName, value: UIColor.nkrReddishOrangeColor())
+        text.applyAttribute(NSAttributedStringKey.font, value: font)
+        text.applyAttribute(NSAttributedStringKey.kern, value: -0.5)
+        text.applyAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.nkrReddishOrangeColor())
         
         return text
     }
@@ -454,17 +454,17 @@ class HomeViewController:
         
         let font = UIFont(name: Constants.BoldFont, size: Constants.OnOffButtonSize)!
         let onText = NSMutableAttributedString(string: "on")
-        onText.applyAttribute(NSForegroundColorAttributeName, value: running ? onColor : offColor)
+        onText.applyAttribute(NSAttributedStringKey.foregroundColor, value: running ? onColor : offColor)
         let offText = NSMutableAttributedString(string: "off")
-        offText.applyAttribute(NSFontAttributeName, value: font)
-        offText.applyAttribute(NSForegroundColorAttributeName, value: running ? offColor : onColor)
+        offText.applyAttribute(NSAttributedStringKey.font, value: font)
+        offText.applyAttribute(NSAttributedStringKey.foregroundColor, value: running ? offColor : onColor)
         
         // combine the two
         onText.append(offText)
         
-        onText.applyAttribute(NSFontAttributeName, value: font)
-        onText.applyAttribute(Constants.SmartTag, value: "onoff" as AnyObject)
-        onText.applyAttribute(NSKernAttributeName, value: -1 as AnyObject)
+        onText.applyAttribute(NSAttributedStringKey.font, value: font)
+        onText.applyAttribute(Constants.SmartTag, value: "onoff")
+        onText.applyAttribute(NSAttributedStringKey.kern, value: -1)
 
         return onText
     }

@@ -21,7 +21,7 @@ extension UIViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(UIViewController.cancelButtonPressed))
     }
     
-    func cancelButtonPressed() {
+    @objc func cancelButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
 }

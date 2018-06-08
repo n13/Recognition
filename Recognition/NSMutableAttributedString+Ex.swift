@@ -68,20 +68,20 @@ extension NSMutableAttributedString {
 ////            style.firstLineHeadIndent = 0
 //            style.lineHeightMultiple = 0.8
 //        }
-        var attributes: [String:AnyObject] = [
-            NSFontAttributeName : font,
-            NSForegroundColorAttributeName : color,
-            NSParagraphStyleAttributeName: style,
-            NSKernAttributeName: kerning as AnyObject,
+        var attributes: [NSAttributedStringKey:Any] = [
+            NSAttributedStringKey.font : font,
+            NSAttributedStringKey.foregroundColor : color,
+            NSAttributedStringKey.paragraphStyle: style,
+            NSAttributedStringKey.kern: kerning,
         ]
         if (smartTag != nil) {
-            attributes[Constants.SmartTag] = smartTag as AnyObject
+            attributes[Constants.SmartTag] = smartTag
         }
         if (underlineLastLineOnly) {
-            attributes[Constants.SuperUnderlineStyle] = true as AnyObject
+            attributes[Constants.SuperUnderlineStyle] = true
         }
         if (underlineStyle != NSUnderlineStyle.styleNone.rawValue) {
-            attributes[NSUnderlineStyleAttributeName] = underlineStyle as AnyObject
+            attributes[NSAttributedStringKey.underlineStyle] = underlineStyle
         }
 
         return NSMutableAttributedString(string: text, attributes: attributes)
@@ -94,7 +94,7 @@ extension NSMutableAttributedString {
     }
     
     // apply an attribute over the entire range
-    func applyAttribute(_ attributeName: String, value: AnyObject) {
+    func applyAttribute(_ attributeName: NSAttributedStringKey, value: Any) {
         self.addAttribute(attributeName, value: value, range: NSRange(location: 0, length: self.length))
     }
     

@@ -41,7 +41,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         
         // Done button
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(SmartTextViewController.doneButtonPressed(_:)))
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:Constants.ActiveColor], for: UIControlState())
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSAttributedStringKey.foregroundColor:Constants.ActiveColor], for: UIControlState())
         navigationController?.isNavigationBarHidden = true
         
         // UX
@@ -245,7 +245,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
     }
     
     // MARK: Actions
-    func handleSettingsChanged(_ notification: Notification?) {
+    @objc func handleSettingsChanged(_ notification: Notification?) {
         print("handle settings changed - new reminder text: \(AppDelegate.delegate().settings.reminderText)")
         if (isSettingsScreen) {
             textView.attributedText = createText()
@@ -259,7 +259,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         dismiss(animated: true, completion: nil)
     }
     
-    func historyButtonPressed(_ sender: AnyObject) {
+    @objc func historyButtonPressed(_ sender: AnyObject) {
         print("history")
 
         self.resignCurrentFirstResponder()
@@ -278,7 +278,7 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
 
     let popupBaseView = UIView(frame: CGRect.zero)
     
-    func textTapped(_ recognizer: UITapGestureRecognizer) {
+    @objc func textTapped(_ recognizer: UITapGestureRecognizer) {
         let textView = recognizer.view as! UITextView
         let locationTapped = recognizer.location(in: textView)
         let value = textView.tagForLocation(locationTapped)
@@ -372,12 +372,12 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.right
         
-        attributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
+        attributedText.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedText.length))
         
         return attributedText
     }
     
-    func releaseFirstResponder() {
+    @objc func releaseFirstResponder() {
         if (self.reminderTextView != nil && self.reminderTextView.isFirstResponder) {
             self.reminderTextView.resignFirstResponder()
         }
@@ -408,10 +408,10 @@ class SmartTextViewController: UIViewController, UIPickerViewDelegate, UITextVie
         }
     }
     
-    func startDateChanged(_ datePicker: UIDatePicker) {
+    @objc func startDateChanged(_ datePicker: UIDatePicker) {
         setDate(datePicker.date, isStartDate: true)
     }
-    func endDateChanged(_ datePicker: UIDatePicker) {
+    @objc func endDateChanged(_ datePicker: UIDatePicker) {
         setDate(datePicker.date, isStartDate: false)
     }
     

@@ -34,11 +34,11 @@ class BlockView: UIView {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.right
         
-        let attributes: [String:AnyObject] = [
-            NSFontAttributeName: UIFont(name:
+        let attributes: [NSAttributedStringKey:Any] = [
+            NSAttributedStringKey.font: UIFont(name:
                 Constants.LightFont, size: 50)!,
-            NSKernAttributeName: -3.0 as AnyObject,
-            NSParagraphStyleAttributeName: paragraphStyle
+            NSAttributedStringKey.kern: -3.0,
+            NSAttributedStringKey.paragraphStyle: paragraphStyle
         ]
         
         let s = NSMutableAttributedString(string: text.lowercased(), attributes: attributes)
