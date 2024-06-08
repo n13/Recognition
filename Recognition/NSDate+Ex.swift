@@ -14,17 +14,17 @@ extension Date {
     }
     
     func isBeforeHourToday(_ otherDate: Date) -> Bool {
-        if (self as NSDate).hour() == (otherDate as NSDate).hour() {
-            return (self as NSDate).minute() < (otherDate as NSDate).minute()
+        if self.hour == otherDate.hour {
+            return (self).minute < (otherDate).minute
         } else {
-            return (self as NSDate).hour() < (otherDate as NSDate).hour()
+            return (self).hour < (otherDate).hour
         }
     }
     
     func asHoursAndMinutesFloat() -> Float {
-        let aDate = self as NSDate
-        let hoursFloat: Float = Float(aDate.hour()) + Float(aDate.minute()) / 60.0
-        print("hour float: hour: \(aDate.hour()) minute: \(aDate.minute()) float: \(hoursFloat)")
+        let aDate = self
+        let hoursFloat: Float = Float(aDate.hour) + Float(aDate.minute) / 60.0
+        print("hour float: hour: \(aDate.hour) minute: \(aDate.minute) float: \(hoursFloat)")
         return hoursFloat
     }
     
@@ -32,7 +32,7 @@ extension Date {
         let nowTime = Date()
         let hour = Int(hour0_24)
         let minute: Int = Int(60.0 * (hour0_24 - Float(hour)))
-        return NSDate(year: (nowTime as NSDate).year(), month: (nowTime as NSDate).month(), day: (nowTime as NSDate).day(), hour: hour, minute: minute, second: 0) as Date
+        return Date(year: (nowTime).year, month: (nowTime).month, day: (nowTime).day, hour: hour, minute: minute, second: 0) as Date
     }
     
     static func hourAsDateToday(_ hour0_24: Float) -> Date {

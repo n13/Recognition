@@ -6,9 +6,9 @@
 //  Copyright © 2016 Nikolaus Heger. All rights reserved.
 //
 
-import EVCloudKitDao
-
-class ReminderText : EVCloudKitDataObject {
-    var Text : String = ""
-    var Votes: Int64 = 0
-}
+//import EVCloudKitDao
+//
+//class ReminderText : EVCloudKitDataObject {
+//    var Text : String = ""
+//    var Votes: Int64 = 0
+//}

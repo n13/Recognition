@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-import DateTools
+import DateToolsSwift
 
 class ReminderEngine {
     // singleton
@@ -127,10 +127,10 @@ class ReminderEngine {
         var endTime = endTimeAsDate()
         
         if settings.endTimeIsPlusOneDay() {
-            endTime = (endTime as NSDate).addingDays(1)
+            endTime = endTime + 1.days
         }
         
-        var totalMinutes: Double = Double((endTime as NSDate).minutesLaterThan(startTime))
+        var totalMinutes: Double = Double(endTime.minutesLater(than: startTime))
         if (totalMinutes < 1) {
             totalMinutes = 1
         }
@@ -154,12 +154,12 @@ class ReminderEngine {
         var fireTime = startTime
         for n in 0..<numberOfReminders {
             fireTime = fireTime.addingTimeInterval(secondsPerReminder)
-            if (fireTime as NSDate).isLaterThan(nowTime) {
+            if fireTime.isLater(than: nowTime) {
                 reminderTimes.append(fireTime)
                 //print("\(n) added reminder time: \(fireTime.toLocalString())")
             } else {
                 //print("\(n) added reminder time for tomorrow: \(fireTime.dateByAddingDays(1).toLocalString())")
-                reminderTimes.append((fireTime as NSDate).addingDays(1))
+                reminderTimes.append(fireTime.add(1.days))
             }
         }
         

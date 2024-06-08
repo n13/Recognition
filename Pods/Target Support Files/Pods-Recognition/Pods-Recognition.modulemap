@@ -1,4 +1,4 @@
-framework module Pods_Recognition {
+module Pods_Recognition {
   umbrella header "Pods-Recognition-umbrella.h"
 
   export *

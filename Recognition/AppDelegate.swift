@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EVCloudKitDao
 
 enum NotificationStateMachine:Int {
     case notYetAsked = 0

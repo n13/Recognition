@@ -1,18 +1,11 @@
-//
-//  ListViewController.swift
-//  Recognition
-//
-//  Created by Nikolaus Heger on 5/4/16.
-//  Copyright © 2016 Nikolaus Heger. All rights reserved.
-//
-
-import EVCloudKitDao
+import UIKit
+import CloudKit
 
 class ListViewController: UITableViewController {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
-    var doneBlock: ((_ newText:String?) -> ())?
+    var doneBlock: ((_ newText: String?) -> ())?
     var reminderTexts: [String] = [] {
         didSet {
             if (segmentedControl.selectedSegmentIndex == 1) {
@@ -22,10 +15,9 @@ class ListViewController: UITableViewController {
     }
     let historyList = AppDelegate.delegate().settings.history
 
-    let dao: EVCloudKitDao = EVCloudKitDao.publicDBForContainer("iCloud.com.recognitionmeditation")
-
     //MARK: View
     override func viewDidLoad() {
+        super.viewDidLoad()
         title = "Choose Reminder Text"
         addCancelButton()
         
@@ -35,30 +27,35 @@ class ListViewController: UITableViewController {
         segmentedControl.tintColor = Constants.ActiveColor
         
         reloadReminderTexts()
-        
     }
-    func reloadReminderTexts() {
-        // test EV cloud kit dao
-        dao.query(ReminderText()
-            , completionHandler: { results, finished in
-                
-                for result in results {
-                    print("foo: "+result.Text + " \(result.Votes)")
-                }
-                
-                EVLog("query : result count = \(results.count)")
-                
-                var reminderTexts = results
-                reminderTexts.sort { rt1, rt2 in
-                    rt1.Votes > rt2.Votes
-                }
-                self.reminderTexts = reminderTexts.map { $0.Text }
-                return true
-            }, errorHandler: { error in
-                EVLog("<--- ERROR query Message")
-        })
-        
 
+    func reloadReminderTexts() {
+        let publicDatabase = CKContainer.default().publicCloudDatabase
+        let query = CKQuery(recordType: "ReminderText", predicate: NSPredicate(value: true))
+        
+        publicDatabase.perform(query, inZoneWith: nil) { results, error in
+            if let error = error {
+                print("Error fetching ReminderTexts: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let records = results else { return }
+            
+            var reminderTexts: [ReminderText] = []
+            for record in records {
+                if let reminder = ReminderText(record: record) {
+                    reminderTexts.append(reminder)
+                    print("foo: \(reminder.text) \(reminder.votes)")
+                }
+            }
+            
+            reminderTexts.sort { $0.votes > $1.votes }
+            self.reminderTexts = reminderTexts.map { $0.text }
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
     
     //MARK: Actions
@@ -73,24 +70,20 @@ class ListViewController: UITableViewController {
     
     func textAtIndex(_ index: Int) -> String {
         if segmentedControl.selectedSegmentIndex == 0 {
-            return historyList.array[index+1]
+            return historyList.array[index + 1]
         } else {
             return reminderTexts[index]
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return segmentedControl.selectedSegmentIndex == 0 ?
-        historyList.count() - 1 :
-        reminderTexts.count
+        return segmentedControl.selectedSegmentIndex == 0 ? historyList.count() - 1 : reminderTexts.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let text = textAtIndex(indexPath.row)
         let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as! ListCell
         cell.setData(text)
-        cell.accessoryType = .checkmark
         cell.accessoryType = .none
         return cell
     }
@@ -102,7 +95,35 @@ class ListViewController: UITableViewController {
         doneBlock?(text)
     }
     
-    // TODO 
+    // TODO
     // switch between
+}
+
+class ReminderText {
+    var recordID: CKRecord.ID?
+    var text: String
+    var votes: Int64
     
+    init(text: String, votes: Int64) {
+        self.text = text
+        self.votes = votes
+    }
+    
+    init?(record: CKRecord) {
+        guard
+            let text = record["Text"] as? String,
+            let votes = record["Votes"] as? Int64
+        else { return nil }
+        
+        self.recordID = record.recordID
+        self.text = text
+        self.votes = votes
+    }
+    
+    func toRecord() -> CKRecord {
+        let record = CKRecord(recordType: "ReminderText")
+        record["Text"] = text as CKRecordValue
+        record["Votes"] = votes as CKRecordValue
+        return record
+    }
 }
